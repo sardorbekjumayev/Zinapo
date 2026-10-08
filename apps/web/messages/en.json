@@ -1,0 +1,182 @@
+{
+  "localeName": "Eng",
+  "brand": "Zinapo",
+  "themeToggle": "Toggle theme",
+  "hero": {
+    "eyebrow": "2026/27 SEASON · GRADES 0–4",
+    "title": "See where your child actually stands among the kids competing for the same places.",
+    "subtitle": "Monitoring for grade 0–4 pupils preparing for presidential and specialised schools.",
+    "sampleLabel": "SAMPLE · GRADE 4",
+    "sampleValue": "Top 11–19%",
+    "sampleCaption": "Among 1,240 children aiming for a presidential school",
+    "sampleBadge": "Up over the last 4 monitorings",
+    "months": [
+      "sep",
+      "oct",
+      "nov",
+      "dec",
+      "jan"
+    ],
+    "features": [
+      {
+        "title": "A range, not a score",
+        "body": "Not a single number but “Top 11–19%”. Every test has error — we don’t hide it."
+      },
+      {
+        "title": "Growth across the season",
+        "body": "8 monitorings from September to spring. The trend says more than any one result."
+      },
+      {
+        "title": "One clear next step",
+        "body": "Not ten tips — one task: 15 minutes, three times a week."
+      }
+    ],
+    "footnote": "Data is stored on servers inside Uzbekistan · PINFL is never shown on screen"
+  },
+  "signIn": {
+    "kicker": "SIGN IN OR REGISTER",
+    "title": "Your phone number",
+    "subtitle": "No password — we send the sign-in code over Telegram.",
+    "phoneLabel": "Phone number",
+    "phoneHint": "Your number is your login. One number, one account.",
+    "sendCode": "Send code",
+    "sending": "Sending…",
+    "legal": "By continuing you agree to the terms of use and the privacy policy.",
+    "codeTitle": "Enter the code",
+    "codeKicker": "CONFIRM VIA TELEGRAM",
+    "codeSubtitle": "The code for {phone} will arrive in Telegram.",
+    "getCode": "Get the code",
+    "getCodeHint": "The button opens Telegram. Share your number with the bot and the code follows.",
+    "qrLabel": "Telegram only on your phone? Scan the QR code",
+    "waitingLink": "Waiting for Telegram to open…",
+    "waitingContact": "Share your number in Telegram…",
+    "enterCode": "Enter the code",
+    "codeValid": "Code valid for {time}",
+    "codeInvalid": "Wrong code. {n} attempts left.",
+    "codeExpired": "Code expired. Tap “New code” in the bot.",
+    "mismatch": "The Telegram number doesn’t match the one you entered.",
+    "locked": "Too many wrong attempts. Start again.",
+    "requestExpired": "The request expired. Start again.",
+    "cancelled": "The request was cancelled in Telegram.",
+    "browserMismatch": "No request found in this browser. Start again.",
+    "rateLimited": "Too many attempts. Try again in {n} s.",
+    "phoneInvalid": "Invalid number. Enter 9 digits after +998.",
+    "networkError": "Connection error. Please try again.",
+    "changeNumber": "Change number",
+    "restart": "Start again",
+    "verifying": "Checking…",
+    "success": "Signed in. Redirecting…",
+    "verified": "Verified"
+  },
+  "invite": {
+    "title": "{name} invited you · code {code}",
+    "body": "After signing in you add your child and decide what the tutor can see."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "greeting": "Welcome, {name}",
+    "body": "This page comes next. For now the sign-in flow is ready.",
+    "logout": "Sign out"
+  },
+  "workspace": {
+    "family": "Parent",
+    "educator": "Tutor",
+    "staff": "Staff"
+  },
+  "staffRole": {
+    "item_author": "Item author",
+    "item_reviewer": "Item reviewer",
+    "bank_editor": "Bank editor",
+    "season_manager": "Season manager",
+    "olympiad_operator": "Olympiad operator",
+    "proctor": "Proctor",
+    "trust_safety": "Trust & safety",
+    "support": "Support",
+    "outcomes_operator": "Outcomes operator",
+    "super_admin": "Super admin"
+  },
+  "nav": {
+    "label": "Main menu",
+    "langLabel": "Language",
+    "workspaceLabel": "Workspace",
+    "notifications": "Notifications",
+    "profile": "Profile and sign out",
+    "familyChildren": "CHILDREN",
+    "familyManage": "MANAGE",
+    "reports": "Reports",
+    "addChild": "Add a child",
+    "access": "Access & consents",
+    "consents": "Consents",
+    "privacy": "Privacy",
+    "educatorGroups": "GROUPS",
+    "educatorWork": "WORK",
+    "groups": "Groups",
+    "practice": "Practice",
+    "invites": "Invitations",
+    "myChildren": "My children",
+    "staffHome": "Home",
+    "staffQueues": "QUEUES",
+    "items": "Item bank",
+    "review": "Review",
+    "forms": "Forms",
+    "calibration": "Calibration",
+    "seasons": "Seasons and waves",
+    "olympiads": "Olympiads",
+    "finals": "Finals",
+    "cases": "Flags and disputes",
+    "outcomes": "Admission outcomes",
+    "people": "Person lookup",
+    "roles": "Roles",
+    "audit": "Audit log",
+    "noteAccess": "Access to {n} children",
+    "noteAccessSub": "When the window a parent granted runs out, access closes by itself.",
+    "noteChildren": "{n} children",
+    "noteChildrenSub": "The report updates after each wave closes.",
+    "noteRoles": "{n} staff roles"
+  },
+  "dashboardRouter": {
+    "checking": "Working out your roles…",
+    "noSession": "Your session has expired. Please sign in again."
+  },
+  "onboarding": {
+    "kicker": "LET'S START",
+    "title": "Welcome to Zinapo, {name}",
+    "subtitle": "Roles aren't separate accounts — they're your relationships with children. Where shall we start?",
+    "parentTitle": "I'm a parent",
+    "parentBody": "I'll add my child. PINFL, grade and school — about a minute.",
+    "parentCta": "Add a child",
+    "educatorTitle": "I'm a tutor or teacher",
+    "educatorBody": "I'll apply. Our team reviews applications, usually within one working day.",
+    "educatorCta": "Apply",
+    "note": "Tutor or staff roles appear here once they are linked to your number. One number, one account."
+  },
+  "educatorPending": {
+    "kicker": "APPLICATION",
+    "title": "Your application is under review",
+    "body": "The trust & safety team is reviewing your application. Once it is approved we will message you on Telegram and your tutor workspace opens.",
+    "note": "In the meantime you can still add your own child as a parent."
+  },
+  "states": {
+    "loading": "Loading",
+    "retry": "Try again",
+    "errorTitle": "We couldn't load this",
+    "errorBody": "The problem is on our side. Please try again in a minute.",
+    "emptyTitle": "Nothing here yet",
+    "emptyBody": "This section fills in once the first data arrives."
+  },
+  "soon": {
+    "kicker": "IN PROGRESS",
+    "title": "{screen}",
+    "body": "This screen lands in a later milestone. Permissions and workspaces are already in place.",
+    "back": "Back to home"
+  },
+  "crumb": {
+    "family": "{name} · parent · {season} season",
+    "educator": "{name} · tutor · {season} season",
+    "staff": "{name} · staff · {roles}"
+  },
+  "profile": {
+    "telegramLinked": "Telegram account linked",
+    "profileNote": "Editing your name lands in a later milestone."
+  }
+}

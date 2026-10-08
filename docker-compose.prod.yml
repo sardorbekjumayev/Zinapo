@@ -1,0 +1,26 @@
+# Production overlay: multi-stage `prod` images, no bind mounts, no exposed
+# database ports. Use with:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+services:
+  db:
+    ports: !override []
+
+  redis:
+    ports: !override []
+
+  api:
+    build:
+      target: prod
+    volumes: !override []
+    environment:
+      NODE_ENV: production
+      COOKIE_SECURE: "true"
+    restart: unless-stopped
+
+  web:
+    build:
+      target: prod
+    volumes: !override []
+    environment:
+      NODE_ENV: production
+    restart: unless-stopped

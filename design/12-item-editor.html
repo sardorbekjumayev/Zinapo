@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="uz"><head>
+<meta charset="utf-8">
+<title>Zinapo · Item editor</title>
+<script src="_assets/dc-runtime.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-feae57212855.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-9d8db2e8ccd9.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-bcedb9e2e528.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-326a88b4ddbb.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-06ad36000cd8.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-4f27206c4b1c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-feae57212855.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-9d8db2e8ccd9.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-bcedb9e2e528.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-326a88b4ddbb.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-06ad36000cd8.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-4f27206c4b1c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+body{margin:0;font-family:"Manrope","Inter",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+.z{--surface-000:#f7f5fb;--surface-100:#ffffff;--surface-200:#f1ecfa;--surface-300:#e7e0f5;--ink-900:#1a1622;--ink-600:#58506e;--ink-400:#6e6686;--line-100:#e6dff3;--line-200:#cfc4e6;--brand-050:#f5f0ff;--brand-100:#e9e0ff;--brand-300:#c9b0ff;--brand-400:#ad89ff;--brand-600:#7444e4;--brand-700:#522cc3;--ink-on-primary:#1a1622;--focus-ring:#ad89ff99;--success:#10805a;--success-bg:#dff5ec;--warning:#9a5c00;--warning-bg:#fdf0dc;--danger:#c62a43;--danger-bg:#fde7ea;--accent-teal:#0d7d86;--accent-teal-bg:#ddf3f4;--accent-coral:#c04a2a;--accent-coral-bg:#fceae4;--accent-blue:#2158c9;--accent-blue-bg:#e3ecfd;--overlay:#1a162299;--mode-practice:#0d7d86;--shadow-xs:0 1px 2px rgba(26,22,34,.06);--shadow-float:0 2px 4px rgba(26,22,34,.05),0 8px 20px -6px rgba(86,58,160,.20);--shadow-float-lg:0 4px 8px rgba(26,22,34,.06),0 16px 32px -8px rgba(86,58,160,.28);--shadow-card:0 1px 2px rgba(26,22,34,.04),0 12px 28px -14px rgba(86,58,160,.22);--shadow-overlay:0 8px 16px rgba(26,22,34,.08),0 32px 64px -20px rgba(86,58,160,.34);color:var(--ink-900);background:var(--surface-000)}
+.z[data-theme="dark"]{--surface-000:#121016;--surface-100:#1b1822;--surface-200:#242030;--surface-300:#2e2940;--ink-900:#f5f2fb;--ink-600:#bdb6cf;--ink-400:#9990ab;--line-100:#322c44;--line-200:#443c5c;--brand-050:#221c33;--brand-100:#2d2547;--brand-300:#6e4fc0;--brand-600:#7c4de8;--brand-700:#c4a9ff;--focus-ring:#ad89ffaa;--success:#4ed6a1;--success-bg:#16342a;--warning:#f2b457;--warning-bg:#38290f;--danger:#ff7f8d;--danger-bg:#3a1b21;--accent-teal:#4fd0d9;--accent-teal-bg:#123236;--accent-coral:#ff9273;--accent-coral-bg:#3a1f16;--accent-blue:#8fb0ff;--accent-blue-bg:#15233f;--overlay:#0a0810cc;--mode-practice:#0e7c85;--shadow-xs:0 1px 2px rgba(0,0,0,.5);--shadow-float:0 2px 4px rgba(0,0,0,.45),0 8px 20px -6px rgba(0,0,0,.6);--shadow-float-lg:0 4px 8px rgba(0,0,0,.5),0 16px 32px -8px rgba(0,0,0,.7);--shadow-card:0 1px 2px rgba(0,0,0,.4),0 12px 28px -14px rgba(0,0,0,.55);--shadow-overlay:0 8px 16px rgba(0,0,0,.5),0 32px 64px -20px rgba(0,0,0,.75)}
+.z a{color:var(--brand-700)}
+.z button,.z input,.z textarea,.z select{font-family:inherit}
+.z button{cursor:pointer}
+.z button:disabled{cursor:not-allowed}
+.z input::placeholder,.z textarea::placeholder{color:var(--ink-400)}
+.z input:disabled,.z textarea:disabled{opacity:1;-webkit-text-fill-color:var(--ink-600)}
+.lift{transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s cubic-bezier(.2,.8,.2,1)}
+.lift:hover{transform:translateY(-1px);box-shadow:var(--shadow-float-lg)!important}
+.ghost:hover{background:var(--surface-200)!important}
+.row:hover{background:var(--surface-200)!important}
+.z button:focus-visible,.z a:focus-visible,.z input:focus-visible,.z textarea:focus-visible,.z select:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus-ring)!important}
+.z input:focus-visible,.z textarea:focus-visible,.z select:focus-visible{border-color:var(--brand-600)!important}
+.skel{background:linear-gradient(90deg,var(--surface-300) 0%,var(--surface-200) 50%,var(--surface-300) 100%);background-size:200% 100%;animation:zsk 1.4s ease-in-out infinite;border-radius:14px}
+@keyframes zsk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.lift:hover{transform:none}.skel{animation:none}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.clip{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.num{font-variant-numeric:tabular-nums}
+</style>
+</helmet>
+<div class="z" data-theme="{{ theme }}" style="position: relative; width: 1440px; height: 1780px; box-sizing: border-box; padding: 16px; display: flex; gap: 32px; align-items: flex-start; background: var(--surface-000); color: var(--ink-900);">
+
+<nav aria-label="{{ t.navLabel }}" style="width: 264px; height: 1008px; flex-shrink: 0; box-sizing: border-box; padding: 28px 16px 16px; background: var(--surface-100); border-radius: 52px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<a href="SignIn.dc.html" aria-label="Zinapo" style="display: flex; align-items: center; gap: 12px; padding: 0 12px; text-decoration: none; color: var(--ink-900);">
+<span style="width: 40px; height: 40px; border-radius: 14px; background: var(--brand-400); display: flex; align-items: center; justify-content: center; color: var(--ink-on-primary);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M3 20h5v-5h5v-5h5V5h3"></path></svg>
+</span>
+<span style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">Zinapo</span>
+</a>
+<span style="margin: -12px 0 0 64px; align-self: flex-start; height: 24px; padding: 0 10px; border-radius: 999px; background: var(--accent-blue-bg); color: var(--accent-blue); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; display: flex; align-items: center;">{{ t.navStaffChip }}</span>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="padding: 0 16px 8px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.navBank }}</div>
+<a href="ItemBank.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg>{{ t.navAllItems }}</a>
+<a href="ItemEditor.dc.html" aria-current="page" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; background: var(--brand-050); color: var(--brand-700); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round;"><path d="M12 5v14M5 12h14"></path></svg>{{ t.navNewItem }}</a>
+<a href="ItemReview.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>{{ t.navReview }}<span style="margin-left: auto; min-width: 24px; height: 24px; padding: 0 8px; box-sizing: border-box; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;">12</span></a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="padding: 0 16px 8px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.navMonitoring }}</div>
+<a href="FormBuilder.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 3l9 5-9 5-9-5z"></path><path d="M3 13l9 5 9-5"></path></svg>{{ t.navForms }}</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="padding: 0 16px 8px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.navSafety }}</div>
+<a href="FraudQueue.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>{{ t.navFlags }}<span style="margin-left: auto; min-width: 24px; height: 24px; padding: 0 8px; box-sizing: border-box; border-radius: 999px; background: var(--danger-bg); color: var(--danger); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;">5</span></a>
+<a href="SignIn.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"></path></svg>{{ t.navSignOut }}</a>
+</div>
+<sc-if value="{{ demoBar }}" hint-placeholder-val="{{ true }}">
+<div style="margin-top: auto; padding: 12px; border-radius: 30px; border: 1.5px dashed var(--line-200); display: flex; flex-direction: column; gap: 8px;">
+<span style="padding: 0 6px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">PROTOTYPE · SCREEN STATE</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px;">
+<sc-for list="{{ uiStates }}" as="u" hint-placeholder-count="4">
+<button sc-camel-on-click="{{ u.pick }}" aria-pressed="{{ u.on }}" style="height: 36px; border: 0; border-radius: 22px; font-size: 12px; font-weight: 600; background: {{ u.bg }}; color: {{ u.ink }};">{{ u.label }}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</nav>
+
+<main style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+
+<header style="height: 72px; box-sizing: border-box; padding: 0 12px 0 20px; background: var(--surface-100); border-radius: 52px; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 12px;">
+<div style="flex-grow: 1; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--ink-600);">
+<a href="ItemBank.dc.html" class="ghost" style="height: 40px; padding: 0 14px 0 10px; border-radius: 30px; display: flex; align-items: center; gap: 6px; text-decoration: none; color: var(--brand-700);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M15 6l-6 6 6 6"></path></svg>{{ t.crumbBack }}</a>
+<span aria-hidden="true" style="color: var(--ink-400);">/</span>
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 13px;">{{ crumbCode }}</span>
+</div>
+<div role="group" aria-label="{{ t.langLabel }}" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--surface-200);">
+<sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+<button sc-camel-on-click="{{ l.pick }}" aria-pressed="{{ l.on }}" style="height: 36px; min-width: 52px; padding: 0 12px; border: 0; border-radius: 22px; font-size: 13px; font-weight: 600; background: {{ l.bg }}; color: {{ l.ink }}; box-shadow: {{ l.shadow }};">{{ l.label }}</button>
+</sc-for>
+</div>
+<button sc-camel-on-click="{{ toggleTheme }}" aria-label="{{ t.themeLabel }}" class="ghost" style="width: 48px; height: 48px; border: 0; border-radius: 30px; background: transparent; color: var(--ink-600); display: flex; align-items: center; justify-content: center;">
+<sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</sc-if>
+<sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"></path></svg>
+</sc-if>
+</button>
+<button aria-label="{{ t.notifLabel }}" class="ghost" style="width: 48px; height: 48px; border: 0; border-radius: 30px; background: transparent; color: var(--ink-600); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 21h4"></path></svg>
+</button>
+<span style="width: 48px; height: 48px; border-radius: 999px; background: var(--accent-blue-bg); color: var(--accent-blue); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center;">NY</span>
+</header>
+
+<sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+<div aria-busy="true" aria-label="{{ t.loadingLabel }}" style="display: flex; flex-direction: column; gap: 24px;">
+<div style="padding: 8px 8px 0; display: flex; align-items: flex-end; gap: 12px;"><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 10px;"><div class="skel" style="width: 300px; height: 34px;"></div><div class="skel" style="width: 420px; height: 16px;"></div></div><div class="skel" style="width: 170px; height: 48px; border-radius: 30px;"></div><div class="skel" style="width: 200px; height: 48px; border-radius: 30px;"></div></div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 368px; gap: 24px; align-items: start;">
+<div style="display: flex; flex-direction: column; gap: 24px;">
+<div style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;"><div class="skel" style="width: 160px; height: 20px;"></div><div style="display: flex; gap: 16px;"><div class="skel" style="width: 200px; height: 44px; border-radius: 999px;"></div><div class="skel" style="flex-grow: 1; height: 32px; border-radius: 999px;"></div></div><div style="display: flex; gap: 12px;"><div class="skel" style="width: 200px; height: 48px; border-radius: 30px;"></div><div class="skel" style="flex-grow: 1; height: 48px; border-radius: 30px;"></div><div class="skel" style="width: 120px; height: 48px; border-radius: 30px;"></div></div></div>
+<div style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;"><div style="display: flex; justify-content: space-between;"><div class="skel" style="width: 120px; height: 20px;"></div><div class="skel" style="width: 360px; height: 40px; border-radius: 999px;"></div></div><div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;"><div class="skel" style="height: 64px; border-radius: 22px;"></div><div class="skel" style="height: 64px; border-radius: 22px;"></div><div class="skel" style="height: 64px; border-radius: 22px;"></div></div><div class="skel" style="height: 96px; border-radius: 22px;"></div></div>
+<div style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 10px;"><div class="skel" style="width: 200px; height: 20px;"></div><div class="skel" style="width: 520px; height: 14px;"></div>
+<sc-for list="{{ skelOpts }}" as="k" hint-placeholder-count="4"><div class="skel" style="height: 126px; border-radius: 22px;"></div></sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px;">
+<div style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 12px;"><div class="skel" style="width: 140px; height: 14px;"></div><div class="skel" style="height: 72px; border-radius: 22px;"></div><div class="skel" style="height: 72px; border-radius: 22px;"></div></div>
+<div style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 12px;"><div class="skel" style="width: 160px; height: 20px;"></div><div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;"><div class="skel" style="height: 80px; border-radius: 22px;"></div><div class="skel" style="height: 80px; border-radius: 22px;"></div><div class="skel" style="height: 80px; border-radius: 22px;"></div><div class="skel" style="height: 80px; border-radius: 22px;"></div></div><div class="skel" style="height: 10px; border-radius: 999px;"></div><div class="skel" style="height: 10px; border-radius: 999px;"></div><div class="skel" style="height: 10px; border-radius: 999px;"></div></div>
+<div style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 10px;"><div class="skel" style="width: 150px; height: 20px;"></div><div class="skel" style="height: 60px; border-radius: 22px;"></div><div class="skel" style="height: 60px; border-radius: 22px;"></div><div class="skel" style="height: 60px; border-radius: 22px;"></div></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 24px;">
+
+<div style="padding: 8px 8px 0; display: flex; align-items: flex-end; gap: 12px;">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; align-items: center; gap: 12px;">
+<h1 style="margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.02em;">{{ title }}</h1>
+<span style="height: 28px; padding: 0 12px; border-radius: 999px; background: {{ verChipBg }}; color: {{ verChipInk }}; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+<sc-if value="{{ isV1 }}" hint-placeholder-val="{{ false }}"><svg sc-camel-view-box="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></sc-if>{{ verChip }}</span>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ subtitle }}</p>
+</div>
+<button sc-camel-on-click="{{ save }}" disabled="{{ ro }}" class="lift" style="height: 48px; padding: 0 22px; box-sizing: border-box; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); color: {{ saveInk }}; font-size: 15px; font-weight: 600; box-shadow: var(--shadow-xs); flex-shrink: 0;">{{ t.save }}</button>
+<button sc-camel-on-click="{{ submit }}" disabled="{{ ro }}" class="lift" style="height: 48px; padding: 0 24px; border: 0; border-radius: 30px; background: {{ submitBg }}; color: {{ submitInk }}; font-size: 15px; font-weight: 600; box-shadow: {{ submitShadow }}; flex-shrink: 0;">{{ submitLabel }}</button>
+</div>
+
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 368px; gap: 24px; align-items: start;">
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+
+<sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+<section role="alert" style="padding: 20px 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; gap: 16px; align-items: center;">
+<span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--danger-bg); color: var(--danger); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16.5h.01"></path></svg>
+</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px;">
+<h2 style="margin: 0; font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.errTitle }}</h2>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.errBody }}</p>
+</div>
+<button sc-camel-on-click="{{ retrySave }}" class="lift" style="height: 48px; padding: 0 24px; border: 0; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float); flex-shrink: 0;">{{ t.retry }}</button>
+</section>
+</sc-if>
+
+<sc-if value="{{ isV1 }}" hint-placeholder-val="{{ false }}">
+<section role="status" style="padding: 20px 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; gap: 16px; align-items: center;">
+<span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px;">
+<h2 style="margin: 0; font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.frozenTitle }}</h2>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.frozenBody }}</p>
+</div>
+<button sc-camel-on-click="{{ newVersion }}" class="lift" style="height: 48px; padding: 0 22px; border: 0; border-radius: 30px; background: var(--brand-600); color: #ffffff; font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float); flex-shrink: 0;">{{ t.frozenCta }}</button>
+</section>
+</sc-if>
+
+<sc-if value="{{ showSummary }}" hint-placeholder-val="{{ false }}">
+<section role="alert" aria-labelledby="sum-h" style="padding: 20px 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; gap: 16px; align-items: flex-start;">
+<span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--danger-bg); color: var(--danger); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 3l9.5 17h-19z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;">
+<h2 id="sum-h" style="margin: 0; font-size: 17px; line-height: 23px; font-weight: 700;">{{ sumHeading }}</h2>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.sumBody }}</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px;">
+<sc-for list="{{ sumItems }}" as="e" hint-placeholder-count="3">
+<li style="height: 26px; padding: 0 10px; border-radius: 999px; background: var(--danger-bg); color: var(--danger); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center;">{{ e.label }}</li>
+</sc-for>
+</ul>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{ showFixed }}" hint-placeholder-val="{{ false }}">
+<section role="status" style="padding: 20px 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; gap: 16px; align-items: center;">
+<span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--success-bg); color: var(--success); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+</span>
+<p style="margin: 0; flex-grow: 1; font-size: 15px; line-height: 23px; font-weight: 600;">{{ t.sumFixed }}</p>
+</section>
+</sc-if>
+
+<sc-if value="{{ isSubmitted }}" hint-placeholder-val="{{ false }}">
+<section role="status" style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; gap: 16px; align-items: flex-start;">
+<span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--success-bg); color: var(--success); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+<h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.subTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.subBody }}</p>
+<div style="margin-top: 10px; display: flex; gap: 12px;">
+<a href="ItemReview.dc.html" class="lift" style="height: 48px; padding: 0 24px; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; box-shadow: var(--shadow-float);">{{ t.subQueue }}</a>
+<a href="ItemBank.dc.html" class="lift" style="height: 48px; box-sizing: border-box; padding: 0 24px; border-radius: 30px; background: var(--surface-100); border: 1px solid var(--line-200); color: var(--ink-900); font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; box-shadow: var(--shadow-xs);">{{ t.subBack }}</a>
+</div>
+</div>
+</section>
+</sc-if>
+
+<section aria-labelledby="card-h" style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+<h2 id="card-h" style="margin: 0; font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.cardTitle }}</h2>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.cardHint }}</span>
+</div>
+<div style="display: flex; gap: 20px; align-items: flex-start;">
+<div style="flex-shrink: 0; display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; justify-content: space-between; gap: 12px; min-height: 18px;"><span id="grade-l" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.lGrade }}</span><sc-if value="{{ err.grade }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; line-height: 18px; font-weight: 600; color: var(--danger);">{{ t.eGrade }}</span></sc-if></div>
+<div role="radiogroup" aria-labelledby="grade-l" style="display: flex; gap: 2px; padding: 3px; border-radius: 999px; background: var(--surface-200); border: 1px solid {{ gradeBorder }};">
+<sc-for list="{{ grades }}" as="o" hint-placeholder-count="5">
+<button role="radio" aria-checked="{{ o.on }}" sc-camel-on-click="{{ o.pick }}" disabled="{{ ro }}" style="height: 36px; min-width: 40px; padding: 0 10px; border: 0; border-radius: 22px; font-size: 14px; font-weight: 600; background: {{ o.bg }}; color: {{ o.ink }}; box-shadow: {{ o.shadow }};">{{ o.label }}</button>
+</sc-for>
+</div>
+</div>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; justify-content: space-between; gap: 12px; min-height: 18px;"><span id="cl-l" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.lCluster }}</span><sc-if value="{{ err.cluster }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; line-height: 18px; font-weight: 600; color: var(--danger);">{{ t.eCluster }}</span></sc-if></div>
+<div role="radiogroup" aria-labelledby="cl-l" style="display: flex; flex-wrap: wrap; gap: 6px; padding: 5px 0;">
+<sc-for list="{{ clusters }}" as="o" hint-placeholder-count="3">
+<button role="radio" aria-checked="{{ o.on }}" sc-camel-on-click="{{ o.pick }}" disabled="{{ ro }}" style="height: 32px; padding: 0 12px; box-sizing: border-box; border: 1px solid {{ o.border }}; border-radius: 999px; font-size: 13px; font-weight: 600; background: {{ o.bg }}; color: {{ o.ink }};">{{ o.label }}</button>
+</sc-for>
+</div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: 190px minmax(0, 1fr) 118px; gap: 12px;">
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0;">
+<div style="display: flex; justify-content: space-between; gap: 8px; min-height: 18px;"><label for="topic" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.lTopic }}</label><sc-if value="{{ err.topic }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; line-height: 18px; font-weight: 600; color: var(--danger);">{{ t.eTopic }}</span></sc-if></div>
+<input id="topic" value="{{ f.topic }}" sc-camel-on-input="{{ on.topic }}" sc-camel-on-change="{{ on.topic }}" placeholder="{{ t.phTopic }}" disabled="{{ ro }}" style="height: 48px; box-sizing: border-box; padding: 0 18px; border: 1px solid {{ bd.topic }}; border-radius: 30px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; box-shadow: var(--shadow-xs);">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0;">
+<div style="display: flex; justify-content: space-between; gap: 8px; min-height: 18px;"><label for="construct" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.lConstruct }}</label><sc-if value="{{ err.construct }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; line-height: 18px; font-weight: 600; color: var(--danger);">{{ t.eConstruct }}</span></sc-if></div>
+<input id="construct" value="{{ f.construct }}" sc-camel-on-input="{{ on.construct }}" sc-camel-on-change="{{ on.construct }}" placeholder="{{ t.phConstruct }}" disabled="{{ ro }}" style="height: 48px; box-sizing: border-box; padding: 0 18px; border: 1px solid {{ bd.construct }}; border-radius: 30px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; box-shadow: var(--shadow-xs);">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0;">
+<div style="min-height: 18px;"><label for="expected" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.lExpected }}</label></div>
+<input id="expected" inputmode="decimal" value="{{ f.expected }}" sc-camel-on-input="{{ on.expected }}" sc-camel-on-change="{{ on.expected }}" placeholder="{{ t.phExpected }}" aria-describedby="expected-hint" disabled="{{ ro }}" class="num" style="height: 48px; box-sizing: border-box; padding: 0 18px; border: 1px solid {{ bd.expected }}; border-radius: 30px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; box-shadow: var(--shadow-xs);">
+</div>
+</div>
+<p id="expected-hint" style="margin: -4px 0 0; font-size: 12px; line-height: 16px; font-weight: 500; color: {{ expectedHintInk }};">{{ expectedHint }}</p>
+</section>
+
+<section aria-labelledby="stem-h" style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+<h2 id="stem-h" style="margin: 0; font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.stemTitle }}</h2>
+<div role="tablist" aria-label="{{ t.tabsLabel }}" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--surface-200);">
+<sc-for list="{{ tabs }}" as="o" hint-placeholder-count="2">
+<button role="tab" aria-selected="{{ o.on }}" sc-camel-on-click="{{ o.pick }}" style="height: 36px; padding: 0 8px 0 14px; border: 0; border-radius: 22px; font-size: 13px; font-weight: 600; background: {{ o.bg }}; color: {{ o.ink }}; box-shadow: {{ o.shadow }}; display: flex; align-items: center; gap: 8px;">{{ o.label }}<span style="height: 22px; padding: 0 8px; border-radius: 999px; background: {{ o.stBg }}; color: {{ o.stInk }}; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center;">{{ o.status }}</span></button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<div style="display: flex; justify-content: space-between; gap: 12px; min-height: 18px;"><span id="fmt-l" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.lFormat }}</span><sc-if value="{{ fmtErr }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; line-height: 18px; font-weight: 600; color: var(--danger);">{{ fmtErrText }}</span></sc-if></div>
+<div role="radiogroup" aria-labelledby="fmt-l" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
+<sc-for list="{{ formats }}" as="o" hint-placeholder-count="3">
+<button role="radio" aria-checked="{{ o.on }}" sc-camel-on-click="{{ o.pick }}" disabled="{{ ro }}" style="min-height: 64px; box-sizing: border-box; padding: 10px 14px; border: 1.5px solid {{ o.border }}; border-radius: 22px; background: {{ o.bg }}; color: var(--ink-900); text-align: left; display: flex; align-items: center; gap: 12px;">
+<span style="width: 20px; height: 20px; flex-shrink: 0; box-sizing: border-box; border-radius: 999px; border: 2px solid {{ o.ring }}; display: flex; align-items: center; justify-content: center;"><span style="width: 10px; height: 10px; border-radius: 999px; background: {{ o.dot }};"></span></span>
+<span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ o.title }}</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ o.sub }}</span></span>
+</button>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{ showYoung }}" hint-placeholder-val="{{ false }}">
+<div role="note" style="padding: 12px 16px; border-radius: 22px; background: var(--warning-bg); color: var(--warning); display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 20px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 9v6h4l5 4V5L8 9z"></path><path d="M16.5 8.5a5 5 0 0 1 0 7"></path></svg>{{ t.youngWarn }}</div>
+</sc-if>
+<sc-if value="{{ showUploads }}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+<div style="padding: 12px 12px 12px 16px; border-radius: 22px; border: 1.5px dashed {{ imgBorder }}; display: flex; align-items: center; gap: 12px;">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 14px; background: var(--surface-200); color: var(--ink-600); display: flex; align-items: center; justify-content: center;"><svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><rect x="4" y="5" width="16" height="14" rx="2"></rect><circle cx="9" cy="10" r="1.5"></circle><path d="M20 16l-5-5-8 8"></path></svg></span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column;"><span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.imgSlot }}</span><span class="clip" style="font-size: 12px; line-height: 16px; color: {{ imgSubInk }};">{{ imgSub }}</span></span>
+<button sc-camel-on-click="{{ toggleImg }}" disabled="{{ ro }}" style="height: 36px; padding: 0 14px; box-sizing: border-box; border: 1px solid var(--line-200); border-radius: 22px; background: var(--surface-100); color: var(--ink-900); font-size: 13px; font-weight: 600; box-shadow: var(--shadow-xs); flex-shrink: 0;">{{ imgBtn }}</button>
+</div>
+<sc-if value="{{ showAudio }}" hint-placeholder-val="{{ false }}">
+<div style="padding: 12px 12px 12px 16px; border-radius: 22px; border: 1.5px dashed {{ audBorder }}; display: flex; align-items: center; gap: 12px;">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 14px; background: var(--surface-200); color: var(--ink-600); display: flex; align-items: center; justify-content: center;"><svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 9v6h4l5 4V5L8 9z"></path><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"></path></svg></span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column;"><span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.audSlot }}</span><span class="clip" style="font-size: 12px; line-height: 16px; color: {{ audSubInk }};">{{ audSub }}</span></span>
+<button sc-camel-on-click="{{ toggleAud }}" disabled="{{ ro }}" style="height: 36px; padding: 0 14px; box-sizing: border-box; border: 1px solid var(--line-200); border-radius: 22px; background: var(--surface-100); color: var(--ink-900); font-size: 13px; font-weight: 600; box-shadow: var(--shadow-xs); flex-shrink: 0;">{{ audBtn }}</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; justify-content: space-between; gap: 12px; min-height: 18px;"><label for="stem" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ stemLabel }}</label><sc-if value="{{ stemErr }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; line-height: 18px; font-weight: 600; color: var(--danger);">{{ t.eStem }}</span></sc-if></div>
+<textarea id="stem" rows="3" value="{{ stemVal }}" sc-camel-on-input="{{ on.stem }}" sc-camel-on-change="{{ on.stem }}" placeholder="{{ t.phStem }}" disabled="{{ ro }}" aria-describedby="bt-note" style="height: 92px; box-sizing: border-box; padding: 14px 18px; border: 1px solid {{ stemBorder }}; border-radius: 22px; background: var(--surface-100); color: var(--ink-900); font-size: 16px; line-height: 26px; resize: none; box-shadow: var(--shadow-xs);"></textarea>
+<p id="bt-note" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ btNote }}</p>
+</div>
+</section>
+
+<section aria-labelledby="opt-h" style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+<h2 id="opt-h" style="margin: 0; font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.optTitle }}</h2>
+<sc-if value="{{ err.correct }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; line-height: 18px; font-weight: 600; color: var(--danger);">{{ t.eCorrect }}</span></sc-if>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.optHint }}</p>
+</div>
+<div role="radiogroup" aria-labelledby="opt-h" style="display: flex; flex-direction: column; gap: 10px;">
+<sc-for list="{{ options }}" as="o" hint-placeholder-count="4">
+<div style="position: relative; z-index: {{ o.z }}; padding: 14px 16px; border-radius: 22px; background: var(--surface-200); display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; align-items: center; gap: 12px;">
+<button role="radio" aria-checked="{{ o.checked }}" aria-label="{{ o.markLabel }}" sc-camel-on-click="{{ o.pickCorrect }}" disabled="{{ ro }}" style="width: 28px; height: 28px; flex-shrink: 0; box-sizing: border-box; padding: 0; border-radius: 999px; border: 2px solid {{ o.ring }}; background: var(--surface-100); display: flex; align-items: center; justify-content: center;"><span style="width: 12px; height: 12px; border-radius: 999px; background: {{ o.dot }};"></span></button>
+<span aria-hidden="true" style="width: 18px; font-size: 15px; font-weight: 800;">{{ o.letter }}</span>
+<input value="{{ o.body }}" sc-camel-on-input="{{ o.onBody }}" sc-camel-on-change="{{ o.onBody }}" aria-label="{{ o.bodyLabel }}" placeholder="{{ t.phBody }}" disabled="{{ ro }}" class="num" style="width: 120px; height: 40px; box-sizing: border-box; padding: 0 16px; border: 1px solid {{ o.bodyBorder }}; border-radius: 22px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-xs);">
+<span style="height: 26px; padding: 0 10px; border-radius: 999px; background: {{ o.kindBg }}; color: {{ o.kindInk }}; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">{{ o.kind }}</span>
+<sc-if value="{{ o.showShare }}" hint-placeholder-val="{{ false }}"><span class="num" style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-600);">{{ o.share }}</span></sc-if>
+<span style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+<sc-if value="{{ o.hasErr }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--danger); text-align: right;">{{ o.err }}</span></sc-if>
+<sc-if value="{{ o.canCopy }}" hint-placeholder-val="{{ false }}"><button sc-camel-on-click="{{ o.copy }}" class="ghost" style="height: 32px; padding: 0 12px; border: 0; border-radius: 22px; background: transparent; color: var(--brand-700); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px;"><svg sc-camel-view-box="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"></path></svg>{{ t.copyV1 }}</button></sc-if>
+</span>
+</div>
+<sc-if value="{{ o.isDistractor }}" hint-placeholder-val="{{ true }}">
+<div style="display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 12px; align-items: start; padding-left: 40px;">
+<div style="position: relative;">
+<button aria-haspopup="listbox" aria-expanded="{{ o.open }}" aria-label="{{ o.codeAria }}" sc-camel-on-click="{{ o.toggleCode }}" disabled="{{ ro }}" style="width: 100%; height: 56px; box-sizing: border-box; padding: 0 12px 0 16px; border: 1px solid {{ o.codeBorder }}; border-radius: 22px; background: var(--surface-100); color: var(--ink-900); text-align: left; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-xs);">
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+<sc-if value="{{ o.hasCodeName }}" hint-placeholder-val="{{ true }}"><span class="clip" style="font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-900);">{{ o.codeText }}</span><span class="clip" style="font-size: 12px; line-height: 16px; color: var(--ink-600);">{{ o.codeName }}</span></sc-if>
+<sc-if value="{{ o.noCode }}" hint-placeholder-val="{{ false }}"><span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.lCode }}</span><span class="clip" style="font-size: 13px; line-height: 18px; color: var(--ink-400);">{{ t.phCode }}</span></sc-if>
+</span>
+<svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: var(--ink-600); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<sc-if value="{{ o.open }}" hint-placeholder-val="{{ false }}">
+<div role="listbox" aria-label="{{ t.codesLabel }}" style="position: absolute; top: 62px; left: 0; width: 340px; z-index: 20; box-sizing: border-box; padding: 6px; border-radius: 22px; background: var(--surface-100); box-shadow: var(--shadow-overlay); display: flex; flex-direction: column; gap: 2px;">
+<sc-for list="{{ o.codeOpts }}" as="c" hint-placeholder-count="5">
+<button role="option" aria-selected="{{ c.on }}" sc-camel-on-click="{{ c.pick }}" class="ghost" style="padding: 8px 12px; border: 0; border-radius: 14px; background: {{ c.bg }}; color: var(--ink-900); text-align: left; display: flex; flex-direction: column; gap: 2px;">
+<span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 16px; font-weight: 500; color: {{ c.ink }};">{{ c.code }}</span>
+<span style="font-size: 12px; line-height: 16px; color: var(--ink-600);">{{ c.name }}</span>
+</button>
+</sc-for>
+</div>
+</sc-if>
+</div>
+<textarea rows="2" value="{{ o.rat }}" sc-camel-on-input="{{ o.onRat }}" sc-camel-on-change="{{ o.onRat }}" aria-label="{{ o.ratLabel }}" placeholder="{{ t.phRat }}" disabled="{{ ro }}" style="height: 56px; box-sizing: border-box; padding: 8px 16px; border: 1px solid {{ o.ratBorder }}; border-radius: 22px; background: var(--surface-100); color: var(--ink-900); font-size: 13px; line-height: 20px; resize: none; box-shadow: var(--shadow-xs);"></textarea>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</section>
+
+</div>
+
+<aside style="display: flex; flex-direction: column; gap: 24px;">
+
+<section aria-labelledby="hist-h" style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 12px;">
+<h2 id="hist-h" style="margin: 0; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.histTitle }}</h2>
+<sc-if value="{{ hasHistory }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<sc-for list="{{ history }}" as="h" hint-placeholder-count="2">
+<button sc-camel-on-click="{{ h.pick }}" aria-pressed="{{ h.on }}" class="row" style="padding: 12px 14px; border: 0; border-radius: 22px; background: {{ h.bg }}; color: var(--ink-900); text-align: left; display: flex; gap: 12px; align-items: flex-start;">
+<span style="width: 36px; height: 28px; flex-shrink: 0; border-radius: 999px; background: {{ h.pillBg }}; color: {{ h.pillInk }}; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center;">{{ h.ver }}</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 14px; line-height: 20px; font-weight: 600;">{{ h.title }}<sc-if value="{{ h.on }}" hint-placeholder-val="{{ false }}"><span style="height: 20px; padding: 0 8px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 11px; font-weight: 700; display: inline-flex; align-items: center;">{{ t.viewing }}</span></sc-if></span>
+<span class="num" style="font-size: 12px; line-height: 16px; color: var(--ink-600);">{{ h.meta }}</span>
+<span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ h.note }}</span>
+</span>
+<sc-if value="{{ h.frozen }}" hint-placeholder-val="{{ false }}"><svg sc-camel-view-box="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: var(--ink-400); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></sc-if>
+</button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ isBlank }}" hint-placeholder-val="{{ false }}">
+<div style="padding: 12px 14px; border-radius: 22px; background: var(--surface-200); display: flex; gap: 12px; align-items: center;">
+<span style="width: 36px; height: 28px; flex-shrink: 0; border-radius: 999px; background: var(--surface-300); color: var(--ink-600); font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; display: flex; align-items: center; justify-content: center;">v1</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.histBlank }}</span>
+</div>
+</sc-if>
+<p style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.histNote }}</p>
+</section>
+
+<section aria-labelledby="cal-h" style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 14px;">
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+<h2 id="cal-h" style="margin: 0; font-size: 17px; line-height: 23px; font-weight: 700;">{{ calTitle }}</h2>
+<sc-if value="{{ hasCal }}" hint-placeholder-val="{{ true }}"><span style="height: 24px; padding: 0 10px; border-radius: 999px; background: var(--success-bg); color: var(--success); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center;">{{ verdictText }}</span></sc-if>
+</div>
+<sc-if value="{{ hasCal }}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 12px; line-height: 16px; color: var(--ink-600);">{{ t.calSub }}</p></sc-if>
+</div>
+<sc-if value="{{ hasCal }}" hint-placeholder-val="{{ true }}">
+<sc-if value="{{ showV2Note }}" hint-placeholder-val="{{ true }}">
+<div style="padding: 10px 14px; border-radius: 14px; background: var(--brand-050); color: var(--brand-700); font-size: 12px; line-height: 16px; font-weight: 600;">{{ t.calV2Note }}</div>
+</sc-if>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+<div style="padding: 12px 14px; border-radius: 22px; background: var(--surface-200); display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--ink-600);">{{ t.sN }}</span><span class="num" style="font-size: 26px; line-height: 32px; font-weight: 700;">148</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ t.sNSub }}</span></div>
+<div style="padding: 12px 14px; border-radius: 22px; background: var(--surface-200); display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--ink-600);">{{ t.sP }}</span><span class="num" style="font-size: 26px; line-height: 32px; font-weight: 700;">{{ statP }}</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ t.sPSub }}</span></div>
+<div style="padding: 12px 14px; border-radius: 22px; background: var(--surface-200); display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--ink-600);">{{ t.sR }}</span><span class="num" style="font-size: 26px; line-height: 32px; font-weight: 700;">{{ statR }}</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ t.sRSub }}</span></div>
+<div style="padding: 12px 14px; border-radius: 22px; background: var(--surface-200); display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--ink-600);">{{ t.sDif }}</span><span style="margin: 4px 0 2px; align-self: flex-start; height: 26px; padding: 0 12px; border-radius: 999px; background: var(--success-bg); color: var(--success); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;"><svg sc-camel-view-box="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{ t.sDifOk }}</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ t.sDifSub }}</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.distTitle }}</span>
+<sc-for list="{{ distBars }}" as="d" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; align-items: baseline; gap: 8px;"><span style="font-size: 13px; line-height: 18px; font-weight: 700;">{{ d.label }}</span><span class="clip" style="flex-grow: 1; min-width: 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-400);">{{ d.code }}</span><span class="num" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ d.pctText }}</span></div>
+<div role="img" aria-label="{{ d.aria }}" style="height: 8px; border-radius: 999px; background: var(--surface-300); overflow: hidden;"><div style="width: {{ d.pct }}%; height: 100%; border-radius: 999px; background: var(--brand-600);"></div></div>
+</div>
+</sc-for>
+<span class="num" style="font-size: 12px; line-height: 16px; font-weight: 600; color: var(--success);">{{ t.correctShare }}</span>
+<span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ t.distNote }}</span>
+</div>
+</sc-if>
+<sc-if value="{{ isBlank }}" hint-placeholder-val="{{ false }}">
+<div style="padding: 20px; border-radius: 22px; background: var(--surface-200); display: flex; flex-direction: column; gap: 6px;">
+<span style="font-size: 15px; line-height: 23px; font-weight: 600;">{{ t.calEmptyTitle }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.calEmptyBody }}</span>
+</div>
+</sc-if>
+</section>
+
+<section aria-labelledby="role-h" style="padding: 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 12px;">
+<h2 id="role-h" style="margin: 0; font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.roleTitle }}</h2>
+<div role="radiogroup" aria-labelledby="role-h" style="display: flex; flex-direction: column; gap: 6px;">
+<sc-for list="{{ roles }}" as="r" hint-placeholder-count="3">
+<button role="radio" aria-checked="{{ r.on }}" sc-camel-on-click="{{ r.pick }}" disabled="{{ ro }}" style="padding: 10px 14px; border: 0; border-radius: 22px; background: {{ r.bg }}; color: var(--ink-900); text-align: left; display: flex; gap: 12px; align-items: flex-start;">
+<span style="margin-top: 1px; width: 20px; height: 20px; flex-shrink: 0; box-sizing: border-box; border-radius: 999px; border: 2px solid {{ r.ring }}; display: flex; align-items: center; justify-content: center;"><span style="width: 10px; height: 10px; border-radius: 999px; background: {{ r.dot }};"></span></span>
+<span style="display: flex; flex-direction: column; gap: 2px;">
+<span style="display: flex; align-items: center; gap: 6px; font-size: 14px; line-height: 20px; font-weight: 600; color: {{ r.ink }};"><sc-if value="{{ r.anchor }}" hint-placeholder-val="{{ false }}"><svg sc-camel-view-box="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="5" r="2"></circle><path d="M12 7v14M5 13a7 7 0 0 0 14 0M9 11h6"></path></svg></sc-if>{{ r.title }}</span>
+<span style="font-size: 12px; line-height: 16px; color: var(--ink-600);">{{ r.sub }}</span>
+</span>
+</button>
+</sc-for>
+</div>
+<sc-if value="{{ showLink }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<label for="link" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.lLink }}</label>
+<div style="display: flex; align-items: center; gap: 12px;">
+<input id="link" value="{{ linkVal }}" disabled="{{ linkLocked }}" aria-describedby="link-hint" class="num" style="width: 88px; height: 48px; box-sizing: border-box; padding: 0 18px; border: 1px solid {{ linkBorder }}; border-radius: 30px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-xs);">
+<p id="link-hint" style="margin: 0; font-size: 12px; line-height: 16px; font-weight: 500; color: {{ linkHintInk }};">{{ linkHint }}</p>
+</div>
+</div>
+</sc-if>
+<div role="note" style="padding: 12px 14px; border-radius: 22px; background: {{ warnBg }}; color: {{ warnInk }}; display: flex; gap: 10px; align-items: flex-start;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 3l9.5 17h-19z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+<span style="font-size: 13px; line-height: 20px; font-weight: 600;">{{ t.anchorWarn }}</span>
+</div>
+</section>
+
+<section style="padding: 20px 24px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; gap: 14px; align-items: flex-start;">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: var(--brand-050); color: var(--brand-700); display: flex; align-items: center; justify-content: center;"><svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M14.5 9.5c-.4-1-1.4-1.5-2.5-1.5-1.5 0-2.5.8-2.5 2 0 2.8 5 1.4 5 4 0 1.2-1.1 2-2.5 2-1.2 0-2.2-.5-2.6-1.5M12 6.5V8M12 16v1.5"></path></svg></span>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 15px; line-height: 23px; font-weight: 700;">{{ t.payTitle }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.payBody }}</span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.payMe }}</span>
+</div>
+</section>
+
+</aside>
+</div>
+</div>
+</sc-if>
+
+</main>
+
+<sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="position: absolute; top: 211px; right: 16px; z-index: 40; width: 368px; box-sizing: border-box; padding: 16px 12px 16px 20px; border-radius: 30px; background: var(--surface-100); box-shadow: var(--shadow-overlay); display: flex; gap: 14px; align-items: flex-start;">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 999px; background: var(--success-bg); color: var(--success); display: flex; align-items: center; justify-content: center;"><svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 15px; line-height: 23px; font-weight: 600;">{{ toastTitle }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ toastBody }}</span>
+</div>
+<button sc-camel-on-click="{{ closeToast }}" aria-label="{{ t.close }}" class="ghost" style="width: 36px; height: 36px; flex-shrink: 0; border: 0; border-radius: 22px; background: transparent; color: var(--ink-600); display: flex; align-items: center; justify-content: center;"><svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round;"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;uz&quot;,&quot;ru&quot;,&quot;en&quot;],&quot;default&quot;:&quot;uz&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;screenState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;loading&quot;,&quot;empty&quot;,&quot;error&quot;],&quot;default&quot;:&quot;default&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;demoBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Prototype&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1780}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lang: this.lsGet('zinapo.lang') || props.lang || 'uz',
+      theme: this.lsGet('zinapo.theme') || props.theme || 'light',
+      ui: props.screenState || 'default',
+      view: 'v2', flow: 'edit', toast: '', tab: 'uz', openCode: '',
+      f: this.sampleForm(), fb: this.blankForm()
+    };
+  }
+  lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+  lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} }
+  componentDidUpdate(prev) {
+    const p = this.props, patch = {};
+    if (p.lang && p.lang !== prev.lang) patch.lang = p.lang;
+    if (p.theme && p.theme !== prev.theme) patch.theme = p.theme;
+    if (p.screenState && p.screenState !== prev.screenState) { patch.ui = p.screenState; patch.flow = 'edit'; patch.toast = ''; patch.view = 'v2'; patch.openCode = ''; }
+    if (Object.keys(patch).length) this.setState(patch);
+  }
+  seg(on) {
+    return { bg: on ? 'var(--surface-100)' : 'transparent', ink: on ? 'var(--ink-900)' : 'var(--ink-600)', shadow: on ? 'var(--shadow-xs)' : 'none' };
+  }
+  shell(T) {
+    const s = this.state;
+    const t = T[s.lang] || T.uz;
+    const langs = [['uz', 'Oʻz'], ['ru', 'Рус'], ['en', 'Eng']].map((p) => Object.assign({ label: p[1], on: s.lang === p[0], pick: () => { this.lsSet('zinapo.lang', p[0]); this.setState({ lang: p[0] }); } }, this.seg(s.lang === p[0])));
+    const uiStates = [['default', 'Default'], ['loading', 'Loading'], ['empty', 'Empty'], ['error', 'Error']].map((p) => ({
+      label: p[1], on: s.ui === p[0],
+      bg: s.ui === p[0] ? 'var(--brand-100)' : 'transparent',
+      ink: s.ui === p[0] ? 'var(--brand-700)' : 'var(--ink-600)',
+      pick: () => this.setState({ ui: p[0] })
+    }));
+    return {
+      t, langs, uiStates,
+      theme: s.theme, isDark: s.theme === 'dark', isLight: s.theme !== 'dark',
+      toggleTheme: () => { const n = s.theme === 'dark' ? 'light' : 'dark'; this.lsSet('zinapo.theme', n); this.setState({ theme: n }); },
+      demoBar: this.props.demoBar !== false,
+      isDefault: s.ui === 'default', isLoading: s.ui === 'loading', isEmpty: s.ui === 'empty', isError: s.ui === 'error',
+      retry: () => this.setState({ ui: 'default' })
+    };
+  }
+  sampleForm() {
+    return { grade: 4, cluster: 'ps', format: 'text', role: 'core', correct: 'C', codes: { A: 'ANSWERS_WRONG_QUANTITY', B: 'WRONG_DIVISOR', C: '', D: 'ARITHMETIC_SLIP' }, txt: { ratD: '' }, img: false, aud: false };
+  }
+  blankForm() {
+    return { grade: null, cluster: null, format: null, role: 'core', correct: null, codes: { A: '', B: '', C: '', D: '' }, txt: { topic: '', construct: '', expected: '', stemUz: '', stemRu: '', bodyA: '', bodyB: '', bodyC: '', bodyD: '', ratA: '', ratB: '', ratC: '', ratD: '' }, img: false, aud: false };
+  }
+  v1Form() {
+    return { grade: 4, cluster: 'ps', format: 'text', role: 'core', correct: 'C', codes: { A: 'ANSWERS_WRONG_QUANTITY', B: 'WRONG_DIVISOR', C: '', D: 'ARITHMETIC_SLIP' }, txt: { stemUz: 'Qutida 24 ta konfet bor. Uchdan biri yeyildi. Nechta konfet qoldi?', stemRu: 'В коробке 24 конфеты. Треть съели. Сколько конфет осталось?' }, img: false, aud: false };
+  }
+  content() {
+    return {
+      topic: { uz: 'Sonning ulushi (kasrlar)', ru: 'Доля числа (дроби)', en: 'Fraction of a quantity' },
+      construct: { uz: 'Ikki bosqichli matnli masalada sonning ulushini va qolgan qismini topa oladi', ru: 'Находит долю числа и остаток в двухшаговой текстовой задаче', en: 'Finds a unit fraction of a quantity and the remainder in a two-step word problem' },
+      stemUz: 'Qutida 24 ta konfet bor edi. Ularning uchdan biri yeyildi. Qutida nechta konfet qoldi?',
+      stemRu: 'В коробке было 24 конфеты. Треть из них съели. Сколько конфет осталось в коробке?',
+      rat: {
+        uz: { A: 'Uchdan birini toʻgʻri topadi (24 : 3 = 8), lekin shu yerda toʻxtaydi: qancha qolganini emas, qancha yeyilganini aytadi.', B: '“Uchdan bir”ni “yarmi” deb tushunadi va 2 ga boʻladi: 24 : 2 = 12.', D: 'Yoʻl toʻgʻri, lekin boʻlishda adashadi: 24 : 3 ni 6 deb oladi, keyin 24 − 6 = 18.' },
+        ru: { A: 'Верно находит треть (24 : 3 = 8), но на этом останавливается: называет, сколько съели, а не сколько осталось.', B: 'Путает «треть» с «половиной» и делит на 2: 24 : 2 = 12.', D: 'Ход решения верный, но ошибка в делении: 24 : 3 = 6, затем 24 − 6 = 18.' },
+        en: { A: 'Finds a third correctly (24 ÷ 3 = 8) but stops there: answers how many were eaten, not how many are left.', B: 'Reads “a third” as “half” and divides by 2: 24 ÷ 2 = 12.', D: 'Right plan, slip in the division: takes 24 ÷ 3 as 6, then 24 − 6 = 18.' }
+      },
+      mis: {
+        uz: { ANSWERS_WRONG_QUANTITY: 'Boshqa miqdorni javob qiladi', WRONG_DIVISOR: 'Notoʻgʻri songa boʻladi', ARITHMETIC_SLIP: 'Hisoblashda adashadi', STOPS_AFTER_FIRST_STEP: 'Birinchi qadamdan keyin toʻxtaydi', MISREADS_QUESTION: 'Savolni oxirigacha oʻqimaydi' },
+        ru: { ANSWERS_WRONG_QUANTITY: 'Называет не ту величину', WRONG_DIVISOR: 'Делит не на то число', ARITHMETIC_SLIP: 'Вычислительная ошибка', STOPS_AFTER_FIRST_STEP: 'Останавливается после первого шага', MISREADS_QUESTION: 'Не дочитывает вопрос' },
+        en: { ANSWERS_WRONG_QUANTITY: 'Answers a different quantity', WRONG_DIVISOR: 'Divides by the wrong number', ARITHMETIC_SLIP: 'Arithmetic slip', STOPS_AFTER_FIRST_STEP: 'Stops after the first step', MISREADS_QUESTION: 'Doesn’t read the question to the end' }
+      }
+    };
+  }
+  val(f, k) {
+    const tx = f.txt || {};
+    if (tx[k] !== undefined && tx[k] !== null) return tx[k];
+    const C = this.content(), L = this.state.lang;
+    if (k === 'topic') return C.topic[L];
+    if (k === 'construct') return C.construct[L];
+    if (k === 'expected') return L === 'en' ? '0.45' : '0,45';
+    if (k === 'stemUz') return C.stemUz;
+    if (k === 'stemRu') return C.stemRu;
+    if (k.indexOf('body') === 0) return { A: '8', B: '12', C: '16', D: '18' }[k.slice(4)] || '';
+    if (k.indexOf('rat') === 0) return C.rat[L][k.slice(3)] || '';
+    return '';
+  }
+  validate(f) {
+    const out = [];
+    const v = (k) => String(this.val(f, k) || '').trim();
+    if (f.grade === null) out.push('grade');
+    if (!f.cluster) out.push('cluster');
+    if (!v('topic')) out.push('topic');
+    if (!v('construct')) out.push('construct');
+    const ep = parseFloat(v('expected').replace(',', '.'));
+    if (!(ep > 0 && ep < 1)) out.push('expected');
+    if (!f.format) out.push('format');
+    else {
+      if ((f.grade === 0 || f.grade === 1) && f.format !== 'audio') out.push('audioFmt');
+      if ((f.format === 'visual' || f.format === 'audio') && !f.img) out.push('img');
+      if (f.format === 'audio' && !f.aud) out.push('aud');
+    }
+    if (!v('stemUz')) out.push('stem');
+    if (f.role === 'av' && f.grade === 4) out.push('link');
+    if (!f.correct) out.push('correct');
+    ['A', 'B', 'C', 'D'].forEach((l) => {
+      if (!v('body' + l)) out.push('body' + l);
+      if (f.correct && f.correct !== l) {
+        if (!f.codes[l]) out.push('code' + l);
+        if (!v('rat' + l)) out.push('rat' + l);
+      }
+    });
+    return out;
+  }
+  modeKey() { return this.state.ui === 'empty' ? 'fb' : 'f'; }
+  upd(patch) {
+    const m = this.modeKey();
+    this.setState({ [m]: Object.assign({}, this.state[m], patch) });
+  }
+  updTxt(k, v) {
+    const m = this.modeKey(), cur = this.state[m];
+    this.setState({ [m]: Object.assign({}, cur, { txt: Object.assign({}, cur.txt, { [k]: v }) }) });
+  }
+  updCode(l, c) {
+    const m = this.modeKey(), cur = this.state[m];
+    this.setState({ openCode: '', [m]: Object.assign({}, cur, { codes: Object.assign({}, cur.codes, { [l]: c }) }) });
+  }
+  copyV1(l) {
+    const m = this.modeKey(), cur = this.state[m], v1 = this.v1Form();
+    this.setState({ openCode: '', [m]: Object.assign({}, cur, { codes: Object.assign({}, cur.codes, { [l]: cur.codes[l] || v1.codes[l] }), txt: Object.assign({}, cur.txt, { ['rat' + l]: null }) }) });
+  }
+  fmt(n) {
+    const x = n.toFixed(2);
+    return this.state.lang === 'en' ? x : x.replace('.', ',');
+  }
+  renderVals() {
+    const s = this.state;
+    const T = {
+      uz: { navLabel: 'Asosiy menyu', navStaffChip: 'XODIM', navBank: 'SAVOLLAR BANKI', navAllItems: 'Barcha savollar', navNewItem: 'Yangi savol', navReview: 'Koʻrib chiqish', navMonitoring: 'MONITORING', navForms: 'Forma yigʻish', navSafety: 'XAVFSIZLIK', navFlags: 'Shubhali holatlar', navSignOut: 'Chiqish',
+        langLabel: 'Til', themeLabel: 'Mavzuni almashtirish', notifLabel: 'Bildirishnomalar', retry: 'Qayta urinish',
+        crumbBack: 'Barcha savollar', newTitle: 'Yangi savol', newCrumb: 'yangi savol', loadingLabel: 'Savol kartasi yuklanmoqda',
+        subSample: '4-sinf · Masala yechish · Muallif: Sherzod Qodirov', subBlank: 'Kod birinchi saqlashda beriladi. Koʻrib chiqishga yuborish uchun hamma maydon toʻldirilishi shart, qoralama esa chala boʻlishi mumkin.',
+        stDraft: 'Qoralama', stReview: 'Koʻrib chiqilmoqda', stFrozen: 'Muzlatilgan',
+        save: 'Qoralamani saqlash', submit: 'Koʻrib chiqishga yuborish', submitted: 'Yuborildi',
+        frozenTitle: 'Siz v1 ni koʻryapsiz — u muzlatilgan', frozenBody: 'Muzlatilgan versiyani tahrirlab boʻlmaydi — yangi versiya yarating (u qaytadan kalibrlanadi). v1 va uning statistikasi oʻzgarmay qoladi.', frozenCta: 'Yangi versiya yaratish',
+        toastSaved: 'Qoralama saqlandi', toastSavedSub: '24-sentyabr, 14:32 · yubormaguningizcha taqrizchilar uni koʻrmaydi.', toastNewVer: 'v2 qoralamasi ochildi', toastNewVerSub: 'Qoralama allaqachon bor edi — oʻzgarishlar shunga yoziladi. v1 muzlatilganicha qoladi.', close: 'Yopish',
+        errTitle: 'Qoralamani saqlab boʻlmadi', errBody: 'Aloqa uzilib qoldi. Tahrirlaringiz shu qurilmada saqlangan — hech narsa yoʻqolmadi. Internet tiklangach, qayta urinib koʻring.',
+        sumTitle: 'Yuborishdan oldin tuzating', sumBody: 'Hech narsa yuborilmadi. Muammoli maydonlar pastda qizil bilan belgilangan.', sumFixed: 'Hammasi tuzatildi — endi koʻrib chiqishga yuborishingiz mumkin.',
+        subTitle: 'Koʻrib chiqishga yuborildi', subBody: 'Birinchi taqrizchi (Bobur Aliyev) savolni javobini bilmagan holda yechadi, ikkinchisi uni tanqidiy baholaydi. Toʻgʻri javob boʻyicha fikrlar mos kelmasa, savol rad etiladi. Haq savol qabul qilingach toʻlanadi.', subQueue: 'Koʻrib chiqish navbati', subBack: 'Barcha savollarga qaytish',
+        cardTitle: 'Savol kartasi', cardHint: 'Koʻrib chiqish uchun hammasi majburiy', lGrade: 'Sinf', lCluster: 'Klaster', lTopic: 'Mavzu', lConstruct: 'Nimani oʻlchaydi', lExpected: 'Kutilgan p',
+        phTopic: 'Masalan: sonning ulushi', phConstruct: 'Toʻgʻri javob nimani koʻrsatadi? Masalan: sonning ulushini topa oladi', phExpected: '0,45',
+        expectedHint: 'Kutilgan p — savolni toʻgʻri yechadigan bolalar ulushi haqidagi taxminingiz. Sinovdan keyin 0,20–0,85 oraligʻidan tashqaridagi savollar qaytariladi.',
+        cl: { nc: 'Son va hisoblash', ps: 'Masala yechish', ls: 'Mantiq va fazoviy tasavvur' },
+        stemTitle: 'Savol matni', tabsLabel: 'Savol tili', tabUz: 'Oʻzbekcha', tabRu: 'Русский', stOriginal: 'Asl nusxa', stBtPending: 'Teskari tarjima kutilmoqda', stBtOk: 'Teskari tarjima mos', stBtNone: 'Tarjima yoʻq',
+        lFormat: 'Savol formati', fmtText: 'Matn', fmtTextSub: '2–4-sinflar', fmtVisual: 'Rasm', fmtVisualSub: 'Deyarli matnsiz', fmtAudio: 'Rasm + ovozli koʻrsatma', fmtAudioSub: '0–1-sinflar uchun majburiy',
+        youngWarn: '0–1-sinf bolalari hali ravon oʻqimaydi, shuning uchun koʻrsatma ovoz chiqarib oʻqiladi. “Rasm + ovozli koʻrsatma”ni tanlang — audio majburiy.',
+        imgSlot: 'Rasm', imgSlotSub: 'PNG yoki SVG, 2 MB gacha', imgFile: 'sweets_box.svg · 48 KB', choose: 'Fayl tanlash', replace: 'Almashtirish', audSlot: 'Ovozli koʻrsatma', audSlotSub: 'Majburiy · MP3, 30 soniyagacha, uz va ru', audFile: 'sweets_uz.mp3, sweets_ru.mp3 · 0:12', upload: 'Yuklash',
+        lStemUz: 'Matn · oʻzbekcha', lStemRu: 'Matn · ruscha', phStem: 'Savolni bola koʻradigan koʻrinishda yozing. 0–1-sinflar uchun matn deyarli boʻlmasin — u ovoz chiqarib oʻqiladi.',
+        btUz: 'Asl nusxa. Muallif: Sherzod Qodirov.', btRuPending: 'Malika Tursunova ruscha matnni asl nusxani koʻrmasdan oʻzbekchaga qaytadan tarjima qiladi. Farqlar koʻrib chiqishgacha tuzatiladi — aks holda savol uz va ru formalarida turlicha ishlaydi.', btRuOk: 'Malika Tursunovaning teskari tarjimasi asl nusxaga mos keldi (10-sentyabr).', btBlank: 'Avval oʻzbekcha asl nusxani yozing — ruscha versiya teskari tarjimaga yuboriladi.',
+        optTitle: 'Javob variantlari', optHint: 'Toʻgʻri javobni belgilang. Har bir chalgʻituvchi variantga xato turi va izoh kerak — hisobotni tashxisga aylantiradigan narsa aynan shu.',
+        correctLabel: 'Toʻgʻri javob', distractorLabel: 'Chalgʻituvchi', markCorrect: '{L} variantini toʻgʻri deb belgilash', bodyLabel: '{L} variant matni', phBody: 'Javob', lCode: 'XATO TURI', phCode: 'Xato turini tanlang', codeAria: '{L} variant uchun xato turi', ratLabel: '{L} variant uchun izoh', phRat: 'Bola qaysi xato tufayli shu javobni tanlaydi? Masalan: 3 ga emas, 2 ga boʻladi', copyV1: 'v1 dan nusxa olish', chosenBy: '{p}% tanlagan', codesLabel: 'Xato turlari',
+        eGrade: 'Sinfni tanlang', eCluster: 'Klasterni tanlang', eTopic: 'Mavzuni yozing', eConstruct: 'Nimani oʻlchashini yozing', eExpected: 'Kutilgan p: 0 dan 1 gacha son kiriting, masalan 0,45.', eFormat: 'Formatni tanlang', eAudioFmt: '0–1-sinflarga ovozli koʻrsatma kerak', eImg: 'Rasmni qoʻshing', eAud: 'Audioni yuklang', eStem: 'Savol matnini yozing', eCorrect: 'Toʻgʻri javobni belgilang', eBody: 'Javob matnini kiriting', eCode: 'Xato turini tanlang', eRat: 'Bola nega buni tanlashini izohlang', eCodeRat: 'Xato turi va izoh kerak',
+        sGrade: 'Sinf', sCluster: 'Klaster', sTopic: 'Mavzu', sConstruct: 'Nimani oʻlchaydi', sExpected: 'Kutilgan p', sFormat: 'Format', sAudioFmt: '0–1-sinf uchun audio', sImg: 'Rasm', sAud: 'Audio fayl', sStem: 'Matn (uz)', sLink: 'Vertikal langar', sCorrect: 'Toʻgʻri javob', sBody: '{L}: matn', sCode: '{L}: xato turi', sRat: '{L}: izoh',
+        histTitle: 'VERSIYALAR TARIXI', v2Meta: '21-sentyabrda boshlangan · Sherzod Qodirov', v2Note: 'Matn aniqlashtirildi: “qutida nechta qoldi”', v1Title: '12-sentyabrda muzlatilgan', v1Meta: 'Sinov · n = 148 · p 0,46 · r 0,38', v1Note: 'Statistika shu versiyaga tegishli', histNote: 'Har bir versiya shkala uchun alohida savol. Hatto bitta vergul tuzatilsa ham — yangi versiya va yangi kalibrlash.', histBlank: 'v1 birinchi saqlashda yaratiladi.', viewing: 'Ochiq',
+        calTitle: 'Kalibrlash · v1', calEmpty: 'Kalibrlash', calSub: 'Sentyabr sinovi · Rasch modeli, langarlar orqali tenglashtirish · 12-sentyabr', calV2Note: 'Bu v1 koʻrsatkichlari. v2 shkala uchun yangi savol — u oʻz sinovidan keyin qaytadan kalibrlanadi.',
+        sN: 'Javoblar', sNSub: 'uz 97 · ru 51', sP: 'Toʻgʻri javoblar ulushi', sPSub: 'kutilgan 0,45 · meʼyor 0,20–0,85', sR: 'Nuqtali-biserial', sRSub: 'kuchlini kuchsizdan ajratadi · ≥ 0,20', sDif: 'DIF: uz va ru', sDifOk: 'Joyida', sDifSub: 'ikkala versiya bir xil ishlaydi',
+        distTitle: 'CHALGʻITUVCHILARNI KIM TANLADI', distAria: '{L} variantini {p}% bola tanlagan', correctShare: 'C (toʻgʻri javob) — 46%', distNote: 'Deyarli hech kim tanlamaydigan variant (5% dan kam) belgilanadi: bunda savol koʻringanidan osonroq boʻlib qoladi.', verdict: 'Xulosa', verdictKeep: 'qoldirish',
+        calEmptyTitle: 'Hali statistika yoʻq', calEmptyBody: 'Savol avval jonli formalarda natijaga taʼsir qilmaydigan sinov savoli sifatida statistika yigʻadi (har bir formada 4–5 ta shunday savol boʻladi).',
+        roleTitle: 'Formadagi roli', rCore: 'Asosiy', rCoreSub: 'Faqat bitta formada boʻladi', rH: 'Gorizontal langar', rHSub: 'Shu sinfning barcha monitoringlarida bir xil — oktyabrni dekabr bilan solishtirish imkonini beradi', rV: 'Vertikal langar', rVSub: 'Yuqori sinf bilan umumiy — sinflarni yagona shkalaga bogʻlaydi',
+        lLink: 'Qaysi sinf bilan bogʻlaydi', linkHint: 'Uni {g}-sinfning taxminan 20–30% i va {h}-sinfning 60% dan koʻprogʻi yechishi kerak.', linkTop: '4-sinf — shkalaning yuqori nuqtasi, unda vertikal langar boʻlmaydi. Boshqa rol yoki sinfni tanlang.', linkNoGrade: 'Avval sinfni tanlang.',
+        anchorWarn: 'Langar savollar hech qachon mashqqa tushmaydi va test yakunidagi javoblar tahlilida koʻrsatilmaydi — hatto toʻgʻri javobi ham. Bitta langar ota-onalar chatiga tarqalsa, keyingi monitoringni solishtirib boʻlmaydi.',
+        payTitle: 'Mualliflarga qabul qilingan savol uchun haq toʻlanadi', payBody: 'Yuborilgan savol uchun emas. Qabul qilingan — ikki kishilik koʻrib chiqishdan oʻtgan degani: biri savolni javobini bilmay yechadi, ikkinchisi tanqidiy baholaydi. 30–40% savol rad etiladi — bu odatiy hol.', payMe: 'Sherzod Qodirov · bu mavsumda 23 ta savoli qabul qilingan' },
+      ru: { navLabel: 'Главное меню', navStaffChip: 'СОТРУДНИК', navBank: 'БАНК ЗАДАНИЙ', navAllItems: 'Все задания', navNewItem: 'Новое задание', navReview: 'Рецензирование', navMonitoring: 'МОНИТОРИНГ', navForms: 'Сборка форм', navSafety: 'БЕЗОПАСНОСТЬ', navFlags: 'Подозрительные случаи', navSignOut: 'Выйти',
+        langLabel: 'Язык', themeLabel: 'Сменить тему', notifLabel: 'Уведомления', retry: 'Повторить',
+        crumbBack: 'Все задания', newTitle: 'Новое задание', newCrumb: 'новое задание', loadingLabel: 'Загружаем карточку задания',
+        subSample: '4 класс · Решение задач · Автор: Sherzod Qodirov', subBlank: 'Код присвоится при первом сохранении. Для рецензии нужны все поля, а черновик может быть неполным.',
+        stDraft: 'Черновик', stReview: 'На рецензии', stFrozen: 'Заморожена',
+        save: 'Сохранить черновик', submit: 'Отправить на рецензию', submitted: 'Отправлено',
+        frozenTitle: 'Вы смотрите v1 — она заморожена', frozenBody: 'Замороженные версии нельзя редактировать — создайте новую версию (её откалибруют заново). v1 и её статистика останутся без изменений.', frozenCta: 'Создать новую версию',
+        toastSaved: 'Черновик сохранён', toastSavedSub: '24 сентября, 14:32 · рецензенты увидят его только после отправки.', toastNewVer: 'Открыт черновик v2', toastNewVerSub: 'Он уже был создан — правки пойдут в него. v1 остаётся замороженной.', close: 'Закрыть',
+        errTitle: 'Не удалось сохранить черновик', errBody: 'Связь прервалась. Ваши правки сохранены на этом устройстве — ничего не потеряно. Повторите, когда интернет вернётся.',
+        sumTitle: 'Исправьте перед отправкой', sumBody: 'Ничего не отправлено. Поля с ошибками отмечены ниже красным.', sumFixed: 'Всё исправлено — теперь можно отправлять на рецензию.',
+        subTitle: 'Отправлено на рецензию', subBody: 'Первый рецензент (Bobur Aliyev) решает задание вслепую, второй разбирает его критически. Если они расходятся в верном ответе, задание отклоняется. Оплата — после принятия.', subQueue: 'Очередь рецензирования', subBack: 'Ко всем заданиям',
+        cardTitle: 'Карточка задания', cardHint: 'Для рецензии обязательно всё', lGrade: 'Класс', lCluster: 'Кластер', lTopic: 'Тема', lConstruct: 'Что измеряет', lExpected: 'Ожидаемое p',
+        phTopic: 'Например: доля числа', phConstruct: 'Что показывает верный ответ? Например: находит долю числа', phExpected: '0,45',
+        expectedHint: 'Ожидаемое p — ваш прогноз доли детей, которые решат задание. После пилота задания вне диапазона 0,20–0,85 возвращаются автору.',
+        cl: { nc: 'Числа и вычисления', ps: 'Решение задач', ls: 'Логика и пространство' },
+        stemTitle: 'Условие', tabsLabel: 'Язык задания', tabUz: 'Oʻzbekcha', tabRu: 'Русский', stOriginal: 'Оригинал', stBtPending: 'Ждёт обратного перевода', stBtOk: 'Обратный перевод совпал', stBtNone: 'Нет перевода',
+        lFormat: 'Формат условия', fmtText: 'Текст', fmtTextSub: '2–4 классы', fmtVisual: 'Картинка', fmtVisualSub: 'Почти без текста', fmtAudio: 'Картинка + озвучка', fmtAudioSub: 'Обязательно для 0–1 классов',
+        youngWarn: 'В 0–1 классах дети ещё не читают бегло, поэтому инструкцию озвучивают. Выберите «Картинка + озвучка» — аудио обязательно.',
+        imgSlot: 'Картинка', imgSlotSub: 'PNG или SVG, до 2 МБ', imgFile: 'sweets_box.svg · 48 КБ', choose: 'Выбрать файл', replace: 'Заменить', audSlot: 'Озвучка инструкции', audSlotSub: 'Обязательно · MP3 до 30 с, uz и ru', audFile: 'sweets_uz.mp3, sweets_ru.mp3 · 0:12', upload: 'Загрузить',
+        lStemUz: 'Условие · узбекский', lStemRu: 'Условие · русский', phStem: 'Напишите вопрос так, как его увидит ребёнок. В 0–1 классах — почти без текста: условие озвучивается.',
+        btUz: 'Оригинал. Автор: Sherzod Qodirov.', btRuPending: 'Malika Tursunova переводит русскую версию обратно на узбекский, не видя оригинала. Расхождения исправляют до рецензии — иначе задание поведёт себя по-разному в uz- и ru-формах.', btRuOk: 'Обратный перевод Malika Tursunova совпал с оригиналом (10 сентября).', btBlank: 'Сначала напишите узбекский оригинал — русская версия уйдёт на обратный перевод.',
+        optTitle: 'Варианты ответа', optHint: 'Отметьте верный ответ. Каждому дистрактору нужны тип ошибки и обоснование — именно это делает отчёт диагностическим.',
+        correctLabel: 'Верный ответ', distractorLabel: 'Дистрактор', markCorrect: 'Отметить вариант {L} как верный', bodyLabel: 'Текст варианта {L}', phBody: 'Ответ', lCode: 'ТИП ОШИБКИ', phCode: 'Выберите тип ошибки', codeAria: 'Тип ошибки для варианта {L}', ratLabel: 'Обоснование для варианта {L}', phRat: 'Какая ошибка приводит ребёнка к этому ответу? Например: делит на 2, а не на 3', copyV1: 'Скопировать из v1', chosenBy: 'выбрали {p}%', codesLabel: 'Типы ошибок',
+        eGrade: 'Выберите класс', eCluster: 'Выберите кластер', eTopic: 'Укажите тему', eConstruct: 'Опишите, что измеряет задание', eExpected: 'Ожидаемое p: введите число от 0 до 1, например 0,45.', eFormat: 'Выберите формат', eAudioFmt: 'Для 0–1 классов нужна озвучка', eImg: 'Добавьте картинку', eAud: 'Загрузите озвучку', eStem: 'Напишите условие', eCorrect: 'Отметьте верный ответ', eBody: 'Введите текст ответа', eCode: 'Выберите тип ошибки', eRat: 'Объясните, почему ребёнок выберет этот ответ', eCodeRat: 'Нужны тип ошибки и обоснование',
+        sGrade: 'Класс', sCluster: 'Кластер', sTopic: 'Тема', sConstruct: 'Что измеряет', sExpected: 'Ожидаемое p', sFormat: 'Формат', sAudioFmt: 'Озвучка для 0–1 кл.', sImg: 'Картинка', sAud: 'Аудиофайл', sStem: 'Условие (uz)', sLink: 'Вертикальный якорь', sCorrect: 'Верный ответ', sBody: '{L}: текст', sCode: '{L}: тип ошибки', sRat: '{L}: обоснование',
+        histTitle: 'ИСТОРИЯ ВЕРСИЙ', v2Meta: 'Начата 21 сентября · Sherzod Qodirov', v2Note: 'Уточнено условие: «сколько осталось в коробке»', v1Title: 'Заморожена 12 сентября', v1Meta: 'Пилот · n = 148 · p 0,46 · r 0,38', v1Note: 'Статистика относится к этой версии', histNote: 'Каждая версия — отдельное задание для шкалы. Даже исправленная запятая — это новая версия и новая калибровка.', histBlank: 'v1 создастся при первом сохранении.', viewing: 'Открыта',
+        calTitle: 'Калибровка · v1', calEmpty: 'Калибровка', calSub: 'Сентябрьский пилот · модель Раша, выравнивание по якорям · 12 сентября', calV2Note: 'Это показатели v1. Для шкалы v2 — новое задание: его откалибруют заново после собственного претеста.',
+        sN: 'Ответов', sNSub: 'uz 97 · ru 51', sP: 'Доля верных', sPSub: 'ожидали 0,45 · норма 0,20–0,85', sR: 'Точечно-бисериальная', sRSub: 'отделяет сильных от слабых · ≥ 0,20', sDif: 'DIF: uz и ru', sDifOk: 'В норме', sDifSub: 'обе версии ведут себя одинаково',
+        distTitle: 'КТО ВЫБИРАЛ ДИСТРАКТОРЫ', distAria: 'Вариант {L} выбрали {p}% детей', correctShare: 'C (верный ответ) — 46%', distNote: 'Дистрактор, который почти никто не выбирает (меньше 5%), получает флаг: задание становится легче, чем кажется.', verdict: 'Решение', verdictKeep: 'оставить',
+        calEmptyTitle: 'Статистики пока нет', calEmptyBody: 'Сначала задание наберёт её как претест без оценки в рабочих формах (в каждой форме их 4–5) — и только потом начнёт влиять на результат.',
+        roleTitle: 'Роль в формах', rCore: 'Основное', rCoreSub: 'Только в одной форме', rH: 'Горизонтальный якорь', rHSub: 'Одинаков во всех волнах класса — делает октябрь сравнимым с декабрём', rV: 'Вертикальный якорь', rVSub: 'Общий с классом выше — связывает классы в одну шкалу',
+        lLink: 'Связывает с классом', linkHint: 'Его должны решать примерно 20–30% учеников {g} класса и 60%+ учеников {h} класса.', linkTop: '4 класс — верх шкалы, вертикальных якорей у него нет. Выберите другую роль или класс.', linkNoGrade: 'Сначала выберите класс.',
+        anchorWarn: 'Якорные задания никогда не попадают в тренировку и не показываются при разборе ответов после теста — даже верный ответ. Одна утечка в родительский чат — и следующую волну уже не сравнить.',
+        payTitle: 'Авторам платят за принятое задание', payBody: 'А не за отправленное. Принятое — значит прошло рецензию в две руки: один рецензент решает вслепую, второй критикует. 30–40% заданий отклоняются — это нормально.', payMe: 'Sherzod Qodirov · 23 принятых задания в этом сезоне' },
+      en: { navLabel: 'Main menu', navStaffChip: 'STAFF', navBank: 'ITEM BANK', navAllItems: 'All items', navNewItem: 'New item', navReview: 'Review queue', navMonitoring: 'MONITORING', navForms: 'Form builder', navSafety: 'SAFETY', navFlags: 'Flags', navSignOut: 'Sign out',
+        langLabel: 'Language', themeLabel: 'Switch theme', notifLabel: 'Notifications', retry: 'Try again',
+        crumbBack: 'All items', newTitle: 'New item', newCrumb: 'new item', loadingLabel: 'Loading the item card',
+        subSample: 'Grade 4 · Problem solving · Author: Sherzod Qodirov', subBlank: 'The code is assigned on first save. Every field is required for review; a draft can be incomplete.',
+        stDraft: 'Draft', stReview: 'In review', stFrozen: 'Frozen',
+        save: 'Save draft', submit: 'Submit for review', submitted: 'Submitted',
+        frozenTitle: 'You’re viewing v1 — it’s frozen', frozenBody: 'Frozen versions can’t be edited — create a new version (new calibration). v1 and its statistics stay exactly as they are.', frozenCta: 'Create a new version',
+        toastSaved: 'Draft saved', toastSavedSub: '24 Sep, 14:32 · reviewers won’t see it until you submit.', toastNewVer: 'Opened the v2 draft', toastNewVerSub: 'It already existed, so your changes go there. v1 stays frozen.', close: 'Close',
+        errTitle: 'We couldn’t save the draft', errBody: 'The connection dropped. Your edits are kept on this device — nothing is lost. Try again once you’re back online.',
+        sumTitle: 'Fix before submitting', sumBody: 'Nothing has been sent. Fields that need attention are marked in red below.', sumFixed: 'All fixed — you can submit it for review now.',
+        subTitle: 'Sent for review', subBody: 'The first reviewer (Bobur Aliyev) solves the item blind, the second critiques it. If they disagree on the correct answer, the item is rejected. You’re paid once it’s accepted.', subQueue: 'Open review queue', subBack: 'Back to all items',
+        cardTitle: 'Item card', cardHint: 'Everything is required for review', lGrade: 'Grade', lCluster: 'Cluster', lTopic: 'Topic', lConstruct: 'Construct measured', lExpected: 'Expected p',
+        phTopic: 'e.g. Fraction of a quantity', phConstruct: 'What does a correct answer show? e.g. finds a fraction of a quantity', phExpected: '0.45',
+        expectedHint: 'Expected p is your forecast of the share of children who answer correctly. After the pilot, items outside 0.20–0.85 go back to the author.',
+        cl: { nc: 'Number & computation', ps: 'Problem solving', ls: 'Logic & space' },
+        stemTitle: 'Stem', tabsLabel: 'Item language', tabUz: 'Oʻzbekcha', tabRu: 'Русский', stOriginal: 'Original', stBtPending: 'Back-translation pending', stBtOk: 'Back-translation matches', stBtNone: 'Not translated',
+        lFormat: 'Stem format', fmtText: 'Text', fmtTextSub: 'Grades 2–4', fmtVisual: 'Picture', fmtVisualSub: 'Almost no text', fmtAudio: 'Picture + read-aloud audio', fmtAudioSub: 'Required for grades 0–1',
+        youngWarn: 'Children in grades 0–1 don’t read fluently yet, so the instruction is read aloud. Choose “Picture + read-aloud audio” — the audio is required.',
+        imgSlot: 'Picture', imgSlotSub: 'PNG or SVG, up to 2 MB', imgFile: 'sweets_box.svg · 48 KB', choose: 'Choose file', replace: 'Replace', audSlot: 'Read-aloud audio', audSlotSub: 'Required · MP3 up to 30 s, uz and ru', audFile: 'sweets_uz.mp3, sweets_ru.mp3 · 0:12', upload: 'Upload',
+        lStemUz: 'Stem · Uzbek', lStemRu: 'Stem · Russian', phStem: 'Write the question exactly as the child will see it. Grades 0–1: keep it almost text-free — it is read aloud.',
+        btUz: 'Original version. Author: Sherzod Qodirov.', btRuPending: 'Malika Tursunova translates the Russian version back into Uzbek without seeing the original. Differences are fixed before review — otherwise the item behaves differently in uz and ru forms.', btRuOk: 'Malika Tursunova’s back-translation matched the original (10 Sep).', btBlank: 'Write the Uzbek original first — the Russian version then goes to back-translation.',
+        optTitle: 'Answer options', optHint: 'Mark the correct answer. Every distractor needs an error type and a rationale — that’s what makes the report diagnostic.',
+        correctLabel: 'Correct answer', distractorLabel: 'Distractor', markCorrect: 'Mark option {L} as correct', bodyLabel: 'Option {L} text', phBody: 'Answer', lCode: 'ERROR TYPE', phCode: 'Choose an error type', codeAria: 'Error type for option {L}', ratLabel: 'Rationale for option {L}', phRat: 'Which mistake leads a child here? e.g. divides by 2 instead of 3', copyV1: 'Copy from v1', chosenBy: '{p}% chose it', codesLabel: 'Misconception codes',
+        eGrade: 'Choose a grade', eCluster: 'Choose a cluster', eTopic: 'Name the topic', eConstruct: 'Describe what it measures', eExpected: 'Expected p: enter a number between 0 and 1, e.g. 0.45.', eFormat: 'Choose a format', eAudioFmt: 'Grades 0–1 need read-aloud audio', eImg: 'Add the picture', eAud: 'Upload the audio', eStem: 'Write the stem', eCorrect: 'Mark the correct answer', eBody: 'Enter the answer text', eCode: 'Choose an error type', eRat: 'Explain why a child would pick this', eCodeRat: 'Needs an error type and a rationale',
+        sGrade: 'Grade', sCluster: 'Cluster', sTopic: 'Topic', sConstruct: 'Construct', sExpected: 'Expected p', sFormat: 'Stem format', sAudioFmt: 'Audio for grades 0–1', sImg: 'Picture', sAud: 'Audio file', sStem: 'Stem (uz)', sLink: 'Vertical anchor', sCorrect: 'Correct answer', sBody: '{L}: text', sCode: '{L}: error type', sRat: '{L}: rationale',
+        histTitle: 'VERSION HISTORY', v2Meta: 'Started 21 Sep · Sherzod Qodirov', v2Note: 'Stem reworded: “left in the box”', v1Title: 'Frozen 12 Sep', v1Meta: 'Pilot · n = 148 · p 0.46 · r 0.38', v1Note: 'Statistics belong to this version', histNote: 'Each version is a separate item for the scale. Even a fixed comma means a new version and a new calibration.', histBlank: 'v1 is created on first save.', viewing: 'Viewing',
+        calTitle: 'Calibration · v1', calEmpty: 'Calibration', calSub: 'September pilot · Rasch, anchor equating · 12 Sep', calV2Note: 'These are v1 figures. For the scale, v2 is a new item — it will be calibrated again after its own pretest.',
+        sN: 'Answers', sNSub: 'uz 97 · ru 51', sP: 'Proportion correct', sPSub: 'expected 0.45 · keep 0.20–0.85', sR: 'Point-biserial', sRSub: 'separates strong from weak · ≥ 0.20', sDif: 'DIF: uz vs ru', sDifOk: 'OK', sDifSub: 'both versions behave alike',
+        distTitle: 'WHO PICKED EACH DISTRACTOR', distAria: 'Option {L} chosen by {p}% of children', correctShare: 'C (correct answer) — 46%', distNote: 'A distractor almost nobody picks (under 5%) gets flagged: the item is then easier than it looks.', verdict: 'Verdict', verdictKeep: 'keep',
+        calEmptyTitle: 'No statistics yet', calEmptyBody: 'First the item collects them as an unscored pretest item in live forms (4–5 in every form) — only then can it count toward results.',
+        roleTitle: 'Role in forms', rCore: 'Core', rCoreSub: 'Unique to one form', rH: 'Horizontal anchor', rHSub: 'Identical in every wave of this grade — makes October comparable to December', rV: 'Vertical anchor', rVSub: 'Shared with the grade above — links grades on one scale',
+        lLink: 'Links to grade', linkHint: 'Should be solved by about 20–30% of grade {g} and 60%+ of grade {h}.', linkTop: 'Grade 4 is the top of the scale and has no vertical anchors. Choose another role or grade.', linkNoGrade: 'Choose the grade first.',
+        anchorWarn: 'Anchors never go into practice and are never shown in the post-test review — not even the correct answer. One leak into a parents’ chat and the next wave is no longer comparable.',
+        payTitle: 'Authors are paid per accepted item', payBody: 'Not per submitted one. Accepted means it passed two-hand review: one reviewer solves it blind, the second critiques. 30–40% of items are rejected — that’s normal.', payMe: 'Sherzod Qodirov · 23 items accepted this season' }
+    };
+    const sh = this.shell(T);
+    const t = sh.t;
+    const L = s.lang;
+    const fill = (str, o) => Object.keys(o).reduce((acc, k) => acc.split('{' + k + '}').join(String(o[k])), str);
+    const C = this.content();
+    const mode = this.modeKey();
+    const blank = mode === 'fb';
+    const form = s[mode];
+    const isV1 = s.view === 'v1' && !blank;
+    const submittedFlow = s.flow === 'submitted';
+    const ro = isV1 || submittedFlow;
+    const src = isV1 ? this.v1Form() : form;
+    const val = (k) => this.val(src, k);
+    const errs = this.validate(form);
+    const showErr = s.flow === 'invalid' && !isV1;
+    const err = {};
+    errs.forEach((k) => { err[k] = showErr; });
+    ['grade', 'cluster', 'topic', 'construct', 'expected', 'format', 'audioFmt', 'img', 'aud', 'stem', 'link', 'correct'].forEach((k) => { if (!err[k]) err[k] = false; });
+    const bdr = (k) => (err[k] ? 'var(--danger)' : 'var(--line-200)');
+
+    const stateReset = { flow: 'edit', toast: '', view: 'v2', openCode: '' };
+    const uiStates = sh.uiStates.map((u, i) => Object.assign({}, u, { pick: () => this.setState(Object.assign({ ui: ['default', 'loading', 'empty', 'error'][i] }, stateReset)) }));
+
+    const grades = [0, 1, 2, 3, 4].map((g) => Object.assign({ label: String(g), on: src.grade === g, pick: () => this.upd({ grade: g }) }, this.seg(src.grade === g)));
+    const clusters = ['nc', 'ps', 'ls'].map((c) => {
+      const on = src.cluster === c;
+      return { label: t.cl[c], on: on, pick: () => this.upd({ cluster: c }), bg: on ? 'var(--brand-050)' : 'var(--surface-100)', ink: on ? 'var(--brand-700)' : 'var(--ink-600)', border: on ? 'var(--brand-600)' : (err.cluster ? 'var(--danger)' : 'var(--line-200)') };
+    });
+    const formats = [['text', t.fmtText, t.fmtTextSub], ['visual', t.fmtVisual, t.fmtVisualSub], ['audio', t.fmtAudio, t.fmtAudioSub]].map((p) => {
+      const on = src.format === p[0];
+      return { title: p[1], sub: p[2], on: on, pick: () => this.upd({ format: p[0] }), bg: on ? 'var(--brand-050)' : 'var(--surface-100)', border: on ? 'var(--brand-600)' : ((err.format || err.audioFmt) ? 'var(--danger)' : 'var(--line-200)'), ring: on ? 'var(--brand-600)' : 'var(--line-200)', dot: on ? 'var(--brand-600)' : 'transparent' };
+    });
+    const young = src.grade === 0 || src.grade === 1;
+    const showUploads = src.format === 'visual' || src.format === 'audio';
+
+    const ruStatus = blank ? [t.stBtNone, 'var(--surface-300)', 'var(--ink-600)'] : (isV1 ? [t.stBtOk, 'var(--success-bg)', 'var(--success)'] : [t.stBtPending, 'var(--warning-bg)', 'var(--warning)']);
+    const tabs = [['uz', t.tabUz, t.stOriginal, 'var(--brand-100)', 'var(--brand-700)'], ['ru', t.tabRu, ruStatus[0], ruStatus[1], ruStatus[2]]].map((p) => Object.assign({ label: p[1], status: p[2], stBg: p[3], stInk: p[4], on: s.tab === p[0], pick: () => this.setState({ tab: p[0] }) }, this.seg(s.tab === p[0])));
+    const stemKey = s.tab === 'uz' ? 'stemUz' : 'stemRu';
+    const btNote = s.tab === 'uz' ? (blank ? t.btBlank : t.btUz) : (blank ? t.btBlank : (isV1 ? t.btRuOk : t.btRuPending));
+    const stemErr = err.stem && s.tab === 'uz';
+
+    const misCodes = ['ANSWERS_WRONG_QUANTITY', 'WRONG_DIVISOR', 'ARITHMETIC_SLIP', 'STOPS_AFTER_FIRST_STEP', 'MISREADS_QUESTION'];
+    const shares = { A: 21, B: 19, C: 46, D: 14 };
+    const v1 = this.v1Form();
+    const options = ['A', 'B', 'C', 'D'].map((l) => {
+      const isCorrect = src.correct === l;
+      const code = src.codes[l] || '';
+      const rat = val('rat' + l);
+      const eBody = !!err['body' + l], eCode = !!err['code' + l], eRat = !!err['rat' + l];
+      const msg = eBody ? t.eBody : (eCode && eRat ? t.eCodeRat : (eCode ? t.eCode : (eRat ? t.eRat : '')));
+      const open = s.openCode === l && !ro;
+      return {
+        letter: l, body: val('body' + l),
+        checked: isCorrect ? 'true' : 'false',
+        markLabel: fill(t.markCorrect, { L: l }), bodyLabel: fill(t.bodyLabel, { L: l }), ratLabel: fill(t.ratLabel, { L: l }), codeAria: fill(t.codeAria, { L: l }),
+        ring: isCorrect ? 'var(--success)' : (err.correct ? 'var(--danger)' : 'var(--line-200)'),
+        dot: isCorrect ? 'var(--success)' : 'transparent',
+        pickCorrect: () => this.upd({ correct: l }),
+        kind: isCorrect ? t.correctLabel : t.distractorLabel,
+        kindBg: isCorrect ? 'var(--success-bg)' : 'var(--surface-300)', kindInk: isCorrect ? 'var(--success)' : 'var(--ink-600)',
+        isDistractor: !isCorrect,
+        showShare: isV1, share: fill(t.chosenBy, { p: shares[l] }),
+        hasErr: msg !== '', err: msg,
+        canCopy: !ro && !blank && !isCorrect && !String(rat).trim() && !!v1.codes[l],
+        copy: () => this.copyV1(l),
+        bodyBorder: eBody ? 'var(--danger)' : 'var(--line-200)',
+        onBody: (e) => this.updTxt('body' + l, e && e.target ? e.target.value : ''),
+        open: open, z: open ? 10 : 1,
+        toggleCode: () => this.setState({ openCode: s.openCode === l ? '' : l }),
+        codeText: code || t.phCode, codeInk: code ? 'var(--ink-900)' : 'var(--ink-400)',
+        codeName: code ? C.mis[L][code] : '', hasCodeName: !!code, noCode: !code,
+        codeBorder: eCode ? 'var(--danger)' : 'var(--line-200)',
+        codeOpts: misCodes.map((c) => ({ code: c, name: C.mis[L][c], on: code === c, bg: code === c ? 'var(--brand-050)' : 'transparent', ink: code === c ? 'var(--brand-700)' : 'var(--ink-900)', pick: () => this.updCode(l, c) })),
+        rat: rat,
+        ratBorder: eRat ? 'var(--danger)' : 'var(--line-200)',
+        onRat: (e) => this.updTxt('rat' + l, e && e.target ? e.target.value : '')
+      };
+    });
+
+    const shortOf = (k) => {
+      if (k.indexOf('body') === 0) return fill(t.sBody, { L: k.slice(4) });
+      if (k.indexOf('code') === 0) return fill(t.sCode, { L: k.slice(4) });
+      if (k.indexOf('rat') === 0) return fill(t.sRat, { L: k.slice(3) });
+      return { grade: t.sGrade, cluster: t.sCluster, topic: t.sTopic, construct: t.sConstruct, expected: t.sExpected, format: t.sFormat, audioFmt: t.sAudioFmt, img: t.sImg, aud: t.sAud, stem: t.sStem, link: t.sLink, correct: t.sCorrect }[k] || k;
+    };
+    const sumItems = errs.map((k) => ({ label: shortOf(k) }));
+
+    const history = [
+      { key: 'v2', ver: 'v2', title: submittedFlow ? t.stReview : t.stDraft, meta: t.v2Meta, note: t.v2Note, frozen: false },
+      { key: 'v1', ver: 'v1', title: t.v1Title, meta: t.v1Meta, note: t.v1Note, frozen: true }
+    ].map((h) => {
+      const on = s.view === h.key;
+      return Object.assign(h, { on: on, bg: on ? 'var(--brand-050)' : 'transparent', pillBg: on ? 'var(--brand-100)' : 'var(--surface-200)', pillInk: on ? 'var(--brand-700)' : 'var(--ink-600)', pick: () => this.setState({ view: h.key, openCode: '' }) });
+    });
+
+    const roles = [['core', t.rCore, t.rCoreSub, false], ['ah', t.rH, t.rHSub, true], ['av', t.rV, t.rVSub, true]].map((p) => {
+      const on = src.role === p[0];
+      return { title: p[1], sub: p[2], anchor: p[3], on: on, pick: () => this.upd({ role: p[0] }), bg: on ? 'var(--brand-050)' : 'var(--surface-200)', ink: on ? 'var(--brand-700)' : 'var(--ink-900)', ring: on ? 'var(--brand-600)' : 'var(--line-200)', dot: on ? 'var(--brand-600)' : 'transparent' };
+    });
+    const isAnchor = src.role === 'ah' || src.role === 'av';
+    const gradeNull = src.grade === null;
+    const top = src.grade === 4;
+    const linkHint = gradeNull ? t.linkNoGrade : (top ? t.linkTop : fill(t.linkHint, { g: src.grade, h: src.grade + 1 }));
+
+    const verStatus = isV1 ? t.stFrozen : (submittedFlow ? t.stReview : t.stDraft);
+    const verChipBg = isV1 ? 'var(--brand-100)' : (submittedFlow ? 'var(--warning-bg)' : 'var(--surface-300)');
+    const verChipInk = isV1 ? 'var(--brand-700)' : (submittedFlow ? 'var(--warning)' : 'var(--ink-600)');
+
+    const toastKind = s.toast;
+    const doSave = () => this.setState({ toast: 'saved', openCode: '', ui: s.ui === 'error' ? 'default' : s.ui });
+
+    return Object.assign(sh, {
+      uiStates,
+      skelOpts: [1, 2, 3, 4],
+      showForm: s.ui !== 'loading',
+      isBlank: blank, hasHistory: !blank, hasCal: !blank, showV2Note: !isV1,
+      isV1: isV1, ro: ro, isSubmitted: submittedFlow,
+      crumbCode: blank ? t.newCrumb : 'G4-PS-0137',
+      title: blank ? t.newTitle : 'G4-PS-0137',
+      subtitle: blank ? t.subBlank : t.subSample,
+      verChip: (blank || s.view !== 'v1' ? (blank ? 'v1' : 'v2') : 'v1') + ' · ' + verStatus,
+      verChipBg: verChipBg, verChipInk: verChipInk,
+      saveInk: ro ? 'var(--ink-400)' : 'var(--ink-900)',
+      submitLabel: submittedFlow ? t.submitted : t.submit,
+      submitBg: ro ? 'var(--surface-300)' : 'var(--brand-400)',
+      submitInk: ro ? 'var(--ink-400)' : 'var(--ink-on-primary)',
+      submitShadow: ro ? 'none' : 'var(--shadow-float)',
+      save: doSave,
+      retrySave: doSave,
+      submit: () => {
+        const e = this.validate(this.state[this.modeKey()]);
+        if (e.length) this.setState({ flow: 'invalid', toast: '', openCode: '' });
+        else this.setState({ flow: 'submitted', toast: '', openCode: '', ui: s.ui === 'error' ? 'default' : s.ui });
+      },
+      newVersion: () => this.setState({ view: 'v2', toast: 'newver', openCode: '' }),
+      showSummary: showErr && errs.length > 0,
+      showFixed: showErr && errs.length === 0,
+      sumHeading: t.sumTitle + ' · ' + errs.length,
+      sumItems: sumItems,
+      err: err,
+      gradeBorder: err.grade ? 'var(--danger)' : 'transparent',
+      grades: grades, clusters: clusters,
+      f: { topic: val('topic'), construct: val('construct'), expected: val('expected') },
+      bd: { topic: bdr('topic'), construct: bdr('construct'), expected: bdr('expected') },
+      on: {
+        topic: (e) => this.updTxt('topic', e && e.target ? e.target.value : ''),
+        construct: (e) => this.updTxt('construct', e && e.target ? e.target.value : ''),
+        expected: (e) => this.updTxt('expected', e && e.target ? e.target.value : ''),
+        stem: (e) => this.updTxt(stemKey, e && e.target ? e.target.value : '')
+      },
+      expectedHint: err.expected ? t.eExpected : t.expectedHint,
+      expectedHintInk: err.expected ? 'var(--danger)' : 'var(--ink-400)',
+      tabs: tabs, formats: formats,
+      fmtErr: err.format || err.audioFmt,
+      fmtErrText: err.format ? t.eFormat : t.eAudioFmt,
+      showYoung: young && src.format !== 'audio',
+      showUploads: showUploads, showAudio: src.format === 'audio',
+      imgBorder: err.img ? 'var(--danger)' : 'var(--line-200)',
+      imgSub: err.img ? t.eImg : (src.img ? t.imgFile : t.imgSlotSub),
+      imgSubInk: err.img ? 'var(--danger)' : (src.img ? 'var(--ink-900)' : 'var(--ink-400)'),
+      imgBtn: src.img ? t.replace : t.choose,
+      toggleImg: () => this.upd({ img: true }),
+      audBorder: err.aud ? 'var(--danger)' : 'var(--line-200)',
+      audSub: err.aud ? t.eAud : (src.aud ? t.audFile : t.audSlotSub),
+      audSubInk: err.aud ? 'var(--danger)' : (src.aud ? 'var(--ink-900)' : 'var(--ink-400)'),
+      audBtn: src.aud ? t.replace : t.upload,
+      toggleAud: () => this.upd({ aud: true }),
+      stemLabel: s.tab === 'uz' ? t.lStemUz : t.lStemRu,
+      stemVal: val(stemKey),
+      stemErr: stemErr,
+      stemBorder: stemErr ? 'var(--danger)' : 'var(--line-200)',
+      btNote: btNote,
+      options: options,
+      history: history,
+      calTitle: blank ? t.calEmpty : t.calTitle,
+      statP: this.fmt(0.46), statR: this.fmt(0.38),
+      distBars: ['A', 'B', 'D'].map((l) => ({ label: l + ' · ' + { A: '8', B: '12', D: '18' }[l], code: v1.codes[l], pct: shares[l], pctText: shares[l] + '%', aria: fill(t.distAria, { L: l, p: shares[l] }) })),
+      roles: roles,
+      showLink: src.role === 'av',
+      linkVal: gradeNull || top ? '—' : String(src.grade + 1),
+      linkBorder: err.link ? 'var(--danger)' : 'var(--line-200)',
+      linkHint: linkHint,
+      linkHintInk: top ? 'var(--danger)' : 'var(--ink-600)',
+      warnBg: isAnchor ? 'var(--warning-bg)' : 'var(--surface-200)',
+      warnInk: isAnchor ? 'var(--warning)' : 'var(--ink-600)',
+      hasToast: toastKind !== '' && s.ui !== 'loading',
+      toastTitle: toastKind === 'newver' ? t.toastNewVer : t.toastSaved,
+      toastBody: toastKind === 'newver' ? t.toastNewVerSub : t.toastSavedSub,
+      closeToast: () => this.setState({ toast: '' }),
+      linkLocked: true,
+      verdictText: t.verdict + ': ' + t.verdictKeep
+    });
+  }
+}
+</script>
+
+
+</body></html>

@@ -1,0 +1,11 @@
+node_modules/
+.next/
+dist/
+*.tsbuildinfo
+.env
+*.log
+.DS_Store
+
+# Cookie jars left in the repo root by scripts/acceptance.sh
+/j[0-9]*.txt
+/ja.txt

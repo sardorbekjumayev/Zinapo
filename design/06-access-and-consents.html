@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="uz"><head>
+<meta charset="utf-8">
+<title>Zinapo · Access &amp; consents</title>
+<script src="_assets/dc-runtime.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-feae57212855.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-9d8db2e8ccd9.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-bcedb9e2e528.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-326a88b4ddbb.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-06ad36000cd8.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-4f27206c4b1c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-feae57212855.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-9d8db2e8ccd9.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-bcedb9e2e528.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-326a88b4ddbb.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-06ad36000cd8.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-4f27206c4b1c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+body{margin:0;font-family:"Manrope","Inter",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+.z{--surface-000:#f7f5fb;--surface-100:#ffffff;--surface-200:#f1ecfa;--surface-300:#e7e0f5;--ink-900:#1a1622;--ink-600:#58506e;--ink-400:#6e6686;--line-100:#e6dff3;--line-200:#cfc4e6;--brand-050:#f5f0ff;--brand-100:#e9e0ff;--brand-300:#c9b0ff;--brand-400:#ad89ff;--brand-600:#7444e4;--brand-700:#522cc3;--ink-on-primary:#1a1622;--focus-ring:#ad89ff99;--success:#10805a;--success-bg:#dff5ec;--warning:#9a5c00;--warning-bg:#fdf0dc;--danger:#c62a43;--danger-bg:#fde7ea;--accent-teal:#0d7d86;--accent-teal-bg:#ddf3f4;--accent-coral:#c04a2a;--accent-coral-bg:#fceae4;--accent-blue:#2158c9;--accent-blue-bg:#e3ecfd;--overlay:#1a162299;--mode-practice:#0d7d86;--shadow-xs:0 1px 2px rgba(26,22,34,.06);--shadow-float:0 2px 4px rgba(26,22,34,.05),0 8px 20px -6px rgba(86,58,160,.20);--shadow-float-lg:0 4px 8px rgba(26,22,34,.06),0 16px 32px -8px rgba(86,58,160,.28);--shadow-card:0 1px 2px rgba(26,22,34,.04),0 12px 28px -14px rgba(86,58,160,.22);--shadow-overlay:0 8px 16px rgba(26,22,34,.08),0 32px 64px -20px rgba(86,58,160,.34);color:var(--ink-900);background:var(--surface-000)}
+.z[data-theme="dark"]{--surface-000:#121016;--surface-100:#1b1822;--surface-200:#242030;--surface-300:#2e2940;--ink-900:#f5f2fb;--ink-600:#bdb6cf;--ink-400:#9990ab;--line-100:#322c44;--line-200:#443c5c;--brand-050:#221c33;--brand-100:#2d2547;--brand-300:#6e4fc0;--brand-600:#7c4de8;--brand-700:#c4a9ff;--focus-ring:#ad89ffaa;--success:#4ed6a1;--success-bg:#16342a;--warning:#f2b457;--warning-bg:#38290f;--danger:#ff7f8d;--danger-bg:#3a1b21;--accent-teal:#4fd0d9;--accent-teal-bg:#123236;--accent-coral:#ff9273;--accent-coral-bg:#3a1f16;--accent-blue:#8fb0ff;--accent-blue-bg:#15233f;--overlay:#0a0810cc;--mode-practice:#0e7c85;--shadow-xs:0 1px 2px rgba(0,0,0,.5);--shadow-float:0 2px 4px rgba(0,0,0,.45),0 8px 20px -6px rgba(0,0,0,.6);--shadow-float-lg:0 4px 8px rgba(0,0,0,.5),0 16px 32px -8px rgba(0,0,0,.7);--shadow-card:0 1px 2px rgba(0,0,0,.4),0 12px 28px -14px rgba(0,0,0,.55);--shadow-overlay:0 8px 16px rgba(0,0,0,.5),0 32px 64px -20px rgba(0,0,0,.75)}
+.z a{color:var(--brand-700)}
+.z button,.z input,.z textarea,.z select{font-family:inherit}
+.z button{cursor:pointer}
+.z button:disabled{cursor:not-allowed}
+.z input::placeholder,.z textarea::placeholder{color:var(--ink-400)}
+.lift{transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s cubic-bezier(.2,.8,.2,1)}
+.lift:hover{transform:translateY(-1px);box-shadow:var(--shadow-float-lg)!important}
+.ghost:hover{background:var(--surface-200)!important}
+.row:hover{background:var(--surface-200)!important}
+.z button:focus-visible,.z a:focus-visible,.z input:focus-visible,.z textarea:focus-visible,.z select:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus-ring)!important}
+.z input:focus-visible,.z textarea:focus-visible,.z select:focus-visible{border-color:var(--brand-600)!important}
+.skel{background:linear-gradient(90deg,var(--surface-300) 0%,var(--surface-200) 50%,var(--surface-300) 100%);background-size:200% 100%;animation:zsk 1.4s ease-in-out infinite;border-radius:14px}
+@keyframes zsk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.lift:hover{transform:none}.skel{animation:none}}
+</style>
+</helmet>
+<div class="z" data-theme="{{ theme }}" style="width: 1440px; height: 1800px; box-sizing: border-box; padding: 16px; display: flex; gap: 32px; align-items: flex-start; background: var(--surface-000); color: var(--ink-900);">
+
+<nav aria-label="{{ t.navLabel }}" style="width: 264px; height: 1008px; flex-shrink: 0; box-sizing: border-box; padding: 28px 16px 16px; background: var(--surface-100); border-radius: 52px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<a href="SignIn.dc.html" aria-label="Zinapo" style="display: flex; align-items: center; gap: 12px; padding: 0 12px; text-decoration: none; color: var(--ink-900);">
+<span style="width: 40px; height: 40px; border-radius: 14px; background: var(--brand-400); display: flex; align-items: center; justify-content: center; color: var(--ink-on-primary);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M3 20h5v-5h5v-5h5V5h3"></path></svg>
+</span>
+<span style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">Zinapo</span>
+</a>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="padding: 0 16px 8px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.navChildren }}</div>
+<a href="Main.dc.html" class="ghost" style="height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border-radius: 30px; text-decoration: none; color: var(--ink-600);">
+<span style="width: 32px; height: 32px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">MK</span>
+<span style="display: flex; flex-direction: column;"><span style="font-size: 14px; line-height: 20px; font-weight: 600;">Madina</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ t.navGrade4 }}</span></span>
+</a>
+<a href="ParentYoung.dc.html" class="ghost" style="height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border-radius: 30px; text-decoration: none; color: var(--ink-600);">
+<span style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent-teal-bg); color: var(--accent-teal); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">TK</span>
+<span style="display: flex; flex-direction: column;"><span style="font-size: 14px; line-height: 20px; font-weight: 600;">Temur</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ t.navGrade1 }}</span></span>
+</a>
+<a href="AddChild.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round;"><path d="M12 5v14M5 12h14"></path></svg>{{ t.navAddChild }}</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="padding: 0 16px 8px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.navFamily }}</div>
+<a href="TestTaking.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M10 8.5l5 3.5-5 3.5z"></path></svg>{{ t.navTakeWave }}</a>
+<a href="Olympiad.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"></path><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"></path></svg>{{ t.navOlympiad }}</a>
+<a href="Access.dc.html" aria-current="page" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; background: var(--brand-050); color: var(--brand-700); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>{{ t.navAccess }}</a>
+<a href="SignIn.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"></path></svg>{{ t.navSignOut }}</a>
+</div>
+<div style="padding: 16px; border-radius: 30px; background: var(--surface-200); display: flex; flex-direction: column; gap: 6px;">
+<span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.navNextWave }}</span>
+<span style="font-size: 12px; line-height: 16px; color: var(--ink-600);">{{ t.navNextWaveSub }}</span>
+</div>
+<sc-if value="{{ demoBar }}" hint-placeholder-val="{{ true }}">
+<div style="margin-top: auto; padding: 12px; border-radius: 30px; border: 1.5px dashed var(--line-200); display: flex; flex-direction: column; gap: 8px;">
+<span style="padding: 0 6px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">PROTOTYPE · SCREEN STATE</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px;">
+<sc-for list="{{ uiStates }}" as="u" hint-placeholder-count="4">
+<button sc-camel-on-click="{{ u.pick }}" aria-pressed="{{ u.on }}" style="height: 36px; border: 0; border-radius: 22px; font-size: 12px; font-weight: 600; background: {{ u.bg }}; color: {{ u.ink }};">{{ u.label }}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</nav>
+
+<main style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+
+<header style="height: 72px; box-sizing: border-box; padding: 0 12px 0 28px; background: var(--surface-100); border-radius: 52px; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 12px;">
+<div style="flex-grow: 1; font-size: 14px; font-weight: 600; color: var(--ink-600);">{{ t.crumb }}</div>
+<div role="group" aria-label="{{ t.langLabel }}" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--surface-200);">
+<sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+<button sc-camel-on-click="{{ l.pick }}" aria-pressed="{{ l.on }}" style="height: 36px; min-width: 52px; padding: 0 12px; border: 0; border-radius: 22px; font-size: 13px; font-weight: 600; background: {{ l.bg }}; color: {{ l.ink }}; box-shadow: {{ l.shadow }};">{{ l.label }}</button>
+</sc-for>
+</div>
+<button sc-camel-on-click="{{ toggleTheme }}" aria-label="{{ t.themeLabel }}" class="ghost" style="width: 48px; height: 48px; border: 0; border-radius: 30px; background: transparent; color: var(--ink-600); display: flex; align-items: center; justify-content: center;">
+<sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</sc-if>
+<sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"></path></svg>
+</sc-if>
+</button>
+<button aria-label="{{ t.notifLabel }}" class="ghost" style="width: 48px; height: 48px; border: 0; border-radius: 30px; background: transparent; color: var(--ink-600); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 21h4"></path></svg>
+</button>
+<span style="width: 48px; height: 48px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center;">DK</span>
+</header>
+
+<sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+<div aria-busy="true" style="display: flex; flex-direction: column; gap: 24px;">
+<div style="padding: 8px 8px 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 10px;"><div class="skel" style="width: 340px; height: 34px;"></div><div class="skel" style="width: 560px; height: 18px;"></div><div class="skel" style="width: 420px; height: 18px;"></div></div>
+<div class="skel" style="width: 320px; height: 60px; border-radius: 999px;"></div>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px; align-items: start;">
+<div style="display: flex; flex-direction: column; gap: 24px;">
+<div style="padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;"><div class="skel" style="width: 220px; height: 22px;"></div><div class="skel" style="width: 380px; height: 14px;"></div><div class="skel" style="height: 150px; border-radius: 30px;"></div></div>
+<div style="padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 20px;"><div class="skel" style="width: 180px; height: 22px;"></div>
+<div style="display: flex; gap: 16px; align-items: center;"><div class="skel" style="width: 40px; height: 40px; border-radius: 999px;"></div><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;"><div class="skel" style="width: 240px; height: 16px;"></div><div class="skel" style="width: 340px; height: 12px;"></div></div><div class="skel" style="width: 150px; height: 36px; border-radius: 22px;"></div></div>
+<div style="display: flex; gap: 16px; align-items: center;"><div class="skel" style="width: 40px; height: 40px; border-radius: 999px;"></div><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;"><div class="skel" style="width: 260px; height: 16px;"></div><div class="skel" style="width: 300px; height: 12px;"></div></div><div class="skel" style="width: 150px; height: 36px; border-radius: 22px;"></div></div>
+<div style="display: flex; gap: 16px; align-items: center;"><div class="skel" style="width: 40px; height: 40px; border-radius: 999px;"></div><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;"><div class="skel" style="width: 220px; height: 16px;"></div><div class="skel" style="width: 320px; height: 12px;"></div></div><div class="skel" style="width: 150px; height: 36px; border-radius: 22px;"></div></div>
+</div>
+<div style="padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 18px;"><div class="skel" style="width: 200px; height: 22px;"></div>
+<div style="display: flex; gap: 14px; align-items: center;"><div class="skel" style="width: 36px; height: 36px; border-radius: 999px;"></div><div class="skel" style="width: 360px; height: 14px;"></div></div>
+<div style="display: flex; gap: 14px; align-items: center;"><div class="skel" style="width: 36px; height: 36px; border-radius: 999px;"></div><div class="skel" style="width: 300px; height: 14px;"></div></div>
+<div style="display: flex; gap: 14px; align-items: center;"><div class="skel" style="width: 36px; height: 36px; border-radius: 999px;"></div><div class="skel" style="width: 380px; height: 14px;"></div></div>
+<div style="display: flex; gap: 14px; align-items: center;"><div class="skel" style="width: 36px; height: 36px; border-radius: 999px;"></div><div class="skel" style="width: 280px; height: 14px;"></div></div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px;">
+<div style="padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 22px;"><div class="skel" style="width: 160px; height: 22px;"></div>
+<div style="display: flex; gap: 16px;"><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;"><div class="skel" style="width: 200px; height: 16px;"></div><div class="skel" style="height: 12px;"></div><div class="skel" style="width: 160px; height: 12px;"></div></div><div class="skel" style="width: 52px; height: 32px; border-radius: 999px;"></div></div>
+<div style="display: flex; gap: 16px;"><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;"><div class="skel" style="width: 220px; height: 16px;"></div><div class="skel" style="height: 12px;"></div><div class="skel" style="width: 160px; height: 12px;"></div></div><div class="skel" style="width: 52px; height: 32px; border-radius: 999px;"></div></div>
+<div style="display: flex; gap: 16px;"><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px;"><div class="skel" style="width: 180px; height: 16px;"></div><div class="skel" style="height: 12px;"></div><div class="skel" style="width: 160px; height: 12px;"></div></div><div class="skel" style="width: 52px; height: 32px; border-radius: 999px;"></div></div>
+</div>
+<div style="padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;"><div class="skel" style="width: 200px; height: 22px;"></div><div class="skel" style="height: 120px; border-radius: 30px;"></div><div class="skel" style="height: 96px; border-radius: 30px;"></div><div class="skel" style="width: 200px; height: 48px; border-radius: 30px;"></div></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ notLoading }}" hint-placeholder-val="{{ true }}">
+<div style="padding: 8px 8px 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px;">
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+<h1 style="margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.02em;">{{ t.title }}</h1>
+<p style="margin: 0; max-width: 640px; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.subtitle }}</p>
+</div>
+<div role="tablist" aria-label="{{ t.kidsLabel }}" style="flex-shrink: 0; display: flex; gap: 4px; padding: 6px; border-radius: 999px; background: var(--surface-100); box-shadow: var(--shadow-card);">
+<sc-for list="{{ kids }}" as="k" hint-placeholder-count="2">
+<button role="tab" aria-selected="{{ k.on }}" sc-camel-on-click="{{ k.pick }}" style="height: 48px; display: flex; align-items: center; gap: 10px; padding: 0 20px 0 6px; border: 0; border-radius: 999px; background: {{ k.bg }}; color: {{ k.ink }};">
+<span style="width: 36px; height: 36px; border-radius: 999px; background: {{ k.avBg }}; color: {{ k.avInk }}; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ k.av }}</span>
+<span style="display: flex; flex-direction: column; align-items: flex-start;"><span style="font-size: 14px; line-height: 20px; font-weight: 600;">{{ k.name }}</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ k.grade }}</span></span>
+</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+<section role="alert" style="padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; gap: 20px; align-items: flex-start;">
+<span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 999px; background: var(--danger-bg); color: var(--danger); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16.5h.01"></path></svg>
+</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+<h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.errTitle }}</h2>
+<p style="margin: 0; max-width: 620px; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.errBody }}</p>
+</div>
+<button sc-camel-on-click="{{ retry }}" class="lift" style="height: 48px; padding: 0 24px; border: 0; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ t.retry }}</button>
+</section>
+</sc-if>
+
+<sc-if value="{{ showBody }}" hint-placeholder-val="{{ true }}">
+<div style="position: relative; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px; align-items: start;">
+
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 24px;">
+
+<section aria-labelledby="pendH" style="padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 20px;">
+<div style="display: flex; align-items: flex-start; gap: 12px;">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px;">
+<h2 id="pendH" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.pendTitle }}</h2>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.pendSub }}</p>
+</div>
+<sc-if value="{{ showBadge }}" hint-placeholder-val="{{ true }}">
+<span style="flex-shrink: 0; height: 28px; padding: 0 12px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 12px; font-weight: 600; display: flex; align-items: center;">{{ t.pendBadge }}</span>
+</sc-if>
+</div>
+
+<sc-if value="{{ noReq }}" hint-placeholder-val="{{ false }}">
+<div style="padding: 18px 20px; border-radius: 30px; background: var(--surface-200); display: flex; gap: 12px; align-items: center; color: var(--ink-600);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 13l2.5-7h11L20 13v6H4z"></path><path d="M4 13h4.5l1 2h5l1-2H20"></path></svg>
+<span style="font-size: 14px; line-height: 21px;">{{ t.noReq }}</span>
+</div>
+</sc-if>
+
+<sc-if value="{{ reqOpen }}" hint-placeholder-val="{{ true }}">
+<div style="padding: 20px; border-radius: 30px; background: var(--surface-200); display: flex; gap: 16px; align-items: flex-start;">
+<span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 999px; background: var(--accent-teal-bg); color: var(--accent-teal); font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center;">JO</span>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+<span style="font-size: 17px; line-height: 23px; font-weight: 700;">Jamshid Olimov</span>
+<span style="height: 26px; padding: 0 10px; border-radius: 999px; background: var(--accent-teal-bg); color: var(--accent-teal); font-size: 12px; font-weight: 600; display: flex; align-items: center;">{{ t.roleTutor }}</span>
+</div>
+<span style="font-size: 15px; line-height: 23px;">{{ t.reqBody }}</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 13px; line-height: 20px; color: var(--ink-400);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 16px; height: 16px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>{{ t.reqMeta }}</span>
+
+<sc-if value="{{ isPendingOnly }}" hint-placeholder-val="{{ true }}">
+<div style="margin-top: 12px; display: flex; gap: 12px;">
+<button sc-camel-on-click="{{ approveStart }}" class="lift" style="height: 48px; padding: 0 24px; border: 0; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ t.btnApprove }}</button>
+<button sc-camel-on-click="{{ declineStart }}" class="ghost" style="height: 48px; padding: 0 24px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-xs);">{{ t.btnDecline }}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isApproving }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top: 12px; padding-top: 16px; border-top: 1px solid var(--line-200); display: flex; flex-direction: column; gap: 12px;">
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.reqSees }}</p>
+<span id="untilL" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.untilQ }}</span>
+<div role="radiogroup" aria-labelledby="untilL" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+<sc-for list="{{ untilOpts }}" as="o" hint-placeholder-count="2">
+<button role="radio" aria-checked="{{ o.on }}" sc-camel-on-click="{{ o.pick }}" style="padding: 14px 16px; border: 1px solid {{ o.bd }}; border-radius: 22px; background: {{ o.bg }}; color: var(--ink-900); display: flex; gap: 12px; align-items: flex-start; text-align: left;">
+<span style="width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; box-sizing: border-box; border-radius: 999px; border: 2px solid {{ o.dotBd }}; display: flex; align-items: center; justify-content: center;"><span style="width: 10px; height: 10px; border-radius: 999px; background: {{ o.dot }};"></span></span>
+<span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 14px; line-height: 20px; font-weight: 600;">{{ o.label }}</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-600);">{{ o.sub }}</span></span>
+</button>
+</sc-for>
+</div>
+<div style="display: flex; gap: 12px;">
+<button sc-camel-on-click="{{ approveConfirm }}" class="lift" style="height: 48px; padding: 0 24px; border: 0; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ t.btnConfirmApprove }}</button>
+<button sc-camel-on-click="{{ approveBack }}" class="ghost" style="height: 48px; padding: 0 20px; border: 0; border-radius: 30px; background: transparent; color: var(--ink-600); font-size: 15px; font-weight: 600;">{{ t.btnBack }}</button>
+</div>
+</div>
+</sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isApproved }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="padding: 20px; border-radius: 30px; background: var(--success-bg); display: flex; gap: 16px; align-items: flex-start;">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: var(--surface-100); color: var(--success); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 17px; line-height: 23px; font-weight: 700; color: var(--success);">{{ approvedTitle }}</span>
+<span style="font-size: 14px; line-height: 21px; color: var(--ink-900);">{{ t.approvedNote }}</span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDeclined }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="padding: 20px; border-radius: 30px; background: var(--surface-200); display: flex; gap: 16px; align-items: flex-start;">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: var(--surface-100); color: var(--ink-600); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M6 6l12 12"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.declinedTitle }}</span>
+<span style="font-size: 14px; line-height: 21px; color: var(--ink-600);">{{ t.declinedNote }}</span>
+</div>
+</div>
+</sc-if>
+</section>
+
+<section aria-labelledby="whoH" style="padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 12px;">
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<h2 id="whoH" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.whoTitle }}</h2>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ whoSub }}</p>
+</div>
+<div role="list" style="display: flex; flex-direction: column;">
+<sc-for list="{{ people }}" as="p" hint-placeholder-count="3">
+<div role="listitem" style="padding: 16px 0; border-top: {{ p.border }}; display: flex; gap: 16px; align-items: flex-start;">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: {{ p.avBg }}; color: {{ p.avInk }}; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ p.av }}</span>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+<span style="font-size: 15px; line-height: 23px; font-weight: 600;">{{ p.name }}</span>
+<sc-if value="{{ p.isMe }}" hint-placeholder-val="{{ false }}"><span style="height: 22px; padding: 0 8px; border-radius: 999px; background: var(--surface-200); color: var(--ink-600); font-size: 12px; font-weight: 600; display: flex; align-items: center;">{{ p.tag }}</span></sc-if>
+<span style="height: 26px; padding: 0 10px; border-radius: 999px; background: {{ p.roleBg }}; color: {{ p.roleInk }}; font-size: 12px; font-weight: 600; display: flex; align-items: center;">{{ p.role }}</span>
+<sc-if value="{{ p.hasStatus }}" hint-placeholder-val="{{ false }}"><span style="height: 26px; padding: 0 10px; border-radius: 999px; background: {{ p.stBg }}; color: {{ p.stInk }}; font-size: 12px; font-weight: 600; display: flex; align-items: center;">{{ p.status }}</span></sc-if>
+</div>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ p.desc }}</span>
+</div>
+<sc-if value="{{ p.hasBtn }}" hint-placeholder-val="{{ true }}">
+<button sc-camel-on-click="{{ p.act }}" class="ghost" style="flex-shrink: 0; height: 36px; padding: 0 16px; border: 1px solid var(--line-200); border-radius: 22px; background: var(--surface-100); color: {{ p.btnInk }}; font-size: 14px; font-weight: 600; box-shadow: var(--shadow-xs);">{{ p.btn }}</button>
+</sc-if>
+</div>
+</sc-for>
+</div>
+<div style="padding: 14px 16px; border-radius: 22px; background: var(--surface-200); display: flex; gap: 10px; align-items: center; color: var(--ink-600);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+<span style="font-size: 13px; line-height: 20px;">{{ whoFoot }}</span>
+</div>
+</section>
+
+<section aria-labelledby="logH" style="padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 12px;">
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<h2 id="logH" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.logTitle }}</h2>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.logSub }}</p>
+</div>
+<div role="list" style="display: flex; flex-direction: column;">
+<sc-for list="{{ logItems }}" as="e" hint-placeholder-count="6">
+<div role="listitem" style="padding: 12px 0; border-top: {{ e.border }}; display: flex; gap: 14px; align-items: center;">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 999px; background: {{ e.bg }}; color: {{ e.ink }}; display: flex; align-items: center; justify-content: center;">
+<sc-if value="{{ e.isGrant }}" hint-placeholder-val="{{ true }}"><svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg></sc-if>
+<sc-if value="{{ e.isReq }}" hint-placeholder-val="{{ false }}"><svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 13l2.5-7h11L20 13v6H4z"></path><path d="M4 13h4.5l1 2h5l1-2H20"></path></svg></sc-if>
+<sc-if value="{{ e.isOff }}" hint-placeholder-val="{{ false }}"><svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M6 6l12 12"></path></svg></sc-if>
+<sc-if value="{{ e.isDoc }}" hint-placeholder-val="{{ false }}"><svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5M10 13h6M10 17h6"></path></svg></sc-if>
+</span>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 14px; line-height: 20px; font-weight: 500;">{{ e.text }}</span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ e.meta }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+<sc-if value="{{ logMore }}" hint-placeholder-val="{{ true }}">
+<span style="padding-top: 4px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ logCount }}</span>
+</sc-if>
+</section>
+
+</div>
+</sc-if>
+
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+<section style="padding: 48px 40px 40px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;">
+<span style="width: 64px; height: 64px; border-radius: 20px; background: var(--brand-050); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
+</span>
+<h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.emptyTitle }}</h2>
+<p style="margin: 0; max-width: 500px; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.emptyBody }}</p>
+<div style="margin-top: 12px; align-self: stretch; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; text-align: left;">
+<div style="padding: 18px; border-radius: 22px; background: var(--surface-200); display: flex; flex-direction: column; gap: 6px;">
+<span style="width: 28px; height: 28px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">1</span>
+<span style="font-size: 15px; line-height: 21px; font-weight: 600;">{{ t.emptyS1T }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.emptyS1D }}</span>
+</div>
+<div style="padding: 18px; border-radius: 22px; background: var(--surface-200); display: flex; flex-direction: column; gap: 6px;">
+<span style="width: 28px; height: 28px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">2</span>
+<span style="font-size: 15px; line-height: 21px; font-weight: 600;">{{ t.emptyS2T }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.emptyS2D }}</span>
+</div>
+<div style="padding: 18px; border-radius: 22px; background: var(--surface-200); display: flex; flex-direction: column; gap: 6px;">
+<span style="width: 28px; height: 28px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">3</span>
+<span style="font-size: 15px; line-height: 21px; font-weight: 600;">{{ t.emptyS3T }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.emptyS3D }}</span>
+</div>
+</div>
+<a href="Main.dc.html" class="lift" style="margin-top: 12px; height: 48px; padding: 0 24px; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; box-shadow: var(--shadow-float);">{{ t.emptyCta }}</a>
+</section>
+</sc-if>
+
+</div>
+
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+
+<section aria-labelledby="consH" style="padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 8px;">
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<h2 id="consH" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.consTitle }}</h2>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ consSub }}</p>
+</div>
+<div style="display: flex; flex-direction: column;">
+<sc-for list="{{ consents }}" as="c" hint-placeholder-count="3">
+<div style="padding: 16px 0; border-top: {{ c.border }}; display: flex; flex-direction: column; gap: 12px;">
+<div style="display: flex; gap: 16px; align-items: flex-start;">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+<span style="font-size: 15px; line-height: 23px; font-weight: 600;">{{ c.title }}</span>
+<span style="height: 26px; padding: 0 10px; border-radius: 999px; background: {{ c.chipBg }}; color: {{ c.chipInk }}; font-size: 12px; font-weight: 600; display: flex; align-items: center;">{{ c.chip }}</span>
+</div>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ c.desc }}</span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ c.meta }}</span>
+</div>
+<button role="switch" aria-checked="{{ c.on }}" aria-label="{{ c.title }}" sc-camel-on-click="{{ c.toggle }}" style="width: 52px; height: 32px; flex-shrink: 0; box-sizing: border-box; padding: 4px; border: 0; border-radius: 999px; background: {{ c.track }}; display: flex; justify-content: {{ c.just }}; align-items: center;"><span style="width: 24px; height: 24px; border-radius: 999px; background: var(--surface-100); box-shadow: var(--shadow-xs);"></span></button>
+</div>
+<sc-if value="{{ c.showWarn }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="padding: 16px 18px; border-radius: 22px; background: var(--warning-bg); display: flex; flex-direction: column; gap: 10px;">
+<div style="display: flex; gap: 10px; align-items: center; color: var(--warning);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+<span style="font-size: 15px; line-height: 21px; font-weight: 700;">{{ c.warnT }}</span>
+</div>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-900);">{{ c.warnD }}</span>
+<div style="display: flex; gap: 8px; flex-wrap: wrap;">
+<button sc-camel-on-click="{{ c.warnOff }}" style="height: 36px; padding: 0 16px; border: 0; border-radius: 22px; background: var(--danger); color: var(--surface-100); font-size: 14px; font-weight: 600;">{{ c.warnOffLbl }}</button>
+<button sc-camel-on-click="{{ c.warnKeep }}" class="ghost" style="height: 36px; padding: 0 16px; border: 1px solid var(--line-200); border-radius: 22px; background: var(--surface-100); color: var(--ink-900); font-size: 14px; font-weight: 600; box-shadow: var(--shadow-xs);">{{ c.warnKeepLbl }}</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ c.showOff }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="padding: 12px 16px; border-radius: 22px; background: var(--warning-bg); color: var(--warning); display: flex; gap: 10px; align-items: flex-start;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>
+<span style="font-size: 13px; line-height: 20px; font-weight: 600;">{{ c.offNote }}</span>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="delH" style="padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<h2 id="delH" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.delTitle }}</h2>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ delSub }}</p>
+</div>
+<sc-if value="{{ delIdle }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div style="padding: 16px 18px; border-radius: 22px; background: var(--surface-200); display: flex; flex-direction: column; gap: 8px;">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 13px; line-height: 18px; font-weight: 600; color: var(--danger);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"></path></svg>{{ t.delGoneT }}</span>
+<ul style="margin: 0; padding: 0 0 0 20px; display: flex; flex-direction: column; gap: 2px; font-size: 13px; line-height: 20px; color: var(--ink-900);">
+<li>{{ t.delGone1 }}</li>
+<li>{{ t.delGone2 }}</li>
+<li>{{ t.delGone3 }}</li>
+<li>{{ t.delGone4 }}</li>
+</ul>
+</div>
+<div style="padding: 16px 18px; border-radius: 22px; background: var(--surface-200); display: flex; flex-direction: column; gap: 8px;">
+<span style="display: flex; align-items: center; gap: 8px; font-size: 13px; line-height: 18px; font-weight: 600; color: var(--ink-600);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>{{ t.delKeptT }}</span>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-900);">{{ t.delKeptD }}</p>
+</div>
+<button sc-camel-on-click="{{ delStart }}" class="ghost" style="align-self: flex-start; height: 48px; padding: 0 24px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); color: var(--danger); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-xs);">{{ t.btnDel }}</button>
+</div>
+</sc-if>
+<sc-if value="{{ delDone }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div role="status" style="padding: 20px; border-radius: 30px; background: var(--success-bg); display: flex; flex-direction: column; gap: 8px;">
+<span style="display: flex; align-items: center; gap: 10px; font-size: 17px; line-height: 23px; font-weight: 700; color: var(--success);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>{{ t.delDoneT }}</span>
+<span style="font-size: 14px; line-height: 21px; color: var(--ink-900);">{{ t.delDoneD }}</span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-600);">{{ t.delReqNo }} · <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px;">{{ delNo }}</span></span>
+</div>
+<button sc-camel-on-click="{{ delCancel }}" class="ghost" style="align-self: flex-start; height: 48px; padding: 0 24px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-xs);">{{ t.btnDelCancel }}</button>
+</div>
+</sc-if>
+</section>
+
+</div>
+
+<sc-if value="{{ dlgOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; border-radius: 40px; background: var(--overlay); z-index: 5;">
+<div role="alertdialog" aria-modal="true" aria-labelledby="dlgH" aria-describedby="dlgD" style="position: absolute; left: 50%; top: {{ dlgTop }}px; transform: translateX(-50%); width: 560px; box-sizing: border-box; padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-overlay); display: flex; flex-direction: column; gap: 14px;">
+<span style="width: 48px; height: 48px; border-radius: 999px; background: {{ dlgIconBg }}; color: {{ dlgIconInk }}; display: flex; align-items: center; justify-content: center;">
+<sc-if value="{{ dlgIsDanger }}" hint-placeholder-val="{{ true }}"><svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg></sc-if>
+<sc-if value="{{ dlgIsTransfer }}" hint-placeholder-val="{{ false }}"><svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="8" cy="15" r="4"></circle><path d="M11 12l8-8M16 7l3 3"></path></svg></sc-if>
+</span>
+<h2 id="dlgH" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ dlgT }}</h2>
+<p id="dlgD" style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ dlgD }}</p>
+<sc-if value="{{ dlgIsTransfer }}" hint-placeholder-val="{{ false }}">
+<div style="padding: 16px 18px; border-radius: 22px; background: var(--surface-200); display: flex; flex-direction: column; gap: 10px;">
+<span style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 21px;"><svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; fill: none; stroke: var(--brand-700); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>{{ t.dlgTransferL1 }}</span>
+<span style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 21px;"><svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; fill: none; stroke: var(--brand-700); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>{{ t.dlgTransferL2 }}</span>
+<span style="display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 21px;"><svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; fill: none; stroke: var(--brand-700); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>{{ t.dlgTransferL3 }}</span>
+</div>
+</sc-if>
+<div style="margin-top: 6px; display: flex; justify-content: flex-end; gap: 12px;">
+<button sc-camel-on-click="{{ dlgClose }}" class="ghost" style="height: 48px; padding: 0 24px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-xs);">{{ t.dlgCancel }}</button>
+<button sc-camel-on-click="{{ dlgConfirm }}" class="lift" style="height: 48px; padding: 0 24px; border: 0; border-radius: 30px; background: {{ dlgOkBg }}; color: {{ dlgOkInk }}; font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ dlgOk }}</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+</div>
+</sc-if>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;uz&quot;,&quot;ru&quot;,&quot;en&quot;],&quot;default&quot;:&quot;uz&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;screenState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;loading&quot;,&quot;empty&quot;,&quot;error&quot;],&quot;default&quot;:&quot;default&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;demoBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Prototype&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1800}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lang: this.lsGet('zinapo.lang') || props.lang || 'uz',
+      theme: this.lsGet('zinapo.theme') || props.theme || 'light',
+      ui: props.screenState || 'default',
+      kid: 'madina',
+      dlg: '',
+      c: {
+        madina: { req: 'pending', until: 'year', revA: false, revJ: false, transfer: false, cons: { proc: true, third: true, mkt: false }, today: { proc: false, third: false, mkt: false }, procWarn: false, del: false, ev: [] },
+        temur: { req: 'none', until: 'year', revA: false, revJ: false, transfer: false, cons: { proc: true, third: false, mkt: false }, today: { proc: false, third: false, mkt: false }, procWarn: false, del: false, ev: [] }
+      }
+    };
+  }
+  lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+  lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} }
+  componentDidUpdate(prev) {
+    const p = this.props, patch = {};
+    if (p.lang && p.lang !== prev.lang) patch.lang = p.lang;
+    if (p.theme && p.theme !== prev.theme) patch.theme = p.theme;
+    if (p.screenState && p.screenState !== prev.screenState) patch.ui = p.screenState;
+    if (Object.keys(patch).length) this.setState(patch);
+  }
+  seg(on) {
+    return { bg: on ? 'var(--surface-100)' : 'transparent', ink: on ? 'var(--ink-900)' : 'var(--ink-600)', shadow: on ? 'var(--shadow-xs)' : 'none' };
+  }
+  shell(T) {
+    const s = this.state;
+    const t = T[s.lang] || T.uz;
+    const langs = [['uz', 'Oʻz'], ['ru', 'Рус'], ['en', 'Eng']].map((p) => Object.assign({ label: p[1], on: s.lang === p[0], pick: () => { this.lsSet('zinapo.lang', p[0]); this.setState({ lang: p[0] }); } }, this.seg(s.lang === p[0])));
+    const uiStates = [['default', 'Default'], ['loading', 'Loading'], ['empty', 'Empty'], ['error', 'Error']].map((p) => ({
+      label: p[1], on: s.ui === p[0],
+      bg: s.ui === p[0] ? 'var(--brand-100)' : 'transparent',
+      ink: s.ui === p[0] ? 'var(--brand-700)' : 'var(--ink-600)',
+      pick: () => this.setState({ ui: p[0] })
+    }));
+    return {
+      t, langs, uiStates,
+      theme: s.theme, isDark: s.theme === 'dark', isLight: s.theme !== 'dark',
+      toggleTheme: () => { const n = s.theme === 'dark' ? 'light' : 'dark'; this.lsSet('zinapo.theme', n); this.setState({ theme: n }); },
+      demoBar: this.props.demoBar !== false,
+      isDefault: s.ui === 'default', isLoading: s.ui === 'loading', isEmpty: s.ui === 'empty', isError: s.ui === 'error',
+      retry: () => this.setState({ ui: 'default' })
+    };
+  }
+  upd(patch, evKey, evKind) {
+    const s = this.state;
+    const cur = s.c[s.kid];
+    const next = Object.assign({}, cur, patch);
+    if (evKey) next.ev = [{ k: evKey, kind: evKind }].concat(cur.ev);
+    const c = Object.assign({}, s.c);
+    c[s.kid] = next;
+    this.setState({ c: c, dlg: '' });
+  }
+  fill(str, map) {
+    let out = str;
+    Object.keys(map).forEach((k) => { out = out.split('{' + k + '}').join(map[k]); });
+    return out;
+  }
+  renderVals() {
+    const s = this.state;
+    const T = {
+      uz: {
+        navLabel: 'Asosiy menyu', navChildren: 'FARZANDLARIM', navGrade4: '4-sinf', navGrade1: '1-sinf', navAddChild: 'Farzand qoʻshish', navFamily: 'OILA', navTakeWave: '4-monitoringni topshirish', navOlympiad: 'Olimpiada', navAccess: 'Ruxsat va roziliklar', navSignOut: 'Chiqish', navNextWave: '5-monitoring 13-yanvarda ochiladi', navNextWaveSub: 'Uyda yoki ustoz huzurida topshirish mumkin.',
+        langLabel: 'Til', themeLabel: 'Mavzuni almashtirish', notifLabel: 'Bildirishnomalar', retry: 'Qayta urinish',
+        crumb: 'Oila · Ruxsat va roziliklar',
+        title: 'Ruxsat va roziliklar',
+        subtitle: 'Farzandlaringiz maʼlumotlarini kim va qachongacha koʻrishini faqat siz hal qilasiz. Har bir oʻzgarish haqida xabar olasiz.',
+        kidsLabel: 'Farzandni tanlang',
+        pendTitle: 'Ruxsat soʻrovlari', pendSub: 'Ustoz faqat soʻrov yubora oladi. Ruxsat berish-bermaslikni siz hal qilasiz.', pendBadge: '1 ta yangi',
+        roleTutor: 'Ustoz',
+        reqBody: 'Madinaning hisobotlarini koʻrish uchun ruxsat soʻramoqda.',
+        reqMeta: '12-dekabrda keldi · 11 kundan keyin oʻz-oʻzidan bekor boʻladi',
+        reqSees: 'U monitoring natijalari va xato turlarini koʻradi. Madinaning PINFL raqami, telefoningiz va boshqa farzandlaringiz unga koʻrinmaydi.',
+        btnApprove: 'Ruxsat berish', btnDecline: 'Rad etish',
+        untilQ: 'Qachongacha ruxsat berasiz?',
+        optYear: 'Oʻquv yili oxirigacha', optYearSub: '2027-yil 31-maygacha · tavsiya etiladi',
+        opt3m: '3 oyga', opt3mSub: '2027-yil 15-martgacha',
+        btnConfirmApprove: 'Ruxsatni tasdiqlash', btnBack: 'Ortga',
+        approvedYear: 'Ruxsat berildi · 2027-yil 31-maygacha', approved3m: 'Ruxsat berildi · 2027-yil 15-martgacha',
+        approvedNote: 'Jamshid Olimov «Kim koʻra oladi» roʻyxatiga qoʻshildi. Muddat tugagach, ruxsat oʻz-oʻzidan yopiladi.',
+        declinedTitle: 'Soʻrov rad etildi',
+        declinedNote: 'Jamshid Olimov bu mavsumda — 2027-yil 31-maygacha — Madina uchun qayta soʻrov yubora olmaydi.',
+        noReq: 'Yangi soʻrovlar yoʻq. Ustoz ruxsat soʻrasa, SMS keladi va soʻrov shu yerda paydo boʻladi.',
+        whoTitle: 'Kim koʻra oladi',
+        whoSubM: 'Madinaning hisobotlarini hozir koʻra oladiganlar.', whoSubT: 'Temurning hisobotlarini hozir koʻra oladiganlar.',
+        meTag: 'Siz', roleOwner: 'Profil egasi', ownerDesc: 'Roziliklarni imzolaydi, ruxsat beradi va maʼlumotlarni oʻchirishni soʻray oladi.',
+        roleCo: 'Hamkor vasiy · faqat koʻrish', rusDesc: 'Hisobotlarni koʻradi, lekin ruxsat va roziliklarni oʻzgartira olmaydi.',
+        btnTransfer: 'Egalikni topshirish', transferPending: 'Egalik taklif qilindi', transferPendingDesc: 'Rustam SMS orqali tasdiqlamaguncha profil egasi siz boʻlib qolasiz.', btnTransferCancel: 'Taklifni bekor qilish',
+        azizaName: 'Aziza Rahimovna',
+        accessYear: 'Monitoring natijalari va xato turlari · 2027-yil 31-maygacha', access3m: 'Monitoring natijalari va xato turlari · 2027-yil 15-martgacha',
+        btnRevoke: 'Ruxsatni oʻchirish', revokedChip: 'Bugun oʻchirildi', btnRestore: 'Qayta tiklash',
+        revokedDescA: 'Madinaning tarixi oʻzida qoladi. Aziza Rahimovna uni endi koʻrmaydi.', revokedDescJ: 'Madinaning tarixi oʻzida qoladi. Jamshid Olimov uni endi koʻrmaydi.',
+        whoFootM: 'Ustoz ruxsati har doim muddatli va muddat tugagach oʻz-oʻzidan yopiladi.', whoFootT: 'Temurning hisobotlarini hozircha birorta ustoz koʻrmaydi.',
+        logTitle: 'Oʻzgarishlar tarixi', logSub: 'Har bir oʻzgarish haqida sizga va Rustam Karimovga xabar yuboriladi.', logNotified: 'xabar yuborildi', lgToday: 'Bugun',
+        logCount: 'Oxirgi {n} ta hodisa, jami {m} ta',
+        d12dec: '12-dekabr', d2nov: '2-noyabr', d3oct: '3-oktyabr', d14sep: '14-sentabr', d6sep: '6-sentabr',
+        lgReqJ: 'Jamshid Olimov (ustoz) ruxsat soʻradi',
+        lgThirdOn: 'Olimpiada hamkorlariga uzatishga rozilik berildi · v1.2',
+        lgOffL: 'Laylo Nazarova (ustoz) ruxsatini oʻchirdingiz',
+        lgRus: 'Rustam Karimov hamkor vasiy sifatida qoʻshildi · faqat koʻrish',
+        lgGrantA: 'Aziza Rahimovnaga 2027-yil 31-maygacha ruxsat berildi',
+        lgCreated: 'Profil yaratildi · maʼlumotlarni qayta ishlashga rozilik v2.1',
+        evApproveYear: 'Jamshid Olimovga 2027-yil 31-maygacha ruxsat berildi', evApprove3m: 'Jamshid Olimovga 2027-yil 15-martgacha ruxsat berildi',
+        evDecline: 'Jamshid Olimovning soʻrovi rad etildi · mavsum oxirigacha qayta soʻray olmaydi',
+        evOffA: 'Aziza Rahimovna ruxsati oʻchirildi', evOnA: 'Aziza Rahimovna ruxsati qayta tiklandi',
+        evOffJ: 'Jamshid Olimov ruxsati oʻchirildi', evOnJ: 'Jamshid Olimov ruxsati qayta tiklandi',
+        evTransfer: 'Egalikni Rustam Karimovga topshirish taklif qilindi', evTransferCancel: 'Egalik taklifi bekor qilindi',
+        evProcOff: 'Maʼlumotlarni qayta ishlashga rozilik qaytarib olindi · oʻlchov toʻxtatildi', evProcOn: 'Maʼlumotlarni qayta ishlashga rozilik qayta berildi · v2.1',
+        evThirdOff: 'Olimpiada hamkorlariga uzatishga rozilik qaytarib olindi', evThirdOn: 'Olimpiada hamkorlariga uzatishga rozilik berildi · v1.2',
+        evMktOff: 'Yangiliklar va takliflarga rozilik qaytarib olindi', evMktOn: 'Yangiliklar va takliflarga rozilik berildi · v1.0',
+        evDel: 'Maʼlumotlarni oʻchirish soʻraldi', evDelCancel: 'Oʻchirish soʻrovi bekor qilindi',
+        consTitle: 'Roziliklar',
+        consSubM: 'Madina uchun alohida beriladi. Faqat bittasi majburiy, qolganlari — ixtiyoriy.', consSubT: 'Temur uchun alohida beriladi. Faqat bittasi majburiy, qolganlari — ixtiyoriy.',
+        cProcT: 'Maʼlumotlarni qayta ishlash', cProcD: 'Monitoring javoblarini saqlash va hisobot tuzish uchun zarur. Maʼlumotlar Oʻzbekistondagi serverlarda saqlanadi.',
+        cThirdT: 'Olimpiada hamkorlariga uzatish', cThirdD: 'Olimpiada tashkilotchilari va final oʻtadigan maktablar farzandingizning ismi, sinfi va olimpiada natijasini oladi. Monitoring tarixi uzatilmaydi.',
+        cMktT: 'Yangiliklar va takliflar', cMktD: 'Yangi olimpiadalar va Zinapo imkoniyatlari haqida SMS. Monitoring eslatmalari bunga bogʻliq emas.',
+        chipReq: 'Majburiy', chipOpt: 'Ixtiyoriy', doc: 'Hujjat',
+        givenPat: '{doc} · berilgan: {date}', revokedPat: '{doc} · qaytarib olingan: {date}', notGivenPat: '{doc} · rozilik berilmagan',
+        todayDate: 'bugun, 15-dekabr', d6sepY: '2026-yil 6-sentabr', d2novY: '2026-yil 2-noyabr',
+        procWarnT: 'Oʻlchov toʻxtaydi',
+        procWarnDM: 'Bu roziliksiz Madina monitoringlarni topshira olmaydi, yangi hisobotlar chiqmaydi, ustozlar esa natijalarni koʻrmay qoladi. Avvalgi natijalar saqlanadi.',
+        procWarnDT: 'Bu roziliksiz Temur monitoringlarni topshira olmaydi va yangi hisobotlar chiqmaydi. Avvalgi natijalar saqlanadi.',
+        btnProcOff: 'Baribir oʻchirish', btnProcKeep: 'Yoqilgan qoldirish',
+        procOffNoteM: 'Oʻlchov toʻxtatilgan. Roziligingizni qayta yoqsangiz, Madina keyingi monitoringdan davom etadi.',
+        procOffNoteT: 'Oʻlchov toʻxtatilgan. Roziligingizni qayta yoqsangiz, Temur keyingi monitoringdan davom etadi.',
+        delTitle: 'Maʼlumotlarni oʻchirish',
+        delSubM: 'Madinaning profilini butunlay oʻchirishni soʻrashingiz mumkin. Biz uni anonimlashtiramiz.',
+        delSubT: 'Temurning profilini butunlay oʻchirishni soʻrashingiz mumkin. Biz uni anonimlashtiramiz.',
+        delGoneT: 'Oʻchiriladi', delGone1: 'Ism, familiya va tugʻilgan sana', delGone2: 'PINFL', delGone3: 'Hisobotlar va monitoring tarixi', delGone4: 'Ustozlar va hamkor vasiy ruxsatlari',
+        delKeptT: 'Anonim holda qoladi',
+        delKeptD: 'Savollarga berilgan javoblar — hech kimga bogʻlanmagan holda. Ular savollar statistikasi uchun kerak: har bir savolning qiyinligi shu javoblardan hisoblanadi va boshqa bolalarning natijalari toʻgʻri qoladi.',
+        btnDel: 'Oʻchirishni soʻrash',
+        delDoneT: 'Soʻrov qabul qilindi',
+        delDoneD: '30 kun ichida — 2027-yil 14-yanvargacha — bajariladi. Tayyor boʻlgach, SMS yuboramiz. Ungacha soʻrovni bekor qilishingiz mumkin.',
+        delReqNo: 'Soʻrov raqami', btnDelCancel: 'Soʻrovni bekor qilish',
+        dlgDeclineT: 'Jamshid Olimovning soʻrovi rad etilsinmi?',
+        dlgDeclineD: 'Rad etsangiz, u bu mavsumda — 2027-yil 31-maygacha — Madina uchun qayta soʻrov yubora olmaydi. Unga faqat «soʻrov qabul qilinmadi» degan xabar boradi, sababi aytilmaydi.',
+        dlgDeclineOk: 'Ha, rad etish',
+        dlgRevokeAT: 'Aziza Rahimovnaning ruxsati oʻchirilsinmi?',
+        dlgRevokeAD: 'U Madinaning hisobotlari va yangi natijalarini koʻra olmaydi. Tarix Madinaning oʻzida qoladi — boshqa ustozga ruxsat bersangiz ham, hech narsa yoʻqolmaydi. Aziza Rahimovnaga xabar yuboriladi.',
+        dlgRevokeJT: 'Jamshid Olimovning ruxsati oʻchirilsinmi?',
+        dlgRevokeJD: 'U Madinaning hisobotlari va yangi natijalarini koʻra olmaydi. Tarix Madinaning oʻzida qoladi — boshqa ustozga ruxsat bersangiz ham, hech narsa yoʻqolmaydi. Jamshid Olimovga xabar yuboriladi.',
+        dlgRevokeOk: 'Ruxsatni oʻchirish',
+        dlgTransferT: 'Egalik Rustam Karimovga topshirilsinmi?',
+        dlgTransferD: 'Profilning egasi har doim bitta boʻladi. Aynan u roziliklarni imzolaydi, ustozlarga ruxsat beradi va maʼlumotlarni oʻchirishni soʻray oladi.',
+        dlgTransferL1: 'Rustam SMS orqali tasdiqlagach, profil egasi boʻladi.',
+        dlgTransferL2: 'Siz hamkor vasiy boʻlasiz: hisobotlarni koʻrasiz, lekin hech narsani oʻzgartira olmaysiz.',
+        dlgTransferL3: 'Amaldagi roziliklar va ustozlar ruxsati oʻz kuchida qoladi.',
+        dlgTransferOk: 'Egalikni taklif qilish',
+        dlgDelTM: 'Madina Karimovaning maʼlumotlari oʻchirilsinmi?', dlgDelTT: 'Temur Karimovning maʼlumotlari oʻchirilsinmi?',
+        dlgDelD: 'Buni ortga qaytarib boʻlmaydi. Hisobotlar va tarix yoʻqoladi, barcha ruxsatlar darhol yopiladi. Anonim javoblar faqat savollar statistikasi uchun qoladi.',
+        dlgDelOk: 'Ha, oʻchirishni soʻrayman', dlgCancel: 'Ortga',
+        emptyTitle: 'Hozircha maʼlumotlarni faqat siz koʻrasiz',
+        emptyBody: 'Hech kimda ruxsat yoʻq, yangi soʻrovlar ham yoʻq. Ustoz farzandingiz natijalarini koʻrmoqchi boʻlsa, sizga taklifnoma yoki soʻrov yuboradi — qaror doim sizda.',
+        emptyS1T: 'Ustoz taklif qiladi', emptyS1D: 'SMS orqali havola keladi yoki soʻrov shu sahifada paydo boʻladi.',
+        emptyS2T: 'Siz hal qilasiz', emptyS2D: 'Ruxsat berasiz yoki rad etasiz. Rad etilgan ustoz bu mavsumda qayta soʻray olmaydi.',
+        emptyS3T: 'Ruxsat muddatli', emptyS3D: 'Oʻquv yili oxirida — 2027-yil 31-mayda — oʻz-oʻzidan yopiladi.',
+        emptyCta: 'Hisobotga qaytish',
+        errTitle: 'Ruxsatlar roʻyxatini yuklab boʻlmadi',
+        errBody: 'Hech narsa oʻzgarmadi: ustozlar ruxsati va roziliklaringiz avvalgidek amal qilmoqda. Internet aloqasini tekshirib, qayta urinib koʻring.'
+      },
+      ru: {
+        navLabel: 'Главное меню', navChildren: 'МОИ ДЕТИ', navGrade4: '4 класс', navGrade1: '1 класс', navAddChild: 'Добавить ребёнка', navFamily: 'СЕМЬЯ', navTakeWave: 'Пройти волну 4', navOlympiad: 'Олимпиада', navAccess: 'Доступ и согласия', navSignOut: 'Выйти', navNextWave: 'Волна 5 откроется 13 января', navNextWaveSub: 'Можно пройти дома или у репетитора.',
+        langLabel: 'Язык', themeLabel: 'Сменить тему', notifLabel: 'Уведомления', retry: 'Повторить',
+        crumb: 'Семья · Доступ и согласия',
+        title: 'Доступ и согласия',
+        subtitle: 'Только вы решаете, кто видит данные ваших детей и до какого срока. О каждом изменении мы вам сообщим.',
+        kidsLabel: 'Выберите ребёнка',
+        pendTitle: 'Запросы на доступ', pendSub: 'Репетитор может только попросить доступ. Открывать ли его — решаете вы.', pendBadge: '1 новый',
+        roleTutor: 'Репетитор',
+        reqBody: 'Просит доступ к отчётам дочери.',
+        reqMeta: 'Получен 12 декабря · истечёт сам через 11 дней',
+        reqSees: 'Он увидит результаты волн и типы ошибок. ПИНФЛ дочери, ваш номер телефона и другие дети ему не видны.',
+        btnApprove: 'Разрешить', btnDecline: 'Отклонить',
+        untilQ: 'До какого срока открыть доступ?',
+        optYear: 'До конца учебного года', optYearSub: 'до 31 мая 2027 г. · рекомендуем',
+        opt3m: 'На 3 месяца', opt3mSub: 'до 15 марта 2027 г.',
+        btnConfirmApprove: 'Открыть доступ', btnBack: 'Назад',
+        approvedYear: 'Доступ открыт до 31 мая 2027 г.', approved3m: 'Доступ открыт до 15 марта 2027 г.',
+        approvedNote: 'Jamshid Olimov теперь в списке «Кто видит отчёты». Когда срок истечёт, доступ закроется сам.',
+        declinedTitle: 'Запрос отклонён',
+        declinedNote: 'До конца сезона — до 31 мая 2027 г. — Jamshid Olimov не сможет снова запросить доступ к отчётам дочери.',
+        noReq: 'Новых запросов нет. Если репетитор попросит доступ, придёт SMS, а запрос появится здесь.',
+        whoTitle: 'Кто видит отчёты',
+        whoSubM: 'У кого сейчас есть доступ к отчётам дочери.', whoSubT: 'У кого сейчас есть доступ к отчётам сына.',
+        meTag: 'Вы', roleOwner: 'Владелец профиля', ownerDesc: 'Подписывает согласия, открывает доступ и может запросить удаление данных.',
+        roleCo: 'Второй родитель · только просмотр', rusDesc: 'Видит отчёты, но не может менять доступ и согласия.',
+        btnTransfer: 'Передать права владельца', transferPending: 'Ждём подтверждения передачи', transferPendingDesc: 'Пока Rustam не подтвердит передачу по SMS, владелец профиля — вы.', btnTransferCancel: 'Отменить передачу',
+        azizaName: 'Азиза Рахимовна',
+        accessYear: 'Результаты волн и типы ошибок · до 31 мая 2027 г.', access3m: 'Результаты волн и типы ошибок · до 15 марта 2027 г.',
+        btnRevoke: 'Закрыть доступ', revokedChip: 'Закрыт сегодня', btnRestore: 'Восстановить',
+        revokedDescA: 'История остаётся с дочерью. Азиза Рахимовна её больше не видит.', revokedDescJ: 'История остаётся с дочерью. Jamshid Olimov её больше не видит.',
+        whoFootM: 'Доступ репетитора всегда ограничен сроком и закрывается сам.', whoFootT: 'Пока ни у одного репетитора нет доступа к отчётам сына.',
+        logTitle: 'История изменений', logSub: 'О каждом изменении сообщаем вам и второму родителю.', logNotified: 'уведомление отправлено', lgToday: 'Сегодня',
+        logCount: 'Последние {n} из {m} событий',
+        d12dec: '12 декабря', d2nov: '2 ноября', d3oct: '3 октября', d14sep: '14 сентября', d6sep: '6 сентября',
+        lgReqJ: 'Jamshid Olimov (репетитор) запросил доступ',
+        lgThirdOn: 'Дано согласие на передачу олимпиадным партнёрам · v1.2',
+        lgOffL: 'Вы закрыли доступ репетитору Laylo Nazarova',
+        lgRus: 'Rustam Karimov добавлен как второй родитель · только просмотр',
+        lgGrantA: 'Азизе Рахимовне открыт доступ до 31 мая 2027 г.',
+        lgCreated: 'Профиль создан · согласие на обработку данных v2.1',
+        evApproveYear: 'Jamshid Olimov получил доступ до 31 мая 2027 г.', evApprove3m: 'Jamshid Olimov получил доступ до 15 марта 2027 г.',
+        evDecline: 'Запрос Jamshid Olimov отклонён · повторный запрос невозможен до конца сезона',
+        evOffA: 'Доступ Азизы Рахимовны закрыт', evOnA: 'Доступ Азизы Рахимовны восстановлен',
+        evOffJ: 'Доступ Jamshid Olimov закрыт', evOnJ: 'Доступ Jamshid Olimov восстановлен',
+        evTransfer: 'Предложена передача прав владельца: Rustam Karimov', evTransferCancel: 'Передача прав владельца отменена',
+        evProcOff: 'Согласие на обработку данных отозвано · измерение остановлено', evProcOn: 'Согласие на обработку данных дано снова · v2.1',
+        evThirdOff: 'Согласие на передачу олимпиадным партнёрам отозвано', evThirdOn: 'Дано согласие на передачу олимпиадным партнёрам · v1.2',
+        evMktOff: 'Согласие на новости и предложения отозвано', evMktOn: 'Дано согласие на новости и предложения · v1.0',
+        evDel: 'Запрошено удаление данных', evDelCancel: 'Запрос на удаление отменён',
+        consTitle: 'Согласия',
+        consSubM: 'Даются отдельно для дочери. Обязательное — только одно, остальные по желанию.', consSubT: 'Даются отдельно для сына. Обязательное — только одно, остальные по желанию.',
+        cProcT: 'Обработка данных', cProcD: 'Нужна, чтобы хранить ответы в волнах и строить отчёты. Данные хранятся на серверах в Узбекистане.',
+        cThirdT: 'Передача олимпиадным партнёрам', cThirdD: 'Организаторы олимпиады и школы, где проходит финал, получают имя, класс и олимпиадный результат ребёнка. История волн не передаётся.',
+        cMktT: 'Новости и предложения', cMktD: 'SMS о новых олимпиадах и возможностях Zinapo. Напоминания о волнах от этого не зависят.',
+        chipReq: 'Обязательное', chipOpt: 'По желанию', doc: 'Документ',
+        givenPat: '{doc} · дано {date}', revokedPat: '{doc} · отозвано {date}', notGivenPat: '{doc} · согласие не дано',
+        todayDate: 'сегодня, 15 декабря', d6sepY: '6 сентября 2026 г.', d2novY: '2 ноября 2026 г.',
+        procWarnT: 'Измерение остановится',
+        procWarnDM: 'Без этого согласия дочь не сможет проходить волны, новых отчётов не будет, а репетиторы перестанут видеть результаты. Прежние результаты сохранятся.',
+        procWarnDT: 'Без этого согласия сын не сможет проходить волны, и новых отчётов не будет. Прежние результаты сохранятся.',
+        btnProcOff: 'Всё равно отозвать', btnProcKeep: 'Оставить включённым',
+        procOffNoteM: 'Измерение остановлено. Если снова дадите согласие, дочь продолжит со следующей волны.',
+        procOffNoteT: 'Измерение остановлено. Если снова дадите согласие, сын продолжит со следующей волны.',
+        delTitle: 'Удаление данных',
+        delSubM: 'Вы можете попросить полностью удалить профиль дочери. Мы его обезличим.',
+        delSubT: 'Вы можете попросить полностью удалить профиль сына. Мы его обезличим.',
+        delGoneT: 'Удаляется', delGone1: 'Имя, фамилия и дата рождения', delGone2: 'ПИНФЛ', delGone3: 'Отчёты и история волн', delGone4: 'Доступ репетиторов и второго родителя',
+        delKeptT: 'Остаётся в обезличенном виде',
+        delKeptD: 'Ответы на задания — без привязки к кому-либо. Они нужны для статистики заданий: по ним рассчитывается сложность каждого задания, и результаты других детей остаются точными.',
+        btnDel: 'Запросить удаление',
+        delDoneT: 'Запрос принят',
+        delDoneD: 'Выполним в течение 30 дней — до 14 января 2027 г. Когда всё будет готово, пришлём SMS. До этого момента запрос можно отменить.',
+        delReqNo: 'Номер запроса', btnDelCancel: 'Отменить запрос',
+        dlgDeclineT: 'Отклонить запрос Jamshid Olimov?',
+        dlgDeclineD: 'До конца сезона — до 31 мая 2027 г. — он не сможет снова запросить доступ к отчётам дочери. Он увидит только «запрос не принят», без объяснения причин.',
+        dlgDeclineOk: 'Да, отклонить',
+        dlgRevokeAT: 'Закрыть доступ Азизе Рахимовне?',
+        dlgRevokeAD: 'Она перестанет видеть отчёты и новые результаты дочери. История остаётся с ребёнком: если откроете доступ другому репетитору, ничего не потеряется. Азиза Рахимовна получит уведомление.',
+        dlgRevokeJT: 'Закрыть доступ Jamshid Olimov?',
+        dlgRevokeJD: 'Он перестанет видеть отчёты и новые результаты дочери. История остаётся с ребёнком: если откроете доступ другому репетитору, ничего не потеряется. Jamshid Olimov получит уведомление.',
+        dlgRevokeOk: 'Закрыть доступ',
+        dlgTransferT: 'Передать права владельца?',
+        dlgTransferD: 'У профиля всегда один владелец. Именно он подписывает согласия, открывает доступ репетиторам и может запросить удаление данных.',
+        dlgTransferL1: 'Права перейдут к Rustam Karimov, когда он подтвердит передачу по SMS.',
+        dlgTransferL2: 'Вы станете вторым родителем: будете видеть отчёты, но не сможете ничего менять.',
+        dlgTransferL3: 'Действующие согласия и доступы репетиторов сохранятся.',
+        dlgTransferOk: 'Предложить передачу',
+        dlgDelTM: 'Удалить профиль Madina Karimova?', dlgDelTT: 'Удалить профиль Temur Karimov?',
+        dlgDelD: 'Это необратимо. Отчёты и история пропадут, все доступы закроются сразу. Обезличенные ответы останутся только для статистики заданий.',
+        dlgDelOk: 'Да, запросить удаление', dlgCancel: 'Назад',
+        emptyTitle: 'Пока данные видите только вы',
+        emptyBody: 'Ни у кого нет доступа, и новых запросов тоже нет. Если репетитор захочет видеть результаты ребёнка, он пришлёт вам приглашение или запрос — решение всегда за вами.',
+        emptyS1T: 'Репетитор приглашает', emptyS1D: 'Ссылка придёт по SMS, или запрос появится на этой странице.',
+        emptyS2T: 'Вы решаете', emptyS2D: 'Разрешите или откажите. После отказа репетитор не сможет попросить снова до конца сезона.',
+        emptyS3T: 'Доступ со сроком', emptyS3D: 'Закроется сам в конце учебного года — 31 мая 2027 г.',
+        emptyCta: 'Вернуться к отчёту',
+        errTitle: 'Не удалось загрузить список доступа',
+        errBody: 'Ничего не изменилось: доступы репетиторов и ваши согласия действуют как прежде. Проверьте подключение к интернету и попробуйте снова.'
+      },
+      en: {
+        navLabel: 'Main menu', navChildren: 'MY CHILDREN', navGrade4: 'Grade 4', navGrade1: 'Grade 1', navAddChild: 'Add a child', navFamily: 'FAMILY', navTakeWave: 'Take wave 4', navOlympiad: 'Olympiad', navAccess: 'Access & consents', navSignOut: 'Sign out', navNextWave: 'Wave 5 opens 13 January', navNextWaveSub: 'Take it at home or at the tutor’s.',
+        langLabel: 'Language', themeLabel: 'Switch theme', notifLabel: 'Notifications', retry: 'Try again',
+        crumb: 'Family · Access & consents',
+        title: 'Access & consents',
+        subtitle: 'Only you decide who sees your children’s data, and until when. We’ll tell you about every change.',
+        kidsLabel: 'Choose a child',
+        pendTitle: 'Access requests', pendSub: 'A tutor can only ask. Whether to grant access is always your call.', pendBadge: '1 new',
+        roleTutor: 'Tutor',
+        reqBody: 'Asks to see Madina’s reports.',
+        reqMeta: 'Received 12 December · expires on its own in 11 days',
+        reqSees: 'He will see wave results and error types. Madina’s PINFL, your phone number and your other children stay hidden from him.',
+        btnApprove: 'Approve', btnDecline: 'Decline',
+        untilQ: 'Until when?',
+        optYear: 'End of the school year', optYearSub: 'until 31 May 2027 · recommended',
+        opt3m: 'For 3 months', opt3mSub: 'until 15 March 2027',
+        btnConfirmApprove: 'Grant access', btnBack: 'Back',
+        approvedYear: 'Access granted until 31 May 2027', approved3m: 'Access granted until 15 March 2027',
+        approvedNote: 'Jamshid Olimov is now listed under “Who can see”. Access closes by itself when the term ends.',
+        declinedTitle: 'Request declined',
+        declinedNote: 'Jamshid Olimov can’t ask to see Madina’s reports again this season — until 31 May 2027.',
+        noReq: 'No new requests. If a tutor asks for access, you’ll get an SMS and the request will appear here.',
+        whoTitle: 'Who can see',
+        whoSubM: 'People who can see Madina’s reports right now.', whoSubT: 'People who can see Temur’s reports right now.',
+        meTag: 'You', roleOwner: 'Owner', ownerDesc: 'Signs consents, grants access and can request data deletion.',
+        roleCo: 'Co-guardian · view only', rusDesc: 'Sees reports but can’t change access or consents.',
+        btnTransfer: 'Transfer ownership', transferPending: 'Ownership offered', transferPendingDesc: 'You stay the owner until Rustam confirms by SMS.', btnTransferCancel: 'Cancel offer',
+        azizaName: 'Aziza Rakhimovna',
+        accessYear: 'Wave results and error types · until 31 May 2027', access3m: 'Wave results and error types · until 15 March 2027',
+        btnRevoke: 'Switch off', revokedChip: 'Switched off today', btnRestore: 'Restore',
+        revokedDescA: 'Madina’s history stays with her. Aziza Rakhimovna can no longer see it.', revokedDescJ: 'Madina’s history stays with her. Jamshid Olimov can no longer see it.',
+        whoFootM: 'Tutor access always has an end date and closes by itself.', whoFootT: 'No tutor can see Temur’s reports yet.',
+        logTitle: 'Change log', logSub: 'Every change is sent to you and to Rustam Karimov.', logNotified: 'notified', lgToday: 'Today',
+        logCount: 'Latest {n} of {m} events',
+        d12dec: '12 December', d2nov: '2 November', d3oct: '3 October', d14sep: '14 September', d6sep: '6 September',
+        lgReqJ: 'Jamshid Olimov (tutor) requested access',
+        lgThirdOn: 'Consent to share with olympiad partners granted · v1.2',
+        lgOffL: 'You switched off access for Laylo Nazarova (tutor)',
+        lgRus: 'Rustam Karimov added as co-guardian · view only',
+        lgGrantA: 'Aziza Rakhimovna granted access until 31 May 2027',
+        lgCreated: 'Profile created · data processing consent v2.1',
+        evApproveYear: 'Jamshid Olimov granted access until 31 May 2027', evApprove3m: 'Jamshid Olimov granted access until 15 March 2027',
+        evDecline: 'Jamshid Olimov’s request declined · blocked until the end of the season',
+        evOffA: 'Aziza Rakhimovna’s access switched off', evOnA: 'Aziza Rakhimovna’s access restored',
+        evOffJ: 'Jamshid Olimov’s access switched off', evOnJ: 'Jamshid Olimov’s access restored',
+        evTransfer: 'Ownership offered to Rustam Karimov', evTransferCancel: 'Ownership offer cancelled',
+        evProcOff: 'Data processing consent withdrawn · measurement stopped', evProcOn: 'Data processing consent granted again · v2.1',
+        evThirdOff: 'Consent to share with olympiad partners withdrawn', evThirdOn: 'Consent to share with olympiad partners granted · v1.2',
+        evMktOff: 'Consent to news and offers withdrawn', evMktOn: 'Consent to news and offers granted · v1.0',
+        evDel: 'Data deletion requested', evDelCancel: 'Deletion request cancelled',
+        consTitle: 'Consents',
+        consSubM: 'Set separately for Madina. Only one is required — the rest are up to you.', consSubT: 'Set separately for Temur. Only one is required — the rest are up to you.',
+        cProcT: 'Data processing', cProcD: 'Needed to store wave answers and build reports. Data is kept on servers in Uzbekistan.',
+        cThirdT: 'Sharing with olympiad partners', cThirdD: 'Olympiad organisers and the schools hosting the final receive your child’s name, grade and olympiad result. Wave history is never shared.',
+        cMktT: 'News and offers', cMktD: 'SMS about new olympiads and Zinapo features. Wave reminders don’t depend on this.',
+        chipReq: 'Required', chipOpt: 'Optional', doc: 'Document',
+        givenPat: '{doc} · granted {date}', revokedPat: '{doc} · withdrawn {date}', notGivenPat: '{doc} · not granted',
+        todayDate: 'today, 15 December', d6sepY: '6 September 2026', d2novY: '2 November 2026',
+        procWarnT: 'Measurement will stop',
+        procWarnDM: 'Without this consent Madina can’t take waves, no new reports are made and tutors stop seeing results. Earlier results are kept.',
+        procWarnDT: 'Without this consent Temur can’t take waves and no new reports are made. Earlier results are kept.',
+        btnProcOff: 'Withdraw anyway', btnProcKeep: 'Keep it on',
+        procOffNoteM: 'Measurement is paused. Turn the consent back on and Madina picks up from the next wave.',
+        procOffNoteT: 'Measurement is paused. Turn the consent back on and Temur picks up from the next wave.',
+        delTitle: 'Delete data',
+        delSubM: 'You can ask us to delete Madina’s profile completely. We do it by anonymising it.',
+        delSubT: 'You can ask us to delete Temur’s profile completely. We do it by anonymising it.',
+        delGoneT: 'Removed', delGone1: 'Name, family name and date of birth', delGone2: 'PINFL', delGone3: 'Reports and wave history', delGone4: 'Access for tutors and the co-guardian',
+        delKeptT: 'Kept, anonymously',
+        delKeptD: 'Answers to questions, linked to no one. They feed the question statistics: each question’s difficulty is calculated from them, which keeps other children’s results accurate.',
+        btnDel: 'Request deletion',
+        delDoneT: 'Request received',
+        delDoneD: 'Done within 30 days — by 14 January 2027. We’ll send an SMS when it’s complete. Until then you can cancel the request.',
+        delReqNo: 'Request number', btnDelCancel: 'Cancel request',
+        dlgDeclineT: 'Decline Jamshid Olimov’s request?',
+        dlgDeclineD: 'He won’t be able to ask for Madina’s reports again this season — until 31 May 2027. He’ll only see “request not accepted”, with no reason given.',
+        dlgDeclineOk: 'Yes, decline',
+        dlgRevokeAT: 'Switch off Aziza Rakhimovna’s access?',
+        dlgRevokeAD: 'She’ll stop seeing Madina’s reports and new results. The history stays with Madina — if you later give access to another tutor, nothing is lost. Aziza Rakhimovna will be notified.',
+        dlgRevokeJT: 'Switch off Jamshid Olimov’s access?',
+        dlgRevokeJD: 'He’ll stop seeing Madina’s reports and new results. The history stays with Madina — if you later give access to another tutor, nothing is lost. Jamshid Olimov will be notified.',
+        dlgRevokeOk: 'Switch off',
+        dlgTransferT: 'Transfer ownership to Rustam Karimov?',
+        dlgTransferD: 'A profile always has exactly one owner. The owner signs consents, grants access to tutors and can request data deletion.',
+        dlgTransferL1: 'Rustam becomes the owner once he confirms by SMS.',
+        dlgTransferL2: 'You become a co-guardian: you’ll see reports but can’t change anything.',
+        dlgTransferL3: 'Current consents and tutor access stay as they are.',
+        dlgTransferOk: 'Offer ownership',
+        dlgDelTM: 'Delete Madina Karimova’s data?', dlgDelTT: 'Delete Temur Karimov’s data?',
+        dlgDelD: 'This can’t be undone. Reports and history will be gone and all access closes at once. Anonymous answers remain only for question statistics.',
+        dlgDelOk: 'Yes, request deletion', dlgCancel: 'Back',
+        emptyTitle: 'For now, only you can see this data',
+        emptyBody: 'Nobody has access and there are no new requests. If a tutor wants to see your child’s results, they’ll send you an invitation or a request — the decision is always yours.',
+        emptyS1T: 'A tutor invites you', emptyS1D: 'A link arrives by SMS, or a request appears on this page.',
+        emptyS2T: 'You decide', emptyS2D: 'Approve or decline. A declined tutor can’t ask again this season.',
+        emptyS3T: 'Access has an end date', emptyS3D: 'It closes by itself at the end of the school year — 31 May 2027.',
+        emptyCta: 'Back to the report',
+        errTitle: 'We couldn’t load the access list',
+        errBody: 'Nothing has changed: tutor access and your consents work as before. Check your internet connection and try again.'
+      }
+    };
+    const sh = this.shell(T);
+    const t = sh.t;
+    const isM = s.kid === 'madina';
+    const cc = s.c[s.kid];
+    const pk = (b) => t[b + (isM ? 'M' : 'T')];
+    const rq = cc.req;
+
+    const kids = [['madina', 'MK', 'Madina', t.navGrade4, 'var(--brand-100)', 'var(--brand-700)'], ['temur', 'TK', 'Temur', t.navGrade1, 'var(--accent-teal-bg)', 'var(--accent-teal)']].map((k) => ({
+      av: k[1], name: k[2], grade: k[3], avBg: k[4], avInk: k[5], on: s.kid === k[0],
+      bg: s.kid === k[0] ? 'var(--brand-050)' : 'transparent',
+      ink: s.kid === k[0] ? 'var(--brand-700)' : 'var(--ink-600)',
+      pick: () => this.setState({ kid: k[0], dlg: '' })
+    }));
+
+    const untilOpts = [['year', t.optYear, t.optYearSub], ['3m', t.opt3m, t.opt3mSub]].map((o) => {
+      const on = cc.until === o[0];
+      return {
+        label: o[1], sub: o[2], on: on,
+        bd: on ? 'var(--brand-600)' : 'var(--line-200)',
+        bg: on ? 'var(--brand-050)' : 'var(--surface-100)',
+        dotBd: on ? 'var(--brand-600)' : 'var(--line-200)',
+        dot: on ? 'var(--brand-600)' : 'transparent',
+        pick: () => this.upd({ until: o[0] })
+      };
+    });
+
+    const person = (o) => Object.assign({ isMe: false, tag: '', hasStatus: false, status: '', stBg: 'transparent', stInk: 'var(--ink-600)', hasBtn: false, btn: '', btnInk: 'var(--ink-900)', act: () => {} }, o);
+    const people = [];
+    people.push(person({ av: 'DK', avBg: 'var(--brand-100)', avInk: 'var(--brand-700)', name: 'Dilnoza Karimova', isMe: true, tag: t.meTag, role: t.roleOwner, roleBg: 'var(--brand-050)', roleInk: 'var(--brand-700)', desc: t.ownerDesc }));
+    people.push(person({
+      av: 'RK', avBg: 'var(--accent-blue-bg)', avInk: 'var(--accent-blue)', name: 'Rustam Karimov', role: t.roleCo, roleBg: 'var(--accent-blue-bg)', roleInk: 'var(--accent-blue)',
+      hasStatus: cc.transfer, status: t.transferPending, stBg: 'var(--warning-bg)', stInk: 'var(--warning)',
+      desc: cc.transfer ? t.transferPendingDesc : t.rusDesc,
+      hasBtn: true, btn: cc.transfer ? t.btnTransferCancel : t.btnTransfer,
+      act: cc.transfer ? () => this.upd({ transfer: false }, 'evTransferCancel', 'doc') : () => this.setState({ dlg: 'transfer' })
+    }));
+    if (isM) {
+      people.push(person({
+        av: 'AR', avBg: 'var(--accent-teal-bg)', avInk: 'var(--accent-teal)', name: t.azizaName, role: t.roleTutor, roleBg: 'var(--accent-teal-bg)', roleInk: 'var(--accent-teal)',
+        hasStatus: cc.revA, status: t.revokedChip, stBg: 'var(--danger-bg)', stInk: 'var(--danger)',
+        desc: cc.revA ? t.revokedDescA : t.accessYear,
+        hasBtn: true, btn: cc.revA ? t.btnRestore : t.btnRevoke, btnInk: cc.revA ? 'var(--ink-900)' : 'var(--danger)',
+        act: cc.revA ? () => this.upd({ revA: false }, 'evOnA', 'grant') : () => this.setState({ dlg: 'revokeA' })
+      }));
+      if (rq === 'approved') {
+        people.push(person({
+          av: 'JO', avBg: 'var(--accent-teal-bg)', avInk: 'var(--accent-teal)', name: 'Jamshid Olimov', role: t.roleTutor, roleBg: 'var(--accent-teal-bg)', roleInk: 'var(--accent-teal)',
+          hasStatus: cc.revJ, status: t.revokedChip, stBg: 'var(--danger-bg)', stInk: 'var(--danger)',
+          desc: cc.revJ ? t.revokedDescJ : (cc.until === 'year' ? t.accessYear : t.access3m),
+          hasBtn: true, btn: cc.revJ ? t.btnRestore : t.btnRevoke, btnInk: cc.revJ ? 'var(--ink-900)' : 'var(--danger)',
+          act: cc.revJ ? () => this.upd({ revJ: false }, 'evOnJ', 'grant') : () => this.setState({ dlg: 'revokeJ' })
+        }));
+      }
+    }
+    people.forEach((p, i) => { p.border = i === 0 ? 'none' : '1px solid var(--line-100)'; });
+
+    const base = isM
+      ? [['req', 'lgReqJ', 'd12dec'], ['doc', 'lgThirdOn', 'd2nov'], ['off', 'lgOffL', 'd3oct'], ['grant', 'lgRus', 'd14sep'], ['grant', 'lgGrantA', 'd6sep'], ['doc', 'lgCreated', 'd6sep']]
+      : [['grant', 'lgRus', 'd14sep'], ['doc', 'lgCreated', 'd6sep']];
+    const all = cc.ev.map((e) => ({ kind: e.kind, text: t[e.k], date: t.lgToday })).concat(base.map((b) => ({ kind: b[0], text: t[b[1]], date: t[b[2]] })));
+    const kindStyle = { grant: ['var(--success-bg)', 'var(--success)'], req: ['var(--brand-050)', 'var(--brand-700)'], off: ['var(--danger-bg)', 'var(--danger)'], doc: ['var(--surface-200)', 'var(--ink-600)'] };
+    const logItems = all.slice(0, 6).map((e, i) => ({
+      text: e.text, meta: e.date + ' · ' + t.logNotified,
+      bg: kindStyle[e.kind][0], ink: kindStyle[e.kind][1],
+      isGrant: e.kind === 'grant', isReq: e.kind === 'req', isOff: e.kind === 'off', isDoc: e.kind === 'doc',
+      border: i === 0 ? 'none' : '1px solid var(--line-100)'
+    }));
+
+    const cdefs = [
+      ['proc', t.cProcT, t.cProcD, true, 'v2.1', t.d6sepY, 'evProcOn', 'evProcOff'],
+      ['third', t.cThirdT, t.cThirdD, false, 'v1.2', t.d2novY, 'evThirdOn', 'evThirdOff'],
+      ['mkt', t.cMktT, t.cMktD, false, 'v1.0', '', 'evMktOn', 'evMktOff']
+    ];
+    const consents = cdefs.map((d, i) => {
+      const key = d[0];
+      const on = cc.cons[key];
+      const today = cc.today[key];
+      const docL = t.doc + ' ' + d[4];
+      let meta;
+      if (on) meta = this.fill(t.givenPat, { doc: docL, date: today ? t.todayDate : d[5] });
+      else meta = today ? this.fill(t.revokedPat, { doc: docL, date: t.todayDate }) : this.fill(t.notGivenPat, { doc: docL });
+      const flip = () => {
+        const cons = Object.assign({}, cc.cons);
+        cons[key] = !on;
+        const td = Object.assign({}, cc.today);
+        td[key] = true;
+        this.upd({ cons: cons, today: td, procWarn: false }, on ? d[7] : d[6], on ? 'off' : 'doc');
+      };
+      return {
+        title: d[1], desc: d[2], meta: meta, on: on,
+        chip: d[3] ? t.chipReq : t.chipOpt,
+        chipBg: d[3] ? 'var(--brand-050)' : 'var(--surface-200)',
+        chipInk: d[3] ? 'var(--brand-700)' : 'var(--ink-600)',
+        track: on ? 'var(--brand-600)' : 'var(--line-200)',
+        just: on ? 'flex-end' : 'flex-start',
+        toggle: (key === 'proc' && on) ? () => this.upd({ procWarn: !cc.procWarn }) : flip,
+        showWarn: key === 'proc' && on && cc.procWarn,
+        showOff: key === 'proc' && !on,
+        warnT: t.procWarnT, warnD: pk('procWarnD'), offNote: pk('procOffNote'),
+        warnOffLbl: t.btnProcOff, warnKeepLbl: t.btnProcKeep,
+        warnOff: flip,
+        warnKeep: () => this.upd({ procWarn: false }),
+        border: i === 0 ? 'none' : '1px solid var(--line-100)'
+      };
+    });
+
+    const D = {
+      decline: { t: t.dlgDeclineT, d: t.dlgDeclineD, ok: t.dlgDeclineOk, top: 24, danger: true, fn: () => this.upd({ req: 'declined' }, 'evDecline', 'off') },
+      revokeA: { t: t.dlgRevokeAT, d: t.dlgRevokeAD, ok: t.dlgRevokeOk, top: 300, danger: true, fn: () => this.upd({ revA: true }, 'evOffA', 'off') },
+      revokeJ: { t: t.dlgRevokeJT, d: t.dlgRevokeJD, ok: t.dlgRevokeOk, top: 360, danger: true, fn: () => this.upd({ revJ: true }, 'evOffJ', 'off') },
+      transfer: { t: t.dlgTransferT, d: t.dlgTransferD, ok: t.dlgTransferOk, top: 240, danger: false, fn: () => this.upd({ transfer: true }, 'evTransfer', 'doc') },
+      del: { t: pk('dlgDelT'), d: t.dlgDelD, ok: t.dlgDelOk, top: 440, danger: true, fn: () => this.upd({ del: true }, 'evDel', 'off') }
+    };
+    const dd = D[s.dlg] || null;
+    const dDanger = dd ? dd.danger : true;
+
+    return Object.assign(sh, {
+      notLoading: !sh.isLoading,
+      showBody: sh.isDefault || sh.isEmpty,
+      kids: kids,
+      showBadge: rq === 'pending' || rq === 'approving',
+      noReq: rq === 'none',
+      reqOpen: rq === 'pending' || rq === 'approving',
+      isPendingOnly: rq === 'pending',
+      isApproving: rq === 'approving',
+      isApproved: rq === 'approved',
+      isDeclined: rq === 'declined',
+      approveStart: () => this.upd({ req: 'approving' }),
+      approveBack: () => this.upd({ req: 'pending' }),
+      approveConfirm: () => this.upd({ req: 'approved' }, cc.until === 'year' ? 'evApproveYear' : 'evApprove3m', 'grant'),
+      declineStart: () => this.setState({ dlg: 'decline' }),
+      untilOpts: untilOpts,
+      approvedTitle: cc.until === 'year' ? t.approvedYear : t.approved3m,
+      whoSub: pk('whoSub'),
+      whoFoot: pk('whoFoot'),
+      people: people,
+      logItems: logItems,
+      logMore: all.length > logItems.length,
+      logCount: this.fill(t.logCount, { n: String(logItems.length), m: String(all.length) }),
+      consSub: pk('consSub'),
+      consents: consents,
+      delSub: pk('delSub'),
+      delIdle: !cc.del,
+      delDone: cc.del,
+      delNo: isM ? 'DEL-2026-0412' : 'DEL-2026-0413',
+      delStart: () => this.setState({ dlg: 'del' }),
+      delCancel: () => this.upd({ del: false }, 'evDelCancel', 'doc'),
+      dlgOpen: !!dd,
+      dlgT: dd ? dd.t : '',
+      dlgD: dd ? dd.d : '',
+      dlgOk: dd ? dd.ok : '',
+      dlgTop: dd ? dd.top : 0,
+      dlgIsDanger: dDanger,
+      dlgIsTransfer: s.dlg === 'transfer',
+      dlgIconBg: dDanger ? 'var(--danger-bg)' : 'var(--brand-050)',
+      dlgIconInk: dDanger ? 'var(--danger)' : 'var(--brand-700)',
+      dlgOkBg: dDanger ? 'var(--danger)' : 'var(--brand-400)',
+      dlgOkInk: dDanger ? 'var(--surface-100)' : 'var(--ink-on-primary)',
+      dlgConfirm: dd ? dd.fn : () => {},
+      dlgClose: () => this.setState({ dlg: '' })
+    });
+  }
+}
+</script>
+
+
+</body></html>

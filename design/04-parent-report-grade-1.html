@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="uz"><head>
+<meta charset="utf-8">
+<title>Zinapo · Parent report, grade 1</title>
+<script src="_assets/dc-runtime.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-feae57212855.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-9d8db2e8ccd9.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-bcedb9e2e528.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-326a88b4ddbb.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-06ad36000cd8.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-4f27206c4b1c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-feae57212855.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-9d8db2e8ccd9.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-bcedb9e2e528.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-326a88b4ddbb.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-06ad36000cd8.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-4f27206c4b1c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+body{margin:0;font-family:"Manrope","Inter",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+.z{--surface-000:#f7f5fb;--surface-100:#ffffff;--surface-200:#f1ecfa;--surface-300:#e7e0f5;--ink-900:#1a1622;--ink-600:#58506e;--ink-400:#6e6686;--line-100:#e6dff3;--line-200:#cfc4e6;--brand-050:#f5f0ff;--brand-100:#e9e0ff;--brand-300:#c9b0ff;--brand-400:#ad89ff;--brand-600:#7444e4;--brand-700:#522cc3;--ink-on-primary:#1a1622;--focus-ring:#ad89ff99;--success:#10805a;--success-bg:#dff5ec;--warning:#9a5c00;--warning-bg:#fdf0dc;--danger:#c62a43;--danger-bg:#fde7ea;--accent-teal:#0d7d86;--accent-teal-bg:#ddf3f4;--accent-coral:#c04a2a;--accent-coral-bg:#fceae4;--accent-blue:#2158c9;--accent-blue-bg:#e3ecfd;--overlay:#1a162299;--mode-practice:#0d7d86;--shadow-xs:0 1px 2px rgba(26,22,34,.06);--shadow-float:0 2px 4px rgba(26,22,34,.05),0 8px 20px -6px rgba(86,58,160,.20);--shadow-float-lg:0 4px 8px rgba(26,22,34,.06),0 16px 32px -8px rgba(86,58,160,.28);--shadow-card:0 1px 2px rgba(26,22,34,.04),0 12px 28px -14px rgba(86,58,160,.22);--shadow-overlay:0 8px 16px rgba(26,22,34,.08),0 32px 64px -20px rgba(86,58,160,.34);color:var(--ink-900);background:var(--surface-000)}
+.z[data-theme="dark"]{--surface-000:#121016;--surface-100:#1b1822;--surface-200:#242030;--surface-300:#2e2940;--ink-900:#f5f2fb;--ink-600:#bdb6cf;--ink-400:#9990ab;--line-100:#322c44;--line-200:#443c5c;--brand-050:#221c33;--brand-100:#2d2547;--brand-300:#6e4fc0;--brand-600:#7c4de8;--brand-700:#c4a9ff;--focus-ring:#ad89ffaa;--success:#4ed6a1;--success-bg:#16342a;--warning:#f2b457;--warning-bg:#38290f;--danger:#ff7f8d;--danger-bg:#3a1b21;--accent-teal:#4fd0d9;--accent-teal-bg:#123236;--accent-coral:#ff9273;--accent-coral-bg:#3a1f16;--accent-blue:#8fb0ff;--accent-blue-bg:#15233f;--overlay:#0a0810cc;--mode-practice:#0e7c85;--shadow-xs:0 1px 2px rgba(0,0,0,.5);--shadow-float:0 2px 4px rgba(0,0,0,.45),0 8px 20px -6px rgba(0,0,0,.6);--shadow-float-lg:0 4px 8px rgba(0,0,0,.5),0 16px 32px -8px rgba(0,0,0,.7);--shadow-card:0 1px 2px rgba(0,0,0,.4),0 12px 28px -14px rgba(0,0,0,.55);--shadow-overlay:0 8px 16px rgba(0,0,0,.5),0 32px 64px -20px rgba(0,0,0,.75)}
+.z a{color:var(--brand-700)}
+.z button,.z input,.z textarea,.z select{font-family:inherit}
+.z button{cursor:pointer}
+.z button:disabled{cursor:not-allowed}
+.z input::placeholder,.z textarea::placeholder{color:var(--ink-400)}
+.lift{transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s cubic-bezier(.2,.8,.2,1)}
+.lift:hover{transform:translateY(-1px);box-shadow:var(--shadow-float-lg)!important}
+.ghost:hover{background:var(--surface-200)!important}
+.row:hover{background:var(--surface-200)!important}
+.z button:focus-visible,.z a:focus-visible,.z input:focus-visible,.z textarea:focus-visible,.z select:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus-ring)!important}
+.z input:focus-visible,.z textarea:focus-visible,.z select:focus-visible{border-color:var(--brand-600)!important}
+.skel{background:linear-gradient(90deg,var(--surface-300) 0%,var(--surface-200) 50%,var(--surface-300) 100%);background-size:200% 100%;animation:zsk 1.4s ease-in-out infinite;border-radius:14px}
+@keyframes zsk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.lift:hover{transform:none}.skel{animation:none}}
+</style>
+</helmet>
+<div class="z" data-theme="{{ theme }}" style="width: 1440px; height: 2040px; box-sizing: border-box; padding: 16px; display: flex; gap: 32px; align-items: flex-start; background: var(--surface-000); color: var(--ink-900);">
+
+<nav aria-label="{{ t.navLabel }}" style="width: 264px; height: 1008px; flex-shrink: 0; box-sizing: border-box; padding: 28px 16px 16px; background: var(--surface-100); border-radius: 52px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<a href="SignIn.dc.html" aria-label="Zinapo" style="display: flex; align-items: center; gap: 12px; padding: 0 12px; text-decoration: none; color: var(--ink-900);">
+<span style="width: 40px; height: 40px; border-radius: 14px; background: var(--brand-400); display: flex; align-items: center; justify-content: center; color: var(--ink-on-primary);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M3 20h5v-5h5v-5h5V5h3"></path></svg>
+</span>
+<span style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">Zinapo</span>
+</a>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="padding: 0 16px 8px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.navChildren }}</div>
+<a href="Main.dc.html" class="ghost" style="height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border-radius: 30px; text-decoration: none; color: var(--ink-600);">
+<span style="width: 32px; height: 32px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">MK</span>
+<span style="display: flex; flex-direction: column;"><span style="font-size: 14px; line-height: 20px; font-weight: 600;">Madina</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ t.navGrade4 }}</span></span>
+</a>
+<a href="ParentYoung.dc.html" aria-current="page" style="height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border-radius: 30px; text-decoration: none; background: var(--brand-050); color: var(--brand-700);">
+<span style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent-teal-bg); color: var(--accent-teal); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">TK</span>
+<span style="display: flex; flex-direction: column;"><span style="font-size: 14px; line-height: 20px; font-weight: 600;">Temur</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ t.navGrade1 }}</span></span>
+</a>
+<a href="AddChild.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round;"><path d="M12 5v14M5 12h14"></path></svg>{{ t.navAddChild }}</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="padding: 0 16px 8px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.navFamily }}</div>
+<a href="TestTaking.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M10 8.5l5 3.5-5 3.5z"></path></svg>{{ t.navTakeWave }}</a>
+<a href="Olympiad.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"></path><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"></path></svg>{{ t.navOlympiad }}</a>
+<a href="Access.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>{{ t.navAccess }}</a>
+<a href="SignIn.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"></path></svg>{{ t.navSignOut }}</a>
+</div>
+<div style="padding: 16px; border-radius: 30px; background: var(--surface-200); display: flex; flex-direction: column; gap: 6px;">
+<span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.navNextWave }}</span>
+<span style="font-size: 12px; line-height: 16px; color: var(--ink-600);">{{ t.navNextWaveSub }}</span>
+</div>
+<sc-if value="{{ demoBar }}" hint-placeholder-val="{{ true }}">
+<div style="margin-top: auto; padding: 12px; border-radius: 30px; border: 1.5px dashed var(--line-200); display: flex; flex-direction: column; gap: 8px;">
+<span style="padding: 0 6px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">PROTOTYPE · SCREEN STATE</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px;">
+<sc-for list="{{ uiStates }}" as="u" hint-placeholder-count="4">
+<button sc-camel-on-click="{{ u.pick }}" aria-pressed="{{ u.on }}" style="height: 36px; border: 0; border-radius: 22px; font-size: 12px; font-weight: 600; background: {{ u.bg }}; color: {{ u.ink }};">{{ u.label }}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</nav>
+
+<main style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+
+<header style="height: 72px; box-sizing: border-box; padding: 0 12px 0 28px; background: var(--surface-100); border-radius: 52px; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 12px;">
+<div style="flex-grow: 1; font-size: 14px; font-weight: 600; color: var(--ink-600);">{{ t.crumb }}</div>
+<div role="group" aria-label="{{ t.langLabel }}" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--surface-200);">
+<sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+<button sc-camel-on-click="{{ l.pick }}" aria-pressed="{{ l.on }}" style="height: 36px; min-width: 52px; padding: 0 12px; border: 0; border-radius: 22px; font-size: 13px; font-weight: 600; background: {{ l.bg }}; color: {{ l.ink }}; box-shadow: {{ l.shadow }};">{{ l.label }}</button>
+</sc-for>
+</div>
+<button sc-camel-on-click="{{ toggleTheme }}" aria-label="{{ t.themeLabel }}" class="ghost" style="width: 48px; height: 48px; border: 0; border-radius: 30px; background: transparent; color: var(--ink-600); display: flex; align-items: center; justify-content: center;">
+<sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</sc-if>
+<sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"></path></svg>
+</sc-if>
+</button>
+<button aria-label="{{ t.notifLabel }}" class="ghost" style="width: 48px; height: 48px; border: 0; border-radius: 30px; background: transparent; color: var(--ink-600); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 21h4"></path></svg>
+</button>
+<span style="width: 48px; height: 48px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center;">DK</span>
+</header>
+
+<sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+<div aria-busy="true" aria-label="{{ t.loadingLabel }}" style="display: flex; flex-direction: column; gap: 24px;">
+<div style="padding: 8px 8px 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 10px;"><div class="skel" style="width: 300px; height: 34px;"></div><div class="skel" style="width: 540px; height: 18px;"></div></div>
+<div style="display: flex; gap: 8px;"><div class="skel" style="width: 150px; height: 32px; border-radius: 999px;"></div><div class="skel" style="width: 150px; height: 36px; border-radius: 22px;"></div></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+<section style="padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 14px;">
+<div class="skel" style="width: 180px; height: 14px;"></div><div class="skel" style="width: 260px; height: 48px;"></div><div class="skel" style="width: 200px; height: 20px;"></div><div class="skel" style="height: 16px; border-radius: 999px;"></div><div class="skel" style="width: 80%; height: 14px;"></div><div class="skel" style="height: 60px;"></div>
+</section>
+<section style="padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 14px;">
+<div class="skel" style="width: 160px; height: 14px;"></div><div class="skel" style="width: 300px; height: 24px;"></div><div class="skel" style="height: 54px; border-radius: 30px;"></div><div class="skel" style="height: 54px; border-radius: 30px;"></div><div class="skel" style="height: 54px; border-radius: 30px;"></div>
+</section>
+</div>
+<section style="padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 20px;">
+<div style="display: flex; justify-content: space-between; align-items: center;"><div class="skel" style="width: 260px; height: 24px;"></div><div class="skel" style="width: 520px; height: 48px; border-radius: 999px;"></div></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 32px;">
+<div class="skel" style="height: 48px;"></div><div class="skel" style="height: 48px;"></div><div class="skel" style="height: 48px;"></div><div class="skel" style="height: 48px;"></div><div class="skel" style="height: 48px;"></div><div class="skel" style="height: 48px;"></div><div class="skel" style="height: 48px;"></div><div class="skel" style="height: 48px;"></div><div class="skel" style="height: 48px;"></div><div class="skel" style="height: 48px;"></div>
+</div>
+</section>
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px;">
+<div class="skel" style="grid-column: span 7; height: 300px; border-radius: 40px;"></div>
+<div class="skel" style="grid-column: span 5; height: 300px; border-radius: 40px;"></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showTitle }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; align-items: flex-end; gap: 24px; padding: 8px 8px 0;">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+<h1 style="margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.02em;">Temur Karimov</h1>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.subtitle }}</p>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}">
+<span style="height: 32px; padding: 0 14px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 13px; font-weight: 600; display: flex; align-items: center;">{{ t.chipWave }}</span>
+</sc-if>
+<a href="Main.dc.html" aria-label="{{ t.switchAria }}" class="lift" style="height: 36px; box-sizing: border-box; padding: 0 12px 0 6px; border: 1px solid var(--line-200); border-radius: 22px; background: var(--surface-100); box-shadow: var(--shadow-xs); display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--ink-900); font-size: 13px; font-weight: 600;">
+<span style="width: 24px; height: 24px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center;">MK</span>{{ t.switchLabel }}
+<svg sc-camel-view-box="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M7 17L17 7M9 7h8v8"></path></svg>
+</a>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+<section role="alert" style="padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; gap: 20px; align-items: flex-start;">
+<span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 999px; background: var(--danger-bg); color: var(--danger); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16.5h.01"></path></svg>
+</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+<h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.errTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.errBody }}</p>
+</div>
+<button sc-camel-on-click="{{ retry }}" class="lift" style="height: 48px; padding: 0 24px; border: 0; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ t.retry }}</button>
+</section>
+</sc-if>
+
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+<section style="padding: 56px 48px 40px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;">
+<span style="width: 64px; height: 64px; border-radius: 20px; background: var(--accent-teal-bg); color: var(--accent-teal); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><rect x="4" y="4" width="16" height="16" rx="4"></rect><circle cx="9.5" cy="10" r="1.5"></circle><path d="M20 15l-4.5-4.5L7 19"></path></svg>
+</span>
+<h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.emptyTitle }}</h2>
+<p style="margin: 0; max-width: 600px; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.emptyBody }}</p>
+<a href="TestTaking.dc.html" class="lift" style="margin-top: 8px; height: 48px; padding: 0 24px; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; box-shadow: var(--shadow-float);">{{ t.emptyCta }}</a>
+<div style="margin-top: 28px; width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; text-align: left;">
+<div style="padding: 20px 24px; border-radius: 30px; background: var(--surface-200); display: flex; flex-direction: column; gap: 8px;"><span style="align-self: flex-start; height: 28px; padding: 0 12px; border-radius: 999px; background: var(--success-bg); color: var(--success); font-size: 12px; font-weight: 600; display: flex; align-items: center;">{{ t.st.secure }}</span><span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.eS }}</span></div>
+<div style="padding: 20px 24px; border-radius: 30px; background: var(--surface-200); display: flex; flex-direction: column; gap: 8px;"><span style="align-self: flex-start; height: 28px; padding: 0 12px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 12px; font-weight: 600; display: flex; align-items: center;">{{ t.st.emerging }}</span><span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.eE }}</span></div>
+<div style="padding: 20px 24px; border-radius: 30px; background: var(--surface-200); display: flex; flex-direction: column; gap: 8px;"><span style="align-self: flex-start; height: 28px; padding: 0 12px; border-radius: 999px; background: var(--surface-300); color: var(--ink-600); font-size: 12px; font-weight: 600; display: flex; align-items: center;">{{ t.st.not_yet }}</span><span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.eN }}</span></div>
+</div>
+<span style="margin-top: 8px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.emptyNote }}</span>
+</section>
+</sc-if>
+
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 24px;">
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+<section aria-labelledby="sumT" style="box-sizing: border-box; padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;">
+<h2 id="sumT" style="margin: 0; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.sumOver }}</h2>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 44px; line-height: 48px; font-weight: 800; letter-spacing: -0.022em;">{{ t.sumBig }}</span>
+<span style="font-size: 16px; line-height: 26px; color: var(--ink-600);">{{ t.sumUnit }}</span>
+</div>
+<div role="img" aria-label="{{ barAria }}" style="display: flex; height: 16px; border-radius: 999px; overflow: hidden; gap: 3px; background: var(--surface-300);">
+<span style="width: 61%; background: var(--success);"></span>
+<span style="width: 22%; background: var(--brand-400);"></span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13px; line-height: 20px; color: var(--ink-600);">
+<span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 999px; background: var(--success);"></span>{{ legSecure }}</span>
+<span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 999px; background: var(--brand-400);"></span>{{ legEmerging }}</span>
+<span style="display: flex; align-items: center; gap: 6px;"><span style="width: 10px; height: 10px; border-radius: 999px; background: var(--surface-300); box-shadow: inset 0 0 0 1px var(--line-200);"></span>{{ legNot }}</span>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-400);">{{ t.ruleNote }}</p>
+<div style="margin-top: auto; padding: 14px 18px; border-radius: 14px; background: var(--surface-200); display: flex; gap: 12px; align-items: flex-start;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--brand-700); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><rect x="4" y="5" width="16" height="15" rx="3"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.nextHint }}</span>
+</div>
+</section>
+
+<section aria-labelledby="newT" style="box-sizing: border-box; padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.newOver }}</span>
+<h2 id="newT" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -0.01em;">{{ t.newTitle }}</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div style="padding: 16px 20px; border-radius: 30px; background: var(--success-bg); display: flex; align-items: center; gap: 12px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--success); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>
+<span style="flex-grow: 1; min-width: 0; font-size: 15px; line-height: 21px; font-weight: 600; color: var(--ink-900);">{{ t.sk.s11.n }}</span><span style="flex-shrink: 0; font-size: 12px; line-height: 16px; font-weight: 600; color: var(--success);">{{ t.confDec }}</span>
+</div>
+<div style="padding: 16px 20px; border-radius: 30px; background: var(--success-bg); display: flex; align-items: center; gap: 12px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--success); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>
+<span style="flex-grow: 1; min-width: 0; font-size: 15px; line-height: 21px; font-weight: 600; color: var(--ink-900);">{{ t.sk.s12.n }}</span><span style="flex-shrink: 0; font-size: 12px; line-height: 16px; font-weight: 600; color: var(--success);">{{ t.confDec }}</span>
+</div>
+<div style="padding: 16px 20px; border-radius: 30px; background: var(--success-bg); display: flex; align-items: center; gap: 12px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--success); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>
+<span style="flex-grow: 1; min-width: 0; font-size: 15px; line-height: 21px; font-weight: 600; color: var(--ink-900);">{{ t.sk.s3.n }}</span><span style="flex-shrink: 0; font-size: 12px; line-height: 16px; font-weight: 600; color: var(--success);">{{ t.confNov }}</span>
+</div>
+</div>
+<p style="margin: auto 0 0; font-size: 13px; line-height: 20px; color: var(--ink-400);">{{ t.newNote }}</p>
+</section>
+</div>
+
+<section aria-labelledby="skillsT" style="box-sizing: border-box; padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 20px;">
+<div style="display: flex; align-items: center; gap: 24px;">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+<h2 id="skillsT" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -0.01em;">{{ t.skillsTitle }}</h2>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.skillsHint }}</span>
+</div>
+<div role="tablist" aria-label="{{ t.filterLabel }}" style="flex-shrink: 0; display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--surface-200);">
+<sc-for list="{{ tabs }}" as="f" hint-placeholder-count="4">
+<button role="tab" aria-selected="{{ f.on }}" sc-camel-on-click="{{ f.pick }}" style="height: 40px; padding: 0 16px; border: 0; border-radius: 22px; font-size: 13px; font-weight: 600; background: {{ f.bg }}; color: {{ f.ink }}; box-shadow: {{ f.shadow }}; white-space: nowrap;">{{ f.label }}</button>
+</sc-for>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px;">
+<sc-for list="{{ skills }}" as="k" hint-placeholder-count="10">
+<div style="display: flex; flex-direction: column; border-bottom: 1px solid var(--line-100);">
+<button sc-camel-on-click="{{ k.toggle }}" aria-expanded="{{ k.open }}" class="row" style="width: 100%; min-height: 62px; box-sizing: border-box; margin: 2px 0; padding: 10px 12px; border: 0; border-radius: 14px; background: transparent; color: var(--ink-900); text-align: left; display: flex; align-items: center; gap: 12px;">
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 15px; line-height: 21px; font-weight: 600;">{{ k.name }}</span>
+<span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ k.cluster }}</span>
+</span>
+<span style="flex-shrink: 0; height: 28px; padding: 0 12px; border-radius: 999px; background: {{ k.bg }}; color: {{ k.ink }}; font-size: 12px; font-weight: 600; display: flex; align-items: center; white-space: nowrap;">{{ k.label }}</span>
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--ink-400); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transform: rotate({{ k.rot }}deg); transition: transform .18s;"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<sc-if value="{{ k.open }}" hint-placeholder-val="{{ false }}">
+<div style="margin: 0 12px 14px; padding: 14px 16px; border-radius: 14px; background: var(--surface-200); display: flex; flex-direction: column; gap: 10px;">
+<p style="margin: 0; font-size: 14px; line-height: 21px; color: var(--ink-900);">{{ k.explain }}</p>
+<div style="display: flex; gap: 8px; align-items: flex-start;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; fill: none; stroke: {{ k.ink }}; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 19h16M7 16V11M12 16V7M17 16v-3"></path></svg>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ k.evidence }}</span>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</section>
+
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px;">
+<section aria-labelledby="actT" style="grid-column: span 7; box-sizing: border-box; padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 14px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.actOver }}</span>
+<h2 id="actT" style="margin: 0; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -0.015em;">{{ t.actTitle }}</h2>
+<p style="margin: 0; font-size: 16px; line-height: 26px; color: var(--ink-600);">{{ t.actBody }}</p>
+<div style="margin-top: auto; padding: 14px 18px; border-radius: 14px; background: var(--surface-200); display: flex; gap: 12px; align-items: flex-start;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--brand-700); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2.5M9 2h6"></path></svg>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.actNote }}</span>
+</div>
+</section>
+<section aria-labelledby="refT" style="grid-column: span 5; box-sizing: border-box; padding: 32px; background: var(--brand-050); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 14px;">
+<div style="display: flex; align-items: center; gap: 10px;">
+<span style="width: 32px; height: 32px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M5.6 5.6l12.8 12.8"></path></svg>
+</span>
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--brand-700);">{{ t.refOver }}</span>
+</div>
+<h2 id="refT" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink-900);">{{ t.refTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.refBody }}</p>
+</section>
+</div>
+
+</div>
+</sc-if>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;uz&quot;,&quot;ru&quot;,&quot;en&quot;],&quot;default&quot;:&quot;uz&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;screenState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;loading&quot;,&quot;empty&quot;,&quot;error&quot;],&quot;default&quot;:&quot;default&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;demoBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Prototype&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:2040}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lang: this.lsGet('zinapo.lang') || props.lang || 'uz',
+      theme: this.lsGet('zinapo.theme') || props.theme || 'light',
+      ui: props.screenState || 'default',
+      filter: 'all',
+      open: 's6'
+    };
+  }
+  lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+  lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} }
+  componentDidUpdate(prev) {
+    const p = this.props, patch = {};
+    if (p.lang && p.lang !== prev.lang) patch.lang = p.lang;
+    if (p.theme && p.theme !== prev.theme) patch.theme = p.theme;
+    if (p.screenState && p.screenState !== prev.screenState) patch.ui = p.screenState;
+    if (Object.keys(patch).length) this.setState(patch);
+  }
+  seg(on) {
+    return { bg: on ? 'var(--surface-100)' : 'transparent', ink: on ? 'var(--ink-900)' : 'var(--ink-600)', shadow: on ? 'var(--shadow-xs)' : 'none' };
+  }
+  shell(T) {
+    const s = this.state;
+    const t = T[s.lang] || T.uz;
+    const langs = [['uz', 'Oʻz'], ['ru', 'Рус'], ['en', 'Eng']].map((p) => Object.assign({ label: p[1], on: s.lang === p[0], pick: () => { this.lsSet('zinapo.lang', p[0]); this.setState({ lang: p[0] }); } }, this.seg(s.lang === p[0])));
+    const uiStates = [['default', 'Default'], ['loading', 'Loading'], ['empty', 'Empty'], ['error', 'Error']].map((p) => ({
+      label: p[1], on: s.ui === p[0],
+      bg: s.ui === p[0] ? 'var(--brand-100)' : 'transparent',
+      ink: s.ui === p[0] ? 'var(--brand-700)' : 'var(--ink-600)',
+      pick: () => this.setState({ ui: p[0] })
+    }));
+    return {
+      t, langs, uiStates,
+      theme: s.theme, isDark: s.theme === 'dark', isLight: s.theme !== 'dark',
+      toggleTheme: () => { const n = s.theme === 'dark' ? 'light' : 'dark'; this.lsSet('zinapo.theme', n); this.setState({ theme: n }); },
+      demoBar: this.props.demoBar !== false,
+      isDefault: s.ui === 'default', isLoading: s.ui === 'loading', isEmpty: s.ui === 'empty', isError: s.ui === 'error',
+      retry: () => this.setState({ ui: 'default' })
+    };
+  }
+  fill(tpl, v) {
+    return tpl.replace('{n}', v.n).replace('{k}', v.k).replace('{m}', v.m).replace('{w}', v.w);
+  }
+  renderVals() {
+    const s = this.state;
+    const T = {
+      uz: {
+        navLabel: 'Asosiy menyu', navChildren: 'FARZANDLARIM', navGrade4: '4-sinf', navGrade1: '1-sinf', navAddChild: 'Farzand qoʻshish', navFamily: 'OILA', navTakeWave: '4-monitoringni topshirish', navOlympiad: 'Olimpiada', navAccess: 'Ruxsat va roziliklar', navSignOut: 'Chiqish', navNextWave: '5-monitoring 13-yanvarda ochiladi', navNextWaveSub: 'Uyda yoki ustoz huzurida topshirish mumkin.',
+        langLabel: 'Til', themeLabel: 'Mavzuni almashtirish', notifLabel: 'Bildirishnomalar', retry: 'Qayta urinish', loadingLabel: 'Hisobot yuklanmoqda',
+        crumb: '2026/27 mavsumi · Koʻnikmalar hisoboti',
+        subtitle: '1-sinf · Temur nimalarni qila oladi — boshqa bolalar bilan solishtirmasdan',
+        chipWave: '4-monitoring · dekabr',
+        switchLabel: 'Madina · 4-sinf', switchAria: 'Madinaning hisobotiga oʻtish',
+        errTitle: 'Temurning hisobotini yuklab boʻlmadi', errBody: 'Internet aloqasini tekshiring va qayta urinib koʻring. Natijalar saqlangan, hech narsa yoʻqolmaydi.',
+        emptyTitle: 'Temur hali monitoring topshirmagan', emptyBody: 'Birinchi monitoringdan soʻng 1-sinfning 18 ta koʻnikmasidan qaysilarini oʻzlashtirgani, qaysilarini oʻzlashtirayotganini va uyda qilish mumkin boʻlgan bitta ishni koʻrasiz. Keyingi monitoring 13-yanvarda ochiladi: 15 ta rasmli savol, topshiriqlar ovoz chiqarib oʻqib beriladi.', emptyCta: 'Monitoring qanday oʻtishini koʻrish',
+        eS: 'Bir monitoringda bir necha marta toʻgʻri javob berilgan va keyingisida tasdiqlangan.', eE: 'Baʼzan chiqadi, lekin hali barqaror emas. Uydagi yordam aynan shu yerda eng foydali.', eN: 'Unga hali erta. Bu koʻnikma oʻz vaqtida keladi.',
+        emptyNote: 'Boshqa bolalar bilan solishtirish boʻlmaydi — faqat Temur nimalarni qila olishi.',
+        sumOver: 'TEMUR NIMALARNI QILA OLADI', sumBig: '18 tadan 11 ta', sumUnit: 'koʻnikma oʻzlashtirilgan',
+        barAria: '18 ta koʻnikmadan: 11 tasi oʻzlashtirilgan, 4 tasi oʻzlashtirilmoqda, 3 tasi hali emas',
+        ruleNote: 'Koʻnikma bir monitoringda bir necha marta toʻgʻri javob berilib, keyingi monitoringda yana tasdiqlangandagina oʻzlashtirilgan hisoblanadi. Tasodifan topilgan bitta javob hisobga olinmaydi.',
+        nextHint: 'Keyingi tekshiruv — 13-yanvardagi 5-monitoring. 15 ta rasmli savol, topshiriqlar ovoz chiqarib oʻqib beriladi, shuning uchun Temur oʻzi oʻqishi shart emas.',
+        newOver: 'OKTYABRDAN BERI YANGI', newTitle: 'Ikki oyda uchta yangi koʻnikma', confDec: 'dekabrda tasdiqlandi', confNov: 'noyabrda tasdiqlandi',
+        newNote: 'Har bir yangi koʻnikma ikki monitoringda ketma-ket tasdiqlangan.',
+        skillsTitle: 'Mavsumdagi barcha koʻnikmalar', skillsHint: 'Koʻnikmani bosing — uning maʼnosi va qanday aniqlangani ochiladi.', filterLabel: 'Koʻnikmalarni saralash', tabAll: 'Hammasi',
+        st: { secure: 'Oʻzlashtirgan', emerging: 'Oʻzlashtirmoqda', not_yet: 'Hali emas' },
+        cl: { N: 'Son va hisoblash', P: 'Masala yechish', L: 'Mantiq va fazoviy tasavvur' },
+        mon: { sep: 'Sentyabrda', oct: 'Oktyabrda', nov: 'Noyabrda', dec: 'Dekabrda' },
+        evSecure: '{m} {n} ta savolga toʻgʻri javob berdi, {w}-monitoringda yana tasdiqlandi.',
+        evEmerging: 'Dekabrda {n} ta savoldan {k} tasiga toʻgʻri javob berdi. Hali barqaror emas — 5-monitoringda yana tekshiramiz.',
+        evNot: 'Dekabrda {n} ta savolda uchradi, hozircha yechilmadi. Bu 1-sinf dasturining keyingi mavzusi — unga shoshilish hali erta.',
+        sk: {
+          s1: { n: 'Yuzgacha oldinga va orqaga sanaydi', e: 'Istalgan sondan 100 gacha va teskari tartibda adashmasdan sanay oladi.' },
+          s2: { n: '10 gacha sonlarning tarkibini biladi', e: 'Masalan, 7 bu 5 va 2 yoki 4 va 3 ekanini barmoq bilan sanamasdan biladi.' },
+          s3: { n: '100 gacha sonlarni taqqoslaydi', e: 'Ikki sondan qaysi biri kattaligini, masalan 47 va 74 ni, aytib bera oladi va nega shundayligini tushuntiradi.' },
+          s4: { n: '20 ichida oʻnlikdan oʻtmasdan qoʻshadi', e: '12 + 5 kabi misollarni yechadi, bunda birliklar yigʻindisi oʻndan oshmaydi.' },
+          s5: { n: '20 ichida oʻnlikdan oʻtmasdan ayiradi', e: '18 − 6 kabi misollarni yechadi, bunda oʻnlikni maydalash shart emas.' },
+          s6: { n: 'Ogʻzaki bir amalli masalani yechadi', e: 'Sonli qisqa hikoyani eshitib, javobni bitta amal bilan topadi: «5 ta qush bor edi, 2 tasi uchib ketdi. Nechta qoldi?»' },
+          s7: { n: '20 gacha sonlarning tarkibini biladi', e: '14 bu bitta oʻnlik va toʻrtta birlik ekanini, 9 bilan 6 esa 15 boʻlishini biladi.' },
+          s8: { n: 'Oddiy jadvalni oʻqiydi', e: 'Kichik jadvaldagi satr va ustunlardan kerakli javobni topadi.' },
+          s9: { n: '«Chapda», «oʻngda», «orasida»ni farqlaydi', e: 'Narsalar qayerda turganini shu soʻzlar bilan aytadi — oʻziga nisbatan ham, rasmga qarab ham.' },
+          s10: { n: 'Tekis shakllarni taniydi', e: 'Doira, kvadrat, uchburchak va toʻgʻri toʻrtburchakni burilgan yoki boshqa oʻlchamda boʻlsa ham taniydi.' },
+          s11: { n: 'Oddiy qonuniyatni davom ettiradi', e: 'Shakl yoki ranglar qatorida nima takrorlanayotganini koʻradi va keyingisini aytadi.' },
+          s12: { n: 'Rasmli diagrammani oʻqiydi', e: 'Har bir rasm bitta narsani bildiradigan diagrammani oʻqiydi va qaysi biri koʻpligini aytadi.' },
+          s13: { n: 'Qaysi biri uzun, qaysi biri qisqaligini aytadi', e: 'Ikki-uch narsaning uzunligini koʻz bilan ham, yonma-yon qoʻyib ham solishtiradi.' },
+          s14: { n: 'Voqealarni tartib bilan joylashtiradi', e: 'Hikoyadagi uch-toʻrtta rasmni voqealar sodir boʻlgan tartibda joylashtiradi.' },
+          s15: { n: 'Ortiqchasini topadi', e: 'Guruhdagi qaysi narsa boshqalarga mos kelmasligini topadi va sababini aytadi.' },
+          s16: { n: 'Ikki amalli matnli masalalar', e: 'Ikki amal talab qiladigan masalani yechadi: masalan, avval sotib olib, keyin bir qismini boshqaga berish.' },
+          s17: { n: 'Oʻnlikdan oʻtib qoʻshish', e: '8 + 7 yoki 26 + 9 kabi misollarni yechadi, bunda birliklar yigʻindisi oʻndan oshadi.' },
+          s18: { n: 'Chizgʻich bilan oʻlchaydi', e: 'Chizgʻichning nolini chiziq boshiga qoʻyib, uzunlikni santimetrda oʻlchaydi.' }
+        },
+        actOver: 'NIMA QILISH KERAK · BITTA ISH', actTitle: 'Ogʻzaki masalalar — oʻyin orqali, 10 daqiqadan',
+        actBody: 'Bu koʻnikma hozir shakllanmoqda — aynan shu bosqichda harakat eng koʻp samara beradi. Stol ortida emas, masalan, bozorda: «Bizda 7 ta olma bor edi, yana 3 ta oldik. Endi nechta boʻldi?» U hali davom etishni xohlab turganida toʻxtating.',
+        actNote: 'Bu yoshda koʻproq degani yaxshiroq degani emas. 10 daqiqa — eng kami emas, butun reja shu.',
+        refOver: 'NIMA QILMAYMIZ', refTitle: '«Uning Prezident maktabiga kirish imkoniyati qanday?»',
+        refBody: 'Olti yoshda bu savolga halol javob berib boʻlmaydi — har qanday javob toʻqima boʻlardi. Bu yoshdagi testlar oʻn yoshdagi natijani yomon bashorat qiladi: uyqu, kayfiyat, hatto tugʻilgan oy ham taʼsir qiladi. Boshqa bolalar orasidagi oʻrinni 3-sinfdan koʻrsatamiz — oʻshanda natijalar maʼno kasb eta boshlaydi.'
+      },
+      ru: {
+        navLabel: 'Главное меню', navChildren: 'МОИ ДЕТИ', navGrade4: '4 класс', navGrade1: '1 класс', navAddChild: 'Добавить ребёнка', navFamily: 'СЕМЬЯ', navTakeWave: 'Пройти волну 4', navOlympiad: 'Олимпиада', navAccess: 'Доступ и согласия', navSignOut: 'Выйти', navNextWave: 'Волна 5 откроется 13 января', navNextWaveSub: 'Можно пройти дома или у репетитора.',
+        langLabel: 'Язык', themeLabel: 'Сменить тему', notifLabel: 'Уведомления', retry: 'Повторить', loadingLabel: 'Отчёт загружается',
+        crumb: 'Сезон 2026/27 · Отчёт по навыкам',
+        subtitle: '1 класс · Что умеет Temur — без сравнения с другими детьми',
+        chipWave: 'Волна 4 · декабрь',
+        switchLabel: 'Madina · 4 класс', switchAria: 'Перейти к отчёту Madina',
+        errTitle: 'Не удалось загрузить отчёт Temur', errBody: 'Проверьте подключение к интернету и попробуйте снова. Результаты сохранены, ничего не потеряется.',
+        emptyTitle: 'Temur ещё не проходил волну', emptyBody: 'После первой волны вы увидите, какие из 18 навыков 1 класса уже освоены, какие осваиваются, и одно дело для дома. Ближайшая волна откроется 13 января: 15 заданий с картинками, инструкции звучат вслух.', emptyCta: 'Посмотреть, как проходит волна',
+        eS: 'Несколько верных ответов в одной волне и подтверждение в следующей.', eE: 'Иногда получается, но пока нестабильно. Здесь помощь дома полезнее всего.', eN: 'Браться пока рано. Этот навык придёт в своё время.',
+        emptyNote: 'Сравнения с другими детьми не будет — только то, что умеет Temur.',
+        sumOver: 'ЧТО УМЕЕТ TEMUR', sumBig: '11 из 18', sumUnit: 'навыков освоено',
+        barAria: 'Из 18 навыков: 11 освоено, 4 осваивает, 3 пока нет',
+        ruleNote: 'Навык считается освоенным, только если в одной волне на него дано несколько верных ответов и в следующей волне это подтвердилось. Один случайно угаданный ответ не в счёт.',
+        nextHint: 'Следующая проверка — волна 5, 13 января. 15 заданий с картинками, инструкции звучат вслух, так что читать Temur не нужно.',
+        newOver: 'НОВОЕ С ОКТЯБРЯ', newTitle: 'Три новых навыка за два месяца', confDec: 'подтверждено в декабре', confNov: 'подтверждено в ноябре',
+        newNote: 'Каждый новый навык подтверждён в двух волнах подряд.',
+        skillsTitle: 'Все навыки сезона', skillsHint: 'Нажмите на навык, чтобы узнать, что он означает и на чём основана оценка.', filterLabel: 'Фильтр навыков', tabAll: 'Все',
+        st: { secure: 'Освоено', emerging: 'Осваивает', not_yet: 'Пока нет' },
+        cl: { N: 'Числа и вычисления', P: 'Решение задач', L: 'Логика и пространство' },
+        mon: { sep: 'сентябре', oct: 'октябре', nov: 'ноябре', dec: 'декабре' },
+        evSecure: 'Верные ответы в {n} заданиях в {m}, подтверждено в волне {w}.',
+        evEmerging: 'В декабре верно в {k} из {n} заданий. Пока нестабильно — в волне 5 проверим ещё раз.',
+        evNot: 'В декабре встретился в {n} заданиях, пока не получается. Это тема второй половины программы 1 класса — торопить рано.',
+        sk: {
+          s1: { n: 'Считает до 100 вперёд и назад', e: 'Считает вслух от любого числа до 100 и обратно, не пропуская чисел.' },
+          s2: { n: 'Знает состав чисел до 10', e: 'Знает, что 7 — это 5 и 2 или 4 и 3, не пересчитывая на пальцах.' },
+          s3: { n: 'Сравнивает числа до 100', e: 'Может сказать, какое из двух чисел больше, например 47 или 74, и объяснить почему.' },
+          s4: { n: 'Складывает в пределах 20 без перехода через десяток', e: 'Решает примеры вида 12 + 5, где сумма единиц не переходит через десяток.' },
+          s5: { n: 'Вычитает в пределах 20 без перехода через десяток', e: 'Решает примеры вида 18 − 6, где не нужно «занимать» десяток.' },
+          s6: { n: 'Решает устную задачу в одно действие', e: 'Слушает короткую историю с числами и находит ответ одним действием: «Сидели 5 птиц, 2 улетели. Сколько осталось?»' },
+          s7: { n: 'Знает состав чисел до 20', e: 'Знает, что 14 — это один десяток и четыре единицы, а 9 и 6 вместе дают 15.' },
+          s8: { n: 'Читает простую таблицу', e: 'Находит нужный ответ в небольшой таблице со строками и столбцами.' },
+          s9: { n: 'Понимает «слева», «справа», «между»', e: 'Описывает, где что находится, этими словами — и относительно себя, и по картинке.' },
+          s10: { n: 'Узнаёт плоские фигуры', e: 'Называет круг, квадрат, треугольник и прямоугольник, даже если фигура повёрнута или другого размера.' },
+          s11: { n: 'Продолжает простую закономерность', e: 'Видит, что повторяется в ряду фигур или цветов, и говорит, что будет дальше.' },
+          s12: { n: 'Читает диаграмму из картинок', e: 'Читает диаграмму, где одна картинка — один предмет, и говорит, чего больше.' },
+          s13: { n: 'Определяет, что длиннее, а что короче', e: 'Сравнивает длину двух-трёх предметов и на глаз, и прикладывая их друг к другу.' },
+          s14: { n: 'Выстраивает события по порядку', e: 'Раскладывает три-четыре картинки истории в том порядке, в каком всё происходило.' },
+          s15: { n: 'Находит лишнее', e: 'Замечает, какой предмет в группе лишний, и объясняет почему.' },
+          s16: { n: 'Задачи в два действия', e: 'Решает задачу, где нужны два действия: например, сначала что-то купили, потом часть отдали.' },
+          s17: { n: 'Сложение с переходом через десяток', e: 'Решает примеры вида 8 + 7 или 26 + 9, где сумма единиц переходит через десяток.' },
+          s18: { n: 'Измеряет линейкой', e: 'Измеряет отрезок в сантиметрах, прикладывая ноль линейки к его началу.' }
+        },
+        actOver: 'ЧТО ДЕЛАТЬ · ОДНО ДЕЛО', actTitle: 'Устные задачи — через игру, по 10 минут',
+        actBody: 'Этот навык сейчас формируется — именно здесь усилия дают больше всего. Не за столом, а, например, на базаре: «У нас было 7 яблок, купили ещё 3. Сколько стало?» Остановитесь, пока ему ещё хочется продолжать.',
+        actNote: 'В этом возрасте больше — не значит лучше. 10 минут — это не минимум, а весь план.',
+        refOver: 'ЧЕГО МЫ НЕ ДЕЛАЕМ', refTitle: '«Какие у него шансы поступить в Президентскую школу?»',
+        refBody: 'В шесть лет любой честный ответ был бы выдумкой. Тесты в этом возрасте плохо предсказывают результат в десять: влияют и сон, и настроение, и даже месяц рождения. Место среди других детей мы начинаем показывать с 3 класса — тогда у результатов появляется смысл.'
+      },
+      en: {
+        navLabel: 'Main menu', navChildren: 'MY CHILDREN', navGrade4: 'Grade 4', navGrade1: 'Grade 1', navAddChild: 'Add a child', navFamily: 'FAMILY', navTakeWave: 'Take wave 4', navOlympiad: 'Olympiad', navAccess: 'Access & consents', navSignOut: 'Sign out', navNextWave: 'Wave 5 opens 13 January', navNextWaveSub: 'Take it at home or at the tutor’s.',
+        langLabel: 'Language', themeLabel: 'Switch theme', notifLabel: 'Notifications', retry: 'Try again', loadingLabel: 'Loading the report',
+        crumb: 'Season 2026/27 · Skills report',
+        subtitle: 'Grade 1 · What Temur can do, with no comparison to other children',
+        chipWave: 'Wave 4 · December',
+        switchLabel: 'Madina · Grade 4', switchAria: 'Switch to Madina’s report',
+        errTitle: 'We couldn’t load Temur’s report', errBody: 'Check your internet connection and try again. His results are saved and nothing is lost.',
+        emptyTitle: 'Temur hasn’t taken a wave yet', emptyBody: 'After his first wave you’ll see which of the 18 grade-1 skills are secure, which are emerging, and one thing to do at home. The next wave opens 13 January: 15 picture questions, with instructions read aloud.', emptyCta: 'See how a wave works',
+        eS: 'Several right answers in one wave, confirmed again in the next.', eE: 'Sometimes right, not steady yet. This is where help at home pays off most.', eN: 'Too early to work on. This skill comes in its own time.',
+        emptyNote: 'There will be no comparison with other children, only what Temur can do.',
+        sumOver: 'WHAT TEMUR CAN DO', sumBig: '11 of 18', sumUnit: 'skills secure',
+        barAria: 'Of 18 skills: 11 secure, 4 emerging, 3 not yet',
+        ruleNote: 'A skill counts as secure only after several correct answers in one wave, confirmed again in the next wave. One lucky answer doesn’t count.',
+        nextHint: 'Next check: wave 5 on 13 January. 15 picture questions with instructions read aloud, so Temur doesn’t need to read.',
+        newOver: 'NEW SINCE OCTOBER', newTitle: 'Three new skills in two months', confDec: 'confirmed in December', confNov: 'confirmed in November',
+        newNote: 'Each new skill was confirmed in two waves in a row.',
+        skillsTitle: 'All skills this season', skillsHint: 'Click a skill to see what it means and how we know.', filterLabel: 'Filter skills', tabAll: 'All',
+        st: { secure: 'Secure', emerging: 'Emerging', not_yet: 'Not yet' },
+        cl: { N: 'Number & computation', P: 'Problem solving', L: 'Logic & space' },
+        mon: { sep: 'September', oct: 'October', nov: 'November', dec: 'December' },
+        evSecure: 'Right in {n} questions in {m}, confirmed again in wave {w}.',
+        evEmerging: 'Right in {k} of {n} questions in December. Not steady yet, so wave 5 will check again.',
+        evNot: 'Came up in {n} questions in December, not solved yet. It’s later material in the grade 1 programme, so it’s too early to push.',
+        sk: {
+          s1: { n: 'Counts to 100, forward and back', e: 'Counts aloud from any number up to 100 and back down without skipping.' },
+          s2: { n: 'Knows how numbers up to 10 are made', e: 'Knows that 7 is 5 and 2, or 4 and 3, without counting on fingers.' },
+          s3: { n: 'Compares numbers up to 100', e: 'Can tell which of two numbers is bigger, like 47 and 74, and explain why.' },
+          s4: { n: 'Adds within 20 without carrying', e: 'Adds numbers like 12 + 5, where the ones don’t go past ten.' },
+          s5: { n: 'Subtracts within 20 without borrowing', e: 'Takes away numbers like 18 − 6, where no ten needs to be broken up.' },
+          s6: { n: 'Solves a spoken one-step word problem', e: 'Hears a short story with numbers and finds the answer in one step: “There were 5 birds, 2 flew away. How many are left?”' },
+          s7: { n: 'Knows how numbers up to 20 are made', e: 'Knows that 14 is one ten and four ones, and that 9 and 6 make 15.' },
+          s8: { n: 'Reads a simple table', e: 'Finds the right answer in a small table of rows and columns.' },
+          s9: { n: 'Uses left, right and between', e: 'Says where things are with these words, both from his own point of view and from a picture.' },
+          s10: { n: 'Recognises flat shapes', e: 'Names circles, squares, triangles and rectangles, even when they are turned or a different size.' },
+          s11: { n: 'Continues a simple pattern', e: 'Sees what repeats in a row of shapes or colours and says what comes next.' },
+          s12: { n: 'Reads a picture graph', e: 'Reads a chart where each picture stands for one thing and says which has more.' },
+          s13: { n: 'Says which is longer or shorter', e: 'Compares the length of two or three objects by eye and by lining them up.' },
+          s14: { n: 'Puts events in order', e: 'Puts three or four pictures from a story in the order they happened.' },
+          s15: { n: 'Finds the odd one out', e: 'Spots which item in a group doesn’t belong and says why.' },
+          s16: { n: 'Two-step word problems', e: 'Solves a problem that needs two steps, like buying something and then giving some away.' },
+          s17: { n: 'Adds with carrying', e: 'Adds numbers like 8 + 7 or 26 + 9, where the ones go past ten.' },
+          s18: { n: 'Measures with a ruler', e: 'Measures a line in centimetres by putting the ruler’s zero at the start.' }
+        },
+        actOver: 'WHAT TO DO · ONE THING', actTitle: 'Spoken word problems, through play, 10 minutes at a time',
+        actBody: 'This skill is emerging, which is where effort pays off most. Not at a desk. At the market: “We have 7 apples and buy 3 more. How many now?” Stop while he still wants to keep going.',
+        actNote: 'More is not better at this age. Ten minutes is the whole plan, not the minimum.',
+        refOver: 'WHAT WE DON’T DO', refTitle: '“What are his chances at the Presidential School?”',
+        refBody: 'At six, any honest answer would be made up. Tests at this age predict results at ten poorly: sleep, mood and birth month all play a part. We start showing a position among other children in grade 3, when the results start to mean something.'
+      }
+    };
+    const sh = this.shell(T);
+    const t = sh.t;
+    const D = [
+      ['s1', 'N', 'secure', 3, 3, 'sep', 2],
+      ['s2', 'N', 'secure', 4, 4, 'sep', 2],
+      ['s3', 'N', 'secure', 3, 3, 'oct', 3],
+      ['s4', 'N', 'secure', 4, 4, 'sep', 2],
+      ['s5', 'N', 'secure', 3, 3, 'sep', 2],
+      ['s6', 'P', 'emerging', 4, 2, 'dec', 5],
+      ['s7', 'N', 'emerging', 3, 2, 'dec', 5],
+      ['s8', 'P', 'emerging', 3, 1, 'dec', 5],
+      ['s9', 'L', 'emerging', 4, 2, 'dec', 5],
+      ['s10', 'L', 'secure', 3, 3, 'sep', 2],
+      ['s11', 'L', 'secure', 3, 3, 'nov', 4],
+      ['s12', 'P', 'secure', 3, 3, 'nov', 4],
+      ['s13', 'L', 'secure', 3, 3, 'sep', 2],
+      ['s14', 'L', 'secure', 3, 3, 'sep', 2],
+      ['s15', 'L', 'secure', 4, 4, 'sep', 2],
+      ['s16', 'P', 'not_yet', 2, 0, 'dec', 5],
+      ['s17', 'N', 'not_yet', 2, 0, 'dec', 5],
+      ['s18', 'L', 'not_yet', 2, 0, 'dec', 5]
+    ];
+    const look = {
+      secure: { bg: 'var(--success-bg)', ink: 'var(--success)' },
+      emerging: { bg: 'var(--brand-100)', ink: 'var(--brand-700)' },
+      not_yet: { bg: 'var(--surface-300)', ink: 'var(--ink-600)' }
+    };
+    const tpl = { secure: t.evSecure, emerging: t.evEmerging, not_yet: t.evNot };
+    const f = s.filter;
+    const skills = D.filter((r) => f === 'all' || r[2] === f).map((r) => {
+      const id = r[0];
+      const open = s.open === id;
+      return {
+        name: t.sk[id].n,
+        explain: t.sk[id].e,
+        cluster: t.cl[r[1]],
+        label: t.st[r[2]],
+        bg: look[r[2]].bg,
+        ink: look[r[2]].ink,
+        evidence: this.fill(tpl[r[2]], { n: r[3], k: r[4], m: t.mon[r[5]], w: r[6] }),
+        open: open,
+        rot: open ? 180 : 0,
+        toggle: () => this.setState({ open: s.open === id ? '' : id })
+      };
+    });
+    const count = (st) => D.filter((r) => r[2] === st).length;
+    const defs = [['all', t.tabAll + ' · ' + D.length], ['emerging', t.st.emerging + ' · ' + count('emerging')], ['secure', t.st.secure + ' · ' + count('secure')], ['not_yet', t.st.not_yet + ' · ' + count('not_yet')]];
+    const tabs = defs.map((d) => Object.assign({ label: d[1], on: f === d[0], pick: () => this.setState({ filter: d[0] }) }, this.seg(f === d[0])));
+    return Object.assign(sh, {
+      showTitle: s.ui !== 'loading',
+      skills: skills,
+      tabs: tabs,
+      barAria: t.barAria,
+      legSecure: t.st.secure + ' · ' + count('secure'),
+      legEmerging: t.st.emerging + ' · ' + count('emerging'),
+      legNot: t.st.not_yet + ' · ' + count('not_yet')
+    });
+  }
+}
+</script>
+
+
+</body></html>

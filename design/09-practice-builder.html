@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="uz"><head>
+<meta charset="utf-8">
+<title>Zinapo · Practice builder</title>
+<script src="_assets/dc-runtime.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-feae57212855.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-9d8db2e8ccd9.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-bcedb9e2e528.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-326a88b4ddbb.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-06ad36000cd8.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-4f27206c4b1c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-feae57212855.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-9d8db2e8ccd9.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-bcedb9e2e528.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-326a88b4ddbb.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-06ad36000cd8.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-4f27206c4b1c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+body{margin:0;font-family:"Manrope","Inter",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+.z{--surface-000:#f7f5fb;--surface-100:#ffffff;--surface-200:#f1ecfa;--surface-300:#e7e0f5;--ink-900:#1a1622;--ink-600:#58506e;--ink-400:#6e6686;--line-100:#e6dff3;--line-200:#cfc4e6;--brand-050:#f5f0ff;--brand-100:#e9e0ff;--brand-300:#c9b0ff;--brand-400:#ad89ff;--brand-600:#7444e4;--brand-700:#522cc3;--ink-on-primary:#1a1622;--focus-ring:#ad89ff99;--success:#10805a;--success-bg:#dff5ec;--warning:#9a5c00;--warning-bg:#fdf0dc;--danger:#c62a43;--danger-bg:#fde7ea;--accent-teal:#0d7d86;--accent-teal-bg:#ddf3f4;--accent-coral:#c04a2a;--accent-coral-bg:#fceae4;--accent-blue:#2158c9;--accent-blue-bg:#e3ecfd;--overlay:#1a162299;--mode-practice:#0d7d86;--shadow-xs:0 1px 2px rgba(26,22,34,.06);--shadow-float:0 2px 4px rgba(26,22,34,.05),0 8px 20px -6px rgba(86,58,160,.20);--shadow-float-lg:0 4px 8px rgba(26,22,34,.06),0 16px 32px -8px rgba(86,58,160,.28);--shadow-card:0 1px 2px rgba(26,22,34,.04),0 12px 28px -14px rgba(86,58,160,.22);--shadow-overlay:0 8px 16px rgba(26,22,34,.08),0 32px 64px -20px rgba(86,58,160,.34);color:var(--ink-900);background:var(--surface-000)}
+.z[data-theme="dark"]{--surface-000:#121016;--surface-100:#1b1822;--surface-200:#242030;--surface-300:#2e2940;--ink-900:#f5f2fb;--ink-600:#bdb6cf;--ink-400:#9990ab;--line-100:#322c44;--line-200:#443c5c;--brand-050:#221c33;--brand-100:#2d2547;--brand-300:#6e4fc0;--brand-600:#7c4de8;--brand-700:#c4a9ff;--focus-ring:#ad89ffaa;--success:#4ed6a1;--success-bg:#16342a;--warning:#f2b457;--warning-bg:#38290f;--danger:#ff7f8d;--danger-bg:#3a1b21;--accent-teal:#4fd0d9;--accent-teal-bg:#123236;--accent-coral:#ff9273;--accent-coral-bg:#3a1f16;--accent-blue:#8fb0ff;--accent-blue-bg:#15233f;--overlay:#0a0810cc;--mode-practice:#0e7c85;--shadow-xs:0 1px 2px rgba(0,0,0,.5);--shadow-float:0 2px 4px rgba(0,0,0,.45),0 8px 20px -6px rgba(0,0,0,.6);--shadow-float-lg:0 4px 8px rgba(0,0,0,.5),0 16px 32px -8px rgba(0,0,0,.7);--shadow-card:0 1px 2px rgba(0,0,0,.4),0 12px 28px -14px rgba(0,0,0,.55);--shadow-overlay:0 8px 16px rgba(0,0,0,.5),0 32px 64px -20px rgba(0,0,0,.75)}
+.z{--on-practice-soft:rgba(255,255,255,.18)}
+.z a{color:var(--brand-700)}
+.z button,.z input,.z textarea,.z select{font-family:inherit}
+.z button{cursor:pointer}
+.z button:disabled{cursor:not-allowed}
+.z input::placeholder,.z textarea::placeholder{color:var(--ink-400)}
+.lift{transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s cubic-bezier(.2,.8,.2,1)}
+.lift:hover{transform:translateY(-1px);box-shadow:var(--shadow-float-lg)!important}
+.ghost:hover{background:var(--surface-200)!important}
+.pghost:hover{background:var(--on-practice-soft)!important}
+.row:hover{background:var(--surface-200)!important}
+.z button:focus-visible,.z a:focus-visible,.z input:focus-visible,.z textarea:focus-visible,.z select:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus-ring)!important}
+.z input:focus-visible,.z textarea:focus-visible,.z select:focus-visible{border-color:var(--brand-600)!important}
+.skel{background:linear-gradient(90deg,var(--surface-300) 0%,var(--surface-200) 50%,var(--surface-300) 100%);background-size:200% 100%;animation:zsk 1.4s ease-in-out infinite;border-radius:14px}
+@keyframes zsk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.lift:hover{transform:none}.skel{animation:none}}
+</style>
+</helmet>
+<div class="z" data-theme="{{ theme }}" style="width: 1440px; height: 1340px; box-sizing: border-box; padding: 16px; display: flex; gap: 32px; align-items: flex-start; background: var(--surface-000); color: var(--ink-900);">
+
+<nav aria-label="{{ t.navLabel }}" style="width: 264px; height: 1008px; flex-shrink: 0; box-sizing: border-box; padding: 28px 16px 16px; background: var(--surface-100); border-radius: 52px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<a href="SignIn.dc.html" aria-label="Zinapo" style="display: flex; align-items: center; gap: 12px; padding: 0 12px; text-decoration: none; color: var(--ink-900);">
+<span style="width: 40px; height: 40px; border-radius: 14px; background: var(--brand-400); display: flex; align-items: center; justify-content: center; color: var(--ink-on-primary);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M3 20h5v-5h5v-5h5V5h3"></path></svg>
+</span>
+<span style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">Zinapo</span>
+</a>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="padding: 0 16px 8px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.navGroups }}</div>
+<a href="Teacher.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">{{ t.navGroupA }}<span style="font-size: 12px;">18</span></a>
+<a href="Teacher.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">{{ t.navGroupB }}<span style="font-size: 12px;">12</span></a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="padding: 0 16px 8px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.navWork }}</div>
+<a href="Practice.dc.html" aria-current="page" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; background: var(--brand-050); color: var(--brand-700); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>{{ t.navPractice }}</a>
+<a href="Invite.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 6h16v12H4z"></path><path d="M4 7l8 6 8-6"></path></svg>{{ t.navInvite }}</a>
+<a href="SignIn.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"></path></svg>{{ t.navSignOut }}</a>
+</div>
+<div style="padding: 16px; border-radius: 30px; background: var(--surface-200); display: flex; flex-direction: column; gap: 6px;">
+<span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.navAccessCount }}</span>
+<span style="font-size: 12px; line-height: 16px; color: var(--ink-600);">{{ t.navAccessSub }}</span>
+</div>
+<sc-if value="{{ demoBar }}" hint-placeholder-val="{{ true }}">
+<div style="margin-top: auto; padding: 12px; border-radius: 30px; border: 1.5px dashed var(--line-200); display: flex; flex-direction: column; gap: 8px;">
+<span style="padding: 0 6px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">PROTOTYPE · SCREEN STATE</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px;">
+<sc-for list="{{ uiStates }}" as="u" hint-placeholder-count="4">
+<button sc-camel-on-click="{{ u.pick }}" aria-pressed="{{ u.on }}" style="height: 36px; border: 0; border-radius: 22px; font-size: 12px; font-weight: 600; background: {{ u.bg }}; color: {{ u.ink }};">{{ u.label }}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</nav>
+
+<main style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+
+<header style="height: 72px; box-sizing: border-box; padding: 0 12px 0 16px; background: var(--mode-practice); border-radius: 52px; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 12px; color: #ffffff;">
+<span style="height: 40px; flex-shrink: 0; padding: 0 16px; border-radius: 999px; background: var(--on-practice-soft); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; display: flex; align-items: center; gap: 8px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>{{ t.modeTag }}</span>
+<span style="flex-grow: 1; min-width: 0; padding-left: 4px; font-size: 14px; line-height: 20px; font-weight: 600;">{{ t.modeNote }}</span>
+<div role="group" aria-label="{{ t.langLabel }}" style="flex-shrink: 0; display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--on-practice-soft);">
+<sc-for list="{{ plangs }}" as="l" hint-placeholder-count="3">
+<button sc-camel-on-click="{{ l.pick }}" aria-pressed="{{ l.on }}" style="height: 36px; min-width: 52px; padding: 0 12px; border: 0; border-radius: 22px; font-size: 13px; font-weight: 600; background: {{ l.bg }}; color: {{ l.ink }}; box-shadow: {{ l.shadow }};">{{ l.label }}</button>
+</sc-for>
+</div>
+<button sc-camel-on-click="{{ toggleTheme }}" aria-label="{{ t.themeLabel }}" class="pghost" style="width: 48px; height: 48px; flex-shrink: 0; border: 0; border-radius: 30px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center;">
+<sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</sc-if>
+<sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"></path></svg>
+</sc-if>
+</button>
+<button aria-label="{{ t.notifLabel }}" class="pghost" style="width: 48px; height: 48px; flex-shrink: 0; border: 0; border-radius: 30px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 21h4"></path></svg>
+</button>
+<span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 999px; background: var(--surface-100); color: var(--accent-teal); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center;">AR</span>
+</header>
+
+<sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+<div aria-busy="true" style="display: flex; flex-direction: column; gap: 24px;">
+<div style="padding: 8px 8px 0; display: flex; align-items: flex-end; gap: 24px;">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 10px;"><div class="skel" style="width: 340px; height: 36px;"></div><div class="skel" style="width: 520px; height: 18px;"></div></div>
+<div class="skel" style="width: 380px; height: 48px; border-radius: 999px;"></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: start;">
+<div style="grid-column: span 7; padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;">
+<div role="status" style="padding: 16px 20px; border-radius: 30px; background: var(--accent-teal-bg); color: var(--accent-teal); display: flex; gap: 14px; align-items: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 3l9 5-9 5-9-5z"></path><path d="M3 13l9 5 9-5"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; line-height: 21px; font-weight: 700;">{{ t.loadTitle }}</span><span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.loadSub }}</span></span>
+</div>
+<div class="skel" style="width: 360px; height: 20px;"></div>
+<div class="skel" style="height: 14px;"></div>
+<div class="skel" style="height: 64px; border-radius: 30px;"></div>
+<div class="skel" style="height: 84px; border-radius: 30px;"></div>
+<div class="skel" style="height: 84px; border-radius: 30px;"></div>
+<div class="skel" style="height: 84px; border-radius: 30px;"></div>
+<div class="skel" style="width: 380px; height: 48px; border-radius: 999px;"></div>
+<div class="skel" style="align-self: flex-end; width: 200px; height: 48px; border-radius: 30px;"></div>
+</div>
+<div style="grid-column: span 5; padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 14px;">
+<div class="skel" style="width: 160px; height: 12px;"></div>
+<div class="skel" style="width: 280px; height: 20px;"></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;"><div class="skel" style="height: 96px;"></div><div class="skel" style="height: 96px;"></div></div>
+<sc-for list="{{ skelRows }}" as="k" hint-placeholder-count="9">
+<div style="display: flex; align-items: center; gap: 12px;"><div class="skel" style="width: 90px; height: 14px;"></div><div class="skel" style="flex-grow: 1; height: 10px; border-radius: 999px;"></div><div class="skel" style="width: 40px; height: 14px;"></div></div>
+</sc-for>
+<div class="skel" style="height: 120px; border-radius: 30px;"></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+<section role="alert" style="padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; gap: 20px; align-items: flex-start;">
+<span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 999px; background: var(--danger-bg); color: var(--danger); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16.5h.01"></path></svg>
+</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+<h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.errTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.errBody }}</p>
+</div>
+<button sc-camel-on-click="{{ retry }}" class="lift" style="height: 48px; padding: 0 24px; border: 0; border-radius: 30px; background: var(--mode-practice); color: #ffffff; font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ t.retry }}</button>
+</section>
+</sc-if>
+
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+<section style="padding: 56px 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;">
+<span style="width: 64px; height: 64px; border-radius: 20px; background: var(--accent-teal-bg); color: var(--accent-teal); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 5h16v14H4z"></path><path d="M8 9h8M8 13h5"></path></svg>
+</span>
+<h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.emptyTitle }}</h2>
+<p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.emptyBody }}</p>
+<div style="margin-top: 12px; width: 100%; max-width: 560px; box-sizing: border-box; padding: 20px 24px; border-radius: 30px; background: var(--surface-200); display: flex; flex-direction: column; gap: 8px; text-align: left;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.emptyHintLabel }}</span>
+<span style="font-size: 16px; line-height: 24px; font-weight: 600;">{{ t.emptyHint }}</span>
+<span style="align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 3px 8px; border-radius: 8px; background: var(--surface-100); color: var(--ink-600);">STOPS_AFTER_FIRST_STEP</span>
+</div>
+<div style="margin-top: 12px; display: flex; gap: 12px;">
+<a href="Teacher.dc.html" class="lift" style="height: 56px; padding: 0 28px; border-radius: 30px; background: var(--mode-practice); color: #ffffff; font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-float);">{{ t.emptyCta }}
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<button sc-camel-on-click="{{ startTopic }}" class="ghost" style="height: 56px; padding: 0 24px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-xs);">{{ t.emptyAlt }}</button>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isDefault }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 24px;">
+
+<div style="padding: 8px 8px 0; display: flex; align-items: flex-end; gap: 24px;">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+<h1 style="margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.02em;">{{ pageTitle }}</h1>
+<sc-if value="{{ isMistake }}" hint-placeholder-val="{{ true }}">
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.subMistakePre }} <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; padding: 2px 8px; border-radius: 8px; background: var(--accent-teal-bg); color: var(--accent-teal);">STOPS_AFTER_FIRST_STEP</span> {{ t.subMistakePost }}</p>
+</sc-if>
+<sc-if value="{{ isTopic }}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ topicCluster }} · {{ t.subTopic }}</p>
+</sc-if>
+</div>
+<div style="flex-shrink: 0; display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
+<span style="padding-right: 12px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.srcLabel }}</span>
+<div role="group" aria-label="{{ t.srcLabel }}" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--accent-teal-bg);">
+<sc-for list="{{ sources }}" as="o" hint-placeholder-count="2">
+<button sc-camel-on-click="{{ o.pick }}" aria-pressed="{{ o.on }}" style="height: 40px; padding: 0 18px; border: 0; border-radius: 22px; font-size: 14px; font-weight: 600; background: {{ o.bg }}; color: {{ o.ink }}; box-shadow: {{ o.shadow }};">{{ o.label }}</button>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: start;">
+
+<section aria-labelledby="setT" style="grid-column: span 7; box-sizing: border-box; padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 20px;">
+
+<sc-if value="{{ isTopic }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 10px; padding-bottom: 20px; border-bottom: 1px solid var(--line-100);">
+<span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.topicsLabel }}</span>
+<div role="group" aria-label="{{ t.topicsLabel }}" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px;">
+<sc-for list="{{ topics }}" as="p" hint-placeholder-count="4">
+<button sc-camel-on-click="{{ p.pick }}" aria-pressed="{{ p.on }}" style="min-height: 64px; box-sizing: border-box; padding: 12px 18px; border: 0; border-radius: 30px; background: {{ p.bg }}; box-shadow: {{ p.ring }}; display: flex; flex-direction: column; justify-content: center; gap: 2px; text-align: left; color: var(--ink-900);">
+<span style="font-size: 15px; line-height: 21px; font-weight: 600;">{{ p.name }}</span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ p.cluster }}</span>
+</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<h2 id="setT" style="margin: 0; font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.setTitle }}</h2>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.setSub }}</span>
+</div>
+
+<div style="padding: 14px 18px; border-radius: 14px; background: var(--accent-teal-bg); display: flex; gap: 12px; align-items: flex-start;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; fill: none; stroke: var(--accent-teal); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 13px; line-height: 20px; font-weight: 700; color: var(--accent-teal);">{{ t.anchorTitle }}</span><span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.anchorNote }}</span></span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<sc-for list="{{ qs }}" as="q" hint-placeholder-count="3">
+<button sc-camel-on-click="{{ q.pick }}" aria-pressed="{{ q.on }}" style="width: 100%; box-sizing: border-box; padding: 16px 20px; border: 0; border-radius: 30px; background: {{ q.bg }}; box-shadow: {{ q.ring }}; display: flex; gap: 14px; align-items: flex-start; text-align: left; color: var(--ink-900);">
+<span style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 999px; background: {{ q.numBg }}; color: var(--accent-teal); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">{{ q.n }}</span>
+<span style="flex-grow: 1; font-size: 15px; line-height: 23px;">{{ q.text }}</span>
+<sc-if value="{{ q.swapped }}" hint-placeholder-val="{{ false }}">
+<span style="flex-shrink: 0; height: 26px; padding: 0 10px; border-radius: 999px; background: var(--surface-100); color: var(--accent-teal); font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 8h13l-3-3M20 16H7l3 3"></path></svg>{{ t.swapped }}</span>
+</sc-if>
+</button>
+</sc-for>
+</div>
+
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.more }}</span>
+<span role="status" style="font-size: 12px; line-height: 16px; font-weight: 600; color: {{ swapInk }};">{{ swapStatus }}</span>
+</div>
+<button sc-camel-on-click="{{ swap }}" class="ghost" style="flex-shrink: 0; height: 36px; padding: 0 16px; border: 1px solid var(--line-200); border-radius: 22px; background: var(--surface-100); color: var(--ink-900); font-size: 13px; font-weight: 600; box-shadow: var(--shadow-xs); display: flex; align-items: center; gap: 6px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 8h13l-3-3M20 16H7l3 3"></path></svg>{{ t.swapBtn }}</button>
+</div>
+
+<div style="padding-top: 20px; border-top: 1px solid var(--line-100); display: flex; flex-direction: column; gap: 10px;">
+<span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.whoLabel }}</span>
+<div role="group" aria-label="{{ t.whoLabel }}" style="align-self: flex-start; display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--accent-teal-bg);">
+<sc-for list="{{ whos }}" as="w" hint-placeholder-count="2">
+<button sc-camel-on-click="{{ w.pick }}" aria-pressed="{{ w.on }}" style="height: 40px; padding: 0 18px; border: 0; border-radius: 22px; font-size: 14px; font-weight: 600; background: {{ w.bg }}; color: {{ w.ink }}; box-shadow: {{ w.shadow }};">{{ w.label }}</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; justify-content: flex-end;">
+<button sc-camel-on-click="{{ assign }}" disabled="{{ assigned }}" class="lift" style="height: 56px; padding: 0 28px; border: 0; border-radius: 30px; background: {{ assignBg }}; color: {{ assignInk }}; font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ assignLabel }}</button>
+</div>
+
+<sc-if value="{{ assigned }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="padding: 16px 20px; border-radius: 14px; background: var(--success-bg); display: flex; gap: 12px; align-items: flex-start;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; fill: none; stroke: var(--success); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+<span style="flex-grow: 1; font-size: 13px; line-height: 20px; color: var(--ink-900);">{{ t.assignedNote }}</span>
+<button sc-camel-on-click="{{ unassign }}" class="ghost" style="flex-shrink: 0; height: 36px; padding: 0 14px; border: 0; border-radius: 22px; background: transparent; color: var(--success); font-size: 13px; font-weight: 600;">{{ t.undo }}</button>
+</div>
+</sc-if>
+</section>
+
+<section aria-labelledby="lastT" style="grid-column: span 5; box-sizing: border-box; padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent-teal);">{{ t.lastOver }}</span>
+<h2 id="lastT" style="margin: 0; font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.lastTitle }}</h2>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.lastSet }}</span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+<div style="padding: 16px; border-radius: 14px; background: var(--accent-teal-bg); display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent-teal);">{{ t.stTyp }}</span>
+<span style="font-size: 26px; line-height: 32px; font-weight: 700;">{{ typical }}</span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-600);">{{ t.stTypSub }}</span>
+</div>
+<div style="padding: 16px; border-radius: 14px; background: var(--surface-200); display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.stDone }}</span>
+<span style="font-size: 26px; line-height: 32px; font-weight: 700;">11 / 12</span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-600);">{{ t.stDoneSub }}</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<sc-for list="{{ solved }}" as="p" hint-placeholder-count="11">
+<div style="display: flex; align-items: center; gap: 12px;">
+<span style="width: 96px; flex-shrink: 0; font-size: 14px; line-height: 20px; font-weight: 600;">{{ p.name }}</span>
+<span style="flex-grow: 1; height: 10px; border-radius: 999px; background: var(--surface-300); position: relative; display: block;"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{ p.pct }}%; border-radius: 999px; background: {{ p.fill }};"></span></span>
+<span style="width: 52px; flex-shrink: 0; text-align: right; font-size: 13px; font-weight: 700; color: {{ p.ink }};">{{ p.n }}</span>
+</div>
+</sc-for>
+</div>
+<div style="padding: 16px; border-radius: 30px; background: var(--accent-teal-bg); display: flex; flex-direction: column; gap: 12px;">
+<span style="padding: 0 4px; font-size: 13px; line-height: 20px; font-weight: 600; color: var(--ink-900);">{{ lagNote }}</span>
+<button sc-camel-on-click="{{ repeat }}" class="lift" style="height: 48px; border: 0; border-radius: 30px; background: {{ repeatBg }}; color: {{ repeatInk }}; font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ repeatLabel }}</button>
+</div>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.noPct }}</span>
+</section>
+
+</div>
+</div>
+</sc-if>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;uz&quot;,&quot;ru&quot;,&quot;en&quot;],&quot;default&quot;:&quot;uz&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;screenState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;loading&quot;,&quot;empty&quot;,&quot;error&quot;],&quot;default&quot;:&quot;default&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;demoBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Prototype&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1340}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lang: this.lsGet('zinapo.lang') || props.lang || 'uz',
+      theme: this.lsGet('zinapo.theme') || props.theme || 'light',
+      ui: props.screenState || 'default',
+      source: 'mistake',
+      topic: 0,
+      slots: {},
+      sel: 0,
+      swapped: '',
+      who: 'lag',
+      assigned: false,
+      repeated: false
+    };
+  }
+  lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+  lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} }
+  componentDidUpdate(prev) {
+    const p = this.props, patch = {};
+    if (p.lang && p.lang !== prev.lang) patch.lang = p.lang;
+    if (p.theme && p.theme !== prev.theme) patch.theme = p.theme;
+    if (p.screenState && p.screenState !== prev.screenState) patch.ui = p.screenState;
+    if (Object.keys(patch).length) this.setState(patch);
+  }
+  seg(on) {
+    return { bg: on ? 'var(--surface-100)' : 'transparent', ink: on ? 'var(--ink-900)' : 'var(--ink-600)', shadow: on ? 'var(--shadow-xs)' : 'none' };
+  }
+  pseg(on) {
+    return { bg: on ? 'var(--surface-100)' : 'transparent', ink: on ? 'var(--accent-teal)' : 'var(--ink-600)', shadow: on ? 'var(--shadow-xs)' : 'none' };
+  }
+  shell(T) {
+    const s = this.state;
+    const t = T[s.lang] || T.uz;
+    const langs = [['uz', 'Oʻz'], ['ru', 'Рус'], ['en', 'Eng']].map((p) => Object.assign({ label: p[1], on: s.lang === p[0], pick: () => { this.lsSet('zinapo.lang', p[0]); this.setState({ lang: p[0] }); } }, this.seg(s.lang === p[0])));
+    const uiStates = [['default', 'Default'], ['loading', 'Loading'], ['empty', 'Empty'], ['error', 'Error']].map((p) => ({
+      label: p[1], on: s.ui === p[0],
+      bg: s.ui === p[0] ? 'var(--brand-100)' : 'transparent',
+      ink: s.ui === p[0] ? 'var(--brand-700)' : 'var(--ink-600)',
+      pick: () => this.setState({ ui: p[0] })
+    }));
+    return {
+      t, langs, uiStates,
+      theme: s.theme, isDark: s.theme === 'dark', isLight: s.theme !== 'dark',
+      toggleTheme: () => { const n = s.theme === 'dark' ? 'light' : 'dark'; this.lsSet('zinapo.theme', n); this.setState({ theme: n }); },
+      demoBar: this.props.demoBar !== false,
+      isDefault: s.ui === 'default', isLoading: s.ui === 'loading', isEmpty: s.ui === 'empty', isError: s.ui === 'error',
+      retry: () => this.setState({ ui: 'default' })
+    };
+  }
+  renderVals() {
+    const s = this.state;
+    const T = {
+      uz: {
+        navLabel: 'Asosiy menyu', navGroups: 'GURUHLAR', navGroupA: '4-sinf · Shanba', navGroupB: '3-sinf · Ish kunlari', navWork: 'ISH', navPractice: 'Mashq', navInvite: 'Taklifnomalar', navSignOut: 'Chiqish',
+        navAccessCount: '18 nafar bolaga ruxsat', navAccessSub: 'Ota-onalar 2027-yil 31-maygacha berishgan. Muddati tugagach, avtomatik yopiladi.',
+        langLabel: 'Til', themeLabel: 'Mavzuni almashtirish', notifLabel: 'Bildirishnomalar', retry: 'Qayta urinish',
+        modeTag: 'MASHQ', modeNote: 'Oʻrgatish uchun, oʻlchash uchun emas. Bu yerdagi natijalar bolaning oʻrni va tarixiga taʼsir qilmaydi.',
+        srcLabel: 'Toʻplam manbasi', srcMistake: 'Keng tarqalgan xatodan', srcTopic: 'Mavzu boʻyicha',
+        titleMistake: 'Ikki amalli masalalar', subMistakePre: '4-monitoringdagi eng keng tarqalgan xato asosida:', subMistakePost: '· 14 boladan 12 nafarida',
+        subTopic: 'Mavzuni tanlang — savollarni tizim oʻzi tanlaydi.',
+        topicsLabel: 'Mavzuni tanlang', topics: ['Sonning qismini topish', 'Yuza va perimetr', 'Sonli qonuniyatlar', 'Vaqt va harakat'],
+        clusters: ['Son va hisoblash', 'Masalalar yechish', 'Mantiq va fazo'],
+        setTitle: 'Toʻplam tayyor: 10 ta savol, taxminan 20 daqiqa',
+        setSub: 'Savollarni tizim tanladi — oddiydan murakkabga. Quyida uchtasi namuna sifatida berilgan; almashtirish uchun birini tanlang.',
+        anchorTitle: 'Monitoring savollari mashqqa tushmaydi',
+        anchorNote: 'Ular toʻplam yigʻilayotgan paytdayoq chiqarib tashlanadi — shunda monitoring natijalari halol va solishtirsa boʻladigan boʻlib qoladi.',
+        more: '+ yana shu turdagi 7 ta savol', swapped: 'Almashtirildi', swapBtn: 'Savolni almashtirish',
+        selPre: 'Tanlangan: ', selPost: '-savol', swapPre: '', swapPost: '-savol shu qiyinlikdagi boshqa savolga almashtirildi.',
+        whoLabel: 'Kimga beriladi', whoLag: 'Shu xatoni qilgan 12 nafar', whoAll: 'Butun guruh (18)',
+        assign: 'Mashqni berish', assignedPre: '', assignedPost: ' nafar bolaga yuborildi ✓',
+        assignedNote: 'Bolalar mashqni oʻz sahifasida koʻradi, ota-onalarga qisqa xabar boradi. Natijalar shu yerda “nechta yechdi” koʻrinishida chiqadi.', undo: 'Bekor qilish',
+        lastOver: 'OXIRGI MASHQ · 9-DEKABR', lastTitle: 'Natija berdimi? Har bir bola nechta yechdi', lastSet: 'Ikki amalli masalalar · 12 nafar bolaga berilgan',
+        stTyp: 'ODATDAGI NATIJA', stTypSub: '10 ta savoldan yechilgani (mediana)', stDone: 'BAJARDI', stDoneSub: '1 nafari hali boshlamagan',
+        lagPre: '', lagPost: ' nafar bola 10 ta savoldan 6 tasidan kamini yechdi.',
+        repPre: 'Qiynalgan ', repPost: ' nafarga takrorlash',
+        repdPre: 'Toʻplam yana ', repdPost: ' nafar bolaga yuborildi. Mashqni istalgancha takrorlash mumkin.', repdLbl: 'Yuborildi ✓ · bekor qilish',
+        noPct: 'Mashqda foizlar va oʻrin koʻrsatilmaydi — faqat nechta savol yechilgani.',
+        emptyTitle: 'Hali mashq toʻplamlari yoʻq',
+        emptyBody: 'Eng keng tarqalgan xatodan boshlang: monitoring nima oqsayotganini koʻrsatadi, tizim esa aynan shu boʻyicha toʻplam yigʻib beradi.',
+        emptyHintLabel: 'HOZIR ENG KOʻP UCHRAYOTGAN XATO', emptyHint: 'Birinchi amaldan keyin toʻxtab qoladi — 14 boladan 12 nafarida',
+        emptyCta: 'Keng tarqalgan xatolarni koʻrish', emptyAlt: 'Mavzu boʻyicha tuzish',
+        loadTitle: 'Toʻplam yigʻilmoqda…', loadSub: 'Mos savollar tanlanmoqda, monitoring savollari chiqarib tashlanmoqda.',
+        errTitle: 'Toʻplamni yigʻib boʻlmadi', errBody: 'Savollar bankiga ulanib boʻlmadi. Qayta urinib koʻring — tanlagan sozlamalaringiz saqlangan.',
+        qM: [
+          'Sinfda 28 nafar oʻquvchi bor. 9 nafari sayohatga ketdi, yana 5 nafari uyga erta qaytdi. Sinfda nechta oʻquvchi qoldi?',
+          'Kitob 12 000 soʻm turadi, ruchka esa undan 4 marta arzon. Ikkalasi birgalikda qancha turadi?',
+          'Dilshod birinchi kuni 40 bet, ikkinchi kuni esa undan ikki baravar kam oʻqidi. U ikki kunda necha bet oʻqidi?',
+          'Savatda 36 ta olma bor edi. Uchdan birini qoʻshnilarga berishdi, yana 7 tasini yeyishdi. Nechta olma qoldi?',
+          'Nodirda 15 ta marka bor, singlisida esa undan 3 baravar koʻp. Ikkalasida jami nechta marka bor?'
+        ],
+        qT: [
+          ['Lenta uzunligi 60 sm. Uning beshdan ikki qismi kesib olindi. Kesib olingan boʻlak necha santimetr?', 'Sinfda 32 nafar oʻquvchi bor, ularning sakkizdan uch qismi qizlar. Sinfda nechta qiz bor?', '84 ning toʻrtdan uch qismi nechaga teng?', 'Sonning yarmi 27 ga teng. Shu sonning uchdan biri nechaga teng?'],
+          ['Toʻgʻri toʻrtburchakning boʻyi 8 sm, eni 5 sm. Uning perimetrini toping.', 'Kvadratning perimetri 36 sm. Uning yuzi qancha?', 'Tomonlari 6 sm va 4 sm boʻlgan toʻgʻri toʻrtburchak tomoni 2 sm li kvadratlarga qirqildi. Nechta kvadrat hosil boʻldi?', 'Ikkita bir xil kvadrat yonma-yon qoʻyilib, perimetri 24 sm boʻlgan toʻgʻri toʻrtburchak hosil qilindi. Bitta kvadratning tomoni qancha?'],
+          ['Qonuniyatni davom ettiring: 3, 7, 11, 15, … Sakkizinchi son qaysi?', 'Qaysi son tushib qolgan: 2, 6, 18, __, 162?', 'Birinchi shakl 4 ta choʻpdan tuzilgan, har bir keyingisida 3 tadan koʻp. Oʻninchi shaklda nechta choʻp bor?', 'Keyingi son qaysi: 1, 4, 9, 16, …?'],
+          ['Avtobus 8:45 da joʻnaydi, yoʻl 1 soat 25 daqiqa davom etadi. U soat nechada yetib keladi?', 'Velosipedchi soatiga 12 km yuradi. U ikki yarim soatda qancha masofani bosib oʻtadi?', 'Dars 13:20 da boshlanib, 14:05 da tugadi. Dars qancha davom etdi?', 'Poyezd 240 km ni 4 soatda bosib oʻtadi. Xuddi shu tezlikda 180 km ni qancha vaqtda bosib oʻtadi?']
+        ]
+      },
+      ru: {
+        navLabel: 'Главное меню', navGroups: 'ГРУППЫ', navGroupA: '4 класс · Суббота', navGroupB: '3 класс · Будни', navWork: 'РАБОТА', navPractice: 'Тренировка', navInvite: 'Приглашения', navSignOut: 'Выйти',
+        navAccessCount: 'Доступ к 18 детям', navAccessSub: 'Родители открыли его до 31 мая 2027 г. Затем он закроется сам.',
+        langLabel: 'Язык', themeLabel: 'Сменить тему', notifLabel: 'Уведомления', retry: 'Повторить',
+        modeTag: 'ТРЕНИРОВКА', modeNote: 'Для обучения, а не для измерения. Ничто здесь не влияет на позицию и историю ребёнка.',
+        srcLabel: 'Откуда набор', srcMistake: 'По частой ошибке', srcTopic: 'По теме',
+        titleMistake: 'Задачи в два действия', subMistakePre: 'Собрано по самой частой ошибке волны 4:', subMistakePost: '· у 12 из 14 детей',
+        subTopic: 'Выберите тему — задания подберёт система.',
+        topicsLabel: 'Выберите тему', topics: ['Нахождение доли числа', 'Площадь и периметр', 'Числовые закономерности', 'Время и движение'],
+        clusters: ['Числа и вычисления', 'Решение задач', 'Логика и пространство'],
+        setTitle: 'Набор готов: 10 заданий, около 20 минут',
+        setSub: 'Задания подобрала система — от простых к сложным. Ниже три для примера; выберите любое, чтобы заменить.',
+        anchorTitle: 'Задания мониторинга в тренировку не попадают',
+        anchorNote: 'Они исключаются ещё при сборке набора — так результаты волн остаются честными и сопоставимыми.',
+        more: '+ ещё 7 заданий того же типа', swapped: 'Заменено', swapBtn: 'Заменить задание',
+        selPre: 'Выбрано задание ', selPost: '', swapPre: 'Задание ', swapPost: ' заменено другим той же сложности.',
+        whoLabel: 'Кому', whoLag: '12 детей с этой ошибкой', whoAll: 'Вся группа (18)',
+        assign: 'Назначить тренировку', assignedPre: 'Отправлено ', assignedPost: ' детям ✓',
+        assignedNote: 'Дети увидят тренировку у себя в кабинете, родителям придёт короткое сообщение. Результаты появятся здесь в виде «сколько решено».', undo: 'Отменить',
+        lastOver: 'ПОСЛЕДНЯЯ ТРЕНИРОВКА · 9 ДЕКАБРЯ', lastTitle: 'Сработало? Сколько решил каждый', lastSet: 'Задачи в два действия · назначено 12 детям',
+        stTyp: 'ТИПИЧНЫЙ РЕЗУЛЬТАТ', stTypSub: 'решено из 10 (медиана)', stDone: 'ВЫПОЛНИЛИ', stDoneSub: 'один ребёнок ещё не приступил',
+        lagPre: '', lagPost: ' детей решили меньше 6 заданий из 10.',
+        repPre: 'Повторить для ', repPost: ' детей, кому было трудно',
+        repdPre: 'Набор снова отправлен ', repdPost: ' детям. Тренировку можно повторять сколько угодно.', repdLbl: 'Отправлено ✓ · отменить',
+        noPct: 'В тренировке нет процентилей и мест — только сколько заданий решено.',
+        emptyTitle: 'Тренировок пока нет',
+        emptyBody: 'Начните с самой частой ошибки: мониторинг показывает, что не получается, а система соберёт по этому набор заданий.',
+        emptyHintLabel: 'САМАЯ ЧАСТАЯ ОШИБКА СЕЙЧАС', emptyHint: 'Останавливается после первого действия — у 12 из 14 детей',
+        emptyCta: 'Посмотреть частые ошибки', emptyAlt: 'Собрать по теме',
+        loadTitle: 'Собираем набор…', loadSub: 'Подбираем задания и исключаем всё, что использовалось в мониторинге.',
+        errTitle: 'Не удалось собрать набор', errBody: 'Нет связи с банком заданий. Попробуйте ещё раз — ваши настройки сохранены.',
+        qM: [
+          'В классе 28 учеников. 9 уехали на экскурсию, а ещё 5 ушли домой пораньше. Сколько учеников осталось в классе?',
+          'Книга стоит 12 000 сумов, а ручка — в 4 раза дешевле. Сколько стоят книга и ручка вместе?',
+          'Dilshod в первый день прочитал 40 страниц, а во второй — вдвое меньше. Сколько страниц он прочитал за два дня?',
+          'В корзине было 36 яблок. Треть отдали соседям, а ещё 7 съели. Сколько яблок осталось?',
+          'У Nodir 15 марок, а у его сестры — в 3 раза больше. Сколько марок у них вместе?'
+        ],
+        qT: [
+          ['Длина ленты 60 см. От неё отрезали две пятых. Какой длины отрезанный кусок?', 'В классе 32 ученика, три восьмых из них — девочки. Сколько в классе девочек?', 'Чему равны три четверти от 84?', 'Половина числа равна 27. Чему равна треть этого числа?'],
+          ['Длина прямоугольника 8 см, ширина 5 см. Найдите его периметр.', 'Периметр квадрата 36 см. Чему равна его площадь?', 'Прямоугольник 6 см на 4 см разрезали на квадраты со стороной 2 см. Сколько получилось квадратов?', 'Два одинаковых квадрата приложили друг к другу и получили прямоугольник с периметром 24 см. Чему равна сторона одного квадрата?'],
+          ['Продолжите ряд: 3, 7, 11, 15, … Какое число стоит восьмым?', 'Какое число пропущено: 2, 6, 18, __, 162?', 'Первая фигура сложена из 4 спичек, а каждая следующая — на 3 спички больше. Сколько спичек в десятой фигуре?', 'Какое число следующее: 1, 4, 9, 16, …?'],
+          ['Автобус отправляется в 8:45, дорога занимает 1 час 25 минут. Во сколько он прибудет?', 'Велосипедист проезжает 12 км в час. Какое расстояние он проедет за два с половиной часа?', 'Урок начался в 13:20 и закончился в 14:05. Сколько длился урок?', 'Поезд проходит 240 км за 4 часа. За какое время он пройдёт 180 км с той же скоростью?']
+        ]
+      },
+      en: {
+        navLabel: 'Main menu', navGroups: 'GROUPS', navGroupA: 'Grade 4 · Saturday', navGroupB: 'Grade 3 · Weekdays', navWork: 'WORK', navPractice: 'Practice', navInvite: 'Invitations', navSignOut: 'Sign out',
+        navAccessCount: 'Access to 18 children', navAccessSub: 'Parents granted it until 31 May 2027. It ends automatically.',
+        langLabel: 'Language', themeLabel: 'Switch theme', notifLabel: 'Notifications', retry: 'Try again',
+        modeTag: 'PRACTICE', modeNote: 'For teaching, not measuring. Nothing here changes a child’s position or history.',
+        srcLabel: 'Build the set', srcMistake: 'From a common mistake', srcTopic: 'By topic',
+        titleMistake: 'Two-step word problems', subMistakePre: 'Built from wave 4’s most common mistake:', subMistakePost: '· 12 of 14 children',
+        subTopic: 'Pick a topic and the system chooses the questions.',
+        topicsLabel: 'Pick a topic', topics: ['Fractions of a quantity', 'Area and perimeter', 'Number patterns', 'Time and motion'],
+        clusters: ['Number & computation', 'Problem solving', 'Logic & space'],
+        setTitle: 'The set is ready: 10 questions, about 20 minutes',
+        setSub: 'Picked by the system, from easy to hard. Three are shown as a sample; select one to swap it.',
+        anchorTitle: 'Monitoring questions never appear in practice',
+        anchorNote: 'They’re excluded when the set is assembled, not hidden afterwards — that keeps wave results fair and comparable.',
+        more: '+ 7 more questions of the same type', swapped: 'Swapped', swapBtn: 'Swap a question',
+        selPre: 'Selected: question ', selPost: '', swapPre: 'Question ', swapPost: ' swapped for another of the same difficulty.',
+        whoLabel: 'Who gets it', whoLag: 'The 12 who made this mistake', whoAll: 'Whole group (18)',
+        assign: 'Assign practice', assignedPre: 'Sent to ', assignedPost: ' children ✓',
+        assignedNote: 'Children see it in their practice tab and parents get a short note. Results appear here as “how many solved”.', undo: 'Undo',
+        lastOver: 'LAST PRACTICE · 9 DEC', lastTitle: 'Did it work? How many each child solved', lastSet: 'Two-step word problems · assigned to 12 children',
+        stTyp: 'TYPICAL RESULT', stTypSub: 'solved out of 10 (median)', stDone: 'COMPLETED', stDoneSub: '1 hasn’t started yet',
+        lagPre: '', lagPost: ' children solved fewer than 6 of 10.',
+        repPre: 'Repeat for the ', repPost: ' who struggled',
+        repdPre: 'Sent again to ', repdPost: ' children. A practice set can be repeated as often as you like.', repdLbl: 'Sent ✓ · undo',
+        noPct: 'Practice shows no percentiles or positions — only how many were solved.',
+        emptyTitle: 'No practice sets yet',
+        emptyBody: 'Start from the most common mistake: monitoring shows what isn’t working, and the system assembles a set for exactly that.',
+        emptyHintLabel: 'MOST COMMON MISTAKE RIGHT NOW', emptyHint: 'Stops after the first step — 12 of 14 children',
+        emptyCta: 'See common mistakes', emptyAlt: 'Build by topic',
+        loadTitle: 'Assembling the set…', loadSub: 'Choosing questions and leaving out anything used in monitoring.',
+        errTitle: 'We couldn’t assemble the set', errBody: 'We couldn’t reach the item bank. Try again — your choices are saved.',
+        qM: [
+          'A class has 28 pupils. 9 went on a trip, then 5 more went home early. How many stayed in class?',
+          'A book costs 12,000 soums. A pen costs a quarter of that. How much do they cost together?',
+          'Dilshod read 40 pages on the first day and half as many on the second. How many pages did he read in two days?',
+          'There were 36 apples in a basket. A third were given to the neighbours and 7 more were eaten. How many are left?',
+          'Nodir has 15 stamps and his sister has three times as many. How many stamps do they have together?'
+        ],
+        qT: [
+          ['A ribbon is 60 cm long. Two fifths of it were cut off. How long is the piece that was cut off?', 'There are 32 pupils in a class, and three eighths of them are girls. How many girls are there?', 'What is three quarters of 84?', 'Half of a number is 27. What is a third of that number?'],
+          ['A rectangle is 8 cm long and 5 cm wide. What is its perimeter?', 'A square has a perimeter of 36 cm. What is its area?', 'A 6 cm by 4 cm rectangle is cut into squares with 2 cm sides. How many squares are there?', 'Two equal squares placed side by side make a rectangle with a perimeter of 24 cm. What is the side of one square?'],
+          ['Continue the pattern 3, 7, 11, 15, … What is the 8th number?', 'Which number is missing: 2, 6, 18, __, 162?', 'The first figure uses 4 matchsticks and each next one uses 3 more. How many matchsticks does the 10th figure use?', 'What comes next: 1, 4, 9, 16, …?'],
+          ['A bus leaves at 8:45 and the trip takes 1 hour 25 minutes. When does it arrive?', 'A cyclist rides 12 km an hour. How far does he get in two and a half hours?', 'A lesson started at 13:20 and ended at 14:05. How long did it last?', 'A train covers 240 km in 4 hours. At the same speed, how long will 180 km take?']
+        ]
+      }
+    };
+    const sh = this.shell(T);
+    const t = sh.t;
+    const isMistake = s.source === 'mistake';
+    const key = isMistake ? 'm' : 't' + s.topic;
+    const pool = isMistake ? t.qM : t.qT[s.topic];
+    const cur = s.slots[key] || [0, 1, 2];
+    const qs = cur.map((qi, k) => {
+      const on = s.sel === k;
+      return {
+        n: String(k + 1), text: pool[qi], on,
+        swapped: s.swapped === key + ':' + k,
+        bg: on ? 'var(--accent-teal-bg)' : 'var(--surface-200)',
+        ring: on ? 'inset 0 0 0 2px var(--accent-teal)' : 'none',
+        numBg: on ? 'var(--surface-100)' : 'var(--accent-teal-bg)',
+        pick: () => this.setState({ sel: k })
+      };
+    });
+    const swapHere = s.swapped.indexOf(key + ':') === 0;
+    const swappedN = swapHere ? (parseInt(s.swapped.split(':')[1], 10) + 1) : 0;
+    const TC = [0, 2, 2, 1];
+    const topics = t.topics.map((name, i) => {
+      const on = s.topic === i;
+      return {
+        name, cluster: t.clusters[TC[i]], on,
+        bg: on ? 'var(--accent-teal-bg)' : 'var(--surface-200)',
+        ring: on ? 'inset 0 0 0 2px var(--accent-teal)' : 'none',
+        pick: () => this.setState({ topic: i, sel: 0, swapped: '', assigned: false })
+      };
+    });
+    const sources = [['mistake', t.srcMistake, 'lag'], ['topic', t.srcTopic, 'all']].map((p) => Object.assign({
+      label: p[1], on: s.source === p[0],
+      pick: () => this.setState({ source: p[0], sel: 0, swapped: '', assigned: false, who: p[2] })
+    }, this.pseg(s.source === p[0])));
+    const whos = [['lag', t.whoLag], ['all', t.whoAll]].map((p) => Object.assign({
+      label: p[1], on: s.who === p[0],
+      pick: () => this.setState({ who: p[0], assigned: false })
+    }, this.pseg(s.who === p[0])));
+    const plangs = sh.langs.map((l) => Object.assign({}, l, {
+      bg: l.on ? 'var(--surface-100)' : 'transparent',
+      ink: l.on ? 'var(--accent-teal)' : '#ffffff',
+      shadow: 'none'
+    }));
+    const D = [['Jasur T.', 9], ['Laylo K.', 9], ['Madina K.', 8], ['Sevara N.', 7], ['Otabek R.', 7], ['Nilufar S.', 6], ['Asal B.', 5], ['Kamron I.', 4], ['Zarina F.', 4], ['Bekzod A.', 3], ['Ibrohim D.', 3]];
+    const solved = D.map((d) => ({
+      name: d[0], n: d[1] + ' / 10', pct: d[1] * 10,
+      fill: d[1] >= 6 ? 'var(--mode-practice)' : 'var(--warning)',
+      ink: d[1] >= 6 ? 'var(--ink-900)' : 'var(--warning)'
+    }));
+    const lag = D.filter((d) => d[1] < 6).length;
+    const sortedN = D.map((d) => d[1]).sort((a, b) => a - b);
+    const median = sortedN[Math.floor(sortedN.length / 2)];
+    const nTo = s.who === 'lag' ? 12 : 18;
+    return Object.assign(sh, {
+      plangs,
+      skelRows: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      startTopic: () => this.setState({ ui: 'default', source: 'topic', who: 'all', sel: 0, swapped: '', assigned: false }),
+      isMistake, isTopic: !isMistake,
+      pageTitle: isMistake ? t.titleMistake : t.topics[s.topic],
+      topicCluster: t.clusters[TC[s.topic]],
+      sources, topics, qs, whos,
+      swapStatus: swapHere ? (t.swapPre + swappedN + t.swapPost) : (t.selPre + (s.sel + 1) + t.selPost),
+      swapInk: swapHere ? 'var(--accent-teal)' : 'var(--ink-400)',
+      swap: () => {
+        const c = cur.slice();
+        let nx = c[s.sel];
+        for (let j = 1; j <= pool.length; j++) {
+          const cand = (c[s.sel] + j) % pool.length;
+          if (c.indexOf(cand) < 0) { nx = cand; break; }
+        }
+        c[s.sel] = nx;
+        const slots = Object.assign({}, s.slots);
+        slots[key] = c;
+        this.setState({ slots, swapped: key + ':' + s.sel, assigned: false });
+      },
+      assigned: s.assigned,
+      assign: () => this.setState({ assigned: true }),
+      unassign: () => this.setState({ assigned: false }),
+      assignLabel: s.assigned ? (t.assignedPre + nTo + t.assignedPost) : t.assign,
+      assignBg: s.assigned ? 'var(--success-bg)' : 'var(--mode-practice)',
+      assignInk: s.assigned ? 'var(--success)' : '#ffffff',
+      solved,
+      typical: median + ' / 10',
+      lagNote: s.repeated ? (t.repdPre + lag + t.repdPost) : (t.lagPre + lag + t.lagPost),
+      repeat: () => this.setState({ repeated: !s.repeated }),
+      repeatLabel: s.repeated ? t.repdLbl : (t.repPre + lag + t.repPost),
+      repeatBg: s.repeated ? 'var(--success-bg)' : 'var(--mode-practice)',
+      repeatInk: s.repeated ? 'var(--success)' : '#ffffff'
+    });
+  }
+}
+</script>
+
+
+</body></html>

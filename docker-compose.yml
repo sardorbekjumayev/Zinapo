@@ -1,0 +1,87 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    # Published on a non-default host port so a local postgres can keep 5432.
+    ports:
+      - "${DB_HOST_PORT:-15432}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+    ports:
+      - "${REDIS_HOST_PORT:-16379}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build:
+      context: ./apps/api
+      target: dev
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      API_PORT: ${API_PORT}
+      DATABASE_URL: ${DATABASE_URL}
+      REDIS_URL: ${REDIS_URL}
+      WEB_ORIGIN: ${WEB_ORIGIN}
+      COOKIE_SECURE: ${COOKIE_SECURE}
+      OTP_HMAC_SECRET: ${OTP_HMAC_SECRET}
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET}
+      PINFL_HASH_SALT: ${PINFL_HASH_SALT}
+      PINFL_ENC_KEY: ${PINFL_ENC_KEY}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      TELEGRAM_BOT_USERNAME: ${TELEGRAM_BOT_USERNAME}
+      TELEGRAM_WEBHOOK_URL: ${TELEGRAM_WEBHOOK_URL}
+      TELEGRAM_WEBHOOK_SECRET: ${TELEGRAM_WEBHOOK_SECRET}
+    volumes:
+      - ./apps/api/src:/app/src
+      - ./apps/api/test:/app/test
+    ports:
+      - "4000:4000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./apps/web
+      target: dev
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      API_INTERNAL_URL: http://api:${API_PORT}
+      NEXT_PUBLIC_BOT_USERNAME: ${TELEGRAM_BOT_USERNAME}
+    volumes:
+      - ./apps/web/app:/app/app
+      - ./apps/web/components:/app/components
+      - ./apps/web/hooks:/app/hooks
+      - ./apps/web/lib:/app/lib
+      - ./apps/web/messages:/app/messages
+      - ./apps/web/public:/app/public
+      - ./apps/web/styles:/app/styles
+      - ./apps/web/middleware.ts:/app/middleware.ts
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  db-data:
+  redis-data:

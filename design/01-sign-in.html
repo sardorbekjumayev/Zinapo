@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="uz"><head>
+<meta charset="utf-8">
+<title>Zinapo · Sign in</title>
+<script src="_assets/dc-runtime.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-feae57212855.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-9d8db2e8ccd9.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-bcedb9e2e528.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-326a88b4ddbb.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-06ad36000cd8.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-4f27206c4b1c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-feae57212855.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-9d8db2e8ccd9.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-bcedb9e2e528.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-326a88b4ddbb.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-06ad36000cd8.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-4f27206c4b1c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+body{margin:0;font-family:"Manrope","Inter",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+.z{--surface-000:#f7f5fb;--surface-100:#ffffff;--surface-200:#f1ecfa;--surface-300:#e7e0f5;--ink-900:#1a1622;--ink-600:#58506e;--ink-400:#6e6686;--line-100:#e6dff3;--line-200:#cfc4e6;--brand-050:#f5f0ff;--brand-100:#e9e0ff;--brand-300:#c9b0ff;--brand-400:#ad89ff;--brand-600:#7444e4;--brand-700:#522cc3;--ink-on-primary:#1a1622;--focus-ring:#ad89ff99;--success:#10805a;--success-bg:#dff5ec;--warning:#9a5c00;--warning-bg:#fdf0dc;--danger:#c62a43;--danger-bg:#fde7ea;--accent-teal:#0d7d86;--accent-teal-bg:#ddf3f4;--accent-coral:#c04a2a;--accent-coral-bg:#fceae4;--accent-blue:#2158c9;--accent-blue-bg:#e3ecfd;--overlay:#1a162299;--mode-practice:#0d7d86;--shadow-xs:0 1px 2px rgba(26,22,34,.06);--shadow-float:0 2px 4px rgba(26,22,34,.05),0 8px 20px -6px rgba(86,58,160,.20);--shadow-float-lg:0 4px 8px rgba(26,22,34,.06),0 16px 32px -8px rgba(86,58,160,.28);--shadow-card:0 1px 2px rgba(26,22,34,.04),0 12px 28px -14px rgba(86,58,160,.22);--shadow-overlay:0 8px 16px rgba(26,22,34,.08),0 32px 64px -20px rgba(86,58,160,.34);color:var(--ink-900);background:var(--surface-000)}
+.z[data-theme="dark"]{--surface-000:#121016;--surface-100:#1b1822;--surface-200:#242030;--surface-300:#2e2940;--ink-900:#f5f2fb;--ink-600:#bdb6cf;--ink-400:#9990ab;--line-100:#322c44;--line-200:#443c5c;--brand-050:#221c33;--brand-100:#2d2547;--brand-300:#6e4fc0;--brand-600:#7c4de8;--brand-700:#c4a9ff;--focus-ring:#ad89ffaa;--success:#4ed6a1;--success-bg:#16342a;--warning:#f2b457;--warning-bg:#38290f;--danger:#ff7f8d;--danger-bg:#3a1b21;--accent-teal:#4fd0d9;--accent-teal-bg:#123236;--accent-coral:#ff9273;--accent-coral-bg:#3a1f16;--accent-blue:#8fb0ff;--accent-blue-bg:#15233f;--overlay:#0a0810cc;--mode-practice:#0e7c85;--shadow-xs:0 1px 2px rgba(0,0,0,.5);--shadow-float:0 2px 4px rgba(0,0,0,.45),0 8px 20px -6px rgba(0,0,0,.6);--shadow-float-lg:0 4px 8px rgba(0,0,0,.5),0 16px 32px -8px rgba(0,0,0,.7);--shadow-card:0 1px 2px rgba(0,0,0,.4),0 12px 28px -14px rgba(0,0,0,.55);--shadow-overlay:0 8px 16px rgba(0,0,0,.5),0 32px 64px -20px rgba(0,0,0,.75)}
+.z a{color:var(--brand-700)}
+.z button,.z input,.z textarea,.z select{font-family:inherit}
+.z button{cursor:pointer}
+.z button:disabled{cursor:not-allowed}
+.z input::placeholder,.z textarea::placeholder{color:var(--ink-400)}
+.lift{transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s cubic-bezier(.2,.8,.2,1)}
+.lift:hover{transform:translateY(-1px);box-shadow:var(--shadow-float-lg)!important}
+.ghost:hover{background:var(--surface-200)!important}
+.row:hover{background:var(--surface-200)!important}
+.z button:focus-visible,.z a:focus-visible,.z input:focus-visible,.z textarea:focus-visible,.z select:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus-ring)!important}
+.z input:focus-visible,.z textarea:focus-visible,.z select:focus-visible{border-color:var(--brand-600)!important}
+.skel{background:linear-gradient(90deg,var(--surface-300) 0%,var(--surface-200) 50%,var(--surface-300) 100%);background-size:200% 100%;animation:zsk 1.4s ease-in-out infinite;border-radius:14px}
+@keyframes zsk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.spin{animation:zspin .9s linear infinite}
+@keyframes zspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.lift:hover{transform:none}.skel{animation:none}.spin{animation:none}}
+</style>
+</helmet>
+<div class="z" data-theme="{{ theme }}" style="width: 1440px; height: 1000px; box-sizing: border-box; padding: 16px; position: relative; display: flex; gap: 24px; align-items: stretch; background: var(--surface-000); color: var(--ink-900);">
+
+<aside style="width: 640px; flex-shrink: 0; box-sizing: border-box; padding: 40px 48px; background: var(--surface-100); border-radius: 60px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 28px;">
+<div style="display: flex; align-items: center; gap: 12px;">
+<span style="width: 40px; height: 40px; border-radius: 14px; background: var(--brand-400); display: flex; align-items: center; justify-content: center; color: var(--ink-on-primary);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M3 20h5v-5h5v-5h5V5h3"></path></svg>
+</span>
+<span style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">Zinapo</span>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.brandOver }}</span>
+<h1 style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 800; letter-spacing: -0.02em;">{{ t.pitch }}</h1>
+<p style="margin: 0; font-size: 16px; line-height: 26px; color: var(--ink-600);">{{ t.pitchSub }}</p>
+</div>
+
+<div style="padding: 24px; border-radius: 30px; background: var(--surface-200); display: flex; gap: 24px; align-items: flex-end;">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.sOver }}</span>
+<span style="font-size: 44px; line-height: 48px; font-weight: 800; letter-spacing: -0.022em;">{{ t.sBig }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.sCap }}</span>
+<span style="margin-top: 6px; align-self: flex-start; height: 28px; padding: 0 12px; border-radius: 999px; background: var(--success-bg); color: var(--success); font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 17l5-5 4 3 7-8"></path><path d="M15 7h5v5"></path></svg>{{ t.sTrend }}</span>
+</div>
+<div role="img" aria-label="{{ t.sChartLabel }}" style="display: flex; gap: 10px; align-items: flex-end;">
+<sc-for list="{{ bars }}" as="b" hint-placeholder-count="5">
+<div style="width: 34px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+<div style="position: relative; width: 14px; height: 120px; border-radius: 999px; background: var(--surface-300); box-sizing: border-box; border: {{ b.border }};">
+<sc-if value="{{ b.hasBar }}" hint-placeholder-val="{{ true }}">
+<span style="position: absolute; left: 0; right: 0; top: {{ b.top }}px; height: {{ b.h }}px; border-radius: 999px; background: {{ b.bg }};"></span>
+</sc-if>
+</div>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ b.label }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 20px;">
+<div style="display: flex; gap: 16px; align-items: flex-start;">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: var(--brand-050); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 12h16"></path><path d="M8 8v8M16 8v8"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.p1t }}</span>
+<span style="font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.p1b }}</span>
+</div>
+</div>
+<div style="display: flex; gap: 16px; align-items: flex-start;">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: var(--brand-050); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 17l5-5 4 3 7-8"></path><path d="M15 7h5v5"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.p2t }}</span>
+<span style="font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.p2b }}</span>
+</div>
+</div>
+<div style="display: flex; gap: 16px; align-items: flex-start;">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: var(--brand-050); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.p3t }}</span>
+<span style="font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.p3b }}</span>
+</div>
+</div>
+</div>
+
+<div style="margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 16px; height: 16px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+<span>{{ t.legal }}</span>
+</div>
+</aside>
+
+<main style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 24px;">
+<div style="align-self: stretch; display: flex; justify-content: flex-end;">
+<div style="display: flex; align-items: center; gap: 8px; padding: 4px; border-radius: 999px; background: var(--surface-100); box-shadow: var(--shadow-card);">
+<div role="group" aria-label="{{ t.langLabel }}" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--surface-200);">
+<sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+<button sc-camel-on-click="{{ l.pick }}" aria-pressed="{{ l.on }}" style="height: 36px; min-width: 52px; padding: 0 12px; border: 0; border-radius: 22px; font-size: 13px; font-weight: 600; background: {{ l.bg }}; color: {{ l.ink }}; box-shadow: {{ l.shadow }};">{{ l.label }}</button>
+</sc-for>
+</div>
+<button sc-camel-on-click="{{ toggleTheme }}" aria-label="{{ t.themeLabel }}" class="ghost" style="width: 44px; height: 44px; border: 0; border-radius: 30px; background: transparent; color: var(--ink-600); display: flex; align-items: center; justify-content: center;">
+<sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</sc-if>
+<sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"></path></svg>
+</sc-if>
+</button>
+</div>
+</div>
+
+<sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+<section aria-busy="true" style="width: 480px; box-sizing: border-box; padding: 40px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<div role="status" style="display: flex; gap: 16px; align-items: center;">
+<span class="spin" style="width: 40px; height: 40px; flex-shrink: 0; box-sizing: border-box; border-radius: 999px; border: 4px solid var(--surface-300); border-top-color: var(--brand-600);"></span>
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.ldTitle }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.ldSub }}</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;"><div class="skel" style="width: 120px; height: 12px;"></div><div class="skel" style="width: 280px; height: 32px;"></div><div class="skel" style="width: 340px; height: 16px;"></div></div>
+<div style="display: flex; justify-content: space-between;"><div class="skel" style="width: 56px; height: 64px; border-radius: 18px;"></div><div class="skel" style="width: 56px; height: 64px; border-radius: 18px;"></div><div class="skel" style="width: 56px; height: 64px; border-radius: 18px;"></div><div class="skel" style="width: 56px; height: 64px; border-radius: 18px;"></div><div class="skel" style="width: 56px; height: 64px; border-radius: 18px;"></div><div class="skel" style="width: 56px; height: 64px; border-radius: 18px;"></div></div>
+<div class="skel" style="height: 56px; border-radius: 30px;"></div>
+<div class="skel" style="width: 220px; height: 14px;"></div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+<section role="alert" style="width: 480px; box-sizing: border-box; padding: 40px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 20px;">
+<span style="width: 48px; height: 48px; border-radius: 999px; background: var(--danger-bg); color: var(--danger); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16.5h.01"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.erTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.erBody }}</p>
+</div>
+<div style="padding: 16px 20px; border-radius: 14px; background: var(--surface-200); display: flex; gap: 12px; align-items: flex-start;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; fill: none; stroke: var(--ink-600); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.erLimT }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.erLimB }}</span>
+</div>
+</div>
+<button sc-camel-on-click="{{ retry }}" class="lift" style="height: 56px; border: 0; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ t.retry }}</button>
+</section>
+</sc-if>
+
+<sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+<section style="width: 480px; box-sizing: border-box; padding: 40px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 20px;">
+<span style="width: 56px; height: 56px; border-radius: 20px; background: var(--warning-bg); color: var(--warning); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.exOver }}</span>
+<h2 style="margin: 0; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -0.01em;">{{ t.exTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.exBody }}</p>
+</div>
+<div style="padding: 16px 20px; border-radius: 14px; background: var(--surface-200); display: flex; gap: 12px; align-items: center;">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 999px; background: var(--accent-teal-bg); color: var(--accent-teal); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">AR</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.exNote }}</span>
+</div>
+<button sc-camel-on-click="{{ continueNoInvite }}" class="lift" style="height: 56px; border: 0; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ t.exCta }}</button>
+</section>
+</sc-if>
+
+<sc-if value="{{ showPhone }}" hint-placeholder-val="{{ true }}">
+<section style="width: 480px; box-sizing: border-box; padding: 40px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<sc-if value="{{ invite }}" hint-placeholder-val="{{ false }}">
+<div style="padding: 16px 20px; border-radius: 30px; background: var(--accent-teal-bg); display: flex; gap: 14px; align-items: center;">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: var(--surface-100); color: var(--accent-teal); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">AR</span>
+<div style="display: flex; flex-direction: column; gap: 4px; min-width: 0;">
+<span style="font-size: 13px; line-height: 18px; font-weight: 600; color: var(--accent-teal);">{{ t.invT }} · {{ t.invCode }} <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500;">AZR-4821</span></span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-600);">{{ t.invSub }}</span>
+</div>
+</div>
+</sc-if>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.phOver }}</span>
+<h2 style="margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.02em;">{{ t.phTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.phSub }}</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<label for="phone" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.phLabel }}</label>
+<div style="height: 48px; box-sizing: border-box; display: flex; align-items: center; gap: 12px; padding: 0 8px 0 20px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); box-shadow: var(--shadow-xs);">
+<span style="font-size: 16px; font-weight: 600; color: var(--ink-600);">+998</span>
+<span style="width: 1px; height: 22px; background: var(--line-100);"></span>
+<input id="phone" type="tel" inputmode="tel" autocomplete="tel-national" value="90 312 45 67" style="flex-grow: 1; min-width: 0; height: 44px; border: 0; border-radius: 22px; padding: 0 8px; background: transparent; font-size: 16px; letter-spacing: 0.02em; color: var(--ink-900);">
+</div>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.phCap }}</span>
+</div>
+<button sc-camel-on-click="{{ sendCode }}" class="lift" style="height: 56px; border: 0; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ t.phCta }}</button>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400); text-align: center;">{{ t.terms }}</span>
+</section>
+</sc-if>
+
+<sc-if value="{{ showCode }}" hint-placeholder-val="{{ false }}">
+<section style="width: 480px; box-sizing: border-box; padding: 32px 40px 40px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<button sc-camel-on-click="{{ toPhone }}" class="ghost" style="align-self: flex-start; margin-left: -12px; height: 36px; padding: 0 14px 0 8px; border: 0; border-radius: 22px; background: transparent; color: var(--ink-600); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M15 18l-6-6 6-6"></path></svg>{{ t.cdBack }}</button>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.cdOver }}</span>
+<h2 style="margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.02em;">{{ t.cdTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.cdSub }}</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div role="group" aria-label="{{ t.cdGroup }}" style="display: flex; justify-content: space-between;">
+<sc-for list="{{ digits }}" as="d" hint-placeholder-count="6">
+<input aria-label="{{ d.aria }}" inputmode="numeric" maxlength="1" value="{{ d.v }}" aria-invalid="{{ codeErr }}" style="width: 56px; height: 64px; box-sizing: border-box; border: 1px solid {{ d.border }}; border-radius: 18px; background: {{ d.bg }}; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 500; color: var(--ink-900); box-shadow: var(--shadow-xs);">
+</sc-for>
+</div>
+<sc-if value="{{ codeErr }}" hint-placeholder-val="{{ false }}">
+<span role="alert" style="display: flex; align-items: center; gap: 8px; font-size: 13px; line-height: 20px; font-weight: 600; color: var(--danger);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16.5h.01"></path></svg>{{ t.cdErr }}</span>
+</sc-if>
+</div>
+<button sc-camel-on-click="{{ checkCode }}" class="lift" style="height: 56px; border: 0; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ t.cdCta }}</button>
+<div style="display: flex; flex-direction: column; gap: 6px; align-items: center; text-align: center;">
+<span style="font-size: 13px; line-height: 20px; font-weight: 600; color: var(--ink-600);">{{ t.cdTimer }}</span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.cdLimit }}</span>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{ showName }}" hint-placeholder-val="{{ false }}">
+<section style="width: 480px; box-sizing: border-box; padding: 32px 40px 40px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 20px;">
+<button sc-camel-on-click="{{ toCode }}" class="ghost" style="align-self: flex-start; margin-left: -12px; height: 36px; padding: 0 14px 0 8px; border: 0; border-radius: 22px; background: transparent; color: var(--ink-600); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M15 18l-6-6 6-6"></path></svg>{{ t.nmBack }}</button>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.nmOver }}</span>
+<h2 style="margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.02em;">{{ t.nmTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.nmSub }}</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<label for="fullname" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.nmLabel }}</label>
+<input id="fullname" autocomplete="name" value="Dilnoza Karimova" style="height: 48px; box-sizing: border-box; padding: 0 20px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); font-size: 15px; color: var(--ink-900); box-shadow: var(--shadow-xs);">
+</div>
+<div style="padding: 14px 16px; border-radius: 14px; background: var(--surface-200); display: flex; gap: 12px; align-items: flex-start;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; fill: none; stroke: var(--brand-700); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.nmNoteT }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.nmNoteB }}</span>
+</div>
+</div>
+<button sc-camel-on-click="{{ nameContinue }}" class="lift" style="height: 56px; border: 0; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ t.nmCta }}</button>
+<div style="display: flex; align-items: center; gap: 12px;">
+<span style="flex-grow: 1; height: 1px; background: var(--line-100);"></span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.nmOr }}</span>
+<span style="flex-grow: 1; height: 1px; background: var(--line-100);"></span>
+</div>
+<button sc-camel-on-click="{{ oneIdGo }}" class="lift" style="height: 48px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-xs); display: flex; align-items: center; justify-content: center; gap: 10px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>{{ t.nmOneId }}</button>
+</section>
+</sc-if>
+
+<sc-if value="{{ showRoles }}" hint-placeholder-val="{{ false }}">
+<section style="width: 480px; box-sizing: border-box; padding: 40px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.rlOver }}</span>
+<sc-if value="{{ oneId }}" hint-placeholder-val="{{ false }}">
+<span style="height: 26px; padding: 0 10px; border-radius: 999px; background: var(--success-bg); color: var(--success); font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>{{ t.oneIdChip }}</span>
+</sc-if>
+</div>
+<h2 style="margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.02em;">{{ rlTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.rlSub }}</p>
+</div>
+
+<sc-if value="{{ rolesExisting }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<a href="Main.dc.html" class="lift" style="padding: 16px 16px 16px 16px; border-radius: 30px; background: var(--surface-200); text-decoration: none; color: var(--ink-900); display: flex; align-items: center; gap: 14px;">
+<span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"></path></svg>
+</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; line-height: 21px; font-weight: 700;">{{ t.rParentT }}</span><span style="font-size: 13px; line-height: 18px; color: var(--ink-600);">{{ t.rParentS }}</span></span>
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--ink-400); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+<a href="Teacher.dc.html" class="lift" style="padding: 16px; border-radius: 30px; background: var(--surface-200); text-decoration: none; color: var(--ink-900); display: flex; align-items: center; gap: 14px;">
+<span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--accent-teal-bg); color: var(--accent-teal); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 5h16v11H4z"></path><path d="M8 20l4-4 4 4"></path></svg>
+</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; line-height: 21px; font-weight: 700;">{{ t.rTutorT }}</span><span style="font-size: 13px; line-height: 18px; color: var(--ink-600);">{{ t.rTutorS }}</span></span>
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--ink-400); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+<a href="ItemBank.dc.html" class="lift" style="padding: 16px; border-radius: 30px; background: var(--surface-200); text-decoration: none; color: var(--ink-900); display: flex; align-items: center; gap: 14px;">
+<span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--accent-blue-bg); color: var(--accent-blue); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"></path></svg>
+</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; line-height: 21px; font-weight: 700;">{{ t.rStaffT }}</span><span style="font-size: 13px; line-height: 18px; color: var(--ink-600);">{{ t.rStaffS }}</span></span>
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--ink-400); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</sc-if>
+
+<sc-if value="{{ rolesNew }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<a href="AddChild.dc.html" class="lift" style="padding: 16px; border-radius: 30px; background: var(--surface-200); text-decoration: none; color: var(--ink-900); display: flex; align-items: center; gap: 14px;">
+<span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round;"><path d="M12 5v14M5 12h14"></path></svg>
+</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;"><span style="font-size: 15px; line-height: 21px; font-weight: 700;">{{ t.rNewT }}</span><span style="font-size: 13px; line-height: 18px; color: var(--ink-600);">{{ t.rNewS }}</span></span>
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--ink-400); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+<sc-if value="{{ invite }}" hint-placeholder-val="{{ false }}">
+<div style="padding: 12px 16px; border-radius: 14px; background: var(--accent-teal-bg); display: flex; gap: 12px; align-items: center;">
+<span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 999px; background: var(--surface-100); color: var(--accent-teal); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;">AR</span>
+<span style="font-size: 13px; line-height: 20px; font-weight: 600; color: var(--accent-teal);">{{ t.rNewInv }}</span>
+</div>
+</sc-if>
+<span style="padding: 4px 4px 0; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.rNewInfo }}</span>
+</div>
+</sc-if>
+
+<button sc-camel-on-click="{{ toPhone }}" class="ghost" style="align-self: flex-start; margin-left: -12px; height: 36px; padding: 0 14px 0 8px; border: 0; border-radius: 22px; background: transparent; color: var(--ink-600); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M15 18l-6-6 6-6"></path></svg>{{ t.rlBack }}</button>
+</section>
+</sc-if>
+</main>
+
+<sc-if value="{{ demoBar }}" hint-placeholder-val="{{ true }}">
+<div style="position: absolute; right: 16px; bottom: 16px; width: 272px; box-sizing: border-box; padding: 12px; border-radius: 30px; border: 1.5px dashed var(--line-200); background: var(--surface-000); display: flex; flex-direction: column; gap: 8px;">
+<span style="padding: 0 6px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">PROTOTYPE · SCREEN STATE</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px;">
+<sc-for list="{{ uiStates }}" as="u" hint-placeholder-count="4">
+<button sc-camel-on-click="{{ u.pick }}" aria-pressed="{{ u.on }}" style="height: 36px; border: 0; border-radius: 22px; font-size: 12px; font-weight: 600; background: {{ u.bg }}; color: {{ u.ink }};">{{ u.label }}</button>
+</sc-for>
+</div>
+<span style="padding: 4px 6px 0; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">SCENARIO</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px;">
+<sc-for list="{{ scen }}" as="c" hint-placeholder-count="2">
+<button sc-camel-on-click="{{ c.pick }}" aria-pressed="{{ c.on }}" style="height: 36px; border: 0; border-radius: 22px; font-size: 12px; font-weight: 600; background: {{ c.bg }}; color: {{ c.ink }};">{{ c.label }}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;uz&quot;,&quot;ru&quot;,&quot;en&quot;],&quot;default&quot;:&quot;uz&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;screenState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;loading&quot;,&quot;empty&quot;,&quot;error&quot;],&quot;default&quot;:&quot;default&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;demoBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Prototype&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lang: this.lsGet('zinapo.lang') || props.lang || 'uz',
+      theme: this.lsGet('zinapo.theme') || props.theme || 'light',
+      ui: props.screenState || 'default',
+      step: 'phone',
+      invite: true,
+      newPerson: false,
+      codeErr: false,
+      tries: 0,
+      oneId: false
+    };
+  }
+  lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+  lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} }
+  componentDidUpdate(prev) {
+    const p = this.props, patch = {};
+    if (p.lang && p.lang !== prev.lang) patch.lang = p.lang;
+    if (p.theme && p.theme !== prev.theme) patch.theme = p.theme;
+    if (p.screenState && p.screenState !== prev.screenState) patch.ui = p.screenState;
+    if (Object.keys(patch).length) this.setState(patch);
+  }
+  seg(on) {
+    return { bg: on ? 'var(--surface-100)' : 'transparent', ink: on ? 'var(--ink-900)' : 'var(--ink-600)', shadow: on ? 'var(--shadow-xs)' : 'none' };
+  }
+  shell(T) {
+    const s = this.state;
+    const t = T[s.lang] || T.uz;
+    const langs = [['uz', 'Oʻz'], ['ru', 'Рус'], ['en', 'Eng']].map((p) => Object.assign({ label: p[1], on: s.lang === p[0], pick: () => { this.lsSet('zinapo.lang', p[0]); this.setState({ lang: p[0] }); } }, this.seg(s.lang === p[0])));
+    const uiStates = [['default', 'Default'], ['loading', 'Loading'], ['empty', 'Empty'], ['error', 'Error']].map((p) => ({
+      label: p[1], on: s.ui === p[0],
+      bg: s.ui === p[0] ? 'var(--brand-100)' : 'transparent',
+      ink: s.ui === p[0] ? 'var(--brand-700)' : 'var(--ink-600)',
+      pick: () => this.setState({ ui: p[0] })
+    }));
+    return {
+      t, langs, uiStates,
+      theme: s.theme, isDark: s.theme === 'dark', isLight: s.theme !== 'dark',
+      toggleTheme: () => { const n = s.theme === 'dark' ? 'light' : 'dark'; this.lsSet('zinapo.theme', n); this.setState({ theme: n }); },
+      demoBar: this.props.demoBar !== false,
+      isDefault: s.ui === 'default', isLoading: s.ui === 'loading', isEmpty: s.ui === 'empty', isError: s.ui === 'error',
+      retry: () => this.setState({ ui: 'default' })
+    };
+  }
+  renderVals() {
+    const s = this.state;
+    const T = {
+      uz: { langLabel: 'Til', themeLabel: 'Mavzuni almashtirish', retry: 'Qayta urinish',
+        brandOver: '2026/27 MAVSUMI · 0–4-SINFLAR',
+        pitch: 'Bir xil oʻrinlarga intilayotgan bolalar orasida farzandingiz aslida qayerda turganini biling.',
+        pitchSub: 'Prezident va ixtisoslashtirilgan maktablarga tayyorlanayotgan 0–4-sinf oʻquvchilari uchun monitoringlar.',
+        sOver: 'NAMUNA · 4-SINF', sBig: 'Top 11–19%', sCap: 'Prezident maktabiga intilayotgan 1 240 nafar bola orasida', sTrend: '4 ta monitoringdan beri yuqoriga', sChartLabel: 'Toʻrt monitoring natijasi: sentyabr 36–48%, oktyabr 29–39%, noyabr 20–28%, dekabr 11–19%. Yanvar hali oldinda.',
+        mSep: 'sen', mOct: 'okt', mNov: 'noy', mDec: 'dek', mJan: 'yan',
+        p1t: 'Ball emas, oraliq', p1b: 'Bitta raqam emas, “Top 11–19%”. Har qanday testda xatolik bor — biz uni yashirmaymiz.',
+        p2t: 'Mavsum davomidagi oʻsish', p2b: 'Sentyabrdan bahorgacha 8 ta monitoring. Yoʻnalish bitta natijadan koʻra koʻproq narsani aytadi.',
+        p3t: 'Bitta aniq keyingi qadam', p3b: 'Oʻnta maslahat emas, bitta aniq vazifa: haftasiga uch marta 15 daqiqadan.',
+        legal: 'Maʼlumotlar Oʻzbekistondagi serverlarda saqlanadi · PINFL hech qachon ekranda koʻrsatilmaydi',
+        invT: 'Aziza Rahimovna sizni taklif qildi', invCode: 'kod', invSub: 'Kirgach, farzandingizni qoʻshasiz va ustoz nimani koʻrishini oʻzingiz hal qilasiz.',
+        phOver: 'KIRISH YOKI ROʻYXATDAN OʻTISH', phTitle: 'Telefon raqamingiz', phSub: 'Parol shart emas — raqamingizga SMS orqali kod yuboramiz.', phLabel: 'Telefon raqami', phCap: 'Raqam — sizning loginingiz. Bitta raqam — bitta akkaunt.', phCta: 'Kodni yuborish',
+        terms: 'Davom etib, foydalanish shartlari va maxfiylik siyosatiga rozilik bildirasiz.',
+        cdOver: 'TASDIQLASH', cdTitle: 'SMS-kodni kiriting', cdSub: '6 xonali kodni +998 90 312 45 67 raqamiga yubordik.', cdGroup: 'Tasdiqlash kodi', cdDigit: 'Raqam', cdErr: 'Kod notoʻgʻri. Yana 2 ta urinish qoldi.', cdCta: 'Tekshirish', cdBack: 'Raqamni oʻzgartirish', cdTimer: 'Yangi kodni 0:42 dan soʻng soʻrash mumkin', cdLimit: '3 marta notoʻgʻri kiritilsa, bu raqam bilan kirish 15 daqiqaga toʻxtatiladi.',
+        nmOver: 'YANGI AKKAUNT', nmTitle: 'Tanishib olaylik', nmSub: 'Bu raqam hali roʻyxatdan oʻtmagan. Ustozga ruxsat berganingizda u ismingizni koʻradi.', nmLabel: 'Ism va familiya', nmNoteT: 'Bitta raqam — bitta akkaunt', nmNoteB: 'Ham ota-ona, ham ustoz boʻlsangiz, ikkinchi akkaunt ochmang: barcha rollar shu akkauntga qoʻshiladi.', nmCta: 'Davom etish', nmOr: 'yoki', nmOneId: 'OneID orqali kirish', nmBack: 'Orqaga',
+        rlOver: 'ROLLARINGIZ', rlTitleBack: 'Xush kelibsiz, Dilnoza', rlTitleNew: 'Xush kelibsiz, Dilnoza', rlSub: 'Rollar — alohida akkauntlar emas, bolalar bilan bogʻliqligingiz. Qayerdan boshlaymiz?',
+        rParentT: 'Madina va Temurning ota-onasi', rParentS: '2 farzand · 5-monitoring 13-yanvarda ochiladi',
+        rTutorT: '2 ta guruh ustozi', rTutorS: '4-sinf · Shanba va 3-sinf · Ish kunlari',
+        rStaffT: 'Savollar banki xodimi', rStaffS: 'Muharrir · koʻrib chiqishda 12 ta savol',
+        rNewT: 'Ota-ona · birinchi farzandni qoʻshing', rNewS: 'PINFL, sinf va maktab — bir daqiqacha vaqt oladi.',
+        rNewInv: 'Aziza Rahimovnaning taklifi (AZR-4821) keyingi ekranda sizni kutadi.',
+        rNewInfo: 'Ustoz yoki xodim roli raqamingizga bogʻlanganda shu yerda paydo boʻladi.',
+        rlBack: 'Boshqa raqam bilan kirish', oneIdChip: 'OneID orqali tasdiqlangan',
+        ldTitle: 'Kod yuborilmoqda…', ldSub: '+998 90 312 45 67 raqamiga. Odatda 10 soniyagacha vaqt oladi.',
+        exOver: 'TAKLIFNOMA', exTitle: 'Taklifnoma muddati tugagan', exBody: 'Aziza Rahimovnaning taklif havolasi (AZR-4821) 14 kun amal qilardi va 20-sentyabrda yopildi. Taklifsiz ham kirib, farzandingizni qoʻshishingiz mumkin.',
+        exNote: 'Ustozga ruxsatni keyinroq ham berasiz: undan yangi taklif soʻrang yoki “Ruxsat va roziliklar” boʻlimida tasdiqlang.', exCta: 'Taklifsiz davom etish',
+        erTitle: 'SMS yuborib boʻlmadi', erBody: 'SMS xizmati hozir javob bermayapti. Nosozlik bizning tomonda — bir daqiqadan soʻng qayta urinib koʻring.',
+        erLimT: 'Urinishlar juda koʻp boʻldimi?', erLimB: '3 marta notoʻgʻri kod kiritilgach, bu raqam bilan kirish 15 daqiqaga toʻxtatiladi. Bu farzandlaringiz maʼlumotlarini himoya qiladi.' },
+      ru: { langLabel: 'Язык', themeLabel: 'Сменить тему', retry: 'Повторить',
+        brandOver: 'СЕЗОН 2026/27 · 0–4 КЛАССЫ',
+        pitch: 'Узнайте, где на самом деле ваш ребёнок среди детей, которые претендуют на те же места.',
+        pitchSub: 'Мониторинговые волны для учеников 0–4 классов, которые готовятся в Президентские и специализированные школы.',
+        sOver: 'ПРИМЕР · 4 КЛАСС', sBig: 'Топ 11–19%', sCap: 'среди 1 240 детей, которые целятся в Президентскую школу', sTrend: 'Рост четыре волны подряд', sChartLabel: 'Результаты четырёх волн: сентябрь 36–48%, октябрь 29–39%, ноябрь 20–28%, декабрь 11–19%. Январь впереди.',
+        mSep: 'сен', mOct: 'окт', mNov: 'ноя', mDec: 'дек', mJan: 'янв',
+        p1t: 'Диапазон, а не балл', p1b: '«Топ 11–19%», а не одно число. У любого теста есть погрешность — мы её не прячем.',
+        p2t: 'Динамика за сезон', p2b: '8 волн с сентября до весны. Тренд говорит больше, чем любой отдельный результат.',
+        p3t: 'Один понятный следующий шаг', p3b: 'Не десять советов, а одно конкретное задание: 15 минут три раза в неделю.',
+        legal: 'Данные хранятся на серверах в Узбекистане · ПИНФЛ никогда не показывается на экране',
+        invT: 'Азиза Рахимовна пригласила вас', invCode: 'код', invSub: 'После входа вы добавите ребёнка и сами решите, что увидит репетитор.',
+        phOver: 'ВХОД ИЛИ РЕГИСТРАЦИЯ', phTitle: 'Ваш номер телефона', phSub: 'Пароль не нужен — пришлём код в SMS.', phLabel: 'Номер телефона', phCap: 'Номер — это ваш логин. Один номер — один аккаунт.', phCta: 'Получить код',
+        terms: 'Продолжая, вы принимаете условия использования и политику конфиденциальности.',
+        cdOver: 'ПОДТВЕРЖДЕНИЕ', cdTitle: 'Введите код из SMS', cdSub: 'Мы отправили 6-значный код на +998 90 312 45 67.', cdGroup: 'Код подтверждения', cdDigit: 'Цифра', cdErr: 'Неверный код. Осталось 2 попытки.', cdCta: 'Проверить', cdBack: 'Изменить номер', cdTimer: 'Новый код можно запросить через 0:42', cdLimit: 'После 3 неверных попыток вход с этого номера приостановится на 15 минут.',
+        nmOver: 'НОВЫЙ АККАУНТ', nmTitle: 'Давайте познакомимся', nmSub: 'Этот номер ещё не зарегистрирован. Ваше имя увидит репетитор, когда вы откроете ему доступ.', nmLabel: 'Имя и фамилия', nmNoteT: 'Один номер — один аккаунт', nmNoteB: 'Если вы и родитель, и репетитор, второй аккаунт не нужен: все роли соберутся в этом.', nmCta: 'Продолжить', nmOr: 'или', nmOneId: 'Войти через OneID', nmBack: 'Назад',
+        rlOver: 'ВАШИ РОЛИ', rlTitleBack: 'С возвращением, Dilnoza', rlTitleNew: 'Добро пожаловать, Dilnoza', rlSub: 'Роли — это не отдельные аккаунты, а ваши связи с детьми. С чего начнём?',
+        rParentT: 'Родитель: Madina и Temur', rParentS: '2 ребёнка · волна 5 откроется 13 января',
+        rTutorT: 'Репетитор двух групп', rTutorS: '4 класс · Суббота и 3 класс · Будни',
+        rStaffT: 'Сотрудник банка заданий', rStaffS: 'Редактор · 12 заданий на рецензии',
+        rNewT: 'Родитель · добавьте первого ребёнка', rNewS: 'ПИНФЛ, класс и школа — это займёт около минуты.',
+        rNewInv: 'Приглашение Азизы Рахимовны (AZR-4821) будет ждать на следующем экране.',
+        rNewInfo: 'Роль репетитора или сотрудника появится здесь, когда её привяжут к вашему номеру.',
+        rlBack: 'Войти с другим номером', oneIdChip: 'Подтверждено через OneID',
+        ldTitle: 'Отправляем код…', ldSub: 'На номер +998 90 312 45 67. Обычно это занимает до 10 секунд.',
+        exOver: 'ПРИГЛАШЕНИЕ', exTitle: 'Срок приглашения истёк', exBody: 'Ссылка-приглашение от Азизы Рахимовны (AZR-4821) действовала 14 дней и закрылась 20 сентября. Войти и добавить ребёнка можно и без неё.',
+        exNote: 'Доступ репетитору можно открыть позже: попросите новое приглашение или подтвердите его в разделе «Доступ и согласия».', exCta: 'Продолжить без приглашения',
+        erTitle: 'Не удалось отправить SMS', erBody: 'SMS-сервис сейчас не отвечает. Сбой на нашей стороне — попробуйте ещё раз через минуту.',
+        erLimT: 'Слишком много попыток?', erLimB: 'После 3 неверных кодов вход с этого номера приостанавливается на 15 минут. Так мы защищаем данные ваших детей.' },
+      en: { langLabel: 'Language', themeLabel: 'Switch theme', retry: 'Try again',
+        brandOver: 'SEASON 2026/27 · GRADES 0–4',
+        pitch: 'See where your child really stands among the children applying for the same seats.',
+        pitchSub: 'Monitoring waves for grades 0–4, for families preparing for Presidential and specialised schools.',
+        sOver: 'SAMPLE · GRADE 4', sBig: 'Top 11–19%', sCap: 'among 1,240 children aiming for the Presidential School', sTrend: 'Up four waves in a row', sChartLabel: 'Four wave results: September 36–48%, October 29–39%, November 20–28%, December 11–19%. January is still ahead.',
+        mSep: 'Sep', mOct: 'Oct', mNov: 'Nov', mDec: 'Dec', mJan: 'Jan',
+        p1t: 'A range, not a score', p1b: '“Top 11–19%”, not a single number. Every test has error, and we show it honestly.',
+        p2t: 'Progress over the season', p2b: '8 waves from September to spring. The trend tells you more than any single result.',
+        p3t: 'One clear next step', p3b: 'Not ten tips — one concrete task: 15 minutes, three times a week.',
+        legal: 'Data is stored on servers in Uzbekistan · PINFL is never shown on screen',
+        invT: 'Aziza Rakhimovna invited you', invCode: 'code', invSub: 'After signing in, you’ll add your child and decide what the tutor can see.',
+        phOver: 'SIGN IN OR REGISTER', phTitle: 'Your phone number', phSub: 'No password needed — we’ll text you a code.', phLabel: 'Phone number', phCap: 'Your number is your login. One number, one account.', phCta: 'Send code',
+        terms: 'By continuing you accept the Terms of use and the Privacy policy.',
+        cdOver: 'CONFIRMATION', cdTitle: 'Enter the code from the SMS', cdSub: 'We sent a 6-digit code to +998 90 312 45 67.', cdGroup: 'Confirmation code', cdDigit: 'Digit', cdErr: 'Incorrect code, 2 attempts left.', cdCta: 'Check', cdBack: 'Change number', cdTimer: 'You can request a new code in 0:42', cdLimit: 'After 3 incorrect codes, sign-in for this number pauses for 15 minutes.',
+        nmOver: 'NEW ACCOUNT', nmTitle: 'What’s your name?', nmSub: 'This number isn’t registered yet. A tutor sees your name when you give them access.', nmLabel: 'Full name', nmNoteT: 'One number, one account', nmNoteB: 'If you’re both a parent and a tutor, don’t open a second account — every role joins this one.', nmCta: 'Continue', nmOr: 'or', nmOneId: 'Sign in with OneID', nmBack: 'Back',
+        rlOver: 'YOUR ROLES', rlTitleBack: 'Welcome back, Dilnoza', rlTitleNew: 'Welcome, Dilnoza', rlSub: 'Roles aren’t separate accounts — they’re your relationships with children. Where shall we start?',
+        rParentT: 'Parent of Madina & Temur', rParentS: '2 children · wave 5 opens 13 January',
+        rTutorT: 'Tutor of 2 groups', rTutorS: 'Grade 4 · Saturday and Grade 3 · Weekdays',
+        rStaffT: 'Item bank staff', rStaffS: 'Editor · 12 items in the review queue',
+        rNewT: 'Parent · add your first child', rNewS: 'PINFL, grade and school — about a minute.',
+        rNewInv: 'Aziza Rakhimovna’s invitation (AZR-4821) will be waiting on the next screen.',
+        rNewInfo: 'Tutor or staff roles appear here once they’re linked to your number.',
+        rlBack: 'Use another number', oneIdChip: 'Verified with OneID',
+        ldTitle: 'Sending the code…', ldSub: 'To +998 90 312 45 67. This usually takes up to 10 seconds.',
+        exOver: 'INVITATION', exTitle: 'This invitation has expired', exBody: 'Aziza Rakhimovna’s invitation link (AZR-4821) was valid for 14 days and closed on 20 September. You can still sign in and add your child without it.',
+        exNote: 'You can give the tutor access later: ask her for a new invitation or confirm it under Access & consents.', exCta: 'Continue without the invitation',
+        erTitle: 'We couldn’t send the SMS', erBody: 'The SMS service isn’t responding right now. The problem is on our side — please try again in a minute.',
+        erLimT: 'Too many attempts?', erLimB: 'After 3 incorrect codes, sign-in for this number pauses for 15 minutes. This protects your children’s data.' }
+    };
+    const sh = this.shell(T);
+    const t = sh.t;
+    const d = sh.isDefault;
+    const bars = [
+      { label: t.mSep, hasBar: true, top: 79, h: 26, bg: 'var(--brand-300)', border: '0' },
+      { label: t.mOct, hasBar: true, top: 64, h: 22, bg: 'var(--brand-300)', border: '0' },
+      { label: t.mNov, hasBar: true, top: 44, h: 18, bg: 'var(--brand-300)', border: '0' },
+      { label: t.mDec, hasBar: true, top: 24, h: 18, bg: 'var(--brand-600)', border: '0' },
+      { label: t.mJan, hasBar: false, top: 0, h: 0, bg: 'transparent', border: '1.5px dashed var(--line-200)' }
+    ];
+    const digits = ['5', '2', '8', '1', '9', '0'].map((v, i) => ({
+      v, aria: t.cdDigit + ' ' + (i + 1),
+      border: s.codeErr ? 'var(--danger)' : 'var(--line-200)',
+      bg: s.codeErr ? 'var(--danger-bg)' : 'var(--surface-100)'
+    }));
+    const reset = { step: 'phone', codeErr: false, tries: 0, oneId: false, ui: 'default' };
+    const scen = [['invite', 'Via invite'], ['newPerson', 'New number']].map((p) => ({
+      label: p[1], on: !!s[p[0]],
+      bg: s[p[0]] ? 'var(--brand-100)' : 'transparent',
+      ink: s[p[0]] ? 'var(--brand-700)' : 'var(--ink-600)',
+      pick: () => this.setState(Object.assign({}, reset, { [p[0]]: !s[p[0]] }))
+    }));
+    return Object.assign(sh, {
+      bars, digits, scen,
+      invite: s.invite, codeErr: s.codeErr, oneId: s.oneId,
+      showPhone: d && s.step === 'phone',
+      showCode: d && s.step === 'code',
+      showName: d && s.step === 'name',
+      showRoles: d && s.step === 'roles',
+      rolesExisting: !s.newPerson,
+      rolesNew: s.newPerson,
+      rlTitle: s.newPerson ? t.rlTitleNew : t.rlTitleBack,
+      sendCode: () => this.setState({ step: 'code', codeErr: false, tries: 0 }),
+      checkCode: () => {
+        if (s.tries === 0) this.setState({ codeErr: true, tries: 1 });
+        else this.setState({ codeErr: false, tries: 0, step: s.newPerson ? 'name' : 'roles' });
+      },
+      toPhone: () => this.setState({ step: 'phone', codeErr: false, tries: 0, oneId: false }),
+      toCode: () => this.setState({ step: 'code', codeErr: false, tries: 0 }),
+      nameContinue: () => this.setState({ step: 'roles', oneId: false }),
+      oneIdGo: () => this.setState({ step: 'roles', oneId: true }),
+      continueNoInvite: () => this.setState({ ui: 'default', invite: false, step: 'phone', codeErr: false, tries: 0 })
+    });
+  }
+}
+</script>
+
+
+</body></html>

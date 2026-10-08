@@ -1,0 +1,1007 @@
+@import './fonts.css';
+@import './shell.css';
+
+/* ============================================================
+   Zinapo — the Lumen design tokens
+   ============================================================
+   Lifted verbatim from design/*.html, which task.md § 0 names as the
+   visual source of truth. Those boards scope the tokens to a `.z`
+   wrapper; here they live on :root so every page inherits them.
+
+   The canonical names are the Lumen ones (--surface-*, --ink-*,
+   --brand-*, --line-*). The `legacy aliases` block below maps the
+   first-slice names onto them, so the sign-in stylesheet keeps
+   working and now renders in the real palette. New code should use
+   the Lumen names only.
+   ============================================================ */
+
+:root {
+  /* surfaces */
+  --surface-000: #f7f5fb;
+  --surface-100: #ffffff;
+  --surface-200: #f1ecfa;
+  --surface-300: #e7e0f5;
+
+  /* text */
+  --ink-900: #1a1622;
+  --ink-600: #58506e;
+  --ink-400: #6e6686;
+
+  /* hairlines */
+  --line-100: #e6dff3;
+  --line-200: #cfc4e6;
+
+  /* brand — one accent. brand-400 is the primary action and carries
+     DARK text (--ink-on-primary); task.md § 7.1 forbids white on it. */
+  --brand-050: #f5f0ff;
+  --brand-100: #e9e0ff;
+  --brand-300: #c9b0ff;
+  --brand-400: #ad89ff;
+  --brand-600: #7444e4;
+  --brand-700: #522cc3;
+  --ink-on-primary: #1a1622;
+
+  --focus-ring: #ad89ff99;
+
+  /* status */
+  --success: #10805a;
+  --success-bg: #dff5ec;
+  --warning: #9a5c00;
+  --warning-bg: #fdf0dc;
+  --danger: #c62a43;
+  --danger-bg: #fde7ea;
+
+  /* accents. teal is practice, violet is monitoring (task.md § 7.1) */
+  --accent-teal: #0d7d86;
+  --accent-teal-bg: #ddf3f4;
+  --accent-coral: #c04a2a;
+  --accent-coral-bg: #fceae4;
+  --accent-blue: #2158c9;
+  --accent-blue-bg: #e3ecfd;
+  --overlay: #1a162299;
+  --mode-practice: #0d7d86;
+  --mode-monitoring: #7444e4;
+
+  /* elevation */
+  --shadow-xs: 0 1px 2px rgba(26, 22, 34, 0.06);
+  --shadow-float: 0 2px 4px rgba(26, 22, 34, 0.05), 0 8px 20px -6px rgba(86, 58, 160, 0.2);
+  --shadow-float-lg: 0 4px 8px rgba(26, 22, 34, 0.06), 0 16px 32px -8px rgba(86, 58, 160, 0.28);
+  --shadow-card: 0 1px 2px rgba(26, 22, 34, 0.04), 0 12px 28px -14px rgba(86, 58, 160, 0.22);
+  --shadow-overlay: 0 8px 16px rgba(26, 22, 34, 0.08), 0 32px 64px -20px rgba(86, 58, 160, 0.34);
+
+  /* radii — the boards use very round corners: 52px shells,
+     40px cards, 30px controls, 999px pills */
+  --radius-xs: 10px;
+  --radius-sm: 14px;
+  --radius-md: 30px;
+  --radius-lg: 40px;
+  --radius-shell: 52px;
+  --radius-pill: 999px;
+
+  /* ---- legacy aliases (first slice; do not use in new code) ---- */
+  --page: var(--surface-000);
+  --surface: var(--surface-100);
+  --surface-2: var(--surface-200);
+  --surface-3: var(--surface-300);
+  --text: var(--ink-900);
+  --text-muted: var(--ink-600);
+  --text-faint: var(--ink-400);
+  --border: var(--line-100);
+  --border-strong: var(--line-200);
+  --violet-50: var(--brand-050);
+  --violet-100: var(--brand-100);
+  --violet-200: var(--brand-300);
+  --violet-400: var(--brand-400);
+  --violet-500: var(--brand-600);
+  --violet-600: var(--brand-700);
+  --mint-bg: var(--accent-teal-bg);
+  --mint-fg: var(--accent-teal);
+  --green-bg: var(--success-bg);
+  --green-fg: var(--success);
+  --shadow-btn: var(--shadow-float);
+  --ring: 0 0 0 4px var(--focus-ring);
+  --spark-track: var(--surface-300);
+  --spark-band: var(--brand-300);
+}
+
+:root[data-theme='dark'] {
+  --surface-000: #121016;
+  --surface-100: #1b1822;
+  --surface-200: #242030;
+  --surface-300: #2e2940;
+
+  --ink-900: #f5f2fb;
+  --ink-600: #bdb6cf;
+  --ink-400: #9990ab;
+
+  --line-100: #322c44;
+  --line-200: #443c5c;
+
+  --brand-050: #221c33;
+  --brand-100: #2d2547;
+  --brand-300: #6e4fc0;
+  /* brand-400 is unchanged across themes: it is THE accent, and
+     --ink-on-primary stays dark on it in both. */
+  --brand-600: #7c4de8;
+  --brand-700: #c4a9ff;
+
+  --focus-ring: #ad89ffaa;
+
+  --success: #4ed6a1;
+  --success-bg: #16342a;
+  --warning: #f2b457;
+  --warning-bg: #38290f;
+  --danger: #ff7f8d;
+  --danger-bg: #3a1b21;
+
+  --accent-teal: #4fd0d9;
+  --accent-teal-bg: #123236;
+  --accent-coral: #ff9273;
+  --accent-coral-bg: #3a1f16;
+  --accent-blue: #8fb0ff;
+  --accent-blue-bg: #15233f;
+  --overlay: #0a0810cc;
+  --mode-practice: #0e7c85;
+  --mode-monitoring: #7c4de8;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-float: 0 2px 4px rgba(0, 0, 0, 0.45), 0 8px 20px -6px rgba(0, 0, 0, 0.6);
+  --shadow-float-lg: 0 4px 8px rgba(0, 0, 0, 0.5), 0 16px 32px -8px rgba(0, 0, 0, 0.7);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 28px -14px rgba(0, 0, 0, 0.55);
+  --shadow-overlay: 0 8px 16px rgba(0, 0, 0, 0.5), 0 32px 64px -20px rgba(0, 0, 0, 0.75);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: light;
+}
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--surface-000);
+  color: var(--ink-900);
+  font-family: 'Manrope', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+a {
+  color: var(--brand-700);
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--ink-400);
+}
+
+/* Monospace is reserved for codes: invite codes, misconception codes,
+   public codes. It signals "copy this exactly". */
+code,
+kbd,
+samp,
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-radius: var(--radius-xs);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--focus-ring) !important;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  border-color: var(--brand-600) !important;
+}
+
+/* ============================================================
+   Shared behaviours, copied from design/*.html so a component built
+   from a board behaves the same here.
+   ============================================================ */
+
+.lift {
+  transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.lift:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-float-lg) !important;
+}
+
+.ghost:hover,
+.row:hover {
+  background: var(--surface-200) !important;
+}
+
+/* Loading state. task.md § 7.1 asks for a skeleton SHAPED LIKE THE
+   CONTENT, so this is only the shimmer — each screen sizes its own. */
+.skel {
+  background: linear-gradient(
+    90deg,
+    var(--surface-300) 0%,
+    var(--surface-200) 50%,
+    var(--surface-300) 100%
+  );
+  background-size: 200% 100%;
+  animation: zn-skel 1.4s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+@keyframes zn-skel {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.spin {
+  animation: zn-spin 0.9s linear infinite;
+}
+@keyframes zn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lift:hover {
+    transform: none;
+  }
+  .skel,
+  .spin {
+    animation: none;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   Page shell
+   ============================================================ */
+
+.shell {
+  min-height: 100vh;
+  padding: 28px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shell__topbar {
+  width: 100%;
+  max-width: 1180px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 18px;
+}
+
+.shell__grid {
+  width: 100%;
+  max-width: 1180px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 28px;
+  align-items: flex-start;
+}
+
+@media (max-width: 960px) {
+  .shell__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* On small screens the action comes first. */
+  .hero {
+    order: 2;
+  }
+  .auth {
+    order: 1;
+  }
+}
+
+@media (max-width: 420px) {
+  .shell {
+    padding: 16px 12px 32px;
+  }
+}
+
+/* ============================================================
+   Controls cluster (locale + theme)
+   ============================================================ */
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 5px;
+  box-shadow: var(--shadow-float);
+}
+
+.controls__group {
+  display: flex;
+  gap: 2px;
+}
+
+.controls__btn {
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.controls__btn:hover {
+  color: var(--text);
+  background: var(--surface-2);
+}
+
+.controls__btn[aria-current='true'] {
+  background: var(--surface-3);
+  color: var(--text);
+}
+
+.controls__divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--border);
+  margin: 4px 2px;
+}
+
+.controls__icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+/* ============================================================
+   Hero (left panel)
+   ============================================================ */
+
+.hero {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 36px;
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 24px 20px;
+  }
+}
+
+.hero__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.hero__mark {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  background: var(--brand-400);
+  display: grid;
+  place-items: center;
+  color: var(--ink-on-primary);
+  flex: none;
+}
+
+.hero__brandName {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin: 0 0 12px;
+}
+
+.hero__title {
+  margin: 0 0 14px;
+  font-size: clamp(25px, 3vw, 33px);
+  line-height: 1.22;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.hero__subtitle {
+  margin: 0 0 24px;
+  color: var(--text-muted);
+  font-size: 15px;
+  max-width: 46ch;
+}
+
+/* --- sample card --- */
+
+.sample {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+@media (max-width: 560px) {
+  .sample {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.sample__value {
+  margin: 6px 0 6px;
+  font-size: clamp(26px, 3.4vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.sample__caption {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  max-width: 34ch;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  padding: 5px 11px;
+  border-radius: var(--radius-pill);
+  background: var(--green-bg);
+  color: var(--green-fg);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* --- mini chart --- */
+
+.spark {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.spark__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.spark__track {
+  position: relative;
+  width: 8px;
+  height: 92px;
+  border-radius: var(--radius-pill);
+  background: var(--spark-track);
+}
+
+.spark__fill {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--spark-band);
+}
+
+.spark__dot {
+  position: absolute;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  /* negative half-size on both axes centres the dot on the band midpoint */
+  margin-left: -5.5px;
+  margin-bottom: -5.5px;
+  border-radius: 50%;
+  background: var(--violet-600);
+  box-shadow: 0 0 0 4px var(--surface-2);
+}
+
+.spark__label {
+  font-size: 11px;
+  color: var(--text-faint);
+  font-weight: 600;
+}
+
+/* --- feature list --- */
+
+.features {
+  display: grid;
+  gap: 20px;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.feature__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  background: var(--violet-50);
+  color: var(--violet-600);
+  display: grid;
+  place-items: center;
+}
+
+.feature__title {
+  margin: 0 0 3px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.feature__body {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.hero__footnote {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--text-faint);
+  font-size: 12px;
+}
+
+.hero__footnote svg {
+  flex: none;
+  margin-top: 2px;
+}
+
+/* ============================================================
+   Auth card (right panel)
+   ============================================================ */
+
+.auth {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 32px;
+}
+
+@media (max-width: 480px) {
+  .auth {
+    padding: 24px 20px;
+  }
+}
+
+.invite {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 12px;
+  background: var(--mint-bg);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 26px;
+}
+
+.invite__avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--mint-fg) 18%, transparent);
+  color: var(--mint-fg);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.invite__title {
+  margin: 0 0 2px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--mint-fg);
+}
+
+.invite__body {
+  margin: 0;
+  font-size: 12.5px;
+  color: color-mix(in srgb, var(--mint-fg) 82%, var(--text));
+}
+
+.auth__title {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.auth__subtitle {
+  margin: 0 0 22px;
+  color: var(--text-muted);
+  font-size: 14.5px;
+}
+
+.field {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.field__label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.field__hint {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  color: var(--text-faint);
+}
+
+/* --- phone input --- */
+
+.phone {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.phone:focus-within {
+  border-color: var(--violet-500);
+  box-shadow: var(--ring);
+}
+
+.phone[data-invalid='true'] {
+  border-color: var(--danger-fg);
+}
+
+.phone__prefix {
+  display: grid;
+  place-items: center;
+  padding: 0 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border-right: 1.5px solid var(--border);
+  font-variant-numeric: tabular-nums;
+}
+
+.phone__input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  padding: 15px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.phone__input::placeholder {
+  color: var(--text-faint);
+  font-weight: 500;
+}
+
+/* --- buttons --- */
+
+.btn {
+  width: 100%;
+  border: 0;
+  border-radius: var(--radius-sm);
+  padding: 15px 20px;
+  font-size: 15.5px;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  text-decoration: none;
+  transition: transform 0.12s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+/* task.md § 7.1: one accent, `brand-400`, for the primary action, with
+   DARK text on it. Never white on brand-400 — at 4.5:1 it fails, and
+   the boards all use --ink-on-primary. The gradient is gone for the
+   same reason: the design has one flat accent. */
+.btn--primary {
+  background: var(--brand-400);
+  color: var(--ink-on-primary);
+  box-shadow: var(--shadow-float);
+}
+
+.btn--primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn--primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.btn--telegram {
+  background: #2aabee;
+  color: #fff;
+  box-shadow: 0 10px 22px -12px rgba(42, 171, 238, 0.9);
+}
+
+.btn--telegram:hover {
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.btn--ghost:hover {
+  color: var(--text);
+}
+
+.legal {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--violet-600);
+  line-height: 1.45;
+}
+
+/* --- OTP --- */
+
+.otp {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.otp__box {
+  flex: 1;
+  min-width: 0;
+  height: 58px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  background: var(--surface);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.otp__box:focus {
+  border-color: var(--violet-500);
+  box-shadow: var(--ring);
+}
+
+.otp[data-invalid='true'] .otp__box {
+  border-color: var(--danger-fg);
+}
+
+.otp__box:disabled {
+  opacity: 0.55;
+}
+
+/* --- status strip --- */
+
+.strip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.strip--info {
+  background: var(--surface-2);
+  color: var(--text-muted);
+}
+
+.strip--ok {
+  background: var(--green-bg);
+  color: var(--green-fg);
+}
+
+.strip--error {
+  background: var(--danger-bg);
+  color: var(--danger-fg);
+}
+
+.strip__timer {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+}
+
+.spinner {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  animation: spin 0.7s linear infinite;
+  flex: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 2s;
+  }
+  .btn {
+    transition: none;
+  }
+}
+
+/* --- QR --- */
+
+.qr {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.qr__code {
+  width: 108px;
+  height: 108px;
+  flex: none;
+  border-radius: var(--radius-sm);
+  background: #fff;
+  padding: 8px;
+  border: 1px solid var(--border);
+}
+
+.qr__code svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.qr__label {
+  font-size: 12.5px;
+  color: var(--text-faint);
+}
+
+@media (max-width: 960px) {
+  .qr {
+    display: none;
+  }
+}
+
+.auth__footerActions {
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ============================================================
+   Dashboard placeholder
+   ============================================================ */
+
+.dash {
+  width: 100%;
+  max-width: 680px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 36px;
+}
+
+.dash__title {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.dash__body {
+  color: var(--text-muted);
+  margin: 0 0 24px;
+}

@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="uz"><head>
+<meta charset="utf-8">
+<title>Zinapo · Add a child</title>
+<script src="_assets/dc-runtime.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-feae57212855.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-9d8db2e8ccd9.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-bcedb9e2e528.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-326a88b4ddbb.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-06ad36000cd8.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-4f27206c4b1c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-feae57212855.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-9d8db2e8ccd9.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-bcedb9e2e528.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-326a88b4ddbb.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-06ad36000cd8.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-4f27206c4b1c.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-5d8e0798a89d.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-d8fc94bf7a39.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-1cb6f3caaeef.woff2") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-89cd8db6d29c.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-1f62546fa0a0.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("_assets/fonts/f-b42951014c5e.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>
+body{margin:0;font-family:"Manrope","Inter",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+.z{--surface-000:#f7f5fb;--surface-100:#ffffff;--surface-200:#f1ecfa;--surface-300:#e7e0f5;--ink-900:#1a1622;--ink-600:#58506e;--ink-400:#6e6686;--line-100:#e6dff3;--line-200:#cfc4e6;--brand-050:#f5f0ff;--brand-100:#e9e0ff;--brand-300:#c9b0ff;--brand-400:#ad89ff;--brand-600:#7444e4;--brand-700:#522cc3;--ink-on-primary:#1a1622;--focus-ring:#ad89ff99;--success:#10805a;--success-bg:#dff5ec;--warning:#9a5c00;--warning-bg:#fdf0dc;--danger:#c62a43;--danger-bg:#fde7ea;--accent-teal:#0d7d86;--accent-teal-bg:#ddf3f4;--accent-coral:#c04a2a;--accent-coral-bg:#fceae4;--accent-blue:#2158c9;--accent-blue-bg:#e3ecfd;--overlay:#1a162299;--mode-practice:#0d7d86;--shadow-xs:0 1px 2px rgba(26,22,34,.06);--shadow-float:0 2px 4px rgba(26,22,34,.05),0 8px 20px -6px rgba(86,58,160,.20);--shadow-float-lg:0 4px 8px rgba(26,22,34,.06),0 16px 32px -8px rgba(86,58,160,.28);--shadow-card:0 1px 2px rgba(26,22,34,.04),0 12px 28px -14px rgba(86,58,160,.22);--shadow-overlay:0 8px 16px rgba(26,22,34,.08),0 32px 64px -20px rgba(86,58,160,.34);color:var(--ink-900);background:var(--surface-000)}
+.z[data-theme="dark"]{--surface-000:#121016;--surface-100:#1b1822;--surface-200:#242030;--surface-300:#2e2940;--ink-900:#f5f2fb;--ink-600:#bdb6cf;--ink-400:#9990ab;--line-100:#322c44;--line-200:#443c5c;--brand-050:#221c33;--brand-100:#2d2547;--brand-300:#6e4fc0;--brand-600:#7c4de8;--brand-700:#c4a9ff;--focus-ring:#ad89ffaa;--success:#4ed6a1;--success-bg:#16342a;--warning:#f2b457;--warning-bg:#38290f;--danger:#ff7f8d;--danger-bg:#3a1b21;--accent-teal:#4fd0d9;--accent-teal-bg:#123236;--accent-coral:#ff9273;--accent-coral-bg:#3a1f16;--accent-blue:#8fb0ff;--accent-blue-bg:#15233f;--overlay:#0a0810cc;--mode-practice:#0e7c85;--shadow-xs:0 1px 2px rgba(0,0,0,.5);--shadow-float:0 2px 4px rgba(0,0,0,.45),0 8px 20px -6px rgba(0,0,0,.6);--shadow-float-lg:0 4px 8px rgba(0,0,0,.5),0 16px 32px -8px rgba(0,0,0,.7);--shadow-card:0 1px 2px rgba(0,0,0,.4),0 12px 28px -14px rgba(0,0,0,.55);--shadow-overlay:0 8px 16px rgba(0,0,0,.5),0 32px 64px -20px rgba(0,0,0,.75)}
+.z a{color:var(--brand-700)}
+.z button,.z input,.z textarea,.z select{font-family:inherit}
+.z button{cursor:pointer}
+.z button:disabled{cursor:not-allowed}
+.z input::placeholder,.z textarea::placeholder{color:var(--ink-400)}
+.lift{transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s cubic-bezier(.2,.8,.2,1)}
+.lift:hover{transform:translateY(-1px);box-shadow:var(--shadow-float-lg)!important}
+.ghost:hover{background:var(--surface-200)!important}
+.row:hover{background:var(--surface-200)!important}
+.z button:focus-visible,.z a:focus-visible,.z input:focus-visible,.z textarea:focus-visible,.z select:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus-ring)!important}
+.z input:focus-visible,.z textarea:focus-visible,.z select:focus-visible{border-color:var(--brand-600)!important}
+.skel{background:linear-gradient(90deg,var(--surface-300) 0%,var(--surface-200) 50%,var(--surface-300) 100%);background-size:200% 100%;animation:zsk 1.4s ease-in-out infinite;border-radius:14px}
+@keyframes zsk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.spin{animation:zspin .9s linear infinite}
+@keyframes zspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.lift:hover{transform:none}.skel{animation:none}.spin{animation:none}}
+</style>
+</helmet>
+<div class="z" data-theme="{{ theme }}" style="width: 1440px; height: 1400px; box-sizing: border-box; padding: 16px; display: flex; gap: 32px; align-items: flex-start; background: var(--surface-000); color: var(--ink-900);">
+
+<nav aria-label="{{ t.navLabel }}" style="width: 264px; height: 1368px; flex-shrink: 0; box-sizing: border-box; padding: 28px 16px 16px; background: var(--surface-100); border-radius: 52px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<a href="SignIn.dc.html" aria-label="Zinapo" style="display: flex; align-items: center; gap: 12px; padding: 0 12px; text-decoration: none; color: var(--ink-900);">
+<span style="width: 40px; height: 40px; border-radius: 14px; background: var(--brand-400); display: flex; align-items: center; justify-content: center; color: var(--ink-on-primary);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M3 20h5v-5h5v-5h5V5h3"></path></svg>
+</span>
+<span style="font-size: 20px; font-weight: 800; letter-spacing: -0.02em;">Zinapo</span>
+</a>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="padding: 0 16px 8px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.navChildren }}</div>
+<a href="Main.dc.html" class="ghost" style="height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border-radius: 30px; text-decoration: none; color: var(--ink-600);">
+<span style="width: 32px; height: 32px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">MK</span>
+<span style="display: flex; flex-direction: column;"><span style="font-size: 14px; line-height: 20px; font-weight: 600;">Madina</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ t.navGrade4 }}</span></span>
+</a>
+<a href="ParentYoung.dc.html" class="ghost" style="height: 56px; display: flex; align-items: center; gap: 12px; padding: 0 12px; border-radius: 30px; text-decoration: none; color: var(--ink-600);">
+<span style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent-teal-bg); color: var(--accent-teal); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">TK</span>
+<span style="display: flex; flex-direction: column;"><span style="font-size: 14px; line-height: 20px; font-weight: 600;">Temur</span><span style="font-size: 12px; line-height: 16px; color: var(--ink-400);">{{ t.navGrade1 }}</span></span>
+</a>
+<a href="AddChild.dc.html" aria-current="page" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; background: var(--brand-050); color: var(--brand-700); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round;"><path d="M12 5v14M5 12h14"></path></svg>{{ t.navAddChild }}</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="padding: 0 16px 8px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.navFamily }}</div>
+<a href="TestTaking.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M10 8.5l5 3.5-5 3.5z"></path></svg>{{ t.navTakeWave }}</a>
+<a href="Olympiad.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"></path><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"></path></svg>{{ t.navOlympiad }}</a>
+<a href="Access.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>{{ t.navAccess }}</a>
+<a href="SignIn.dc.html" class="ghost" style="height: 48px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-radius: 30px; text-decoration: none; color: var(--ink-600); font-size: 14px; font-weight: 600;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"></path></svg>{{ t.navSignOut }}</a>
+</div>
+<div style="padding: 16px; border-radius: 30px; background: var(--surface-200); display: flex; flex-direction: column; gap: 6px;">
+<span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.navNextWave }}</span>
+<span style="font-size: 12px; line-height: 16px; color: var(--ink-600);">{{ t.navNextWaveSub }}</span>
+</div>
+<sc-if value="{{ demoBar }}" hint-placeholder-val="{{ true }}">
+<div style="margin-top: auto; padding: 12px; border-radius: 30px; border: 1.5px dashed var(--line-200); display: flex; flex-direction: column; gap: 8px;">
+<span style="padding: 0 6px; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">PROTOTYPE · SCREEN STATE</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px;">
+<sc-for list="{{ uiStates }}" as="u" hint-placeholder-count="4">
+<button sc-camel-on-click="{{ u.pick }}" aria-pressed="{{ u.on }}" style="height: 36px; border: 0; border-radius: 22px; font-size: 12px; font-weight: 600; background: {{ u.bg }}; color: {{ u.ink }};">{{ u.label }}</button>
+</sc-for>
+</div>
+<span style="padding: 4px 6px 0; font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">SIMULATE</span>
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<sc-for list="{{ sims }}" as="m" hint-placeholder-count="3">
+<button sc-camel-on-click="{{ m.pick }}" aria-pressed="{{ m.on }}" style="height: 36px; padding: 0 14px; border: 0; border-radius: 22px; font-size: 12px; font-weight: 600; text-align: left; background: {{ m.bg }}; color: {{ m.ink }};">{{ m.label }}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</nav>
+
+<main style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+
+<header style="height: 72px; box-sizing: border-box; padding: 0 12px 0 28px; background: var(--surface-100); border-radius: 52px; box-shadow: var(--shadow-card); display: flex; align-items: center; gap: 12px;">
+<div style="flex-grow: 1; font-size: 14px; font-weight: 600; color: var(--ink-600);">{{ t.crumb }}</div>
+<div role="group" aria-label="{{ t.langLabel }}" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--surface-200);">
+<sc-for list="{{ langs }}" as="l" hint-placeholder-count="3">
+<button sc-camel-on-click="{{ l.pick }}" aria-pressed="{{ l.on }}" style="height: 36px; min-width: 52px; padding: 0 12px; border: 0; border-radius: 22px; font-size: 13px; font-weight: 600; background: {{ l.bg }}; color: {{ l.ink }}; box-shadow: {{ l.shadow }};">{{ l.label }}</button>
+</sc-for>
+</div>
+<button sc-camel-on-click="{{ toggleTheme }}" aria-label="{{ t.themeLabel }}" class="ghost" style="width: 48px; height: 48px; border: 0; border-radius: 30px; background: transparent; color: var(--ink-600); display: flex; align-items: center; justify-content: center;">
+<sc-if value="{{ isDark }}" hint-placeholder-val="{{ false }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+</sc-if>
+<sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"></path></svg>
+</sc-if>
+</button>
+<a href="Access.dc.html" aria-label="{{ t.notifLabel }}" class="ghost" style="width: 48px; height: 48px; border-radius: 30px; background: transparent; color: var(--ink-600); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 21h4"></path></svg>
+</a>
+<span style="width: 48px; height: 48px; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center;">DK</span>
+</header>
+
+<sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+<div aria-busy="true" style="display: flex; flex-direction: column; gap: 24px;">
+<div style="padding: 8px 8px 0; display: flex; flex-direction: column; gap: 10px;"><div class="skel" style="width: 300px; height: 34px;"></div><div class="skel" style="width: 520px; height: 18px;"></div></div>
+<div style="height: 80px; box-sizing: border-box; padding: 20px 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; gap: 24px; align-items: center;"><div class="skel" style="width: 40px; height: 40px; border-radius: 999px;"></div><div class="skel" style="width: 180px; height: 16px;"></div><div class="skel" style="width: 40px; height: 40px; border-radius: 999px;"></div><div class="skel" style="width: 180px; height: 16px;"></div><div class="skel" style="width: 40px; height: 40px; border-radius: 999px;"></div><div class="skel" style="width: 120px; height: 16px;"></div></div>
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+<section style="flex-grow: 1; min-width: 0; box-sizing: border-box; padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<div role="status" style="padding: 16px 20px; border-radius: 14px; background: var(--brand-050); display: flex; gap: 16px; align-items: center;">
+<span class="spin" style="width: 32px; height: 32px; flex-shrink: 0; box-sizing: border-box; border-radius: 999px; border: 3px solid var(--brand-100); border-top-color: var(--brand-600);"></span>
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 15px; line-height: 21px; font-weight: 700; color: var(--brand-700);">{{ t.ldTitle }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.ldSub }}</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px;"><div class="skel" style="width: 160px; height: 14px;"></div><div class="skel" style="height: 48px; border-radius: 30px;"></div></div>
+<div style="display: flex; gap: 12px;"><div class="skel" style="flex: 1 1 0; height: 48px; border-radius: 30px;"></div><div class="skel" style="flex: 1 1 0; height: 48px; border-radius: 30px;"></div><div class="skel" style="flex: 1 1 0; height: 48px; border-radius: 30px;"></div></div>
+<div style="display: flex; gap: 12px;"><div class="skel" style="flex: 1 1 0; height: 48px; border-radius: 30px;"></div><div class="skel" style="flex: 1 1 0; height: 48px; border-radius: 30px;"></div></div>
+<div style="display: flex; gap: 12px;"><div class="skel" style="flex: 1 1 0; height: 48px; border-radius: 30px;"></div><div class="skel" style="flex: 1.4 1 0; height: 48px; border-radius: 30px;"></div></div>
+<div style="display: flex; justify-content: flex-end;"><div class="skel" style="width: 180px; height: 56px; border-radius: 30px;"></div></div>
+</section>
+<section style="width: 336px; flex-shrink: 0; box-sizing: border-box; padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 16px;"><div class="skel" style="width: 180px; height: 20px;"></div><div class="skel" style="height: 56px;"></div><div class="skel" style="height: 56px;"></div><div class="skel" style="height: 56px;"></div></section>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 24px;">
+<div style="padding: 8px 8px 0; display: flex; flex-direction: column; gap: 6px;">
+<h1 style="margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.02em;">{{ t.title }}</h1>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.subtitle }}</p>
+</div>
+<section role="alert" style="padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; gap: 20px; align-items: flex-start;">
+<span style="width: 48px; height: 48px; flex-shrink: 0; border-radius: 999px; background: var(--danger-bg); color: var(--danger); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16.5h.01"></path></svg>
+</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+<h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.errTitle }}</h2>
+<p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.errBody }}</p>
+</div>
+<button sc-camel-on-click="{{ retry }}" class="lift" style="height: 48px; padding: 0 24px; border: 0; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ t.retry }}</button>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{ flow }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 24px;">
+<div style="padding: 8px 8px 0; display: flex; flex-direction: column; gap: 6px;">
+<h1 style="margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.02em;">{{ t.title }}</h1>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.subtitle }}</p>
+</div>
+
+<sc-if value="{{ showInvBanner }}" hint-placeholder-val="{{ true }}">
+<div style="padding: 12px 24px 12px 12px; border-radius: 30px; background: var(--accent-teal-bg); display: flex; gap: 14px; align-items: center;">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 999px; background: var(--surface-100); color: var(--accent-teal); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">AR</span>
+<span style="font-size: 13px; line-height: 20px; font-weight: 600; color: var(--accent-teal);">{{ t.invBanner }}</span>
+</div>
+</sc-if>
+
+<section aria-label="{{ t.stepsLabel }}" style="box-sizing: border-box; padding: 20px 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; gap: 16px; align-items: center;">
+<sc-for list="{{ steps }}" as="x" hint-placeholder-count="3">
+<div aria-current="{{ x.aria }}" style="flex: {{ x.flex }}; min-width: 0; display: flex; align-items: center; gap: 12px;">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: {{ x.bg }}; color: {{ x.ink }}; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center;">
+<sc-if value="{{ x.done }}" hint-placeholder-val="{{ false }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>
+</sc-if>
+<sc-if value="{{ x.notDone }}" hint-placeholder-val="{{ true }}">{{ x.n }}</sc-if>
+</span>
+<span style="display: flex; flex-direction: column; flex-shrink: 0;">
+<span style="font-size: 15px; line-height: 21px; font-weight: 700; color: {{ x.labelInk }};">{{ x.label }}</span>
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ x.sub }}</span>
+</span>
+<sc-if value="{{ x.showLine }}" hint-placeholder-val="{{ true }}">
+<span style="flex-grow: 1; min-width: 24px; height: 2px; margin-left: 8px; border-radius: 999px; background: {{ x.lineBg }};"></span>
+</sc-if>
+</div>
+</sc-for>
+</section>
+
+<div style="display: flex; gap: 24px; align-items: flex-start;">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 24px;">
+
+<sc-if value="{{ showS1 }}" hint-placeholder-val="{{ true }}">
+<section style="box-sizing: border-box; padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.s1Title }}</h2>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.s1Sub }}</p>
+</div>
+
+<sc-if value="{{ isDob }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="padding: 20px; border-radius: 14px; background: var(--danger-bg); display: flex; gap: 14px; align-items: flex-start;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; flex-shrink: 0; fill: none; stroke: var(--danger); stroke-width: 1.8; stroke-linecap: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v6M12 16.5h.01"></path></svg>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 15px; line-height: 21px; font-weight: 700; color: var(--danger);">{{ t.dobErrT }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-900);">{{ t.dobErrB }}</span>
+</div>
+<button sc-camel-on-click="{{ fixDob }}" class="lift" style="height: 36px; flex-shrink: 0; padding: 0 16px; border: 1px solid var(--line-200); border-radius: 22px; background: var(--surface-100); color: var(--ink-900); font-size: 13px; font-weight: 600; box-shadow: var(--shadow-xs);">{{ t.dobFix }}</button>
+</div>
+</sc-if>
+
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<label for="pinfl" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.pinflLabel }}</label>
+<input id="pinfl" inputmode="numeric" maxlength="14" autocomplete="off" value="61204160260453" style="height: 48px; box-sizing: border-box; padding: 0 20px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); font-family: 'JetBrains Mono', monospace; font-size: 15px; letter-spacing: 0.08em; color: var(--ink-900); box-shadow: var(--shadow-xs);">
+<span style="display: flex; gap: 6px; align-items: flex-start; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 14px; height: 14px; flex-shrink: 0; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>{{ t.pinflCap }}</span>
+</div>
+
+<div style="display: flex; gap: 12px;">
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+<label for="fam" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.famLabel }}</label>
+<input id="fam" value="Karimova" style="height: 48px; width: 100%; box-sizing: border-box; padding: 0 20px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); font-size: 15px; color: var(--ink-900); box-shadow: var(--shadow-xs);">
+</div>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+<label for="given" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.givenLabel }}</label>
+<input id="given" value="Madina" style="height: 48px; width: 100%; box-sizing: border-box; padding: 0 20px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); font-size: 15px; color: var(--ink-900); box-shadow: var(--shadow-xs);">
+</div>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+<label for="pat" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.patLabel }}</label>
+<input id="pat" value="Rustamovna" style="height: 48px; width: 100%; box-sizing: border-box; padding: 0 20px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); font-size: 15px; color: var(--ink-900); box-shadow: var(--shadow-xs);">
+</div>
+</div>
+
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+<label for="dob" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.dobLabel }}</label>
+<input id="dob" inputmode="numeric" value="{{ dobVal }}" aria-invalid="{{ isDob }}" style="height: 48px; width: 100%; box-sizing: border-box; padding: 0 20px; border: 1px solid {{ dobBorder }}; border-radius: 30px; background: var(--surface-100); font-size: 15px; color: var(--ink-900); box-shadow: var(--shadow-xs);">
+<sc-if value="{{ dobOk }}" hint-placeholder-val="{{ true }}">
+<span style="display: flex; align-items: center; gap: 6px; font-size: 12px; line-height: 16px; font-weight: 600; color: var(--success);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>{{ t.dobOk }}</span>
+</sc-if>
+<sc-if value="{{ isDob }}" hint-placeholder-val="{{ false }}">
+<span style="display: flex; align-items: center; gap: 6px; font-size: 12px; line-height: 16px; font-weight: 600; color: var(--danger);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round;"><path d="M6 6l12 12M18 6L6 18"></path></svg>{{ t.dobBad }}</span>
+</sc-if>
+</div>
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+<label for="grade" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.gradeLabel }}</label>
+<div style="position: relative;">
+<sc-raw-select id="grade" style="width: 100%; height: 48px; box-sizing: border-box; appearance: none; -webkit-appearance: none; padding: 0 48px 0 20px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); font-size: 15px; color: var(--ink-900); box-shadow: var(--shadow-xs);">
+<option value="0">{{ t.g0 }}</option>
+<option value="1">{{ t.g1 }}</option>
+<option value="2">{{ t.g2 }}</option>
+<option value="3">{{ t.g3 }}</option>
+<option value="4" selected="selected">{{ t.g4 }}</option>
+</sc-raw-select>
+<svg sc-camel-view-box="0 0 24 24" style="position: absolute; right: 18px; top: 14px; width: 20px; height: 20px; pointer-events: none; fill: none; stroke: var(--ink-600); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M6 9l6 6 6-6"></path></svg>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<div style="display: flex; gap: 12px;">
+<div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+<label for="region" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.regionLabel }}</label>
+<div style="position: relative;">
+<sc-raw-select id="region" style="width: 100%; height: 48px; box-sizing: border-box; appearance: none; -webkit-appearance: none; padding: 0 48px 0 20px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); font-size: 15px; color: var(--ink-900); box-shadow: var(--shadow-xs);">
+<option value="tc">{{ t.rCity }}</option>
+<option value="tr" selected="selected">{{ t.rTash }}</option>
+<option value="sa">{{ t.rSam }}</option>
+<option value="fe">{{ t.rFer }}</option>
+</sc-raw-select>
+<svg sc-camel-view-box="0 0 24 24" style="position: absolute; right: 18px; top: 14px; width: 20px; height: 20px; pointer-events: none; fill: none; stroke: var(--ink-600); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M6 9l6 6 6-6"></path></svg>
+</div>
+</div>
+<div style="flex: 1.4 1 0; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+<label for="school" style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.schoolLabel }}</label>
+<div style="position: relative;">
+<sc-raw-select id="school" style="width: 100%; height: 48px; box-sizing: border-box; appearance: none; -webkit-appearance: none; padding: 0 48px 0 20px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); font-size: 15px; color: var(--ink-900); box-shadow: var(--shadow-xs);">
+<option value="s12" selected="selected">{{ t.sch1 }}</option>
+<option value="s5">{{ t.sch2 }}</option>
+<option value="s3">{{ t.sch3 }}</option>
+</sc-raw-select>
+<svg sc-camel-view-box="0 0 24 24" style="position: absolute; right: 18px; top: 14px; width: 20px; height: 20px; pointer-events: none; fill: none; stroke: var(--ink-600); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M6 9l6 6 6-6"></path></svg>
+</div>
+</div>
+</div>
+<span style="display: flex; gap: 6px; align-items: flex-start; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 14px; height: 14px; flex-shrink: 0; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>{{ t.regionCap }}</span>
+</div>
+
+<div style="padding-top: 24px; border-top: 1px solid var(--line-100); display: flex; align-items: center; gap: 12px;">
+<a href="Main.dc.html" class="ghost" style="height: 48px; padding: 0 20px; border-radius: 30px; color: var(--ink-600); text-decoration: none; font-size: 15px; font-weight: 600; display: flex; align-items: center;">{{ t.cancel }}</a>
+<span style="flex-grow: 1; text-align: right; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ s1Hint }}</span>
+<button sc-camel-on-click="{{ next1 }}" aria-disabled="{{ isDob }}" class="lift" style="height: 56px; padding: 0 32px; border: 0; border-radius: 30px; background: {{ n1Bg }}; color: {{ n1Ink }}; font-size: 15px; font-weight: 600; box-shadow: {{ n1Shadow }};">{{ t.next }}</button>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{ showS2 }}" hint-placeholder-val="{{ false }}">
+<section style="box-sizing: border-box; padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<h2 style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700;">{{ t.s2Title }}</h2>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.s2Sub }}</p>
+</div>
+
+<sc-if value="{{ hasInvite }}" hint-placeholder-val="{{ true }}">
+<div style="padding: 24px; border-radius: 30px; background: var(--surface-200); display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; align-items: center; gap: 14px;">
+<span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--accent-teal-bg); color: var(--accent-teal); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center;">AR</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.tutorName }}</span>
+<span style="font-size: 13px; line-height: 18px; color: var(--ink-600);">{{ t.invFrom }}</span>
+</div>
+<span style="height: 28px; padding: 0 12px; border-radius: 999px; background: var(--accent-teal-bg); color: var(--accent-teal); font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">{{ t.invRole }} · <span style="font-family: 'JetBrains Mono', monospace; font-weight: 500;">AZR-4821</span></span>
+</div>
+<div style="padding: 16px 20px; border-radius: 14px; background: var(--surface-100); display: flex; align-items: flex-start; gap: 16px;">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px;">
+<span id="shareLbl" style="font-size: 15px; line-height: 21px; font-weight: 600;">{{ t.shareLabel }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ shareNote }}</span>
+</div>
+<button role="switch" aria-checked="{{ share }}" aria-labelledby="shareLbl" sc-camel-on-click="{{ toggleShare }}" style="width: 56px; height: 32px; flex-shrink: 0; margin-top: 2px; box-sizing: border-box; border: 0; border-radius: 999px; padding: 3px; background: {{ trackBg }}; display: flex; justify-content: {{ knobSide }};">
+<span style="width: 26px; height: 26px; border-radius: 999px; background: var(--surface-100); box-shadow: var(--shadow-float);"></span>
+</button>
+</div>
+<span style="display: flex; gap: 6px; align-items: center; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">
+<svg sc-camel-view-box="0 0 24 24" style="width: 14px; height: 14px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 21h4"></path></svg>{{ t.shareNoteAll }}</span>
+</div>
+</sc-if>
+
+<sc-if value="{{ noInvite }}" hint-placeholder-val="{{ false }}">
+<div style="padding: 24px; border-radius: 30px; background: var(--surface-200); display: flex; gap: 16px; align-items: flex-start;">
+<span style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 999px; background: var(--surface-100); color: var(--ink-600); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20a7 7 0 0 1 14 0"></path></svg>
+</span>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+<span style="font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.noTutorT }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.noTutorB }}</span>
+<a href="Access.dc.html" style="margin-top: 4px; align-self: flex-start; font-size: 13px; line-height: 20px; font-weight: 600; text-decoration: none; color: var(--brand-700);">{{ t.noTutorLink }} →</a>
+</div>
+</div>
+</sc-if>
+
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.consOver }}</span>
+<sc-for list="{{ consents }}" as="c" hint-placeholder-count="3">
+<button role="checkbox" aria-checked="{{ c.on }}" sc-camel-on-click="{{ c.toggle }}" style="width: 100%; border: 0; padding: 16px 20px; border-radius: 14px; background: var(--surface-200); display: flex; gap: 14px; align-items: flex-start; text-align: left; color: var(--ink-900);">
+<span style="width: 24px; height: 24px; flex-shrink: 0; box-sizing: border-box; border-radius: 8px; border: 1.5px solid {{ c.boxBorder }}; background: {{ c.boxBg }}; color: #ffffff; display: flex; align-items: center; justify-content: center;">
+<sc-if value="{{ c.on }}" hint-placeholder-val="{{ false }}">
+<svg sc-camel-view-box="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>
+</sc-if>
+</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+<span style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+<span style="font-size: 15px; line-height: 21px; font-weight: 600;">{{ c.title }}</span>
+<span style="height: 22px; padding: 0 10px; border-radius: 999px; background: {{ c.chipBg }}; color: {{ c.chipInk }}; font-size: 12px; font-weight: 600; display: flex; align-items: center;">{{ c.chip }}</span>
+</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ c.desc }}</span>
+</span>
+</button>
+</sc-for>
+<span style="padding: 0 4px; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.consNote }}</span>
+</div>
+
+<div style="padding-top: 24px; border-top: 1px solid var(--line-100); display: flex; align-items: center; gap: 12px;">
+<button sc-camel-on-click="{{ back1 }}" class="lift" style="height: 48px; padding: 0 20px 0 14px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-xs); display: flex; align-items: center; gap: 6px;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M15 18l-6-6 6-6"></path></svg>{{ t.back }}</button>
+<span style="flex-grow: 1; text-align: right; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ s2Hint }}</span>
+<button sc-camel-on-click="{{ next2 }}" aria-disabled="{{ blocked2 }}" class="lift" style="height: 56px; padding: 0 32px; border: 0; border-radius: 30px; background: {{ n2Bg }}; color: {{ n2Ink }}; font-size: 15px; font-weight: 600; box-shadow: {{ n2Shadow }};">{{ t.addCta }}</button>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{ showS3 }}" hint-placeholder-val="{{ false }}">
+<section style="box-sizing: border-box; padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; gap: 20px; align-items: flex-start;">
+<span style="width: 64px; height: 64px; flex-shrink: 0; border-radius: 999px; background: var(--success-bg); color: var(--success); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;"><path d="M5 12l5 5L20 7"></path></svg>
+</span>
+<div role="status" style="display: flex; flex-direction: column; gap: 6px;">
+<h2 style="margin: 0; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -0.01em;">{{ t.doneTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.doneSub }}</p>
+</div>
+</div>
+<div style="padding: 8px 20px; border-radius: 14px; background: var(--surface-200); display: flex; flex-direction: column;">
+<sc-for list="{{ sumRows }}" as="r" hint-placeholder-count="4">
+<div style="padding: 12px 0; border-bottom: {{ r.div }}; display: flex; gap: 16px; align-items: baseline;">
+<span style="width: 140px; flex-shrink: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ r.k }}</span>
+<span style="font-size: 15px; line-height: 21px; font-weight: 600;">{{ r.v }}</span>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.accOver }}</span>
+<div style="display: flex; align-items: center; gap: 14px;">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">DK</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 21px; font-weight: 600;">Dilnoza Karimova</span><span style="font-size: 13px; line-height: 18px; color: var(--ink-600);">{{ t.accOwner }}</span></span>
+</div>
+<sc-if value="{{ hasInvite }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; align-items: center; gap: 14px;">
+<span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 999px; background: var(--accent-teal-bg); color: var(--accent-teal); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">AR</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 15px; line-height: 21px; font-weight: 600;">{{ t.tutorName }}</span><span style="font-size: 13px; line-height: 18px; color: {{ accTutorInk }};">{{ accTutorV }}</span></span>
+</div>
+</sc-if>
+<sc-if value="{{ noInvite }}" hint-placeholder-val="{{ false }}">
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.accNoTutor }}</span>
+</sc-if>
+</div>
+<div style="padding: 16px 20px; border-radius: 14px; background: var(--brand-050); display: flex; gap: 14px; align-items: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 22px; height: 22px; flex-shrink: 0; fill: none; stroke: var(--brand-700); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 15px; line-height: 21px; font-weight: 700; color: var(--brand-700);">{{ t.nextT }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.nextB }}</span>
+</div>
+</div>
+<div style="display: flex; gap: 12px;">
+<a href="Main.dc.html" class="lift" style="height: 56px; padding: 0 28px; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; box-shadow: var(--shadow-float);">{{ t.openReport }}</a>
+<button sc-camel-on-click="{{ addAnother }}" class="lift" style="height: 56px; padding: 0 24px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-xs);">{{ t.addAnother }}</button>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{ showDup }}" hint-placeholder-val="{{ false }}">
+<section role="alert" style="box-sizing: border-box; padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; gap: 20px; align-items: flex-start;">
+<span style="width: 56px; height: 56px; flex-shrink: 0; border-radius: 999px; background: var(--warning-bg); color: var(--warning); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--warning);">{{ t.dupOver }}</span>
+<h2 style="margin: 0; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -0.01em;">{{ t.dupTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.dupBody }}</p>
+</div>
+</div>
+<div style="padding: 20px 24px; border-radius: 14px; background: var(--surface-200); display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 15px; line-height: 21px; font-weight: 700;">{{ t.dupIfT }}</span>
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+<span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 999px; background: var(--surface-100); color: var(--ink-600); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;">1</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.dupIf1 }}</span>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+<span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 999px; background: var(--surface-100); color: var(--ink-600); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;">2</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.dupIf2 }}</span>
+</div>
+</div>
+<div style="display: flex; gap: 12px;">
+<button sc-camel-on-click="{{ openDispute }}" class="lift" style="height: 56px; padding: 0 28px; border: 0; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-float);">{{ t.dupCta }}</button>
+<button sc-camel-on-click="{{ recheck }}" class="lift" style="height: 56px; padding: 0 24px; border: 1px solid var(--line-200); border-radius: 30px; background: var(--surface-100); color: var(--ink-900); font-size: 15px; font-weight: 600; box-shadow: var(--shadow-xs);">{{ t.dupBack }}</button>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{ showDisp }}" hint-placeholder-val="{{ false }}">
+<section style="box-sizing: border-box; padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; gap: 20px; align-items: flex-start;">
+<span style="width: 56px; height: 56px; flex-shrink: 0; border-radius: 999px; background: var(--brand-050); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
+</span>
+<div role="status" style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.dispOver }}</span>
+<h2 style="margin: 0; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -0.01em;">{{ t.dispTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.dispBody }}</p>
+</div>
+<span style="flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 4px;">
+<span style="font-size: 12px; line-height: 16px; font-weight: 500; color: var(--ink-400);">{{ t.dispNum }}</span>
+<span style="height: 28px; padding: 0 12px; border-radius: 999px; background: var(--surface-200); font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; display: flex; align-items: center;">D-2026-0147</span>
+</span>
+</div>
+<div style="padding: 20px 24px; border-radius: 14px; background: var(--surface-200); display: flex; flex-direction: column; gap: 14px;">
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+<span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;">1</span>
+<span style="font-size: 15px; line-height: 23px;">{{ t.disp1 }}</span>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+<span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;">2</span>
+<span style="font-size: 15px; line-height: 23px;">{{ t.disp2 }}</span>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+<span style="width: 24px; height: 24px; flex-shrink: 0; border-radius: 999px; background: var(--brand-100); color: var(--brand-700); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;">3</span>
+<span style="font-size: 15px; line-height: 23px;">{{ t.disp3 }}</span>
+</div>
+</div>
+<a href="Main.dc.html" class="lift" style="align-self: flex-start; height: 56px; padding: 0 28px; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; box-shadow: var(--shadow-float);">{{ t.toChildren }}</a>
+</section>
+</sc-if>
+
+<sc-if value="{{ showRev }}" hint-placeholder-val="{{ false }}">
+<section style="box-sizing: border-box; padding: 32px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 24px;">
+<div style="display: flex; gap: 20px; align-items: flex-start;">
+<span style="width: 56px; height: 56px; flex-shrink: 0; border-radius: 999px; background: var(--brand-050); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+</span>
+<div role="status" style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; align-items: center; gap: 10px;">
+<span style="font-size: 11px; line-height: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-400);">{{ t.revOver }}</span>
+<span style="height: 26px; padding: 0 10px; border-radius: 999px; background: var(--warning-bg); color: var(--warning); font-size: 12px; font-weight: 600; display: flex; align-items: center;">{{ t.revChip }}</span>
+</div>
+<h2 style="margin: 0; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -0.01em;">{{ t.revTitle }}</h2>
+<p style="margin: 0; font-size: 15px; line-height: 23px; color: var(--ink-600);">{{ t.revBody }}</p>
+</div>
+</div>
+<div style="padding: 8px 20px; border-radius: 14px; background: var(--surface-200); display: flex; flex-direction: column;">
+<div style="padding: 12px 0; border-bottom: 1px solid var(--line-100); display: flex; gap: 16px; align-items: baseline;">
+<span style="width: 180px; flex-shrink: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.revTimeT }}</span>
+<span style="font-size: 15px; line-height: 21px; font-weight: 600;">{{ t.revTimeV }}</span>
+</div>
+<div style="padding: 12px 0; border-bottom: 1px solid var(--line-100); display: flex; gap: 16px; align-items: baseline;">
+<span style="width: 180px; flex-shrink: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.revHowT }}</span>
+<span style="font-size: 15px; line-height: 21px; font-weight: 600;">{{ t.revHowV }}</span>
+</div>
+<div style="padding: 12px 0; display: flex; gap: 16px; align-items: baseline;">
+<span style="width: 180px; flex-shrink: 0; font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.revDataT }}</span>
+<span style="font-size: 15px; line-height: 21px; font-weight: 600;">{{ t.revDataV }}</span>
+</div>
+</div>
+<a href="Main.dc.html" class="lift" style="align-self: flex-start; height: 56px; padding: 0 28px; border-radius: 30px; background: var(--brand-400); color: var(--ink-on-primary); font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; box-shadow: var(--shadow-float);">{{ t.toChildren }}</a>
+</section>
+</sc-if>
+
+</div>
+
+<aside style="width: 336px; flex-shrink: 0; box-sizing: border-box; padding: 28px; background: var(--surface-100); border-radius: 40px; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 20px;">
+<h2 style="margin: 0; font-size: 17px; line-height: 23px; font-weight: 700;">{{ t.asideTitle }}</h2>
+<div style="display: flex; gap: 14px; align-items: flex-start;">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 999px; background: var(--brand-050); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.a1t }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.a1b }}</span>
+</div>
+</div>
+<div style="display: flex; gap: 14px; align-items: flex-start;">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 999px; background: var(--brand-050); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.a2t }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.a2b }}</span>
+</div>
+</div>
+<div style="display: flex; gap: 14px; align-items: flex-start;">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 999px; background: var(--brand-050); color: var(--brand-700); display: flex; align-items: center; justify-content: center;">
+<svg sc-camel-view-box="0 0 24 24" style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>
+</span>
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 13px; line-height: 18px; font-weight: 600;">{{ t.a3t }}</span>
+<span style="font-size: 13px; line-height: 20px; color: var(--ink-600);">{{ t.a3b }}</span>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</sc-if>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;uz&quot;,&quot;ru&quot;,&quot;en&quot;],&quot;default&quot;:&quot;uz&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;screenState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;default&quot;,&quot;loading&quot;,&quot;empty&quot;,&quot;error&quot;],&quot;default&quot;:&quot;default&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;demoBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Prototype&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1400}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lang: this.lsGet('zinapo.lang') || props.lang || 'uz',
+      theme: this.lsGet('zinapo.theme') || props.theme || 'light',
+      ui: props.screenState || 'default',
+      step: 1,
+      sim: 'none',
+      share: true,
+      c1: false,
+      c2: false,
+      c3: false
+    };
+  }
+  lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+  lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) {} }
+  componentDidUpdate(prev) {
+    const p = this.props, patch = {};
+    if (p.lang && p.lang !== prev.lang) patch.lang = p.lang;
+    if (p.theme && p.theme !== prev.theme) patch.theme = p.theme;
+    if (p.screenState && p.screenState !== prev.screenState) patch.ui = p.screenState;
+    if (Object.keys(patch).length) this.setState(patch);
+  }
+  seg(on) {
+    return { bg: on ? 'var(--surface-100)' : 'transparent', ink: on ? 'var(--ink-900)' : 'var(--ink-600)', shadow: on ? 'var(--shadow-xs)' : 'none' };
+  }
+  shell(T) {
+    const s = this.state;
+    const t = T[s.lang] || T.uz;
+    const langs = [['uz', 'Oʻz'], ['ru', 'Рус'], ['en', 'Eng']].map((p) => Object.assign({ label: p[1], on: s.lang === p[0], pick: () => { this.lsSet('zinapo.lang', p[0]); this.setState({ lang: p[0] }); } }, this.seg(s.lang === p[0])));
+    const uiStates = [['default', 'Default'], ['loading', 'Loading'], ['empty', 'Empty'], ['error', 'Error']].map((p) => ({
+      label: p[1], on: s.ui === p[0],
+      bg: s.ui === p[0] ? 'var(--brand-100)' : 'transparent',
+      ink: s.ui === p[0] ? 'var(--brand-700)' : 'var(--ink-600)',
+      pick: () => this.setState({ ui: p[0] })
+    }));
+    return {
+      t, langs, uiStates,
+      theme: s.theme, isDark: s.theme === 'dark', isLight: s.theme !== 'dark',
+      toggleTheme: () => { const n = s.theme === 'dark' ? 'light' : 'dark'; this.lsSet('zinapo.theme', n); this.setState({ theme: n }); },
+      demoBar: this.props.demoBar !== false,
+      isDefault: s.ui === 'default', isLoading: s.ui === 'loading', isEmpty: s.ui === 'empty', isError: s.ui === 'error',
+      retry: () => this.setState({ ui: 'default' })
+    };
+  }
+  renderVals() {
+    const s = this.state;
+    const T = {
+      uz: { navLabel: 'Asosiy menyu', navChildren: 'FARZANDLARIM', navGrade4: '4-sinf', navGrade1: '1-sinf', navAddChild: 'Farzand qoʻshish', navFamily: 'OILA', navTakeWave: '4-monitoringni topshirish', navOlympiad: 'Olimpiada', navAccess: 'Ruxsat va roziliklar', navSignOut: 'Chiqish', navNextWave: '5-monitoring 13-yanvarda ochiladi', navNextWaveSub: 'Uyda yoki ustoz huzurida topshirish mumkin.',
+        langLabel: 'Til', themeLabel: 'Mavzuni almashtirish', notifLabel: 'Bildirishnomalar', retry: 'Qayta urinish',
+        crumb: 'Farzandlarim · Farzand qoʻshish', title: 'Farzand qoʻshish', subtitle: 'Profil egasi — siz. Hisobotlarni kim koʻrishini faqat siz hal qilasiz.',
+        invBanner: 'Aziza Rahimovna sizni AZR-4821 kodi bilan taklif qildi. Uning ruxsatini keyingi qadamda koʻrasiz va oʻzingiz tasdiqlaysiz.',
+        stepsLabel: 'Qadamlar', st1: 'Farzand maʼlumotlari', st1s: 'PINFL, sinf, maktab', st2: 'Ruxsat va roziliklar', st2s: 'Kim nimani koʻradi', st3: 'Tayyor', st3s: 'Xulosa',
+        s1Title: 'Farzand maʼlumotlari', s1Sub: 'Tugʻilganlik haqidagi guvohnomadagidek kiriting.',
+        pinflLabel: 'Farzandning PINFL raqami', pinflCap: 'Tugʻilganlik haqidagi guvohnomadagi 14 ta raqam. Shifrlangan holda saqlanadi va boshqa hech qachon koʻrsatilmaydi — hatto sizga ham.',
+        famLabel: 'Familiyasi', givenLabel: 'Ismi', patLabel: 'Otasining ismi',
+        dobLabel: 'Tugʻilgan sanasi', dobOk: 'PINFLdagi sana bilan mos keladi', dobBad: 'PINFLdagi sana bilan mos kelmaydi',
+        gradeLabel: '2026/27 oʻquv yilidagi sinfi', g0: '0-sinf (tayyorlov)', g1: '1-sinf', g2: '2-sinf', g3: '3-sinf', g4: '4-sinf',
+        regionLabel: 'Maktab joylashgan hudud', rCity: 'Toshkent shahri', rTash: 'Toshkent viloyati', rSam: 'Samarqand viloyati', rFer: 'Fargʻona viloyati',
+        schoolLabel: 'Maktab', sch1: 'Chirchiq shahri, 12-maktab', sch2: 'Chirchiq shahri, 5-maktab', sch3: 'Olmaliq shahri, 3-maktab',
+        regionCap: 'Uy manzilingiz emas, maktab joylashgan hududni tanlang: Prezident maktablariga kvota farzand oʻqiydigan hudud boʻyicha ajratiladi.',
+        cancel: 'Bekor qilish', next: 'Davom etish', back: 'Orqaga',
+        dobErrT: 'Tugʻilgan sana PINFLga mos kelmadi', dobErrB: 'PINFL ichida tugʻilgan sana kodlangan va u siz kiritgan sanaga toʻgʻri kelmayapti. Ikkalasini guvohnoma bilan solishtiring — ular mos kelmaguncha davom etib boʻlmaydi.', dobFix: 'Sanani tuzatdim', dobHint: 'Tugʻilgan sanani tuzatmaguningizcha davom etib boʻlmaydi.',
+        s2Title: 'Ruxsat va roziliklar', s2Sub: 'Har bir ruxsat va rozilik alohida beriladi. Ularni istalgan vaqtda oʻzgartirishingiz mumkin.',
+        tutorName: 'Aziza Rahimovna', invFrom: 'Sizni ustoz sifatida taklif qildi', invRole: 'Ustoz',
+        shareLabel: 'Madinaning hisobotlarini 2027-yil 31-maygacha ulashish',
+        shareOn: 'Yoqilgan. Ustoz Madinaning natijalari va xato turlarini koʻradi; PINFL, telefon raqamingiz va boshqa farzandlaringizni koʻrmaydi. Muddat tugagach, ruxsat oʻzi yopiladi.',
+        shareOff: 'Oʻchirilgan. Aziza Rahimovna Madinaning natijalarini koʻrmaydi. Ruxsatni keyinroq “Ruxsat va roziliklar” boʻlimida berishingiz mumkin.',
+        shareNoteAll: 'Istalgan vaqtda oʻchirishingiz mumkin. Har bir oʻzgarish haqida sizga xabar keladi.',
+        noTutorT: 'Hozircha hech bir ustozda ruxsat yoʻq', noTutorB: 'Siz taklif havolasi orqali kelmadingiz, shuning uchun Madinaning hisobotlarini faqat siz koʻrasiz. Ustoz taklif yuborsa, uni muddati bilan birga oʻzingiz tasdiqlaysiz.', noTutorLink: 'Ruxsat va roziliklarni ochish',
+        consOver: 'ROZILIKLAR',
+        c1t: 'Shaxsiy maʼlumotlarni qayta ishlash', c1d: 'Madinaning maʼlumotlari monitoring oʻtkazish va hisobot tayyorlash uchun ishlatiladi. Serverlar Oʻzbekistonda joylashgan.',
+        c2t: 'Uchinchi tomonlarga uzatish', c2d: 'Olimpiada tashkilotchilari va hamkor maktablar Madinaning natijalarini PINFLsiz olishi mumkin.',
+        c3t: 'Yangiliklar va takliflar', c3d: 'Olimpiadalar va yangi imkoniyatlar haqida SMS yuborishimiz mumkin.',
+        req: 'Majburiy', opt: 'Ixtiyoriy',
+        consNote: 'Ixtiyoriy roziliklar boshqa hech narsaga taʼsir qilmaydi. Istalgan rozilikni qaytarib olish mumkin; profil oʻchirilganda maʼlumotlar anonimlashtiriladi.',
+        addCta: 'Madinani qoʻshish', reqHint: 'Davom etish uchun majburiy rozilikni belgilang.',
+        doneTitle: 'Madina qoʻshildi', doneSub: 'Hisobotlar toʻgʻridan-toʻgʻri sizga keladi. Profil sizniki: ustoz almashsa ham, natijalar tarixi Madina bilan qoladi.',
+        sumChild: 'Farzand', sumChildV: 'Madina Karimova · 4-sinf', sumSchool: 'Maktab', sumSchoolV: 'Chirchiq shahri, 12-maktab · Toshkent viloyati', sumPinfl: 'PINFL', sumPinflV: 'Shifrlangan holda saqlandi', sumCons: 'Roziliklar', sumC1: 'Qayta ishlash: ha', sumC2yes: 'uzatish: ha', sumC2no: 'uzatish: yoʻq', sumC3yes: 'yangiliklar: ha', sumC3no: 'yangiliklar: yoʻq',
+        accOver: 'KIMDA RUXSAT BOR', accOwner: 'Egasi · hamma narsani koʻradi va ruxsatlarni boshqaradi', accShareOn: 'Hisobotlarni 2027-yil 31-maygacha koʻradi', accShareOff: 'Ruxsat yoʻq', accNoTutor: 'Hozircha ustoz yoʻq — ruxsatni keyinroq berishingiz mumkin.',
+        nextT: '5-monitoring 13-yanvarda ochiladi', nextB: 'Madina uni uyda yoki ustoz huzurida topshirishi mumkin.',
+        openReport: 'Madinaning hisobotini ochish', addAnother: 'Yana bir farzand qoʻshish',
+        dupOver: 'PROFIL MAVJUD', dupTitle: 'Bu farzandning profili allaqachon bor', dupBody: 'Ushbu PINFL bilan profil avval yaratilgan. Profil egasiga kimdir farzandni qayta qoʻshmoqchi boʻlgani haqida xabar yubordik. Xavfsizlik uchun egasining ismi va raqamini koʻrsatmaymiz.',
+        dupIfT: 'Agar bu sizning farzandingiz boʻlsa', dupIf1: 'Profilni oilangizdan kimdir, masalan turmush oʻrtogʻingiz ochgan boʻlishi mumkin. Undan sizni ikkinchi ota-ona sifatida qoʻshishni soʻrang.', dupIf2: 'Aks holda egalik boʻyicha nizo oching: xodim hujjatlarni tekshiradi va ikkala tomon bilan bogʻlanadi.',
+        dupCta: 'Egalik boʻyicha nizo ochish', dupBack: 'Maʼlumotlarni qayta tekshirish',
+        dispOver: 'NIZO OCHILDI', dispTitle: 'Arizangiz qabul qilindi', dispBody: 'Tekshiruv tugaguncha profilda hech narsa oʻzgarmaydi. Qaror haqida +998 90 312 45 67 raqamiga SMS yuboramiz.', dispNum: 'Ariza raqami',
+        disp1: 'Profil egasidan farzand bilan bogʻliqligini tasdiqlash soʻraladi.', disp2: 'Sizdan tugʻilganlik haqidagi guvohnoma nusxasini va qisqa qoʻngʻiroqni soʻrashimiz mumkin.', disp3: 'Qaror 5 ish kuni ichida qabul qilinadi.',
+        toChildren: 'Farzandlarimga qaytish',
+        revOver: 'QOʻLDA TEKSHIRUV', revChip: 'Koʻrib chiqilmoqda', revTitle: 'Bu profilni xodim tekshiradi', revBody: 'Raqamingizda allaqachon 4 ta farzand profili bor. Soxta roʻyxatdan oʻtishlardan himoyalanish uchun beshinchi va undan keyingi profillarni xodim koʻrib chiqadi. Bu xato emas — sizdan boshqa hech narsa talab qilinmaydi.',
+        revTimeT: 'Kutilayotgan muddat', revTimeV: '2 ish kunigacha', revHowT: 'Natija', revHowV: '+998 90 312 45 67 raqamiga SMS', revDataT: 'Kiritilgan maʼlumotlar', revDataV: 'Saqlandi. Tekshiruvdan soʻng “Ruxsat va roziliklar” qadamidan davom etasiz.',
+        asideTitle: 'Nega buni soʻraymiz', a1t: 'PINFL takroriy profillardan himoya qiladi', a1b: 'Bir farzand — bitta profil. Raqam shifrlangan holda saqlanadi va hech bir ekranda yoki hisobotda chiqmaydi.',
+        a2t: 'Maktab hududi', a2b: 'Farzandingizning oʻrni shu hududda xuddi shu maktabga intilayotgan bolalar orasida hisoblanadi.',
+        a3t: 'Egasi — siz', a3b: 'Ustozlar faqat taklif yuboradi, ruxsatni esa siz berasiz. Har bir ruxsatning tugash sanasi bor.',
+        ldTitle: 'PINFL tekshirilmoqda…', ldSub: 'Takroriy profil yoʻqligini va tugʻilgan sana mosligini tekshiryapmiz. Bir necha soniya.',
+        errTitle: 'Maʼlumotlarni yuborib boʻlmadi', errBody: 'PINFLni tekshirish paytida aloqa uzildi. Kiritganlaringiz shu qurilmada saqlangan — qayta urinsangiz, hech narsa ikki marta yuborilmaydi.' },
+      ru: { navLabel: 'Главное меню', navChildren: 'МОИ ДЕТИ', navGrade4: '4 класс', navGrade1: '1 класс', navAddChild: 'Добавить ребёнка', navFamily: 'СЕМЬЯ', navTakeWave: 'Пройти волну 4', navOlympiad: 'Олимпиада', navAccess: 'Доступ и согласия', navSignOut: 'Выйти', navNextWave: 'Волна 5 откроется 13 января', navNextWaveSub: 'Можно пройти дома или у репетитора.',
+        langLabel: 'Язык', themeLabel: 'Сменить тему', notifLabel: 'Уведомления', retry: 'Повторить',
+        crumb: 'Мои дети · Добавить ребёнка', title: 'Добавить ребёнка', subtitle: 'Владелец профиля — вы. Только вы решаете, кто видит отчёты.',
+        invBanner: 'Азиза Рахимовна пригласила вас по коду AZR-4821. На следующем шаге вы увидите её доступ и сами его подтвердите.',
+        stepsLabel: 'Шаги', st1: 'Данные ребёнка', st1s: 'ПИНФЛ, класс, школа', st2: 'Доступ и согласия', st2s: 'Кто что видит', st3: 'Готово', st3s: 'Итог',
+        s1Title: 'Данные ребёнка', s1Sub: 'Заполните так, как в свидетельстве о рождении.',
+        pinflLabel: 'ПИНФЛ ребёнка', pinflCap: '14 цифр из свидетельства о рождении. Хранится в зашифрованном виде и больше нигде не показывается — даже вам.',
+        famLabel: 'Фамилия', givenLabel: 'Имя', patLabel: 'Отчество',
+        dobLabel: 'Дата рождения', dobOk: 'Совпадает с датой в ПИНФЛ', dobBad: 'Не совпадает с датой в ПИНФЛ',
+        gradeLabel: 'Класс в 2026/27 учебном году', g0: '0 класс (подготовительный)', g1: '1 класс', g2: '2 класс', g3: '3 класс', g4: '4 класс',
+        regionLabel: 'Регион школы', rCity: 'город Ташкент', rTash: 'Ташкентская область', rSam: 'Самаркандская область', rFer: 'Ферганская область',
+        schoolLabel: 'Школа', sch1: 'Школа № 12, Чирчик', sch2: 'Школа № 5, Чирчик', sch3: 'Школа № 3, Алмалык',
+        regionCap: 'Укажите регион школы, а не домашний адрес: квоты Президентских школ распределяются по региону, где учится ребёнок.',
+        cancel: 'Отмена', next: 'Продолжить', back: 'Назад',
+        dobErrT: 'Дата рождения не совпадает с ПИНФЛ', dobErrB: 'В ПИНФЛ зашифрована дата рождения, и она расходится с введённой. Сверьте оба значения со свидетельством — пока они не совпадут, продолжить нельзя.', dobFix: 'Дата исправлена', dobHint: 'Исправьте дату рождения, чтобы продолжить.',
+        s2Title: 'Доступ и согласия', s2Sub: 'Каждый доступ и каждое согласие даются отдельно. Их можно изменить в любой момент.',
+        tutorName: 'Азиза Рахимовна', invFrom: 'Пригласила вас как репетитор', invRole: 'Репетитор',
+        shareLabel: 'Открыть отчёты Madina до 31 мая 2027 г.',
+        shareOn: 'Включено. Репетитор увидит результаты Madina и типы ошибок, но не ПИНФЛ, ваш номер и других ваших детей. Когда срок истечёт, доступ закроется сам.',
+        shareOff: 'Выключено. Азиза Рахимовна не увидит результаты Madina. Открыть доступ можно позже в разделе «Доступ и согласия».',
+        shareNoteAll: 'Выключить можно в любой момент. О каждом изменении вы получите уведомление.',
+        noTutorT: 'Пока ни у одного репетитора нет доступа', noTutorB: 'Вы пришли не по приглашению, поэтому отчёты Madina видите только вы. Если репетитор пришлёт приглашение, вы подтвердите его вместе со сроком доступа.', noTutorLink: 'Открыть «Доступ и согласия»',
+        consOver: 'СОГЛАСИЯ',
+        c1t: 'Обработка персональных данных', c1d: 'Данные Madina нужны, чтобы проводить мониторинг и готовить отчёты. Серверы находятся в Узбекистане.',
+        c2t: 'Передача третьим лицам', c2d: 'Организаторы олимпиад и школы-партнёры смогут получать результаты Madina — без ПИНФЛ.',
+        c3t: 'Новости и предложения', c3d: 'Мы сможем присылать SMS об олимпиадах и новых возможностях.',
+        req: 'Обязательно', opt: 'По желанию',
+        consNote: 'Необязательные согласия ни на что не влияют. Любое согласие можно отозвать; при удалении профиля данные обезличиваются.',
+        addCta: 'Добавить Madina', reqHint: 'Отметьте обязательное согласие, чтобы продолжить.',
+        doneTitle: 'Madina добавлена', doneSub: 'Отчёты будут приходить напрямую вам. Профиль принадлежит вам: даже если репетитор сменится, история результатов останется с Madina.',
+        sumChild: 'Ребёнок', sumChildV: 'Madina Karimova · 4 класс', sumSchool: 'Школа', sumSchoolV: 'Школа № 12, Чирчик · Ташкентская область', sumPinfl: 'ПИНФЛ', sumPinflV: 'Сохранён в зашифрованном виде', sumCons: 'Согласия', sumC1: 'обработка: да', sumC2yes: 'передача: да', sumC2no: 'передача: нет', sumC3yes: 'новости: да', sumC3no: 'новости: нет',
+        accOver: 'У КОГО ЕСТЬ ДОСТУП', accOwner: 'Владелец · видит всё и управляет доступом', accShareOn: 'Видит отчёты до 31 мая 2027 г.', accShareOff: 'Нет доступа', accNoTutor: 'Репетиторов пока нет — доступ можно открыть позже.',
+        nextT: 'Волна 5 откроется 13 января', nextB: 'Madina может пройти её дома или у репетитора.',
+        openReport: 'Открыть отчёт Madina', addAnother: 'Добавить ещё одного ребёнка',
+        dupOver: 'ПРОФИЛЬ УЖЕ ЕСТЬ', dupTitle: 'У этого ребёнка уже есть профиль', dupBody: 'Профиль с этим ПИНФЛ уже создан. Мы сообщили владельцу, что кто-то пытался добавить ребёнка повторно. Из соображений безопасности мы не показываем имя и номер владельца.',
+        dupIfT: 'Если это ваш ребёнок', dupIf1: 'Возможно, профиль создал кто-то из вашей семьи, например супруг. Попросите его добавить вас вторым родителем.', dupIf2: 'Если нет — откройте спор о владении: сотрудник проверит документы и свяжется с обеими сторонами.',
+        dupCta: 'Открыть спор о владении', dupBack: 'Проверить данные ещё раз',
+        dispOver: 'СПОР ОТКРЫТ', dispTitle: 'Мы приняли ваше обращение', dispBody: 'Пока идёт проверка, в профиле ничего не меняется. О решении сообщим в SMS на +998 90 312 45 67.', dispNum: 'Номер обращения',
+        disp1: 'Владельца профиля попросят подтвердить свою связь с ребёнком.', disp2: 'Мы можем попросить у вас копию свидетельства о рождении и короткий звонок.', disp3: 'Решение принимается в течение 5 рабочих дней.',
+        toChildren: 'Вернуться к моим детям',
+        revOver: 'РУЧНАЯ ПРОВЕРКА', revChip: 'На проверке', revTitle: 'Этот профиль проверит сотрудник', revBody: 'На вашем номере уже 4 профиля детей. Чтобы защититься от фиктивных регистраций, пятый и следующие профили проверяет сотрудник. Это не ошибка — больше от вас ничего не требуется.',
+        revTimeT: 'Ожидаемый срок', revTimeV: 'до 2 рабочих дней', revHowT: 'Результат', revHowV: 'SMS на +998 90 312 45 67', revDataT: 'Введённые данные', revDataV: 'Сохранены. После проверки вы продолжите с шага «Доступ и согласия».',
+        asideTitle: 'Зачем мы это спрашиваем', a1t: 'ПИНФЛ защищает от дублей', a1b: 'Один ребёнок — один профиль. Номер хранится зашифрованным и не появляется ни на одном экране и ни в одном отчёте.',
+        a2t: 'Регион школы', a2b: 'Положение ребёнка считается среди детей того же региона, которые претендуют на ту же школу.',
+        a3t: 'Владелец — вы', a3b: 'Репетиторы могут только пригласить, а доступ открываете вы. У любого доступа есть срок.',
+        ldTitle: 'Проверяем ПИНФЛ…', ldSub: 'Убеждаемся, что профиля ещё нет и дата рождения совпадает. Это несколько секунд.',
+        errTitle: 'Не удалось отправить данные', errBody: 'Связь прервалась во время проверки ПИНФЛ. Введённые данные сохранены на этом устройстве — при повторе ничего не отправится дважды.' },
+      en: { navLabel: 'Main menu', navChildren: 'MY CHILDREN', navGrade4: 'Grade 4', navGrade1: 'Grade 1', navAddChild: 'Add a child', navFamily: 'FAMILY', navTakeWave: 'Take wave 4', navOlympiad: 'Olympiad', navAccess: 'Access & consents', navSignOut: 'Sign out', navNextWave: 'Wave 5 opens 13 January', navNextWaveSub: 'Take it at home or at the tutor’s.',
+        langLabel: 'Language', themeLabel: 'Switch theme', notifLabel: 'Notifications', retry: 'Try again',
+        crumb: 'My children · Add a child', title: 'Add a child', subtitle: 'You own this profile. Only you decide who sees the reports.',
+        invBanner: 'Aziza Rakhimovna invited you with code AZR-4821. You’ll see her access on the next step and confirm it yourself.',
+        stepsLabel: 'Steps', st1: 'Child details', st1s: 'PINFL, grade, school', st2: 'Access & consents', st2s: 'Who sees what', st3: 'Done', st3s: 'Summary',
+        s1Title: 'Child details', s1Sub: 'Enter them exactly as on the birth certificate.',
+        pinflLabel: 'Child’s PINFL', pinflCap: '14 digits from the birth certificate. Stored encrypted and never shown again — not even to you.',
+        famLabel: 'Family name', givenLabel: 'Given name', patLabel: 'Patronymic',
+        dobLabel: 'Date of birth', dobOk: 'Matches the date in the PINFL', dobBad: 'Doesn’t match the date in the PINFL',
+        gradeLabel: 'Grade in 2026/27', g0: 'Grade 0 (preparatory)', g1: 'Grade 1', g2: 'Grade 2', g3: 'Grade 3', g4: 'Grade 4',
+        regionLabel: 'School region', rCity: 'Tashkent city', rTash: 'Tashkent region', rSam: 'Samarkand region', rFer: 'Fergana region',
+        schoolLabel: 'School', sch1: 'School No. 12, Chirchiq', sch2: 'School No. 5, Chirchiq', sch3: 'School No. 3, Almalyk',
+        regionCap: 'Choose the region of the school, not your home: Presidential School seats are allocated by the region where the child studies.',
+        cancel: 'Cancel', next: 'Continue', back: 'Back',
+        dobErrT: 'The date of birth doesn’t match the PINFL', dobErrB: 'The PINFL encodes a date of birth, and it differs from the one you entered. Check both against the birth certificate — you can’t continue until they match.', dobFix: 'I’ve corrected it', dobHint: 'Correct the date of birth to continue.',
+        s2Title: 'Access & consents', s2Sub: 'Each access and each consent is given separately. You can change them at any time.',
+        tutorName: 'Aziza Rakhimovna', invFrom: 'Invited you as a tutor', invRole: 'Tutor',
+        shareLabel: 'Share Madina’s reports until 31 May 2027',
+        shareOn: 'On. The tutor sees Madina’s results and error types — not her PINFL, your number or your other children. Access ends on its own when the term is up.',
+        shareOff: 'Off. Aziza Rakhimovna won’t see Madina’s results. You can grant access later under Access & consents.',
+        shareNoteAll: 'You can switch it off at any time. You’ll be notified of every change.',
+        noTutorT: 'No tutor has access yet', noTutorB: 'You didn’t arrive through an invitation, so only you see Madina’s reports. If a tutor sends one, you’ll confirm it together with an end date.', noTutorLink: 'Open Access & consents',
+        consOver: 'CONSENTS',
+        c1t: 'Processing of personal data', c1d: 'Madina’s data is used to run monitoring waves and prepare reports. Servers are located in Uzbekistan.',
+        c2t: 'Transfer to third parties', c2d: 'Olympiad organisers and partner schools may receive Madina’s results, without her PINFL.',
+        c3t: 'News and offers', c3d: 'We may text you about olympiads and new features.',
+        req: 'Required', opt: 'Optional',
+        consNote: 'Optional consents don’t affect anything else. You can withdraw any consent; if you delete the profile, the data is anonymised.',
+        addCta: 'Add Madina', reqHint: 'Tick the required consent to continue.',
+        doneTitle: 'Madina is added', doneSub: 'Reports come straight to you. The profile is yours: if she changes tutor, her history stays with her.',
+        sumChild: 'Child', sumChildV: 'Madina Karimova · Grade 4', sumSchool: 'School', sumSchoolV: 'School No. 12, Chirchiq · Tashkent region', sumPinfl: 'PINFL', sumPinflV: 'Stored encrypted', sumCons: 'Consents', sumC1: 'processing: yes', sumC2yes: 'transfer: yes', sumC2no: 'transfer: no', sumC3yes: 'news: yes', sumC3no: 'news: no',
+        accOver: 'WHO HAS ACCESS', accOwner: 'Owner · sees everything and manages access', accShareOn: 'Sees reports until 31 May 2027', accShareOff: 'No access', accNoTutor: 'No tutor yet — you can grant access later.',
+        nextT: 'Wave 5 opens 13 January', nextB: 'Madina can take it at home or at the tutor’s.',
+        openReport: 'Open Madina’s report', addAnother: 'Add another child',
+        dupOver: 'PROFILE EXISTS', dupTitle: 'This child already has a profile', dupBody: 'A profile with this PINFL was created earlier. The owner has been notified that someone tried to add the child again. For safety, we don’t show the owner’s name or number.',
+        dupIfT: 'If this is your child', dupIf1: 'Someone in your family, such as your spouse, may have created the profile. Ask them to add you as a second parent.', dupIf2: 'If not, open an ownership dispute: a staff member checks the documents and contacts both sides.',
+        dupCta: 'Open an ownership dispute', dupBack: 'Check the details again',
+        dispOver: 'DISPUTE OPENED', dispTitle: 'We’ve received your request', dispBody: 'Nothing in the profile changes while we check. We’ll text the decision to +998 90 312 45 67.', dispNum: 'Request number',
+        disp1: 'The profile owner is asked to confirm their relationship to the child.', disp2: 'We may ask you for a copy of the birth certificate and a short call.', disp3: 'A decision is made within 5 working days.',
+        toChildren: 'Back to my children',
+        revOver: 'MANUAL REVIEW', revChip: 'Under review', revTitle: 'A staff member will check this profile', revBody: 'Your number already has 4 child profiles. To protect against fake registrations, a person reviews the fifth profile and any after it. This isn’t an error — you don’t need to do anything else.',
+        revTimeT: 'Expected time', revTimeV: 'Up to 2 working days', revHowT: 'Result', revHowV: 'SMS to +998 90 312 45 67', revDataT: 'Your details', revDataV: 'Saved. After the review you’ll continue from Access & consents.',
+        asideTitle: 'Why we ask', a1t: 'PINFL prevents duplicate profiles', a1b: 'One child, one profile. The number is stored encrypted and never appears on any screen or report.',
+        a2t: 'School region', a2b: 'Your child’s position is calculated among children in the same region aiming for the same school.',
+        a3t: 'You’re the owner', a3b: 'Tutors can only invite; you grant access. Every access has an end date.',
+        ldTitle: 'Checking the PINFL…', ldSub: 'Making sure there’s no existing profile and the date of birth matches. A few seconds.',
+        errTitle: 'We couldn’t send the details', errBody: 'The connection dropped while checking the PINFL. What you entered is kept on this device — nothing will be sent twice when you retry.' }
+    };
+    const sh = this.shell(T);
+    const t = sh.t;
+    const flow = sh.isDefault || sh.isEmpty;
+    const hasInvite = !sh.isEmpty;
+    const cur = s.step === 2 ? 2 : (s.step === 3 ? 3 : 1);
+    const steps = [[t.st1, t.st1s], [t.st2, t.st2s], [t.st3, t.st3s]].map((p, i) => {
+      const n = i + 1;
+      const done = n < cur || cur === 3;
+      const isCur = n === cur && cur !== 3;
+      return {
+        n, label: p[0], sub: p[1], done, notDone: !done,
+        aria: isCur ? 'step' : 'false',
+        flex: i < 2 ? '1 1 0' : '0 0 auto',
+        bg: done ? 'var(--success-bg)' : (isCur ? 'var(--brand-400)' : 'var(--surface-300)'),
+        ink: done ? 'var(--success)' : (isCur ? 'var(--ink-on-primary)' : 'var(--ink-600)'),
+        labelInk: isCur ? 'var(--ink-900)' : (done ? 'var(--ink-600)' : 'var(--ink-400)'),
+        showLine: i < 2,
+        lineBg: n < cur ? 'var(--success)' : 'var(--surface-300)'
+      };
+    });
+    const isDob = s.sim === 'dob';
+    const reset = { step: 1, sim: 'none', share: true, c1: false, c2: false, c3: false };
+    const uiStates = sh.uiStates.map((u, i) => i === 2 ? Object.assign({}, u, { pick: () => this.setState({ ui: 'empty', step: 2, sim: 'none' }) }) : u);
+    const simTarget = { dob: 1, dup: 'dup', fifth: 'review' };
+    const sims = [['dob', 'Simulate: DOB mismatch'], ['dup', 'Simulate: Already registered'], ['fifth', 'Simulate: 5th child']].map((p) => ({
+      label: p[1], on: s.sim === p[0],
+      bg: s.sim === p[0] ? 'var(--brand-100)' : 'transparent',
+      ink: s.sim === p[0] ? 'var(--brand-700)' : 'var(--ink-600)',
+      pick: () => {
+        if (s.sim === p[0]) this.setState({ sim: 'none', step: 1, ui: 'default' });
+        else this.setState({ sim: p[0], step: simTarget[p[0]], ui: 'default' });
+      }
+    }));
+    const consents = [['c1', t.c1t, t.c1d, true], ['c2', t.c2t, t.c2d, false], ['c3', t.c3t, t.c3d, false]].map((p) => {
+      const on = !!s[p[0]];
+      return {
+        on, title: p[1], desc: p[2],
+        chip: p[3] ? t.req : t.opt,
+        chipBg: p[3] ? 'var(--brand-100)' : 'var(--surface-300)',
+        chipInk: p[3] ? 'var(--brand-700)' : 'var(--ink-600)',
+        boxBg: on ? 'var(--brand-600)' : 'var(--surface-100)',
+        boxBorder: on ? 'var(--brand-600)' : 'var(--line-200)',
+        toggle: () => this.setState({ [p[0]]: !s[p[0]] })
+      };
+    });
+    const blocked2 = !s.c1;
+    const cSum = [t.sumC1, s.c2 ? t.sumC2yes : t.sumC2no, s.c3 ? t.sumC3yes : t.sumC3no].join(' · ');
+    const sumRows = [[t.sumChild, t.sumChildV], [t.sumSchool, t.sumSchoolV], [t.sumPinfl, t.sumPinflV], [t.sumCons, cSum]].map((p, i) => ({
+      k: p[0], v: p[1], div: i < 3 ? '1px solid var(--line-100)' : '0'
+    }));
+    return Object.assign(sh, {
+      uiStates, sims, steps, consents, sumRows,
+      flow, hasInvite, noInvite: !hasInvite,
+      showInvBanner: hasInvite && s.step === 1,
+      showS1: s.step === 1, showS2: s.step === 2, showS3: s.step === 3,
+      showDup: s.step === 'dup', showDisp: s.step === 'disputed', showRev: s.step === 'review',
+      isDob, dobOk: !isDob,
+      dobVal: isDob ? '12.04.2015' : '12.04.2016',
+      dobBorder: isDob ? 'var(--danger)' : 'var(--line-200)',
+      s1Hint: isDob ? t.dobHint : '',
+      n1Bg: isDob ? 'var(--surface-300)' : 'var(--brand-400)',
+      n1Ink: isDob ? 'var(--ink-400)' : 'var(--ink-on-primary)',
+      n1Shadow: isDob ? 'none' : 'var(--shadow-float)',
+      next1: () => {
+        if (isDob) return;
+        this.setState({ step: s.sim === 'dup' ? 'dup' : (s.sim === 'fifth' ? 'review' : 2) });
+      },
+      fixDob: () => this.setState({ sim: 'none' }),
+      share: s.share,
+      shareNote: s.share ? t.shareOn : t.shareOff,
+      trackBg: s.share ? 'var(--brand-600)' : 'var(--line-200)',
+      knobSide: s.share ? 'flex-end' : 'flex-start',
+      toggleShare: () => this.setState({ share: !s.share }),
+      blocked2,
+      s2Hint: blocked2 ? t.reqHint : '',
+      n2Bg: blocked2 ? 'var(--surface-300)' : 'var(--brand-400)',
+      n2Ink: blocked2 ? 'var(--ink-400)' : 'var(--ink-on-primary)',
+      n2Shadow: blocked2 ? 'none' : 'var(--shadow-float)',
+      back1: () => this.setState({ step: 1 }),
+      next2: () => { if (s.c1) this.setState({ step: 3 }); },
+      accTutorV: s.share ? t.accShareOn : t.accShareOff,
+      accTutorInk: s.share ? 'var(--success)' : 'var(--ink-400)',
+      addAnother: () => this.setState(reset),
+      openDispute: () => this.setState({ step: 'disputed' }),
+      recheck: () => this.setState({ step: 1, sim: 'none' })
+    });
+  }
+}
+</script>
+
+
+</body></html>

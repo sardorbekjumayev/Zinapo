@@ -1,0 +1,838 @@
+# Zinapo — roles, permissions and full build plan
+
+> **For the coding agent (Claude).** This is the master task file for building Zinapo end to end.
+> Read it fully before writing code. Work milestone by milestone (section 12), in order.
+> After each task, tick its checkbox in this file and note anything you changed in the spec.
+> If something here conflicts with `schema.sql` or the strategy doc, **stop and ask**. Don't guess.
+
+---
+
+## 0. Context
+
+**Zinapo** is a measurement and preparation platform for families in Uzbekistan. It follows a child from **grade 0 to grade 4** and tells the parent, honestly, where the child stands among children preparing for **grade-5 entry** to Presidential Schools and other specialized schools.
+
+- **The product is the measurement, not the tests.** Tests are free everywhere. What nobody else has is the **cohort**: "your child is in the top 11–19% of the Tashkent region and moving up".
+- **The asset is item-level history.** For each child we store which item, which answer, which date, which wave. We never store a score as the source of truth.
+
+### Stack
+
+| Layer | Tech |
+|---|---|
+| Frontend | **Next.js** (App Router, TypeScript), `next-intl` (uz-Latn, ru; `kaa` reserved), light/dark themes with the Lumen design tokens |
+| Backend | **NestJS** (TypeScript), REST under `/api`, proxied by Next.js rewrites (same origin) |
+| DB | **PostgreSQL 15+**. The schema is in `docs/schema.sql` |
+| Cache / ephemeral | **Redis** (login requests, rate limits, queues) |
+| Jobs | BullMQ on Redis (notifications, sync ingest, fraud rules, measurement runs) |
+| Bot | Telegram bot inside NestJS (`nestjs-telegraf`, webhook mode) |
+| Files | S3-compatible object storage **hosted in Uzbekistan** (item images, audio) |
+
+### Reference files (read these first)
+
+- `docs/strategy.md`: the product strategy (why every rule below exists).
+- `docs/schema.sql`: the core data model and its invariants (INV-01 … INV-16).
+- `docs/sign-in-spec.md`: the Telegram sign-in flow, **already implemented**.
+- `design/*.html`: exported desktop designs for every screen (Lumen design system, uz/ru/en, light/dark, all states). Treat them as the visual source of truth.
+
+### What exists today
+
+- [x] Sign-in: phone → Telegram deep link → bot asks for the contact → 5-digit code (2 min) → session cookies → `/dashboard`.
+- [x] One generic dashboard. **Roles are not implemented.** Everything below is to build.
+
+---
+
+## 1. Non-negotiable rules (apply to every task)
+
+These come from the strategy and the schema. A PR that breaks one of them is wrong even if the feature works.
+
+1. **Roles are relationships, not person types.** There is one `person` table. Never add `person.type` or `person.role`. A tutor who is also a parent is **one** person with two relationships (INV-01).
+2. **A child is not a user.** Children never authenticate and own nothing. Parents and educators act on a child.
+3. **Exactly one owner per child** (`guardianship.role = 'owner'`, enforced by a partial unique index). The owner alone gives consent and grants educator access.
+4. **Educator access always expires** (`educator_link.valid_until NOT NULL`). Every read of a child's data by an educator is authorised through `v_educator_visible_child`. Group membership grants **nothing** (INV-15).
+5. **PINFL never leaves the service layer.** It is never returned by any API, not partially and not even to the owner. Store a salted hash plus an app-level encrypted value with a separate key. Services exchange `child.id`.
+6. **Responses are append-only** (no UPDATE or DELETE on `response`). Derived values (theta, percentile bands, skill states) are stored **per `calibration_run_id`** and never overwritten.
+7. **Frozen item versions are immutable.** An edit means a new `item_version`. Every distractor has a `misconception_code` and a `rationale`.
+8. **Anchor items never appear in practice forms.** Enforce this in the **query** that selects candidate items, not in the UI (INV-08).
+9. **Percentiles are ranges, never points**, and only for grades 3–4. Grades 0–2 get criterion-referenced skill states only (`not_yet / emerging / secure`), with no ranking and no forecast.
+10. **Never show:** absolute scores to parents, other children's names to parents, admission probability as a %, an exam countdown, or item-by-item review of monitoring forms (anchors would leak).
+11. **Practice never shows percentiles.** It shows only "how many solved". Practice data never feeds the scale.
+12. **Teacher metrics are gain, not level.** A child who missed a wave is shown as "not taken yet", never as zero. Reminders go to **parents**, never to children.
+13. **Deletion = anonymisation.** Strip identifiers and keep responses.
+14. **Data localisation.** Personal data (Postgres, Redis, object storage, logs) lives on servers inside Uzbekistan.
+15. **Everything that changes access, consent, ownership, items or flags writes to `audit_log`.**
+
+---
+
+## 2. Roles
+
+Roles are **derived at request time** from relationships. A person can hold several at once. The UI shows a **workspace switcher** whenever a person has more than one workspace.
+
+| # | Role | Who | Derived from | Workspace |
+|---|---|---|---|---|
+| R0 | **Guest** | Anyone not signed in | No session | public pages |
+| R1 | **Person (signed in, no role yet)** | A verified phone with nothing attached | Session, no other relationship | onboarding |
+| R2 | **Parent — owner** | The legal holder of a child profile | `guardianship.role='owner' AND revoked_at IS NULL` | **Family** |
+| R3 | **Parent — co-guardian** | Second parent or relative, view only | `guardianship.role='co_guardian' AND revoked_at IS NULL` | **Family** |
+| R4 | **Child** (subject, not an account) | Grade 0–4 pupil | `child` row | **Kid mode**, launched from a parent's or educator's session |
+| R5 | **Educator** | Tutor or school teacher | `educator_profile.status='approved'` | **Educator** |
+| R6 | **Staff** (one or more staff roles below) | Zinapo team | `staff_role_assignment` (active) | **Staff console** |
+| R7 | *(future)* **Partner organiser** | External olympiad organiser | `partner_member` | out of scope v1 |
+
+### 2.1 Staff roles (RBAC inside the staff console)
+
+A staff person can hold several staff roles. Permissions are the union.
+
+| Staff role | Code | Main jobs |
+|---|---|---|
+| Item author | `item_author` | Writes items to the template; sees only their own items and statistics; paid per **accepted** item |
+| Item reviewer | `item_reviewer` | Two-hand review: solves blind, then critiques; cannot review own items |
+| Bank editor (psychometrics) | `bank_editor` | Approves or retires items, designates anchors, builds and freezes forms, triggers calibration runs, reads item statistics |
+| Season manager | `season_manager` | Seasons, waves (windows per grade), regions and schools, monitoring calendar |
+| Olympiad operator | `olympiad_operator` | Olympiad events, stages, venues, registrations, finals, results, certificates, awards |
+| Proctor | `proctor` | Runs an in-person final: check-in, verifies the accompanying adult, runs the offline runner, uploads the sync. **Cannot proctor a final where their own child competes.** |
+| Trust & safety | `trust_safety` | Fraud flags, ownership disputes, manual review (5th child, educator applications), suspends educator links |
+| Support | `support` | Looks up a person by phone and sees relationships and statuses (never PINFL, never answers); can resend invites and reset a stuck login |
+| Outcomes operator | `outcomes_operator` | Imports official admission lists (July), runs PINFL matching **inside the service**, reviews unmatched rows |
+| Super admin | `super_admin` | Manages staff role assignments, system settings, reads the audit log; everything else needs the specific role too |
+
+### 2.2 Role resolution and the dashboard router
+
+`GET /api/me` returns:
+
+```json
+{
+  "person": { "id": "…", "fullName": "Dilnoza Karimova", "phone": "+99890•••4567", "locale": "uz-Latn" },
+  "workspaces": ["family", "educator", "staff"],
+  "family": { "ownerOf": 2, "coGuardianOf": 0 },
+  "educator": { "status": "approved", "activeChildren": 18 },
+  "staff": { "roles": ["item_reviewer", "bank_editor"] },
+  "lastWorkspace": "family"
+}
+```
+
+`/dashboard` (Next.js server component) redirects as follows:
+
+- 0 workspaces → `/onboarding` (choose "I'm a parent: add my child" or "I'm a tutor/teacher: apply").
+- 1 workspace → its home (`/family`, `/educator`, `/staff`).
+- More than 1 → `lastWorkspace`'s home, with the switcher in the header.
+
+Pending states:
+
+- An educator with `status='applied'` sees `/educator/pending`.
+- A parent whose 5th child is in manual review still has their family workspace.
+
+---
+
+## 3. Permission matrix
+
+Legend: ✅ allowed · 👁 read only · ❌ never · 🔸 only own / only if linked · — not applicable
+
+| Action | Guest | Owner | Co-guardian | Educator | Staff (role) |
+|---|---|---|---|---|---|
+| Sign in / sign up via Telegram | ✅ | — | — | — | — |
+| Create a child profile (PINFL) | ❌ | ✅ (max 4, then manual review) | ❌ | ❌ **never** | ❌ |
+| Edit child name / enrolment (grade, school, region) | ❌ | ✅ | ❌ | ❌ | `support` 👁 |
+| See PINFL | ❌ | ❌ | ❌ | ❌ | ❌ (nobody, ever) |
+| Invite / remove co-guardian | ❌ | ✅ | ❌ | ❌ | — |
+| Transfer ownership | ❌ | ✅ (to a co-guardian, who must accept) | accept only | ❌ | `trust_safety` via dispute |
+| Grant / revoke educator access | ❌ | ✅ | ❌ | ❌ | `trust_safety` can suspend |
+| Give / revoke consents | ❌ | ✅ | ❌ | ❌ | ❌ |
+| Request anonymisation | ❌ | ✅ | ❌ | ❌ | `super_admin` executes |
+| Launch a **monitoring** session (kid mode) | ❌ | ✅ (inside the wave window) | ✅ | 🔸 linked child, in office | `proctor` at finals |
+| Launch a **practice** session | ❌ | ✅ (assigned or self-serve) | ✅ | 🔸 linked child | — |
+| Parent report, grades 3–4 (percentile band) | ❌ | ✅ | 👁 | 🔸 **own child only** (`is_own_child`) | ❌ |
+| Parent report, grades 0–2 (skills) | ❌ | ✅ | 👁 | 🔸 own child only | ❌ |
+| Educator view of a pupil (gain, clusters, misconceptions, no percentile) | ❌ | — | — | 🔸 active link | ❌ |
+| Practice results (how many solved) | ❌ | count only | count only | 🔸 linked | — |
+| Invite parents (bulk phone) | ❌ | — | — | ✅ (approved) | `support` resend |
+| PINFL + surname match-check | ❌ | — | — | ✅ (25/day, cooldown) | ❌ |
+| Request access to a registered child | ❌ | — | — | ✅ (one live request per pair) | — |
+| Create groups / add linked children | ❌ | — | — | ✅ (organisation only) | — |
+| Send wave reminders | ❌ | — | — | ✅ (to parents) | `season_manager` (bulk) |
+| Create / edit draft items | ❌ | — | — | — | `item_author` (own), `bank_editor` |
+| Review items | ❌ | — | — | — | `item_reviewer` (not own) |
+| Approve / retire item, set anchor | ❌ | — | — | — | `bank_editor` |
+| Build / freeze forms | ❌ | — | — | — | `bank_editor` |
+| Run calibration | ❌ | — | — | — | `bank_editor` |
+| Configure seasons / waves | ❌ | — | — | — | `season_manager` |
+| Register a child for an olympiad | ❌ | ✅ | ❌ | ❌ | `olympiad_operator` |
+| Manage olympiads, venues, awards | ❌ | — | — | — | `olympiad_operator` |
+| Run final check-in / offline runner | ❌ | — | — | — | `proctor` (not own child) |
+| Resolve fraud flags, disputes, manual review | ❌ | — | — | — | `trust_safety` |
+| Import admission outcomes | ❌ | — | — | — | `outcomes_operator` |
+| Manage staff roles, read audit log | ❌ | — | — | — | `super_admin` |
+
+---
+
+## 4. Authorization design (backend)
+
+Implement **one policy layer** and use it everywhere. Don't scatter role checks in controllers.
+
+```
+src/authz/
+  authz.module.ts
+  actor.ts                # Actor = { personId, staffRoles[], educatorStatus } loaded once per request (cache 60 s in Redis)
+  policies/
+    child.policy.ts       # canReadChild(actor, childId, scope: 'parent_report'|'educator_view'|'manage')
+    item.policy.ts
+    form.policy.ts
+    olympiad.policy.ts
+    staff.policy.ts
+  decorators/
+    require-staff-role.decorator.ts   # @RequireStaffRole('bank_editor')
+    child-access.decorator.ts         # @ChildAccess('educator_view')  → resolves :childId param
+  guards/
+    session.guard.ts      # existing (zn_at cookie)
+    staff-role.guard.ts
+    child-access.guard.ts
+```
+
+Rules:
+
+- **Child access** is checked by SQL, not by loading arrays into memory:
+  - **Owner / co-guardian:** `EXISTS (SELECT 1 FROM guardianship WHERE child_id=$1 AND person_id=$2 AND revoked_at IS NULL [AND role='owner'])`
+  - **Educator:** `EXISTS (SELECT 1 FROM v_educator_visible_child WHERE child_id=$1 AND educator_person_id=$2)`
+  - **Educator reading a percentile:** only if that row has `is_own_child = true`.
+- The educator API **never queries `child` directly**. It only goes through `v_educator_visible_child` (a lint rule or code review checklist item).
+- **Staff permissions** are a constant map in code (`STAFF_PERMISSIONS: Record<StaffRole, Permission[]>`). The DB stores only assignments.
+- Every denied access returns `404` for child resources (don't reveal existence) and `403` for staff actions.
+- **Tests:** one e2e test per row of the permission matrix (section 3). This is the definition of done for milestone M1.
+
+---
+
+## 5. Data model additions (on top of `docs/schema.sql`)
+
+Write these as migrations. Keep the naming rules of `schema.sql` (singular tables, `_id`, `timestamptz`).
+
+```sql
+-- From sign-in (may already exist)
+ALTER TABLE person ADD COLUMN IF NOT EXISTS telegram_user_id bigint;
+CREATE UNIQUE INDEX IF NOT EXISTS person_telegram_unique ON person (telegram_user_id) WHERE telegram_user_id IS NOT NULL;
+-- auth_session: see sign-in spec
+
+-- Staff RBAC
+CREATE TYPE staff_role AS ENUM ('item_author','item_reviewer','bank_editor','season_manager','olympiad_operator',
+                                'proctor','trust_safety','support','outcomes_operator','super_admin');
+CREATE TABLE staff_role_assignment (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  person_id uuid NOT NULL REFERENCES person(id),
+  role staff_role NOT NULL,
+  granted_by uuid REFERENCES person(id),
+  granted_at timestamptz NOT NULL DEFAULT now(),
+  revoked_at timestamptz
+);
+CREATE UNIQUE INDEX staff_role_live ON staff_role_assignment (person_id, role) WHERE revoked_at IS NULL;
+
+-- Educator profile (approval gate; the first ~100 educators are hand-picked)
+CREATE TYPE educator_status AS ENUM ('applied','approved','rejected','suspended');
+CREATE TYPE educator_kind AS ENUM ('tutor','school_teacher','learning_centre');
+CREATE TABLE educator_profile (
+  person_id uuid PRIMARY KEY REFERENCES person(id),
+  kind educator_kind NOT NULL,
+  status educator_status NOT NULL DEFAULT 'applied',
+  public_code text UNIQUE NOT NULL,            -- e.g. 'AR4821', printed on invites, used for bonus attribution
+  region_id smallint REFERENCES region(id),
+  school_id uuid REFERENCES school(id),
+  subjects text[],
+  applied_at timestamptz NOT NULL DEFAULT now(),
+  decided_by uuid REFERENCES person(id),
+  decided_at timestamptz,
+  note text
+);
+
+-- Co-guardian invitations and ownership transfer
+CREATE TABLE guardian_invite (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  child_id uuid NOT NULL REFERENCES child(id),
+  invited_by uuid NOT NULL REFERENCES person(id),
+  phone_e164 text NOT NULL,
+  kind text NOT NULL CHECK (kind IN ('co_guardian','ownership_transfer')),
+  code text NOT NULL UNIQUE,
+  expires_at timestamptz NOT NULL,
+  accepted_by uuid REFERENCES person(id),
+  accepted_at timestamptz,
+  cancelled_at timestamptz
+);
+
+-- Disputes and manual review cases (one queue for trust & safety)
+CREATE TYPE case_kind AS ENUM ('ownership_dispute','fifth_child','educator_application','fraud_flag');
+CREATE TYPE case_status AS ENUM ('open','waiting_owner','resolved','dismissed');
+CREATE TABLE review_case (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  kind case_kind NOT NULL,
+  status case_status NOT NULL DEFAULT 'open',
+  subject_person_id uuid REFERENCES person(id),
+  subject_child_id uuid REFERENCES child(id),
+  registration_flag_id bigint REFERENCES registration_flag(id),
+  payload jsonb NOT NULL DEFAULT '{}',
+  assigned_to uuid REFERENCES person(id),
+  resolution text,
+  opened_at timestamptz NOT NULL DEFAULT now(),
+  resolved_at timestamptz
+);
+
+-- Practice assignments (practice sessions reuse session/response with mode='practice')
+CREATE TABLE practice_assignment (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  form_id uuid NOT NULL REFERENCES form(id),          -- mode = 'practice', never contains anchors
+  educator_person_id uuid NOT NULL REFERENCES person(id),
+  group_id uuid REFERENCES teaching_group(id),
+  source_misconception_code text REFERENCES misconception(code),
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE TABLE practice_assignment_child (
+  assignment_id uuid NOT NULL REFERENCES practice_assignment(id),
+  child_id uuid NOT NULL REFERENCES child(id),
+  PRIMARY KEY (assignment_id, child_id)
+);
+
+-- Olympiad operations
+CREATE TABLE olympiad_venue (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  olympiad_id uuid NOT NULL REFERENCES olympiad(id),
+  name text NOT NULL, address text NOT NULL, capacity int NOT NULL,
+  starts_at timestamptz NOT NULL
+);
+ALTER TABLE olympiad_entry ADD COLUMN venue_id uuid REFERENCES olympiad_venue(id);
+ALTER TABLE olympiad_entry ADD COLUMN checked_in_at timestamptz;
+ALTER TABLE olympiad_entry ADD COLUMN accompanying_adult_matches_owner boolean;
+CREATE TABLE proctor_assignment (
+  venue_id uuid NOT NULL REFERENCES olympiad_venue(id),
+  person_id uuid NOT NULL REFERENCES person(id),
+  PRIMARY KEY (venue_id, person_id)
+);
+
+-- Notifications (Telegram first, SMS fallback)
+CREATE TYPE notify_channel AS ENUM ('telegram','sms');
+CREATE TABLE notification (
+  id bigserial PRIMARY KEY,
+  person_id uuid REFERENCES person(id),
+  phone_e164 text,                        -- for people not registered yet (invites)
+  channel notify_channel NOT NULL,
+  template text NOT NULL,                 -- 'educator_invite', 'wave_reminder', 'access_changed', ...
+  payload jsonb NOT NULL,
+  status text NOT NULL DEFAULT 'queued' CHECK (status IN ('queued','sent','failed')),
+  created_at timestamptz NOT NULL DEFAULT now(),
+  sent_at timestamptz
+);
+
+-- Workspace preference
+ALTER TABLE person ADD COLUMN IF NOT EXISTS last_workspace text CHECK (last_workspace IN ('family','educator','staff'));
+```
+
+---
+
+## 6. Backend modules (NestJS)
+
+| Module | Owns | Must never |
+|---|---|---|
+| `auth` *(done)* | Telegram sign-in, sessions | – |
+| `authz` | Actor loading, policies, guards | – |
+| `identity` | person, child (PINFL hash/encrypt, DOB check), guardianship, co-guardian invites, ownership transfer, consent, enrolment | return PINFL; let an educator create a child |
+| `access` | educator_profile, educator_invite (bulk), PINFL match-check + log, educator_link requests/approve/decline/expire | let group membership authorise anything |
+| `bank` | topic, skill, misconception, item, item_version, item_option, item_review, item_statistic (read) | update a frozen version |
+| `forms` | form, form_item assembly, rule checks, freeze | put anchors into a practice form |
+| `seasons` | season, wave, region, school | – |
+| `sessions` | session start (snapshots), offline bundle, response ingest (idempotent), submit | compute or store a score |
+| `measurement` | calibration_run, scale_score, percentile_band, skill_state, inflation_adjustment (writes via job only) | write to the raw layer |
+| `reporting` | read models: parent report 3–4, parent report 0–2, educator group view, practice results | show what section 1 forbids |
+| `groups` | teaching_group, group_member | grant access |
+| `practice` | practice forms from misconception/topic, assignments, repeat | return percentiles |
+| `olympiad` | olympiad, venues, entries, tickets (≥3 waves), ranking within region, certificates (top 15%), awards, season cup | rank grades 0–2; compute teacher bonus from online stages |
+| `trust` | fraud rules (job), registration_flag, review_case (disputes, 5th child, educator applications), suspensions | block silently |
+| `notify` | Telegram + SMS sending, templates uz/ru, rate limits | message a child; message a parent on an expired link |
+| `outcomes` | admission_outcome import + matching | expose PINFL in matching results |
+| `audit` | audit_log writes + staff viewer | – |
+| `privacy` | anonymisation_request execution | physically delete responses |
+
+### 6.1 API surface (summary)
+
+All routes are under `/api`. Use cursor pagination for lists. Errors look like `{ error: 'CODE', message, details? }`.
+
+**Me & workspaces**
+- `GET /me`
+- `PUT /me` (name, locale)
+- `PUT /me/workspace`
+
+**Family**
+- Children:
+  - `GET /family/children`
+  - `POST /family/children` (PINFL, names, DOB, grade, school_region, school)
+  - `GET /family/children/:id`
+  - `PATCH /family/children/:id`
+  - `POST /family/children/:id/enrolments`
+- Guardians:
+  - `GET /family/children/:id/guardians`
+  - `POST /family/children/:id/co-guardian-invites`
+  - `POST /family/guardian-invites/:code/accept`
+  - `POST /family/children/:id/ownership-transfer`
+  - `DELETE /family/children/:id/guardians/:personId`
+- Educator access:
+  - `GET /family/children/:id/educators`
+  - `POST /family/educator-requests/:linkId/approve {validUntil}`
+  - `POST /family/educator-requests/:linkId/decline` (blocks for the season)
+  - `POST /family/children/:id/educators/:linkId/revoke`
+- Consents and privacy:
+  - `GET /family/consents`
+  - `PUT /family/children/:id/consents/:type`
+  - `POST /family/children/:id/anonymisation-request`
+- Reports and sessions:
+  - `GET /family/children/:id/report` (returns `template: 'grade_3_4' | 'grade_0_2'`)
+  - `GET /family/children/:id/waves` (open / upcoming / taken)
+  - `POST /family/children/:id/sessions {waveId|assignmentId}`
+- Olympiad:
+  - `GET /family/children/:id/olympiad`
+  - `POST /family/children/:id/olympiad/:olympiadId/register {venueId}`
+
+**Kid mode / sessions** (shared by family, educator and proctor)
+- `GET /sessions/:id/bundle` (the whole form, media URLs, no keys for monitoring)
+- `POST /sessions/:id/responses` (batch, idempotent on `(session_id,item_version_id)`)
+- `POST /sessions/:id/submit`
+- `GET /sessions/:id/result`
+  - practice: solved count, plus review **only** if the form has no anchors
+  - monitoring: just "submitted"
+
+**Educator**
+- Application:
+  - `POST /educator/apply`
+  - `GET /educator/profile`
+- Invites and access requests:
+  - `POST /educator/invites {phones[]}` (bulk)
+  - `GET /educator/invites`
+  - `POST /educator/invites/remind`
+  - `POST /educator/match-check {pinfl, familyName}` → `{match: true, maskedName}` | `{match:false}`
+  - `POST /educator/access-requests {matchToken}`
+- Groups and pupils:
+  - `GET /educator/groups`
+  - `POST /educator/groups`
+  - `POST /educator/groups/:id/members`
+  - `GET /educator/groups/:id/overview?waveId=` (gain-sorted list, common misconceptions, not-taken)
+  - `GET /educator/children/:id` (educator view; percentile only if own child)
+  - `POST /educator/groups/:id/reminders`
+- Practice:
+  - `POST /educator/practice/forms {source: misconception|topic, code, size}`
+  - `POST /educator/practice/assignments`
+  - `GET /educator/practice/assignments/:id/results`
+  - `POST /educator/practice/assignments/:id/repeat {childIds}`
+
+**Staff**
+- Item bank:
+  - `/staff/items` CRUD (versions, options)
+  - `/staff/items/:id/versions/:v/freeze`
+  - `/staff/review-queue`
+  - `/staff/reviews`
+- Forms, seasons and calibration:
+  - `/staff/forms` (+ `/rules`, `/freeze`)
+  - `/staff/seasons`, `/staff/waves`
+  - `/staff/calibration-runs`
+- Olympiads:
+  - `/staff/olympiads` (+ venues, entries, results, certificates, awards)
+  - `/staff/finals/:venueId/check-in`
+  - `/staff/finals/:venueId/offline-package`
+  - `/staff/finals/:venueId/sync`
+- Trust, outcomes and admin:
+  - `/staff/cases` (flags, disputes, 5th child, educator applications)
+  - `/staff/outcomes/import`
+  - `/staff/people?phone=` (support lookup)
+  - `/staff/roles`
+  - `/staff/audit`
+
+---
+
+## 7. Frontend routes (Next.js App Router)
+
+All routes are prefixed with `/[locale]` (`uz` default, `ru`). One root layout loads the theme (light/dark), `next-intl` and the session.
+
+```
+(public)
+  /sign-in                         DONE
+  /invite/[code]                   educator invite landing → sign-in → add child with access toggle pre-filled
+  /o/[slug]                        olympiad landing (deep-link source attribution: ?src=)
+(app)
+  /dashboard                       role router (section 2.2)
+  /onboarding                      "I'm a parent" / "I'm a tutor or teacher"
+  /profile                         name, language, theme, Telegram link status, sign out
+(family)                           layout: parent sidebar
+  /family                          → first child's report
+  /family/children/new             3-step wizard (details → access & consents → done)
+  /family/children/[id]            report: template by grade (3–4 percentile band | 0–2 skills)
+  /family/children/[id]/olympiad
+  /family/access                   requests, who can see, co-guardians, ownership transfer, change log
+  /family/consents                 per child, per type, document version
+  /family/privacy                  anonymisation request
+(kid)                              full-screen, no sidebar, large touch targets, works offline
+  /play/[sessionId]                ready → test → review → done (monitoring); practice shows solved count
+(educator)                         layout: teacher sidebar
+  /educator                        → first group
+  /educator/pending                application under review
+  /educator/groups/[id]            gain list · common mistakes · not taken yet · pupil detail panel
+  /educator/children/[id]          pupil view (or full parent report if own child)
+  /educator/practice               sets + results
+  /educator/practice/new           from a mistake / by topic → assign
+  /educator/invites                bulk phone invite + PINFL match-check + status
+  /educator/my-children            "My children" (own kids, full report)
+(staff)                            layout: staff sidebar, items depend on staff roles
+  /staff                           role-aware home (queues with counts)
+  /staff/items                     bank list + filters + season targets
+  /staff/items/new  /staff/items/[id]   item card editor, versions, statistics
+  /staff/review                    blind solve → reveal → verdict
+  /staff/forms  /staff/forms/[id]  form builder, rule checks, freeze
+  /staff/seasons                   seasons & waves calendar
+  /staff/calibration               runs, current run, compare runs
+  /staff/olympiads  /staff/olympiads/[id]  stages, venues, entries, results, certificates
+  /staff/finals/[venueId]          proctor check-in + offline runner control
+  /staff/cases                     flags · disputes · 5th child · educator applications
+  /staff/outcomes                  admission list import + matching review
+  /staff/people                    support lookup
+  /staff/roles  /staff/audit       super admin
+```
+
+Next.js `middleware.ts` handles these checks:
+
+- **No session:** redirect to `/sign-in?next=`.
+- **Workspace segments:** check that the workspace is in `me.workspaces`, using a cached claim in the access JWT: `ws: ['family','educator','staff']`, `sr: [staff roles]`.
+- **Data access** is always enforced again by the API. Never trust the client.
+
+### 7.1 UI requirements for every screen
+
+- **Languages:** uz-Latn and ru for all copy. Keep the `kaa` locale wired but empty.
+- **Themes:** light and dark with the Lumen tokens. One accent colour, `brand-400`, for the primary action, with dark text on it. No white text on `brand-400`.
+- **Every data screen has four states:** loading (skeleton shaped like the content), empty (why it's empty plus the next action), error (what failed plus retry), and default. Flow screens also have validation and success states.
+- **Practice vs monitoring look different:** teal for practice, violet for monitoring. The difference must be in layout and wording too, not just a caption.
+- **Accessibility:** real buttons, links and labels; focus rings; 44 px touch targets; text contrast ≥ 4.5:1.
+- **Performance:** must work on low-end Android over mobile data. Kid mode loads the whole form before starting and works offline.
+
+---
+
+## 8. Core flows per role
+
+### 8.1 Parent (owner)
+
+1. **Sign-in (done)** → `/dashboard` → no role yet → `/onboarding` → "Add my child".
+2. **Add a child:**
+   - Enter PINFL, family/given/patronymic names, DOB, grade, **school region** (the school's region, not home), and the school.
+   - Backend: validate the PINFL format, check that the **DOB matches the PINFL** (a mismatch is a hard stop), hash and look up the PINFL.
+     - **Already registered:** open an `ownership_dispute` case and notify the current owner. Don't create a duplicate.
+     - **5th child for this owner:** open a `fifth_child` case (manual review) instead of failing.
+   - Consents: `data_processing` (required), `third_party_transfer` (optional, separate), `marketing` (optional).
+   - If the user arrived from an educator invite, show the access toggle **ON** ("Share reports with Aziza Rakhimovna until 31 May"), visible and switchable.
+3. **Reports:**
+   - **Grades 3–4:** blocks in this order: *where are we → where heading → what's wrong → what to do*. Then Plan B, who can see, practice count.
+   - **Grades 0–2:** "11 of 18 skills secure", new since last month, skill list with 3 states, one play-based action, and the explicit refusal to forecast.
+4. **Take a wave:** a wave window is open for the child's grade → "Start" → kid mode `/play/[sessionId]` → submitted → the report updates after the wave closes and measurement runs.
+5. **Access management:**
+   - Approve or decline educator requests (a decline blocks that educator for the season).
+   - Switch access off or restore it.
+   - Invite a co-guardian, transfer ownership.
+   - Every change is notified via Telegram.
+6. **Olympiad:** view stages, the ticket (≥ 3 monitoring waves = direct entry to the spring final), register at a venue, see results (certificate only if top 15%, otherwise a diagnostic report). Grades 0–2: a diagnostic marathon with no places.
+7. **Privacy:** revoke consents; request anonymisation.
+
+### 8.2 Co-guardian
+
+Gets an invite by phone → signs in → accepts → sees the reports read-only. Can launch sessions in kid mode. Cannot change consents or access. Can accept an ownership transfer.
+
+### 8.3 Child (kid mode)
+
+- Launched from a parent's account (home), an educator's account (office, active link only) or a proctor's device (final).
+- Full-screen, minimal chrome, large options.
+- Grades 0–1 get **visual items with read-aloud audio** (`audio_ref` required).
+- Monitoring:
+  - no correct answers, no score at the end
+  - just "Well done, your answers are saved"
+  - the timer is shown, but there is **no exam countdown** anywhere else
+- Practice: shows how many were solved; the review is allowed because practice forms contain no anchors.
+- The child **never** sees a percentile or rank.
+- Responses are buffered locally and synced with retries. Record `response_ms`, `revision_count`, `client_recorded_at`, device, OS and client version.
+
+### 8.4 Educator
+
+1. **Apply:** `/onboarding` → "I'm a tutor/teacher" → kind, region, school, subjects → `educator_profile.status='applied'` → a `trust_safety` case → approved. The first ~100 educators are invited by staff and pre-approved.
+2. **Invite parents:**
+   - **Primary path:** paste phone numbers (bulk), and the SMS carries the educator's `public_code`. The parent registers, and the access toggle is pre-filled.
+   - **Child already registered:** a PINFL + family-name **match-check**, which returns only match/no-match with a masked name (`KARIMOVA M***A`).
+     - Limits: 25 checks/day, 3 misses → 1 h cooldown. Every check goes to `pinfl_check_log`.
+     - On a match, send an access request (lives 14 days, one live request per pair).
+   - **There is no "add pupil" button.** Educators can't create children.
+3. **Groups:** organise linked children by group (organisation only).
+4. **Group overview** for a selected wave:
+   - Children **sorted by gain** (no level sort).
+   - **Common misconceptions** (from distractor codes), each with a button to build practice from it.
+   - **Not taken yet**, with a reminder to parents.
+5. **Pupil view:** band per wave, gain, dominant misconception, access expiry. **No percentile** unless it's the educator's own child.
+6. **Practice:**
+   - Build a set from a misconception or a topic. Candidate items exclude anchors **in the SQL**. Practice can contain pretest items with `is_scored=false`, and the source is tagged.
+   - Assign it to the whole group or to the children who made that mistake.
+   - Results show "how many solved" only.
+   - "Repeat for those who struggled" sits on the result card.
+7. **My children:** the educator's own kids, with the full parent report. Excluded from group statistics and the bonus. The educator can't proctor their own child's final.
+
+### 8.5 Staff
+
+**Item author**
+- Fills in the item card template: grade, topic, cluster, construct, stem format, expected p, the stem in uz and ru, options, the key, and **a misconception code + rationale for every distractor**.
+- Grades 0–1 need visual + audio.
+- Saves a draft, then submits for review.
+
+**Item reviewer**
+- Gets the stem without the key and solves it **blind**.
+- Then the key and rationales are revealed:
+  - If the answers disagree, the item is **auto-rejected**.
+  - Otherwise the reviewer gives a verdict (accept / revise / reject, with a required note for revise and reject).
+- Reviewers never review their own items.
+
+**Bank editor**
+- Approves items and designates anchors (horizontal, or vertical with a link grade). Retires items.
+- Builds wave forms:
+  - Anchors in the **middle positions**, spanning the full difficulty range.
+  - 4–5 unscored pretest items.
+  - 6–8 items per cluster.
+  - uz and ru versions both present.
+- Runs rule checks and then **freezes** the form (irreversible).
+- Triggers calibration runs.
+- Reviews item statistics: p outside 0.20–0.85, point-biserial < 0.20, a dead distractor, DIF uz vs ru.
+
+**Season manager**
+- Creates the season, waves per grade with windows (8 per season), regions and schools.
+- Sends bulk wave reminders to parents.
+
+**Olympiad operator**
+- Sets up stages: autumn online, mini-finals, spring online, spring final.
+- Manages venues and capacity, entries, and tickets from monitoring waves.
+- After the in-person final:
+  - regional ranking for grades ≥ 3 only
+  - certificates for the top 15%, a diagnostic report for everyone else
+  - awards; the teacher bonus counts **only proctored stages**
+  - the season cup, which rewards gain
+
+**Proctor**
+- Gets a venue roster and checks children in.
+- Records whether the accompanying adult matches the owner.
+- Runs the **offline runner** (local sessions with no internet) and uploads the sync package afterwards.
+
+**Trust & safety**
+- Works one queue holding:
+  - fraud flags from rules — for example many owners from one device in 2 h, children with different surnames all in one group, an owner who never opens reports but completes waves, PINFL check bursts
+  - ownership disputes
+  - 5th-child cases
+  - educator applications
+- Actions on a fraud flag:
+  - **Suspend the educator's links and ask the owners to confirm.** Never block silently.
+  - Dismiss as a false positive, with a note.
+  - Confirm and escalate.
+
+**Outcomes operator**
+- Imports the official admission lists (July). Matching is by PINFL **inside the service**, so the UI never shows PINFLs.
+- Reviews unmatched rows, which writes `admission_outcome`.
+
+**Support**
+- Looks people up by phone: sees their relationships, statuses, invites and login state.
+- Can resend an invite or cancel a stuck login request.
+- Never sees PINFL or answers.
+
+**Super admin**
+- Manages staff role assignments, settings and the audit log viewer.
+
+---
+
+## 9. Measurement (keep it versioned and simple first)
+
+- **Measurement runs only as background jobs** that write to the derived tables with a `calibration_run_id`. Never compute it inline in a request.
+- **v0 (Release 1, method `raw_band_v0`):** within one wave form per grade:
+  - score = the number of correct **scored** items
+  - percentile band within the cohort `region × grade × season` = the percentile of score ± SEM, stored as `pct_low/pct_high`
+  - if `cohort_n < 30`, don't show a band; show "not enough children in this cohort yet"
+  - skill states for grades 0–2: ≥ 2 correct items on a skill in a wave → candidate; confirmed in a later wave → `secure`; partial → `emerging`
+- **v1 (Release 2, method `rasch_anchor_equating_v1`):**
+  - a Rasch calibration with horizontal and vertical anchor equating; theta + SE go in `scale_score`
+  - bands are derived from theta ± 1.0 SE
+  - `inflation_adjustment` comes from the in-person final anchors, applied one way only: the final corrects monitoring, never the reverse
+  - a Python worker (e.g. `girth` or R `mirt`) is acceptable if it reads the raw tables and writes the derived tables only
+- **Recalibration** creates a new run; switching `is_current` atomically changes what the reports read.
+- **Online olympiad stage data never enters the scale.**
+
+---
+
+## 10. Notifications
+
+- **Channels:** Telegram first (every signed-in person has linked Telegram through sign-in). SMS for invites to numbers that aren't registered yet and as a fallback.
+- **Templates (uz/ru):**
+  - `educator_invite`
+  - `access_requested`, `access_granted`, `access_revoked`, `access_expiring` (14 days before)
+  - `co_guardian_invite`, `ownership_transfer`
+  - `wave_open`, `wave_reminder`, `report_ready`
+  - `olympiad_registered`, `final_venue_details`
+  - `case_needs_owner_confirmation`
+- **Rules:**
+  - never message a child
+  - never message a parent about an educator whose link expired
+  - throttle to max 1 reminder per wave per child per day
+
+---
+
+## 11. Non-functional requirements
+
+- **Load:** the online olympiad stage means tens of thousands at once.
+  - Stagger starts by region and grade.
+  - Bundle the whole form to the client before the start.
+  - Buffer answers locally and sync through a retrying queue.
+  - Make ingest idempotent.
+  - **Load-test at 3× the expected peak before the announcement.**
+- **Offline final:** the runner works with zero connectivity and syncs later. `sync_source='offline_sync'` with `client_recorded_at`.
+- **Security:**
+  - PINFL encryption key in a KMS or env, separate from the DB.
+  - Rate limits on match-check, invites and sign-in.
+  - All cookies httpOnly and Secure.
+  - CSRF protection on mutating routes (SameSite=Lax + an origin check).
+- **Observability:** structured logs **without** PINFL, codes or tokens; request IDs; a job dashboard.
+- **Testing:**
+  - unit tests for policies and measurement
+  - e2e for every permission-matrix row
+  - Playwright for the main flows per role
+  - a DB test for each invariant in `schema.sql`
+
+---
+
+## 12. Milestones and tasks
+
+> Each task: implement → tests → update this checklist. Don't start the next milestone with red tests.
+
+### M0 — Done
+- [x] Telegram sign-in, sessions, `/dashboard` placeholder.
+
+### M1 — Roles foundation — Done
+- [x] **Core data model** (`db/init/003_core_schema.sql`, = `docs/schema.sql`). Was missing from the repo; see note M1-a.
+- [x] Migrations: `staff_role_assignment`, `educator_profile`, `guardian_invite`, `review_case`, `practice_assignment`, olympiad ops, `notification`, `person.last_workspace` (`db/init/004_roles_and_ops.sql`); regions + starter taxonomy (`005_reference_data.sql`); `scripts/migrate.sh` for an existing volume.
+- [x] `authz` module: Actor loader (60 s Redis cache), SQL-based child policy, staff permission map, `SessionGuard` / `StaffRoleGuard` / `ChildAccessGuard`, `@Guarded` / `@RequireStaffRole` / `@RequirePermission` / `@ChildAccess` / `@CurrentActor` / `@ResolvedChild`.
+- [x] `GET /me` with workspaces; `PUT /me`; `PUT /me/workspace`. Access JWT carries `ws[]` and `sr[]`.
+- [x] `/dashboard` router + `/onboarding` + the workspace switcher in the header.
+- [x] Layout shells for family, educator, staff and kid; Lumen tokens from `design/*.html`; i18n uz/ru/en (+ `kaa` wired, see note M1-e); light/dark.
+- [x] Seed (`scripts/seed.sh` → `POST /api/dev/seed`): owner with 2 children, co-guardian, 2 approved educators (one of them also a parent, for `is_own_child`), 2 groups, one person per staff role, one person with two staff roles.
+- [x] **DoD:** `scripts/permission-matrix.sh` — 16 pass, 0 fail, 72 pending (the pending rows are the M2–M9 routes; the script prints the breakdown per milestone and a pending row is never counted as a pass).
+
+Also delivered, because M1 could not be verified without them:
+- [x] `design/` — the 15 boards unpacked from `Zinapo.html`, self-contained, with `design/index.html` as a contact sheet.
+- [x] `scripts/db-test.sh` — one check per invariant (31 assertions, all passing). task.md § 11 asks for this; doing it now rather than at M9 is what caught notes M1-b and M1-c.
+- [x] `scripts/routing.sh` — 24 checks over § 2.2 and § 7.
+
+#### Notes on M1 — deviations and decisions
+
+**M1-a. `docs/schema.sql` did not exist.** The repo only had the sign-in slice
+(`person`, `audit_log`, `auth_session`). The core model was authored from the
+references in task.md and confirmed with the product owner before any code was
+written. `docs/schema.sql` is now a symlink to `db/init/003_core_schema.sql`, so
+the specification and the migration are the same bytes and cannot drift. All 16
+invariants are enforced in the database — by a constraint, a partial index or a
+trigger — and each has a test in `db/test/invariants.sql`.
+
+**M1-b. INV-04 had a hole.** "A child always has an owner" was enforced only by a
+trigger on `guardianship`, so a `child` row inserted with no guardianship at all
+was never checked. There is now a second deferred constraint trigger on `child`
+itself (`child_owner_present_on_insert`), and `INV-04 orphan` in the test suite
+covers it.
+
+**M1-c. No PINFL check digit.** `PinflService.isWellFormed` validates 14 digits,
+a century/sex digit in 1–6, and an embedded birth date that is a real calendar
+date and matches the entered DOB. It deliberately does **not** test a checksum:
+the official modulo is not published in a verifiable form, and a guessed one
+would reject real families at the one screen they cannot work around. Duplicate
+detection rests on `child.pinfl_hash UNIQUE` plus the ownership-dispute flow,
+which is where task.md puts it anyway. Added as open question 7.
+
+**M1-d. `super_admin` does not inherit.** Read literally from § 2.1
+("everything else needs the specific role too"): the role grants
+`role.manage`, `audit.read`, `settings.manage` and `anonymisation.execute` and
+nothing else. A super admin cannot freeze a form or resolve a case without also
+holding that role. The permission matrix asserts this.
+
+**M1-e. `kaa` is routable, not empty.** § 7.1 asks for it "wired but empty". An
+empty dictionary would render blank strings, so `kaa` is a real locale that
+falls back to uz; it is excluded from the language switcher until there is copy.
+Dropping in `messages/kaa.json` is then the only change needed.
+
+**M1-f. Enum arrays needed an explicit cast.** `node-pg` has no parser for
+`staff_role[]` and returns the literal string `'{bank_editor}'`. Both role
+queries cast to `text[]` and filter through `isStaffRole`, so a role added to
+the SQL enum but not to the TypeScript union is dropped rather than taking the
+request down.
+
+**M1-g. White text on `brand-400` is gone.** The first-slice stylesheet had
+`.btn--primary` as a violet gradient with `#fff` text, which § 7.1 forbids. It
+is now flat `--brand-400` with `--ink-on-primary`, matching every board.
+
+**M1-h. Routes that later milestones own are placeholders, not 404s.** Every
+route in § 7 exists and renders a screen naming the milestone it waits for. A
+nav rail whose links 404 would not demonstrate the workspace routing that M1 is
+supposed to deliver.
+
+### M2 — Family & identity (Release 1)
+- [ ] Add-child wizard: PINFL validation, DOB-vs-PINFL hard stop, hash + encrypt (separate key), duplicate → dispute case, 5th child → manual review case.
+- [ ] Enrolment history (school year, grade, school, **school region**).
+- [ ] Consents (3 separate types, versioned documents, revocable).
+- [ ] Co-guardian invite and accept; ownership transfer (requires acceptance; always exactly one owner).
+- [ ] Access page: requests, approve with expiry, decline (blocks for the season), revoke or restore, change log; Telegram notifications.
+- [ ] Anonymisation request (queued; executed by a job that strips identifiers and keeps responses).
+
+### M3 — Item bank & forms (Release 1)
+- [ ] Taxonomy CRUD: topics (3 clusters), skills (grades 0–2), misconceptions.
+- [ ] Item editor: versions, options, distractor validation (code + rationale), audio for grades 0–1, uz/ru versions, media upload to in-country storage.
+- [ ] Review queue: blind solve → reveal → verdict; auto-reject on disagreement; no self-review; `accepted_at` for author payment.
+- [ ] Freeze version (DB trigger already exists) + "create new version".
+- [ ] Form builder: slots by role, anchor placement rules, pretest unscored, cluster coverage, rule checks API, freeze.
+- [ ] **Anchor exclusion for practice in the candidate SQL**, plus a test that fails if an anchor can be selected.
+
+### M4 — Sessions & kid mode (Release 1)
+- [ ] Seasons and waves admin (season manager).
+- [ ] Start a session: checks (wave open, child grade, link if educator), **snapshots** of grade, region and school.
+- [ ] Bundle endpoint (no keys for monitoring), signed media URLs.
+- [ ] Kid mode UI: ready → test (navigator, flag, skip) → review → done; offline buffer; retrying sync; idempotent ingest.
+- [ ] Submit; the session status machine; expire unsubmitted sessions when the wave closes.
+
+### M5 — Measurement v0 & parent reports (Release 1)
+- [ ] Job: `raw_band_v0` calibration run per wave close → `percentile_band`, `skill_state`.
+- [ ] Parent report 3–4 (band, trend with the next wave as an empty column, "the 5 in eMaktab" block, clusters, misconception pattern, one action, Plan B, who can see, practice count).
+- [ ] Parent report 0–2 (skills, new since, one action, refusal to forecast).
+- [ ] Cohort minimum (n ≥ 30) handling; "report ready" notification.
+
+### M6 — Educator workspace (Release 2)
+- [ ] Educator application + trust & safety approval; staff invite of pre-approved educators.
+- [ ] Bulk phone invites (SMS with public code), invite landing `/invite/[code]`, status list, reminders.
+- [ ] PINFL + surname match-check with limits and logging; access requests (14-day TTL, one live per pair).
+- [ ] Groups; group overview (gain sort, common misconceptions, not taken + remind parents); pupil detail.
+- [ ] Practice builder (from misconception / topic), assignments, results (solved count), repeat; the parent sees the practice **count only**.
+- [ ] "My children" view; `is_own_child` auto-set; excluded from statistics and bonus.
+
+### M7 — Olympiad (Release 2)
+- [ ] Olympiad admin: stages, regions, grades (`is_ranked=false` for 0–2), venues, capacity.
+- [ ] Parent registration; monitoring ticket (≥ 3 waves); deep-link source attribution (`/o/[slug]?src=`).
+- [ ] Online stage (kid mode, data excluded from the scale); response-time cheating signal.
+- [ ] Proctor console: roster, check-in, accompanying-adult check, offline runner package + sync upload.
+- [ ] Results: regional ranking (grades ≥ 3), certificates (top 15%), diagnostic reports, awards, teacher bonus (proctored stages only), season cup (gain).
+
+### M8 — Trust & safety (Release 2)
+- [ ] Fraud rules job → `registration_flag` (the 4 rules in section 8.5) with evidence JSON.
+- [ ] Cases queue UI: flags, disputes, 5th child, educator applications; assignment; resolutions.
+- [ ] "Suspend links + ask owners to confirm" flow with notifications and owner responses.
+- [ ] Ownership dispute procedure (both parties notified, evidence, keep or transfer owner).
+
+### M9 — Measurement v1, outcomes, admin
+- [ ] Rasch + anchor equating worker (`rasch_anchor_equating_v1`), item statistics (p, point-biserial, distractor share, DIF uz/ru), compare runs, switch current.
+- [ ] Inflation adjustment from the in-person final.
+- [ ] Admission outcomes import + matching (July 2027).
+- [ ] Support lookup, staff roles management, audit viewer.
+
+---
+
+## 13. Do **not** build (season one)
+
+Forum or chats, a public ratings feed, gamification badges, video lessons, a tutor marketplace, native mobile apps, a visual (WYSIWYG) item editor, partner organiser accounts, payments (unless explicitly requested).
+
+## 14. Open questions (ask the product owner before implementing)
+
+1. Payment and subscription model: which milestone, and what is paid?
+2. SMS provider for invites (Eskiz / Playmobile?) and the fallback for parents without Telegram.
+3. OneID / state family-composition integration: when?
+4. Karakalpak (`kaa`) content: season two?
+5. Should educators see a child's percentile with explicit parent opt-in, or never (the current rule is never, except their own child)?
+6. Exact certificate threshold per olympiad (default top 15%) and the prize policy for minors (legal/tax).
+7. **PINFL check digit** — is there an official, documented modulo we may rely on? Until there is, `PinflService` validates structure and the embedded date of birth only (note M1-c). A guessed checksum that rejects a real PINFL is far worse than accepting a malformed one, which the `pinfl_hash` unique index catches anyway.
+8. **`docs/strategy.md`** is referenced by § 0 but absent from the repo. Nothing in M1 needed it; the parent-report copy in M5 will.

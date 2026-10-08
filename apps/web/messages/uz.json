@@ -1,0 +1,182 @@
+{
+  "localeName": "O‘z",
+  "brand": "Zinapo",
+  "themeToggle": "Mavzuni almashtirish",
+  "hero": {
+    "eyebrow": "2026/27 MAVSUMI · 0–4-SINFLAR",
+    "title": "Bir xil o‘rinlarga intilayotgan bolalar orasida farzandingiz aslida qayerda turganini biling.",
+    "subtitle": "Prezident va ixtisoslashtirilgan maktablarga tayyorlanayotgan 0–4-sinf o‘quvchilari uchun monitoringlar.",
+    "sampleLabel": "NAMUNA · 4-SINF",
+    "sampleValue": "Top 11–19%",
+    "sampleCaption": "Prezident maktabiga intilayotgan 1 240 nafar bola orasida",
+    "sampleBadge": "4 ta monitoringdan beri yuqoriga",
+    "months": [
+      "sen",
+      "okt",
+      "noy",
+      "dek",
+      "yan"
+    ],
+    "features": [
+      {
+        "title": "Ball emas, oraliq",
+        "body": "Bitta raqam emas, “Top 11–19%”. Har qanday testda xatolik bor — biz uni yashirmaymiz."
+      },
+      {
+        "title": "Mavsum davomidagi o‘sish",
+        "body": "Sentyabrdan bahorgacha 8 ta monitoring. Yo‘nalish bitta natijadan ko‘ra ko‘proq narsani aytadi."
+      },
+      {
+        "title": "Bitta aniq keyingi qadam",
+        "body": "O‘nta maslahat emas, bitta aniq vazifa: haftasiga uch marta 15 daqiqadan."
+      }
+    ],
+    "footnote": "Ma’lumotlar O‘zbekistondagi serverlarda saqlanadi · PINFL hech qachon ekranda ko‘rsatilmaydi"
+  },
+  "signIn": {
+    "kicker": "KIRISH YOKI RO‘YXATDAN O‘TISH",
+    "title": "Telefon raqamingiz",
+    "subtitle": "Parol shart emas — kirish kodini Telegram orqali yuboramiz.",
+    "phoneLabel": "Telefon raqami",
+    "phoneHint": "Raqam — sizning loginingiz. Bitta raqam — bitta akkaunt.",
+    "sendCode": "Kodni yuborish",
+    "sending": "Yuborilmoqda…",
+    "legal": "Davom etib, foydalanish shartlari va maxfiylik siyosatiga rozilik bildirasiz.",
+    "codeTitle": "Kodni kiriting",
+    "codeKicker": "TELEGRAM ORQALI TASDIQLASH",
+    "codeSubtitle": "{phone} raqami uchun kod Telegramga yuboriladi.",
+    "getCode": "Kodni olish",
+    "getCodeHint": "Tugma Telegramni ochadi. Botga o‘z raqamingizni yuboring — kod shundan keyin keladi.",
+    "qrLabel": "Telefoningizda Telegram bo‘lsa, QR kodni skanerlang",
+    "waitingLink": "Telegram ochilishini kutmoqdamiz…",
+    "waitingContact": "Telegramda raqamingizni yuboring…",
+    "enterCode": "Kodni kiriting",
+    "codeValid": "Kod {time} amal qiladi",
+    "codeInvalid": "Kod noto‘g‘ri. Yana {n} ta urinish qoldi.",
+    "codeExpired": "Kod eskirdi. Botda «Yangi kod» tugmasini bosing.",
+    "mismatch": "Telegramdagi raqam kiritilgan raqamga mos kelmadi.",
+    "locked": "Juda ko‘p noto‘g‘ri urinish. Qaytadan boshlang.",
+    "requestExpired": "So‘rov muddati tugadi. Qaytadan boshlang.",
+    "cancelled": "So‘rov Telegramda bekor qilindi.",
+    "browserMismatch": "Bu brauzerda so‘rov topilmadi. Qaytadan boshlang.",
+    "rateLimited": "Juda ko‘p urinish. {n} soniyadan keyin qayta urinib ko‘ring.",
+    "phoneInvalid": "Raqam noto‘g‘ri. +998 dan keyin 9 ta raqam kiriting.",
+    "networkError": "Ulanishda xatolik. Qaytadan urinib ko‘ring.",
+    "changeNumber": "Raqamni o‘zgartirish",
+    "restart": "Qaytadan boshlash",
+    "verifying": "Tekshirilmoqda…",
+    "success": "Kirildi. Yo‘naltirilmoqda…",
+    "verified": "Tasdiqlandi"
+  },
+  "invite": {
+    "title": "{name} sizni taklif qildi · kod {code}",
+    "body": "Kirgach, farzandingizni qo‘shasiz va ustoz nimani ko‘rishini o‘zingiz hal qilasiz."
+  },
+  "dashboard": {
+    "title": "Boshqaruv paneli",
+    "greeting": "Xush kelibsiz, {name}",
+    "body": "Bu sahifa keyingi bosqichda to‘ldiriladi. Hozircha kirish oqimi tayyor.",
+    "logout": "Chiqish"
+  },
+  "workspace": {
+    "family": "Ota-ona",
+    "educator": "Ustoz",
+    "staff": "Xodim"
+  },
+  "staffRole": {
+    "item_author": "Savol muallifi",
+    "item_reviewer": "Savol retsenzenti",
+    "bank_editor": "Bank muharriri",
+    "season_manager": "Mavsum menejeri",
+    "olympiad_operator": "Olimpiada operatori",
+    "proctor": "Nazoratchi",
+    "trust_safety": "Ishonch va xavfsizlik",
+    "support": "Qoʻllab-quvvatlash",
+    "outcomes_operator": "Natijalar operatori",
+    "super_admin": "Super administrator"
+  },
+  "nav": {
+    "label": "Asosiy menyu",
+    "langLabel": "Til",
+    "workspaceLabel": "Ish maydoni",
+    "notifications": "Bildirishnomalar",
+    "profile": "Profil va chiqish",
+    "familyChildren": "FARZANDLAR",
+    "familyManage": "BOSHQARISH",
+    "reports": "Hisobotlar",
+    "addChild": "Farzand qoʻshish",
+    "access": "Ruxsat va roziliklar",
+    "consents": "Roziliklar",
+    "privacy": "Maxfiylik",
+    "educatorGroups": "GURUHLAR",
+    "educatorWork": "ISH",
+    "groups": "Guruhlar",
+    "practice": "Mashq",
+    "invites": "Taklifnomalar",
+    "myChildren": "Farzandlarim",
+    "staffHome": "Bosh sahifa",
+    "staffQueues": "NAVBATLAR",
+    "items": "Savollar banki",
+    "review": "Koʻrib chiqish",
+    "forms": "Variantlar",
+    "calibration": "Kalibrlash",
+    "seasons": "Mavsumlar va monitoringlar",
+    "olympiads": "Olimpiadalar",
+    "finals": "Yakuniy bosqich",
+    "cases": "Belgilar va nizolar",
+    "outcomes": "Qabul natijalari",
+    "people": "Odamlarni izlash",
+    "roles": "Rollar",
+    "audit": "Audit jurnali",
+    "noteAccess": "{n} nafar bolaga ruxsat",
+    "noteAccessSub": "Ota-onalar bergan muddat tugagach, ruxsat avtomatik yopiladi.",
+    "noteChildren": "{n} farzand",
+    "noteChildrenSub": "Hisobot har bir monitoring yopilgandan soʻng yangilanadi.",
+    "noteRoles": "{n} ta xodim roli"
+  },
+  "dashboardRouter": {
+    "checking": "Rollaringiz tekshirilmoqda…",
+    "noSession": "Sessiya tugagan. Qaytadan kiring."
+  },
+  "onboarding": {
+    "kicker": "BOSHLAYMIZ",
+    "title": "Zinapoʻga xush kelibsiz, {name}",
+    "subtitle": "Rollar — alohida akkauntlar emas, bolalar bilan bogʻliqligingiz. Qayerdan boshlaymiz?",
+    "parentTitle": "Men ota-onaman",
+    "parentBody": "Farzandimni qoʻshaman. PINFL, sinf va maktab — bir daqiqacha vaqt oladi.",
+    "parentCta": "Farzand qoʻshish",
+    "educatorTitle": "Men ustoz yoki oʻqituvchiman",
+    "educatorBody": "Ariza qoldiraman. Arizani jamoamiz koʻrib chiqadi — odatda bir ish kuni.",
+    "educatorCta": "Ariza qoldirish",
+    "note": "Ustoz yoki xodim roli raqamingizga bogʻlanganda shu yerda paydo boʻladi. Bitta raqam — bitta akkaunt."
+  },
+  "educatorPending": {
+    "kicker": "ARIZA",
+    "title": "Arizangiz koʻrib chiqilmoqda",
+    "body": "Ishonch va xavfsizlik jamoasi arizangizni koʻrib chiqadi. Tasdiqlangach, Telegram orqali xabar beramiz va ustoz kabinetingiz ochiladi.",
+    "note": "Shu vaqt ichida ham ota-ona sifatida farzandingizni qoʻshishingiz mumkin."
+  },
+  "states": {
+    "loading": "Yuklanmoqda",
+    "retry": "Qayta urinish",
+    "errorTitle": "Maʼlumotni yuklab boʻlmadi",
+    "errorBody": "Nosozlik bizning tomonda. Bir daqiqadan soʻng qayta urinib koʻring.",
+    "emptyTitle": "Hali maʼlumot yoʻq",
+    "emptyBody": "Bu boʻlim birinchi maʼlumot paydo boʻlgach toʻladi."
+  },
+  "soon": {
+    "kicker": "TAYYORLANMOQDA",
+    "title": "{screen}",
+    "body": "Bu ekran keyingi bosqichda ishga tushadi. Hozir ruxsatlar va ish maydonlari tayyor.",
+    "back": "Bosh sahifaga"
+  },
+  "crumb": {
+    "family": "{name} · ota-ona · {season} mavsumi",
+    "educator": "{name} · ustoz · {season} mavsumi",
+    "staff": "{name} · xodim · {roles}"
+  },
+  "profile": {
+    "telegramLinked": "Telegram akkaunti bogʻlangan",
+    "profileNote": "Ismni oʻzgartirish keyingi bosqichda ishga tushadi."
+  }
+}
