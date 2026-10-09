@@ -118,6 +118,9 @@ const uz: Dict = {
     `${v.child} profiliga ruxsatlarni vaqtincha toʻxtatdik va tasdiqlashingizni soʻraymiz.\n\n` +
     `${v.reason}\n\nBu ${v.child}ning maʼlumotlarini himoya qilish uchun. Tekshirib, javob bering: ${v.link}`,
 
+  case_decided: (v) =>
+    `${v.what}: ${v.outcome}.${v.note ? `\n\n${v.note}` : ''}\n\n${v.link}`,
+
   item_reviewed: (v) =>
     `${v.item} savoli koʻrib chiqildi: ${
       v.verdict === 'accept'
@@ -226,6 +229,9 @@ const ru: Dict = {
   case_needs_owner_confirmation: (v) =>
     `Мы временно приостановили доступы к профилю ${v.child} и просим вас их подтвердить.\n\n` +
     `${v.reason}\n\nЭто защита данных ${v.child}. Проверьте и ответьте: ${v.link}`,
+
+  case_decided: (v) =>
+    `${v.whatRu}: ${v.outcomeRu}.${v.note ? `\n\n${v.note}` : ''}\n\n${v.link}`,
 
   item_reviewed: (v) =>
     `Задание ${v.item} проверено: ${

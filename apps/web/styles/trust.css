@@ -1,0 +1,477 @@
+/* M8 — trust screens. Classes prefixed `ts-`. Tokens only (light/dark). */
+
+/* ------------------------------------------------------------ the queue */
+
+.ts-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-100);
+  box-shadow: var(--shadow-card);
+  align-self: flex-start;
+  max-width: 100%;
+}
+.ts-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  color: var(--ink-600);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.ts-tab:hover {
+  color: var(--ink-900);
+}
+.ts-tab[aria-current='page'] {
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.ts-tab__count {
+  min-width: 24px;
+  padding: 0 8px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-200);
+  font-size: 12px;
+  line-height: 22px;
+  text-align: center;
+}
+.ts-tab[aria-current='page'] .ts-tab__count {
+  background: var(--surface-100);
+}
+
+.ts-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.ts-seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-200);
+}
+.ts-seg__item {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  color: var(--ink-600);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.ts-seg__item[aria-current='page'] {
+  background: var(--surface-100);
+  color: var(--ink-900);
+  box-shadow: var(--shadow-card);
+}
+.ts-mine {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 18px 0 12px;
+  border: 1.5px solid var(--line-200);
+  border-radius: var(--radius-pill);
+  color: var(--ink-900);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.ts-mine[aria-current='true'] {
+  border-color: var(--brand-300);
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.ts-mine__box {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--line-200);
+  border-radius: 6px;
+  background: var(--surface-100);
+}
+.ts-mine[aria-current='true'] .ts-mine__box {
+  border-color: var(--brand-600);
+  color: var(--brand-700);
+}
+
+.ts-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ts-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 24px;
+  border-radius: var(--radius-md);
+  background: var(--surface-100);
+  box-shadow: var(--shadow-card);
+  color: var(--ink-900);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.ts-row:hover {
+  background: var(--brand-050);
+}
+.ts-row:hover .ts-row__code {
+  color: var(--brand-700);
+}
+.ts-row__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.ts-row__ref {
+  font-size: 13px;
+  color: var(--ink-600);
+}
+.ts-row__when {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--ink-600);
+}
+.ts-row__code {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+}
+.ts-row__title {
+  font-size: 16px;
+  font-weight: 700;
+}
+.ts-row__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 13px;
+  color: var(--ink-600);
+}
+.ts-row__meta b {
+  color: var(--ink-900);
+  font-weight: 600;
+}
+.ts-row__who {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ------------------------------------------------------------ one case */
+
+.ts-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  min-height: 44px;
+  color: var(--ink-600);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.ts-back:hover {
+  color: var(--ink-900);
+}
+.ts-head {
+  gap: 8px;
+}
+.ts-head__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ts-head__code {
+  font-size: 13px;
+  color: var(--ink-600);
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+}
+.ts-head__chips {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ts-head__title {
+  margin: 0;
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+.ts-kicker {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-600);
+}
+.ts-why {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 22px;
+  border-radius: var(--radius-sm);
+  background: var(--brand-050);
+}
+.ts-why .ts-kicker {
+  color: var(--brand-700);
+}
+.ts-why__lead {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+.ts-why__body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--ink-900);
+}
+
+.ts-facts {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.ts-facts__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line-100);
+}
+.ts-facts__row:first-child {
+  border-top: 0;
+}
+.ts-facts dt {
+  font-size: 14px;
+  color: var(--ink-600);
+}
+.ts-facts dd {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 560px) {
+  .ts-facts__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+  .ts-facts dd {
+    text-align: left;
+  }
+}
+
+.ts-twoCol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 720px) {
+  .ts-twoCol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.ts-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 18px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-200);
+}
+.ts-names,
+.ts-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ts-names li,
+.ts-rows li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.ts-names svg,
+.ts-rows svg {
+  color: var(--ink-600);
+}
+.ts-rows li {
+  padding: 10px 0;
+  border-top: 1px solid var(--line-100);
+}
+.ts-rows li:first-child {
+  border-top: 0;
+}
+.ts-rows__main {
+  margin-right: 4px;
+}
+
+.ts-person {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.ts-person__icon {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.ts-person__name {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.ts-tableWrap {
+  overflow-x: auto;
+}
+.ts-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.ts-table th {
+  padding: 8px 12px 8px 0;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  color: var(--ink-600);
+  border-bottom: 1px solid var(--line-200);
+}
+.ts-table td {
+  padding: 12px 12px 12px 0;
+  border-bottom: 1px solid var(--line-100);
+  vertical-align: middle;
+}
+
+.ts-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.ts-timeline__item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 0 14px 18px;
+  border-left: 2px solid var(--line-200);
+}
+.ts-timeline__item[data-role='staff'] {
+  border-left-color: var(--brand-300);
+}
+.ts-timeline__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.ts-timeline__body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 21px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.ts-textarea {
+  width: 100%;
+  min-height: 96px;
+  padding: 14px 20px;
+  border: 1.5px solid var(--line-200);
+  border-radius: 20px;
+  background: var(--surface-100);
+  color: var(--ink-900);
+  font: inherit;
+  font-size: 15px;
+  line-height: 22px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.ts-textarea::placeholder {
+  color: var(--ink-400);
+}
+.ts-textarea:focus-visible {
+  border-color: var(--brand-600);
+  box-shadow: var(--ring);
+}
+.ts-textarea[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+.ts-req {
+  font-weight: 600;
+  color: var(--ink-600);
+}
+
+.ts-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.ts-wide {
+  width: 100%;
+}
+/* The suspend label is a full sentence (design/15): let it wrap inside the pill. */
+.ts-btnTall {
+  height: auto;
+  min-height: 56px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 20px;
+  text-align: left;
+  white-space: normal;
+}
+.ts-start {
+  align-self: flex-start;
+}
+/* The side column is 360 px; long ru labels wrap instead of overflowing. */
+.ts-actions > .fam-btn {
+  flex: 1 1 auto;
+  white-space: normal;
+  text-align: center;
+  line-height: 20px;
+}

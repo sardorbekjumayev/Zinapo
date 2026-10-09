@@ -1,33 +1,28 @@
 import type { CSSProperties } from 'react';
 
-/** The cases screen while it loads: head, tabs, applications beside the pre-approve panel. */
+/** The queue while it loads: head, the four tabs, the status filter, case rows. */
 export default function Loading() {
   const line = (width: string | number, height = 14): CSSProperties => ({ width, height });
   return (
     <div className="fam-stack" style={{ '--gap': '24px' } as CSSProperties} aria-busy="true">
       <div className="fam-stack" style={{ '--gap': '10px' } as CSSProperties}>
-        <span className="skel" style={line(200, 34)} />
+        <span className="skel" style={line(260, 34)} />
         <span className="skel" style={line('55%')} />
       </div>
       <div className="fam-inline" style={{ '--gap': '8px' } as CSSProperties}>
-        {[200, 170, 170, 150].map((w, i) => (
+        {[120, 190, 150, 200].map((w, i) => (
           <span key={i} className="skel" style={{ width: w, height: 44, borderRadius: 999 }} />
         ))}
       </div>
-      <div className="iv-casesGrid">
-        <div className="fam-panel">
-          <span className="skel" style={line('40%', 22)} />
-          {[0, 1, 2].map((i) => (
-            <span key={i} className="skel" style={line('100%', 84)} />
-          ))}
-        </div>
-        <div className="fam-panel">
-          <span className="skel" style={line('60%', 22)} />
-          {[0, 1, 2].map((i) => (
-            <span key={i} className="skel" style={{ height: 48, borderRadius: 999 }} />
-          ))}
-          <span className="skel" style={line('100%', 60)} />
-        </div>
+      <div className="fam-inline" style={{ '--gap': '8px' } as CSSProperties}>
+        {[90, 170, 110].map((w, i) => (
+          <span key={i} className="skel" style={{ width: w, height: 40, borderRadius: 999 }} />
+        ))}
+      </div>
+      <div className="fam-stack" style={{ '--gap': '12px' } as CSSProperties}>
+        {[0, 1, 2, 3, 4].map((i) => (
+          <span key={i} className="skel" style={{ height: 112, borderRadius: 20 }} />
+        ))}
       </div>
     </div>
   );

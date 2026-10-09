@@ -14,6 +14,7 @@ import { familyMessages } from '@/messages/family';
 import { wizardMessages } from '@/messages/wizard';
 import { Stepper } from './Stepper';
 import { WhyWeAsk } from './WhyWeAsk';
+import { FollowDispute } from '../trust/FollowDispute';
 import { Disputed, Done, Duplicate, Linked, Review, type DoneSummary } from './Outcomes';
 import { pinflBirthDate, schoolYearLabel } from './pinfl';
 
@@ -61,7 +62,7 @@ type View =
   | { kind: 'failed' }
   | { kind: 'done'; summary: DoneSummary }
   | { kind: 'duplicate'; caseId: string }
-  | { kind: 'disputed'; reference: string; phone: string }
+  | { kind: 'disputed'; reference: string; phone: string; caseId: string }
   | { kind: 'review'; reference: string; phone: string }
   | { kind: 'linked' }
   | { kind: 'forbidden' };
@@ -723,13 +724,16 @@ export function AddChildWizard({
               fam={fam}
               caseId={view.caseId}
               headingRef={headingRef}
-              onOpened={(reference, phone) => setView({ kind: 'disputed', reference, phone })}
+              onOpened={(reference, phone) => setView({ kind: 'disputed', reference, phone, caseId: view.caseId })}
               onRecheck={() => setView({ kind: 'details' })}
             />
           )}
 
           {view.kind === 'disputed' && (
-            <Disputed t={t} locale={locale} reference={view.reference} phone={view.phone} headingRef={headingRef} />
+            <>
+              <Disputed t={t} locale={locale} reference={view.reference} phone={view.phone} headingRef={headingRef} />
+              {view.caseId && <FollowDispute caseId={view.caseId} locale={locale} />}
+            </>
           )}
 
           {view.kind === 'review' && (

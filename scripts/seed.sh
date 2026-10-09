@@ -66,3 +66,9 @@ echo "Educator workspace: $educator"
 # (idempotent).
 olympiad=$(curl -sS -X POST "$API/api/dev/seed-olympiad" -H 'Content-Type: application/json')
 echo "Olympiad: $olympiad"
+
+# M8: a trust & safety queue with one case of each kind — every fraud rule,
+# an ownership dispute with statements, an educator whose links can be
+# suspended (idempotent).
+trust=$(curl -sS -X POST "$API/api/dev/seed-trust" -H 'Content-Type: application/json')
+echo "Trust & safety: $trust"

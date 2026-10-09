@@ -1,14 +1,18 @@
 import { Global, Module } from '@nestjs/common';
 import { CasesService } from './cases.service';
+import { FraudRulesService } from './fraud-rules.service';
+import { QueueService } from './queue.service';
+import { FamilyTrustController, StaffCasesController } from './queue.controller';
 
 /**
- * task.md § 6 (`trust`). M2 ships only the case-opening half: add-child needs
- * to open an ownership dispute or a fifth-child review. The queue UI, the fraud
- * rules job and the resolutions are M8.
+ * task.md § 6 (`trust`): opening cases (M2), and since M8 the fraud rules job,
+ * the one queue with its resolutions, and the family side — dispute
+ * statements and the owner's answer to a suspended link.
  */
 @Global()
 @Module({
-  providers: [CasesService],
-  exports: [CasesService],
+  controllers: [StaffCasesController, FamilyTrustController],
+  providers: [CasesService, FraudRulesService, QueueService],
+  exports: [CasesService, FraudRulesService, QueueService],
 })
 export class TrustModule {}

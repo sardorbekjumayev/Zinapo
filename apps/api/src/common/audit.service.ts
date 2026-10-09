@@ -106,6 +106,11 @@ export type AuditAction =
   | 'case.opened'
   | 'case.assigned'
   | 'case.resolved'
+  | 'case.noted'
+  | 'case.links_suspended'
+  | 'access.owner_answered'
+  | 'flag.dismissed'
+  | 'flag.confirmed'
   // Outcomes and admin
   | 'outcome.imported'
   | 'staff_role.granted'

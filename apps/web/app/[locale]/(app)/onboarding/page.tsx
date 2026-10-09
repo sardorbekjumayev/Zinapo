@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { IncomingInvites } from '@/components/family/home/IncomingInvites';
+import { OpenDisputes } from '@/components/family/trust/OpenDisputes';
 import { Icon } from '@/components/shell/Icon';
 import { LocaleSwitcher } from '@/components/shell/LocaleSwitcher';
 import { ThemeToggle } from '@/components/shell/ThemeToggle';
@@ -69,6 +70,9 @@ export default async function OnboardingPage({
             </p>
           </div>
         </div>
+
+        {/* M8: a claimant in an ownership dispute may own no child yet. */}
+        <OpenDisputes locale={locale} />
 
         <IncomingInvites
           invites={inv.ok ? inv.data : []}

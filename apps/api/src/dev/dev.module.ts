@@ -13,11 +13,12 @@ import { SeedBankService } from './seed-bank.service';
 import { SeedResultsService } from './seed-results.service';
 import { SeedEducatorService } from './seed-educator.service';
 import { SeedOlympiadService } from './seed-olympiad.service';
+import { SeedTrustService } from './seed-trust.service';
 
 /** Development only — `app.module.ts` does not register this in production. */
 @Module({
   imports: [AuthModule, TelegramModule, BankModule, SessionsModule, MeasurementModule, EducatorModule, OlympiadModule],
   controllers: [DevController, SeedController],
-  providers: [SeedService, SeedBankService, SeedResultsService, SeedEducatorService, SeedOlympiadService],
+  providers: [SeedService, SeedBankService, SeedResultsService, SeedEducatorService, SeedOlympiadService, SeedTrustService],
 })
 export class DevModule {}

@@ -40,6 +40,7 @@ exists in the shell and renders a screen naming the milestone it waits for.
 │   ├── report-flows.sh       M5: the measurement job, cohort minimum, runs, parent reports
 │   ├── educator-flows.sh     M6: applications, invites, match-check, groups, practice
 │   ├── olympiad-flows.sh     M7: admin, tickets, online stages, proctor runner sync, results, awards
+│   ├── trust-flows.sh        M8: fraud rules, the cases queue, suspend & ask owners, disputes, 5th child
 │   ├── measurement-unit.sh   unit tests of the raw_band_v0 arithmetic
 │   ├── dev-login.mjs         print session cookies for a phone (dev only)
 │   └── dev-code.sh           prints the sign-in code when there is no bot token
@@ -152,6 +153,7 @@ hashes and every invariant applies to them. It is idempotent.
 ./scripts/report-flows.sh       # 33 checks — measurement runs, cohort minimum, INV-12/13, reports
 ./scripts/educator-flows.sh     # 104 checks — application, invites, match-check, groups, practice
 ./scripts/olympiad-flows.sh     # 76 checks — olympiad admin, registration, offline sync, results, bonus, cup
+./scripts/trust-flows.sh        # 63 checks — fraud rules, queue, suspend & ask owners, disputes, fifth child
 ./scripts/measurement-unit.sh   # 8 unit tests — KR-20, SEM, percentile bands, skill states
 (cd apps/api && npm run lint)   # tsc --noEmit
 (cd apps/web && npm run lint)

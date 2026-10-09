@@ -1268,11 +1268,68 @@ PUBLISHED; publishing notifies each owner (`olympiad_results`) and fixes them.
 Families see their own child's band, certificate, qualification, awards and
 diagnostic — never a score, a rank or another child.
 
-### M8 — Trust & safety (Release 2)
-- [ ] Fraud rules job → `registration_flag` (the 4 rules in section 8.5) with evidence JSON.
-- [ ] Cases queue UI: flags, disputes, 5th child, educator applications; assignment; resolutions.
-- [ ] "Suspend links + ask owners to confirm" flow with notifications and owner responses.
-- [ ] Ownership dispute procedure (both parties notified, evidence, keep or transfer owner).
+### M8 — Trust & safety (Release 2) — Done
+- [x] Fraud rules job → `registration_flag` (the 4 rules in section 8.5) with evidence JSON. (Every 15 min; notes M8-a, M8-e.)
+- [x] Cases queue UI: flags, disputes, 5th child, educator applications; assignment; resolutions. (`/staff/cases`, `/staff/cases/[id]`; note M8-f.)
+- [x] "Suspend links + ask owners to confirm" flow with notifications and owner responses. (The owner answers on `/family/access`; notes M8-b, M8-g.)
+- [x] Ownership dispute procedure (both parties notified, evidence, keep or transfer owner). (`/family/disputes`; notes M8-c, M8-d.)
+- [x] **DoD:** `scripts/trust-flows.sh` — 63 checks over every M8 flow, all passing; permission matrix 85 pass, 0 fail, 0 pending for M8 (8 pending, all M9); earlier suites green.
+
+#### Notes on M8 — deviations and decisions
+
+**M8-a. The four rules, with thresholds.** Decided with the product owner:
+`many_owners_one_device` — ≥ 3 different people add a child from one device
+(IP + browser) within 2 h (read from the audit log; child creation records the
+device since M8); `surname_mismatch_group` — in one educator group, one owner
+holds ≥ 3 children with different surnames (the educator is the subject);
+`owner_never_opens_reports` — a child took ≥ 3 waves this season and no
+guardian ever opened a report (`report_view`, recorded since M8);
+`match_check_bursts` — an educator makes ≥ 10 match-checks in one clock hour
+or ≥ 15 misses in 24 h (named without "pinfl" so the permission matrix's
+PINFL sweep stays exact). M7's `olympiad_fast_answers` joins the same queue.
+The job runs every 15 minutes; one OPEN flag per rule and subject (a partial
+unique index) and one `fraud_flag` case per flag. Evidence carries ids,
+counts and times — never a PINFL.
+
+**M8-b. "Confirm and escalate" suspends an educator.** Decided with the product
+owner: with an educator behind the flag, `educator_profile.status =
+'suspended'` (no educator action works; `v_educator_visible_child` already
+requires an approved profile) and any still-active link is suspended with the
+owners asked; otherwise the case is recorded as confirmed. "Suspend links and
+ask the owners" suspends every ACTIVE link of the educator (never their own
+child's), moves the case to `waiting_owner` and asks each owner once per
+child; staff close it after the answers.
+
+**M8-c. A won dispute is a clean handover.** Decided with the product owner: the
+claimant becomes the owner; the old owner and every co-guardian lose access;
+open guardian invites and an anonymisation request are cancelled; educator
+links are suspended until the NEW owner answers each; every consent ends and
+must be given again by the new owner (measurement pauses until then). Both
+parties are told (`case_decided`). "Keep" changes nothing but the case.
+
+**M8-d. Dispute evidence is statements and call notes.** Decided with the
+product owner: each party writes statements on `/family/disputes/[id]` (up to
+10); trust & safety adds call notes; documents are checked by phone or video
+and never uploaded. A party sees only their own statements — never the other
+side's identity or words (M2: the claimant learns only that a profile exists).
+A claimant who owns no child can still open the dispute pages.
+
+**M8-e. A decided flag stays quiet for 30 days.** Without it, a dismissed false
+positive would be raised again 15 minutes later, because the pattern still
+matches. After a human decides, the same rule and subject are not flagged
+again for 30 days.
+
+**M8-f. What staff see.** design/15: people as masked names ("KARIMOVA D***A"),
+phones masked, devices and networks as short hashes — never an address,
+never a PINFL. Case references: R (flag), D (dispute), F (fifth child),
+E (application). Cases can be assigned to any trust_safety holder and carry a
+note timeline.
+
+**M8-g. The owner's answer.** `POST /family/children/:id/educators/:linkId/answer
+{ keep }` — owner only, once: keep → the link is active again (it still shows
+nothing while the educator itself is suspended); end → revoked. The access
+page marks such links (`awaitingOwnerAnswer`). A fifth-child approval admits
+exactly one more child and is used up by it.
 
 ### M9 — Measurement v1, outcomes, admin
 - [ ] Rasch + anchor equating worker (`rasch_anchor_equating_v1`), item statistics (p, point-biserial, distractor share, DIF uz/ru), compare runs, switch current.

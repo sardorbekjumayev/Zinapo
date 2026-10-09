@@ -8,6 +8,7 @@ import { familyApi } from '@/lib/family-api';
 import type { EducatorAccess, GuardianView, PendingInvite } from '@/lib/family-types';
 import { formatDate } from '@/lib/format';
 import { fill } from '@/lib/i18n';
+import { disputesMessages } from '@/messages/disputes';
 import { InviteCoGuardian } from './InviteCoGuardian';
 import { useAction, type Copy } from './live';
 
@@ -205,9 +206,11 @@ export function WhoPanel({
                 <p className="fam-person__desc">
                   {off
                     ? fill(m.who.revokedDesc, { child, name: l.educatorName })
-                    : fill(paused ? m.who.suspendedDesc : m.who.scope, {
-                        date: formatDate(l.validUntil, locale),
-                      })}
+                    : paused && l.awaitingOwnerAnswer && !readOnly
+                      ? disputesMessages(locale).access.awaitingDesc
+                      : fill(paused ? m.who.suspendedDesc : m.who.scope, {
+                          date: formatDate(l.validUntil, locale),
+                        })}
                 </p>
               </div>
               {!readOnly && l.status === 'active' && (

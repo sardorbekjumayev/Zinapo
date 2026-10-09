@@ -7,6 +7,7 @@ import { LiveRegion, type Copy } from '@/components/family/access/live';
 import { AccessEmpty, ChildPicker, ReadOnlyNote, StateBlock } from '@/components/family/access/parts';
 import { RequestsPanel } from '@/components/family/access/RequestsPanel';
 import { WhoPanel } from '@/components/family/access/WhoPanel';
+import { OwnerAnswers } from '@/components/family/trust/OwnerAnswers';
 import { apiGet } from '@/lib/api-server';
 import type {
   AnonymisationRequest,
@@ -135,6 +136,18 @@ export default async function AccessPage({
       </div>
 
       {readOnly && <ReadOnlyNote m={m} owner={kid.ownerName} />}
+
+      {/* M8: links trust & safety paused, waiting for the owner's answer —
+          first thing on the board (task.md § 8.5). */}
+      <OwnerAnswers
+        key={`answers:${kid.id}`}
+        childId={kid.id}
+        child={child}
+        links={edu.data.links.filter((l) => l.awaitingOwnerAnswer)}
+        readOnly={readOnly}
+        owner={kid.ownerName}
+        locale={locale}
+      />
 
       {/* Keyed by child so panel state (an open approve form, loaded log
           pages) never leaks from one child to the next. */}

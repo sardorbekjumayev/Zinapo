@@ -1,0 +1,305 @@
+{
+  "head": {
+    "title": "Shubhali holatlar va nizolar",
+    "subtitle": "Belgini qoidalar qoʻyadi, qarorni odam qabul qiladi. Bu yerda hech kim avtomatik bloklanmaydi.",
+    "back": "Barcha holatlar"
+  },
+  "tabs": {
+    "label": "Holat turlari",
+    "fraud": "Belgilar",
+    "dispute": "Egalik nizolari",
+    "fifth": "Beshinchi farzand",
+    "applications": "Ustoz arizalari",
+    "count": "{n} ta ochiq yoki kutilmoqda"
+  },
+  "filter": {
+    "label": "Holat boʻyicha saralash",
+    "open": "Ochiq",
+    "waiting": "Egalar javobi kutilmoqda",
+    "closed": "Yopilgan",
+    "mine": "Menga biriktirilgan"
+  },
+  "list": {
+    "label": "Holatlar",
+    "opened": "Ochilgan: {when}",
+    "closedAt": "Yopilgan: {when}",
+    "unassigned": "Biriktirilmagan",
+    "assignee": "Masʼul: {name}",
+    "you": "siz",
+    "subject": "Kim",
+    "child": "Farzand",
+    "parent": "Ota-ona",
+    "claimant": "Daʼvogar",
+    "applicant": "Arizachi"
+  },
+  "empty": {
+    "openT": "Bu yerda ochiq holat yoʻq",
+    "openB": "Qoidalar yangi roʻyxatdan oʻtishlar va moslik tekshiruvlarini doimiy kuzatib boradi. Hozir odam aralashuvini talab qiladigan holat yoʻq.",
+    "waitingT": "Egalar javobini kutayotgan holat yoʻq",
+    "waitingB": "Ustoz ruxsatlarini toʻxtatsangiz, holat egalar javob berguncha shu yerda turadi.",
+    "closedT": "Hali yopilgan holat yoʻq",
+    "closedB": "Rad etilgan va hal qilingan holatlar qarori bilan shu yerda saqlanadi.",
+    "mineT": "Bu yerda sizga biriktirilgan holat yoʻq",
+    "mineB": "Umumiy roʻyxatdan holatni oʻzingizga biriktiring — boshqalar siz shugʻullanayotganingizni bilsin.",
+    "seeAll": "Hammaning holatlarini koʻrsatish",
+    "seeOpen": "Ochiq holatlarni koʻrsatish"
+  },
+  "sev": { "s1": "1 · Past", "s2": "2 · Oʻrta", "s3": "3 · Yuqori" },
+  "status": {
+    "open": "Ochiq",
+    "waiting_owner": "Egalar javobi kutilmoqda",
+    "resolved": "Hal qilingan",
+    "dismissed": "Rad etilgan"
+  },
+  "kindTitle": {
+    "fraud_flag": "Belgi",
+    "ownership_dispute": "Egalik boʻyicha nizo",
+    "fifth_child": "Beshinchi farzand",
+    "educator_application": "Ustoz arizasi"
+  },
+  "rule": {
+    "many_owners_one_device": {
+      "title": "Bitta qurilma — koʻp ota-ona",
+      "why": "Ikki soat ichida uch yoki undan koʻp kishi bitta qurilma va tarmoqdan farzand qoʻshgan. Oilalar birga roʻyxatdan oʻtishi ham boʻladi — maktab majlisida, ustozning noutbukida — shuning uchun chora koʻrishdan oldin qoʻngʻiroq qiling."
+    },
+    "surname_mismatch_group": {
+      "title": "Barcha bolalar bitta guruhda, familiyalari har xil",
+      "why": "Bitta ega familiyalari har xil uch yoki undan koʻp bolani qoʻshgan va ularning hammasi bitta ustozning guruhida. Bu katta oila yoki vasiy boʻlishi mumkin; ustoz oʻquvchilarni bitta telefon bilan roʻyxatdan oʻtkazayotgan boʻlishi ham mumkin."
+    },
+    "owner_never_opens_reports": {
+      "title": "Ega hisobotni ochmaydi, monitoringlar esa topshiriladi",
+      "why": "Bu mavsumda bola uch yoki undan koʻp monitoring topshirgan, lekin birorta vasiy hisobotni hech qachon ochmagan. Profilni oiladan boshqa kimdir yuritayotgan boʻlishi mumkin."
+    },
+    "match_check_bursts": {
+      "title": "Moslik tekshiruvlari toʻlqini",
+      "why": "Bu ustoz bir soatda oʻn va undan koʻp moslik tekshiruvi qilgan yoki bir kunda oʻn besh va undan koʻp marta topa olmagan. Qaysi bola qaysi ota-onaniki ekanini taxmin qilish aynan shunday koʻrinadi."
+    },
+    "olympiad_fast_answers": {
+      "title": "Onlayn olimpiadaga ishonib boʻlmaydigan darajada tez javob berilgan",
+      "why": "Onlayn olimpiada bosqichiga bolalar odatda savolni oʻqiydigan vaqtdan ancha tez javob berilgan va deyarli hammasi toʻgʻri. Bu belgi bolani chetlatmaydi — qarorni odam qabul qiladi."
+    }
+  },
+  "resolution": {
+    "fraud_flag": {
+      "false_positive": "Yolgʻon signal sifatida yopildi.",
+      "confirmed": "Tasdiqlandi va jurnalga yozildi.",
+      "confirmed_educator_suspended": "Tasdiqlandi va yuqoriga yuborildi: ustoz akkaunti toʻxtatildi. Har bir ruxsat boʻyicha tanlov egalarda qoladi.",
+      "owners_answered": "Egalar javob bergach yopildi."
+    },
+    "ownership_dispute": {
+      "kept": "Hozirgi ega saqlab qolindi. Ikkala tomonga qaror va uning sababi yuborildi.",
+      "transferred": "Egalik daʼvogarga oʻtkazildi. Ikkala tomonga qaror va uning sababi yuborildi."
+    },
+    "fifth_child": {
+      "approved": "Tasdiqlandi: ota-ona yana bitta farzand qoʻsha oladi.",
+      "rejected": "Rad etildi: ota-onaga xabar berildi."
+    },
+    "educator_application": {
+      "approved": "Ariza tasdiqlandi.",
+      "rejected": "Ariza rad etildi."
+    },
+    "head": "{status} · {when}"
+  },
+  "detail": {
+    "raised": "belgi: {when}",
+    "opened": "ochilgan: {when}",
+    "whyTitle": "Nega belgi qoʻyildi",
+    "whyBody": "Bitta signal hech narsani isbotlamaydi, lekin ularning uygʻunligi deyarli har doim isbotlaydi.",
+    "privacy": "JShShIR bu yerda hech qachon koʻrsatilmaydi, hatto qisman ham. Odamlar yashirilgan ism bilan, qurilma va tarmoqlar qisqa xesh bilan koʻrsatiladi.",
+    "evTitle": "Dalillar",
+    "evDevice": "Qurilma",
+    "evNetwork": "Tarmoq",
+    "evWindow": "Qachon",
+    "evWindowFmt": "{from} – {to}",
+    "evOwners": "Farzand qoʻshgan kishilar",
+    "evGroup": "Guruh",
+    "evSurnames": "Har xil familiyalar",
+    "evMaxChecks": "Bir soatdagi eng koʻp moslik tekshiruvi",
+    "evMisses": "24 soatda topilmagan tekshiruvlar",
+    "evWaves": "Bu mavsumda topshirilgan monitoringlar",
+    "evLaunched": "Boshqa kishi boshlagan monitoringlar",
+    "evMedian": "Bitta javobga oʻrtacha (mediana) vaqt",
+    "evMedianFmt": "{s} soniya",
+    "evShare": "Toʻgʻri javoblar",
+    "evPctFmt": "{n}%",
+    "evPeople": "Tegishli akkauntlar",
+    "evChildren": "Tegishli bolalar",
+    "subjectT": "Kim",
+    "subject": {
+      "educator": "Ustoz",
+      "owner": "Ega",
+      "person": "Kishilardan biri"
+    },
+    "childT": "Farzand",
+    "grade": "{n}-sinf",
+    "preschool": "hali maktabga bormaydi",
+    "noGrade": "sinf koʻrsatilmagan",
+    "born": "tugʻilgan: {date}",
+    "eduT": "Ustoz",
+    "eduStatus": {
+      "approved": "Tasdiqlangan",
+      "suspended": "Toʻxtatilgan",
+      "applied": "Qaror kutilmoqda",
+      "rejected": "Rad etilgan"
+    },
+    "eduCode": "Ochiq kod",
+    "eduLinks": "Faol ruxsatlar",
+    "linksT": "Toʻxtatilgan ruxsatlar",
+    "linksSub": "Har bir ega oʻz farzandi uchun qaror qiladi: ustozni qoldirish yoki ruxsatni tugatish.",
+    "linkChild": "Farzand",
+    "linkAnswer": "Ega javobi",
+    "linkWhen": "Qachon",
+    "answer": { "waiting": "Kutilmoqda", "kept": "Qoldirildi", "ended": "Tugatildi" },
+    "waitT": "Egalar javobi kutilmoqda",
+    "waitB": "Ustoz ruxsatlari toʻxtatildi. Egalarga xabar berildi, har biri oʻz farzandi uchun qaror qiladi. Hech kim avtomatik bloklanmaydi.",
+    "waitCount": "{o} tadan {c} tasi javob berdi"
+  },
+  "decide": {
+    "title": "Qaror",
+    "suspend": "Ustoz ruxsatlarini toʻxtatib, egalardan tasdiq soʻrash",
+    "suspendHint": "Jimgina bloklash emas: ruxsatlar pauzaga qoʻyiladi, egalar xabar oladi, qarorni odam qabul qiladi.",
+    "dismiss": "Yolgʻon signal deb yopish",
+    "escalate": "Tasdiqlash va yuqoriga yuborish",
+    "close": "Yopish — egalar javob berdi",
+    "closeHint": "Har bir ega javobi oʻz kuchida qoladi. Javoblarni oʻqib chiqqach, holatni yoping.",
+    "suspendT": "Ruxsatlar toʻxtatilib, egalardan tasdiq soʻralsinmi?",
+    "suspendB": "{teacher} har bir ega javob berguncha {n} ta bolaning profiliga kira olmaydi. Hech narsa oʻchirilmaydi. Egalarga xabar boradi va har biri oʻz farzandi uchun qaror qiladi: ustozni qoldirish yoki ruxsatni tugatish. Ustoz sababini emas, faqat “ruxsat tekshiruv uchun toʻxtatilgan” degan xabarni koʻradi.",
+    "suspendOk": "Toʻxtatish va xabar berish",
+    "dismissT": "Yolgʻon signal deb yopilsinmi?",
+    "dismissB": "Yolgʻon signal oʻtkazib yuborilgan holatdan qimmatroq: halol ustozni bloklasak, uning butun guruhini va hamkasblari orasidagi obroʻimizni yoʻqotamiz. Hech kim uchun hech narsa oʻzgarmaydi; belgi yopiladi va jurnalga yoziladi.",
+    "dismissLbl": "Nega bu yolgʻon signal?",
+    "dismissPh": "Nimani tekshirdingiz va nima aniqlandi?",
+    "dismissOk": "Belgini yopish",
+    "escalateT": "Tasdiqlab, yuqoriga yuborilsinmi?",
+    "escalateB": "Ustoz akkaunti toʻxtatiladi; har bir ruxsat boʻyicha tanlov egalarda qoladi. Qaror va izohingiz jurnalga yoziladi.",
+    "escalateNoEdu": "Bu holatda ustoz yoʻq: holat tasdiqlangan deb yopiladi va jurnalga yoziladi. Hech kim avtomatik bloklanmaydi.",
+    "escalateLbl": "Nima aniqlandi?",
+    "escalatePh": "Nimani tekshirdingiz va nega bu haqiqiy?",
+    "escalateOk": "Tasdiqlash va yuborish",
+    "closeT": "Holat yopilsinmi?",
+    "closeB": "Egalarning javoblari oʻz kuchida qoladi. Holat yopiladi va jurnalga yoziladi.",
+    "closeOk": "Holatni yopish",
+    "noteOpt": "Izoh (ixtiyoriy)",
+    "required": "majburiy",
+    "noteErr": "Kamida 3 belgidan iborat izoh yozing: keyingi tekshiruvchi sababini bilishi kerak.",
+    "cancel": "Bekor qilish",
+    "done": {
+      "suspended": "{ref}: ruxsatlar toʻxtatildi, egalarga xabar yuborildi.",
+      "dismissed": "{ref} yolgʻon signal sifatida yopildi.",
+      "escalated": "{ref} tasdiqlandi va yuqoriga yuborildi.",
+      "closed": "{ref} yopildi.",
+      "kept": "{ref} hal qilindi: hozirgi ega saqlab qolindi. Ikkala tomonga xabar berildi.",
+      "transferred": "{ref} hal qilindi: egalik daʼvogarga oʻtkazildi. Ikkala tomonga xabar berildi.",
+      "approved": "{ref}: yana bitta farzand tasdiqlandi. Ota-onaga xabar berildi.",
+      "rejected": "{ref}: soʻrov rad etildi. Ota-onaga xabar berildi."
+    }
+  },
+  "dispute": {
+    "why": "Bitta bola — bitta ega. Profili bor bolani qayta qoʻshish ikkinchi profil yaratmaydi, balki shu tartibni ishga tushiradi. Qarorni yozib qoʻying: keyinchalik har qanday shikoyatga jurnal javob beradi.",
+    "ownerLbl": "Hozirgi ega",
+    "claimLbl": "Daʼvogar",
+    "childLbl": "Farzand",
+    "claimed": "Bola ismini shunday yozgan: {name}",
+    "phone": "Telefon {phone}",
+    "noOwner": "Hozir profilning egasi yoʻq.",
+    "notConfirmed": "Daʼvogar daʼvosini hali tasdiqlamagan. U tasdiqlamaguncha qaror chiqarilmaydi.",
+    "statementsT": "Izohlar va qoʻngʻiroq qaydlari",
+    "statementsSub": "Hech bir tomon ikkinchisining soʻzlarini va kontaktlarini koʻrmaydi.",
+    "callNote": "Qoʻngʻiroq qaydini qoʻshish",
+    "callNotePh": "Kimga qoʻngʻiroq qildingiz, nima dedi, nimani tekshirdingiz.",
+    "keep": "Hozirgi egani qoldirish",
+    "transfer": "Daʼvogarga oʻtkazish",
+    "reasonLbl": "Sabab (ikkala tomon qarorni koʻradi)",
+    "reasonPh": "Qarorni nima hal qildi?",
+    "keepT": "Hozirgi ega qoldirilsinmi?",
+    "keepB": "Bola profilida hech narsa oʻzgarmaydi. Daʼvogar ham, ega ham qaror va uning sababini oladi. Holat yopiladi.",
+    "keepOk": "Egani qoldirish",
+    "transferT": "Bola daʼvogarga oʻtkazilsinmi?",
+    "transferB": "Toʻliq topshirish. Darhol quyidagilar sodir boʻladi:",
+    "transferList": [
+      "Daʼvogar ega boʻladi.",
+      "Avvalgi ega va barcha qoʻshimcha vasiylar ruxsatini yoʻqotadi.",
+      "Ochiq taklifnomalar va oʻchirish soʻrovi bekor qilinadi.",
+      "Ustoz ruxsatlari yangi ega qoldirishi yoki tugatishini kutadi.",
+      "Rozilik yangi ega tomonidan qaytadan berilishi kerak.",
+      "Ikkala tomonga qaror va uning sababi yuboriladi."
+    ],
+    "transferOk": "Egalikni oʻtkazish"
+  },
+  "fifth": {
+    "why": "Oila toʻrttagacha farzandni oʻzi qoʻsha oladi. Beshinchisini odam koʻrib chiqadi — koʻpincha bu haqiqiy katta oila boʻladi.",
+    "parentLbl": "Ota-ona",
+    "requestedLbl": "Qoʻshmoqchi boʻlgan farzandi",
+    "ownsLbl": "Hozir egasi boʻlgan farzandlari ({n})",
+    "since": "{date} dan beri ega",
+    "used": "Ruxsatdan foydalanildi: farzand qoʻshildi.",
+    "approve": "Yana bitta farzandga ruxsat berish",
+    "reject": "Rad etish",
+    "approveT": "Yana bitta farzandga ruxsat berilsinmi?",
+    "approveB": "Ota-ona yana bitta farzand qoʻsha oladi. Ruxsat bir marta ishlatiladi va ota-onaga xabar boradi.",
+    "approveOk": "Ruxsat berish",
+    "rejectT": "Soʻrov rad etilsinmi?",
+    "rejectB": "Ota-ona bu farzandni qoʻsha olmaydi. Sabab yozsangiz, ota-ona uni koʻradi.",
+    "rejectLbl": "Sabab (ixtiyoriy — ota-onaga koʻrsatiladi)",
+    "rejectOk": "Rad etish"
+  },
+  "app": {
+    "title": "Ariza",
+    "decideThere": "Arizalar boʻyicha qaror “Ustoz arizalari” boʻlimida tasdiqlash va rad etish tugmalari bilan qabul qilinadi.",
+    "openTab": "Arizalar boʻlimini ochish",
+    "applied": "Topshirilgan: {date}",
+    "kind": { "tutor": "Repetitor", "school_teacher": "Maktab oʻqituvchisi", "learning_centre": "Oʻquv markazi" },
+    "status": { "applied": "Kutilmoqda", "approved": "Tasdiqlangan", "rejected": "Rad etilgan", "suspended": "Toʻxtatilgan" },
+    "kindLbl": "Kim sifatida",
+    "region": "Hudud",
+    "school": "Maktab",
+    "subjects": "Yoʻnalishlar",
+    "none": "Koʻrsatilmagan"
+  },
+  "assign": {
+    "title": "Masʼul",
+    "nobody": "Hali hech kim",
+    "select": "Kimga biriktirish",
+    "choose": "Xodimni tanlang",
+    "assign": "Biriktirish",
+    "me": "Oʻzimga olish",
+    "unassign": "Biriktirishni olib tashlash",
+    "assigned": "{ref} {name} ga biriktirildi.",
+    "unassigned": "{ref} endi hech kimga biriktirilmagan."
+  },
+  "notes": {
+    "title": "Izohlar",
+    "sub": "Har bir izoh holat bilan birga saqlanadi. Oddiy matn sifatida koʻrsatiladi.",
+    "empty": "Hali izoh yoʻq.",
+    "add": "Izoh qoʻshish",
+    "ph": "Nimani tekshirdingiz yoki bildingiz?",
+    "submit": "Izoh qoʻshish",
+    "err": "Avval biror narsa yozing.",
+    "added": "Izoh qoʻshildi.",
+    "role": { "claimant": "Daʼvogar", "owner": "Ega", "staff": "Xodim" }
+  },
+  "errors": {
+    "NETWORK": "Aloqa uzildi. Qayta urinib koʻring.",
+    "UNKNOWN": "Nimadir xato ketdi. Birozdan soʻng qayta urinib koʻring.",
+    "FORBIDDEN": "Buni qilishga ruxsatingiz yoʻq.",
+    "NOT_FOUND": "Bu holat endi mavjud emas. Sahifani yangilang.",
+    "VALIDATION_FAILED": "Izohni tekshiring: 3 dan 2000 tagacha belgi.",
+    "NOT_TRUST_SAFETY": "Holatlarni faqat xavfsizlik jamoasiga biriktirish mumkin.",
+    "CASE_NOT_OPEN": "Bu holat endi ochiq emas. Sahifani yangilang.",
+    "NO_EDUCATOR": "Bu belgida ustoz yoʻq, shuning uchun toʻxtatiladigan ruxsat ham yoʻq.",
+    "CASE_CLOSED": "Bu holat allaqachon yopilgan. Sahifani yangilang.",
+    "CASE_NOT_WAITING": "Bu holat egalar javobini kutmayapti. Sahifani yangilang.",
+    "CLAIM_NOT_CONFIRMED": "Daʼvogar daʼvosini hali tasdiqlamagan. U tasdiqlagach qaror qiling.",
+    "ALREADY_OWNER": "Daʼvogar bu bolaning egasi allaqachon — oʻtkazadigan narsa yoʻq."
+  },
+  "states": {
+    "noAccessTitle": "Bu boʻlim siz uchun ochiq emas",
+    "noAccessBody": "Shubhali holatlar va nizolar bilan faqat xavfsizlik jamoasi ishlaydi.",
+    "noAccessCta": "Xodim bosh sahifasiga",
+    "errTitle": "Holatlarni yuklab boʻlmadi",
+    "errBody": "Qoidalar ishlashda va belgilarni yozishda davom etmoqda — faqat shu ekran yuklanmadi.",
+    "retry": "Qayta urinish",
+    "notFoundTitle": "Bunday holat yoʻq",
+    "notFoundBody": "Havola notoʻgʻri boʻlishi yoki holat oʻchirilgan boʻlishi mumkin. Barcha ochiq holatlar roʻyxatda."
+  }
+}

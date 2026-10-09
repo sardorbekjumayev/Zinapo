@@ -22,7 +22,10 @@ export default async function FamilyLayout({
   // workspace may open (task.md § 2.2). `x-zn-path` comes from middleware.ts.
   const path = (await headers()).get('x-zn-path') ?? '';
   const addChild = /\/family\/children\/new\/?$/.test(path);
-  const ctx = await requireWorkspace(locale, 'family', { allowNoWorkspace: addChild });
+  // M8: a claimant in an ownership dispute may own no child at all — their
+  // dispute page must still open.
+  const disputes = /\/family\/disputes(\/[^/]+)?\/?$/.test(path);
+  const ctx = await requireWorkspace(locale, 'family', { allowNoWorkspace: addChild || disputes });
 
   // The rail lists each child. A failure here only costs the list — the rail
   // falls back to a single link and the page still renders.

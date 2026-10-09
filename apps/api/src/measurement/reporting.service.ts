@@ -19,8 +19,15 @@ const TICKET_WAVES = 3;
 export class ReportingService {
   constructor(private readonly db: DbService) {}
 
-  async report(access: ChildAccessResult) {
+  async report(access: ChildAccessResult, viewerId?: string) {
     const childId = access.childId;
+    // M8's "owner never opens reports" rule: one row per viewer per child per day.
+    if (viewerId) {
+      await this.db.query(
+        `INSERT INTO report_view (child_id, person_id) VALUES ($1, $2) ON CONFLICT DO NOTHING`,
+        [childId, viewerId],
+      );
+    }
     const child = await this.db.one<{ given_name: string; family_name: string; grade: number; region_id: number; region_uz: string; region_ru: string }>(
       `SELECT c.given_name, c.family_name, e.grade, e.school_region_id AS region_id,
               r.name_uz AS region_uz, r.name_ru AS region_ru

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ErrorState } from '@/components/family/ErrorState';
 import { ChildCard } from '@/components/family/home/ChildCard';
 import { IncomingInvites } from '@/components/family/home/IncomingInvites';
+import { OpenDisputes } from '@/components/family/trust/OpenDisputes';
 import { Icon } from '@/components/shell/Icon';
 import { apiGet } from '@/lib/api-server';
 import type { ChildSummary, IncomingInvite } from '@/lib/family-types';
@@ -40,6 +41,7 @@ export default async function FamilyHome({ params }: { params: Promise<{ locale:
     return (
       <>
         <IncomingInvites invites={invites} locale={locale} />
+        <OpenDisputes locale={locale} />
         <ErrorState
           title={m.home.loadErrorTitle}
           body={m.home.loadErrorBody}
@@ -56,6 +58,7 @@ export default async function FamilyHome({ params }: { params: Promise<{ locale:
     return (
       <>
         <IncomingInvites invites={invites} locale={locale} />
+        <OpenDisputes locale={locale} />
         <section className="state">
           <span className="state__icon state__icon--empty">
             <Icon name="child" size={26} />
@@ -95,6 +98,7 @@ export default async function FamilyHome({ params }: { params: Promise<{ locale:
       </div>
 
       <IncomingInvites invites={invites} locale={locale} />
+      <OpenDisputes locale={locale} />
 
       <ul className="fp-kids">
         {children.map((c) => (

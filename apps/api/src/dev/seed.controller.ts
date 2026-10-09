@@ -9,6 +9,8 @@ import { RedisService } from '../redis/redis.service';
 import { InvitesService } from '../educator/invites.service';
 import { SeedEducatorService } from './seed-educator.service';
 import { SeedOlympiadService } from './seed-olympiad.service';
+import { FraudRulesService } from '../trust/fraud-rules.service';
+import { SeedTrustService } from './seed-trust.service';
 
 /**
  * `POST /api/dev/seed` — the M1 development fixture (task.md § 12).
@@ -30,6 +32,8 @@ export class SeedController {
     private readonly measurement: MeasurementService,
     private readonly seedEducator: SeedEducatorService,
     private readonly seedOlympiad: SeedOlympiadService,
+    private readonly fraud: FraudRulesService,
+    private readonly seedTrust: SeedTrustService,
     private readonly invites: InvitesService,
     private readonly redis: RedisService,
   ) {}
@@ -72,6 +76,13 @@ export class SeedController {
     return this.seedOlympiad.run();
   }
 
+  /** `POST /api/dev/seed-trust` — M8: a trust & safety queue with one of everything. */
+  @Post('seed-trust')
+  async trust() {
+    if (this.config.isProd) throw new NotFoundException();
+    return this.seedTrust.run();
+  }
+
   /** `POST /api/dev/tick` — run the sessions/wave job, the measurement job and the access-request expiry now. */
   @Post('tick')
   async tick() {
@@ -79,6 +90,7 @@ export class SeedController {
     const sessions = await this.sessions.tick();
     const runs = await this.measurement.tick();
     const expiredRequests = await this.invites.expireLapsedRequests();
-    return { ...sessions, runs, expiredRequests };
+    const fraud = await this.fraud.tick();
+    return { ...sessions, runs, expiredRequests, fraud };
   }
 }

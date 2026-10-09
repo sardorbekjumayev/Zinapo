@@ -106,6 +106,9 @@ export interface EducatorAccess {
   decidedAt: string | null;
   revokedAt: string | null;
   canRestore: boolean;
+  /** M8: trust & safety suspended this link and asks the owner to keep or end it. */
+  awaitingOwnerAnswer?: boolean;
+  suspendedReason?: string | null;
 }
 
 export interface UntilOptions {

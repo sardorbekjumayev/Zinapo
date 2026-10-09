@@ -40,6 +40,7 @@ export const TEMPLATES = [
   'olympiad_results',
   // Trust & safety
   'case_needs_owner_confirmation',
+  'case_decided',
   // Item bank (to the author)
   'item_reviewed',
 ] as const;

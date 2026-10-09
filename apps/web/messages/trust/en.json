@@ -1,0 +1,305 @@
+{
+  "head": {
+    "title": "Flags and disputes",
+    "subtitle": "Rules raise flags; people decide. Nothing here blocks anyone automatically.",
+    "back": "All cases"
+  },
+  "tabs": {
+    "label": "Case types",
+    "fraud": "Flags",
+    "dispute": "Ownership disputes",
+    "fifth": "Fifth child",
+    "applications": "Educator applications",
+    "count": "{n} open or waiting"
+  },
+  "filter": {
+    "label": "Filter by status",
+    "open": "Open",
+    "waiting": "Waiting for owners",
+    "closed": "Closed",
+    "mine": "Assigned to me"
+  },
+  "list": {
+    "label": "Cases",
+    "opened": "Opened {when}",
+    "closedAt": "Closed {when}",
+    "unassigned": "Not assigned",
+    "assignee": "Assigned: {name}",
+    "you": "you",
+    "subject": "Subject",
+    "child": "Child",
+    "parent": "Parent",
+    "claimant": "Claimant",
+    "applicant": "Applicant"
+  },
+  "empty": {
+    "openT": "Nothing open here",
+    "openB": "The rules keep watching new registrations and match-checks. Nothing needs a person right now.",
+    "waitingT": "Nothing is waiting for owners",
+    "waitingB": "When you pause an educator’s links, the case waits here until the owners answer.",
+    "closedT": "No closed cases yet",
+    "closedB": "Dismissed and decided cases stay here with their resolution.",
+    "mineT": "Nothing is assigned to you here",
+    "mineB": "Assign yourself a case from the full list so others know you are on it.",
+    "seeAll": "Show everyone’s cases",
+    "seeOpen": "Show open cases"
+  },
+  "sev": { "s1": "1 · Low", "s2": "2 · Medium", "s3": "3 · High" },
+  "status": {
+    "open": "Open",
+    "waiting_owner": "Waiting for owners",
+    "resolved": "Resolved",
+    "dismissed": "Dismissed"
+  },
+  "kindTitle": {
+    "fraud_flag": "Flag",
+    "ownership_dispute": "Ownership dispute",
+    "fifth_child": "A fifth child",
+    "educator_application": "Educator application"
+  },
+  "rule": {
+    "many_owners_one_device": {
+      "title": "Many owners, one device",
+      "why": "Three or more people added a child from the same device and network within two hours. Families do register together — at a school meeting, on a teacher’s laptop — so call before you act."
+    },
+    "surname_mismatch_group": {
+      "title": "All children in one group, different surnames",
+      "why": "One owner added three or more children with different surnames, and all of them are in one educator’s group. It can be a large family or a guardian; it can also be an educator registering pupils under one phone."
+    },
+    "owner_never_opens_reports": {
+      "title": "Owner never opens reports, waves always done",
+      "why": "The child took three or more waves this season, yet no guardian has ever opened a report. Someone other than the family may be running the profile."
+    },
+    "match_check_bursts": {
+      "title": "Burst of match-checks",
+      "why": "This educator ran ten or more match-checks in one hour, or missed fifteen or more in a day. Guessing which child belongs to which parent looks like this."
+    },
+    "olympiad_fast_answers": {
+      "title": "Online olympiad answered implausibly fast",
+      "why": "An online olympiad stage was answered far faster than children usually read the questions, and almost everything was right. The child is not disqualified by this flag — a person decides."
+    }
+  },
+  "resolution": {
+    "fraud_flag": {
+      "false_positive": "Dismissed as a false positive.",
+      "confirmed": "Confirmed and logged.",
+      "confirmed_educator_suspended": "Confirmed and escalated: the educator’s account is suspended. Owners keep the choice for each link.",
+      "owners_answered": "Closed after the owners answered."
+    },
+    "ownership_dispute": {
+      "kept": "The current owner keeps the profile. Both people received the decision and the reason.",
+      "transferred": "Ownership moved to the claimant. Both people received the decision and the reason."
+    },
+    "fifth_child": {
+      "approved": "Approved: the parent can add one more child.",
+      "rejected": "Rejected: the parent was told."
+    },
+    "educator_application": {
+      "approved": "The application was approved.",
+      "rejected": "The application was rejected."
+    },
+    "head": "{status} · {when}"
+  },
+  "detail": {
+    "raised": "raised {when}",
+    "opened": "opened {when}",
+    "whyTitle": "Why this was flagged",
+    "whyBody": "No single signal is proof; the combination almost always is.",
+    "privacy": "PINFL is never shown here, not even partially. People appear as masked names; devices and networks as short hashes.",
+    "evTitle": "Evidence",
+    "evDevice": "Device",
+    "evNetwork": "Network",
+    "evWindow": "When",
+    "evWindowFmt": "{from} – {to}",
+    "evOwners": "People who added a child",
+    "evGroup": "Group",
+    "evSurnames": "Different surnames",
+    "evMaxChecks": "Most match-checks in one hour",
+    "evMisses": "Missed match-checks in 24 hours",
+    "evWaves": "Waves taken this season",
+    "evLaunched": "Waves started by someone else",
+    "evMedian": "Median time per answer",
+    "evMedianFmt": "{s} s",
+    "evShare": "Answered correctly",
+    "evPctFmt": "{n}%",
+    "evPeople": "Accounts involved",
+    "evChildren": "Children involved",
+    "subjectT": "Who",
+    "subject": {
+      "educator": "Educator",
+      "owner": "Owner",
+      "person": "One of the people"
+    },
+    "childT": "Child",
+    "grade": "grade {n}",
+    "preschool": "not at school yet",
+    "noGrade": "grade not given",
+    "born": "born {date}",
+    "eduT": "The educator",
+    "eduStatus": {
+      "approved": "Approved",
+      "suspended": "Suspended",
+      "applied": "Waiting for a decision",
+      "rejected": "Rejected"
+    },
+    "eduCode": "Public code",
+    "eduLinks": "Active links",
+    "linksT": "Paused links",
+    "linksSub": "Each owner decides for their own child: keep the educator or end the access.",
+    "linkChild": "Child",
+    "linkAnswer": "Owner’s answer",
+    "linkWhen": "When",
+    "answer": { "waiting": "Waiting", "kept": "Kept", "ended": "Ended" },
+    "waitT": "Waiting for the owners",
+    "waitB": "The educator’s links were paused. The owners were told and each decides for their own child. Nobody is blocked automatically.",
+    "waitCount": "{c} of {o} answered"
+  },
+  "decide": {
+    "title": "Decision",
+    "suspend": "Suspend the teacher’s links and ask owners to confirm",
+    "suspendHint": "Not a silent block: links are paused, owners are told, and a person makes the call.",
+    "dismiss": "Dismiss as false positive",
+    "escalate": "Confirm and escalate",
+    "close": "Close — owners have answered",
+    "closeHint": "Each owner’s answer stands as given. Close the case once you have read them.",
+    "suspendT": "Suspend the links and ask owners to confirm?",
+    "suspendB": "{teacher} loses access to {n} children’s profiles until each owner answers. Nothing is deleted. The owners are told and decide for their own child: keep the educator or end the access. The educator sees only “access paused for review”, not the reason.",
+    "suspendOk": "Suspend and notify",
+    "dismissT": "Dismiss as a false positive?",
+    "dismissB": "A false positive costs more than a miss: blocking an honest tutor loses us their whole group and our name among their colleagues. Nothing changes for anyone; the flag is closed and logged.",
+    "dismissLbl": "Why is this a false positive?",
+    "dismissPh": "What did you check, and what did you find?",
+    "dismissOk": "Dismiss flag",
+    "escalateT": "Confirm and escalate?",
+    "escalateB": "The educator’s account is suspended; owners keep the choice for each link. The decision and your note are logged.",
+    "escalateNoEdu": "No educator is involved: the case is closed as confirmed and logged. Nobody is blocked automatically.",
+    "escalateLbl": "What did you find?",
+    "escalatePh": "What did you check, and why is it real?",
+    "escalateOk": "Confirm and escalate",
+    "closeT": "Close the case?",
+    "closeB": "The owners’ answers stand as given. The case is closed and logged.",
+    "closeOk": "Close the case",
+    "noteOpt": "Note (optional)",
+    "required": "required",
+    "noteErr": "Add a note of at least 3 characters: the next reviewer needs to know why.",
+    "cancel": "Cancel",
+    "done": {
+      "suspended": "{ref}: links paused, owners notified.",
+      "dismissed": "{ref} dismissed as a false positive.",
+      "escalated": "{ref} confirmed and escalated.",
+      "closed": "{ref} closed.",
+      "kept": "{ref} resolved: the current owner keeps the profile. Both people are notified.",
+      "transferred": "{ref} resolved: ownership moved to the claimant. Both people are notified.",
+      "approved": "{ref}: one more child approved. The parent is notified.",
+      "rejected": "{ref}: request rejected. The parent is notified."
+    }
+  },
+  "dispute": {
+    "why": "One child, one owner. Adding a child who already has a profile never creates a second one — it opens this procedure. Write the decision down: the log answers any complaint later.",
+    "ownerLbl": "Current owner",
+    "claimLbl": "Claimant",
+    "childLbl": "The child",
+    "claimed": "Typed the child’s name as {name}",
+    "phone": "Phone {phone}",
+    "noOwner": "The profile has no owner right now.",
+    "notConfirmed": "The claimant hasn’t confirmed the claim yet. No decision until they do.",
+    "statementsT": "Statements and call notes",
+    "statementsSub": "Neither side sees the other’s words or contact details.",
+    "callNote": "Add a call note",
+    "callNotePh": "Who you called, what they said, what you checked.",
+    "keep": "Keep the current owner",
+    "transfer": "Transfer to the claimant",
+    "reasonLbl": "Reason (both people see the decision)",
+    "reasonPh": "What decided it?",
+    "keepT": "Keep the current owner?",
+    "keepB": "Nothing changes for the child’s profile. The claimant and the owner both receive the decision and the reason. The case is closed.",
+    "keepOk": "Keep the owner",
+    "transferT": "Transfer the child to the claimant?",
+    "transferB": "A clean handover. This happens at once:",
+    "transferList": [
+      "The claimant becomes the owner.",
+      "The old owner and every co-guardian lose access.",
+      "Open invites and any deletion request are cancelled.",
+      "Educator links wait for the new owner to keep or end them.",
+      "Consents must be given again by the new owner.",
+      "Both people are told the decision and the reason."
+    ],
+    "transferOk": "Transfer ownership"
+  },
+  "fifth": {
+    "why": "A family adds up to four children on its own. A fifth needs a person to look — most are real large families.",
+    "parentLbl": "Parent",
+    "requestedLbl": "The child they want to add",
+    "ownsLbl": "Children they already own ({n})",
+    "since": "owner since {date}",
+    "used": "The approval was used: the child has been added.",
+    "approve": "Approve one more child",
+    "reject": "Reject",
+    "approveT": "Approve one more child?",
+    "approveB": "The parent can add one more child. The approval is used once and the parent is notified.",
+    "approveOk": "Approve",
+    "rejectT": "Reject the request?",
+    "rejectB": "The parent cannot add this child. If you write a reason, the parent sees it.",
+    "rejectLbl": "Reason (optional — shown to the parent)",
+    "rejectOk": "Reject"
+  },
+  "app": {
+    "title": "The application",
+    "decideThere": "Applications are decided on the Educator applications tab, with approve and reject.",
+    "openTab": "Open the applications tab",
+    "applied": "Applied {date}",
+    "kind": { "tutor": "Tutor", "school_teacher": "School teacher", "learning_centre": "Learning centre" },
+    "status": { "applied": "Waiting", "approved": "Approved", "rejected": "Rejected", "suspended": "Suspended" },
+    "kindLbl": "Applies as",
+    "region": "Region",
+    "school": "School",
+    "subjects": "Areas",
+    "none": "Not given"
+  },
+  "assign": {
+    "title": "Assigned to",
+    "nobody": "Nobody yet",
+    "select": "Assign to",
+    "choose": "Choose a person",
+    "assign": "Assign",
+    "me": "Assign to me",
+    "unassign": "Unassign",
+    "assigned": "{ref} assigned to {name}.",
+    "unassigned": "{ref} is no longer assigned."
+  },
+  "notes": {
+    "title": "Notes",
+    "sub": "Every note is kept with the case. Shown as plain text.",
+    "empty": "No notes yet.",
+    "add": "Add a note",
+    "ph": "What did you check or learn?",
+    "submit": "Add note",
+    "err": "Write something first.",
+    "added": "Note added.",
+    "role": { "claimant": "Claimant", "owner": "Owner", "staff": "Staff" }
+  },
+  "errors": {
+    "NETWORK": "The connection dropped. Try again.",
+    "UNKNOWN": "Something went wrong. Please try again in a moment.",
+    "FORBIDDEN": "You don’t have permission to do this.",
+    "NOT_FOUND": "This case no longer exists. Refresh the page.",
+    "VALIDATION_FAILED": "Check the note: 3 to 2,000 characters.",
+    "NOT_TRUST_SAFETY": "Cases can only be assigned to the trust & safety team.",
+    "CASE_NOT_OPEN": "This case is no longer open. Refresh the page.",
+    "NO_EDUCATOR": "No educator is involved in this flag, so there are no links to pause.",
+    "CASE_CLOSED": "This case is already closed. Refresh the page.",
+    "CASE_NOT_WAITING": "This case isn’t waiting for owners. Refresh the page.",
+    "CLAIM_NOT_CONFIRMED": "The claimant hasn’t confirmed the claim yet. Decide once they have.",
+    "ALREADY_OWNER": "The claimant already owns this child — there is nothing to transfer."
+  },
+  "states": {
+    "noAccessTitle": "This section isn’t open to you",
+    "noAccessBody": "Only the trust & safety team works the flags and disputes queue.",
+    "noAccessCta": "Go to staff home",
+    "errTitle": "We couldn’t load the cases",
+    "errBody": "The rules are still running and recording flags — only this screen failed to load.",
+    "retry": "Try again",
+    "notFoundTitle": "This case doesn’t exist",
+    "notFoundBody": "The link may be wrong, or the case was removed. The queue has every open case."
+  }
+}

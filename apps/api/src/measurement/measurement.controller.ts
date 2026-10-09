@@ -34,8 +34,8 @@ export class ReportController {
 
   @Get(':id/report')
   @ChildAccess('parent_report')
-  report(@ResolvedChild() access: ChildAccessResult) {
-    return this.reporting.report(access);
+  report(@CurrentActor() actor: Actor, @ResolvedChild() access: ChildAccessResult) {
+    return this.reporting.report(access, actor.personId);
   }
 }
 

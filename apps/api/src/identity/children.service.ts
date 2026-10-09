@@ -111,7 +111,7 @@ export class ChildrenService {
    *      invite's educator link), in ONE transaction, because INV-04 is
    *      checked at COMMIT
    */
-  async create(actor: Actor, dto: CreateChildDto): Promise<CreateChildResult> {
+  async create(actor: Actor, dto: CreateChildDto, device?: { ip: string | null; userAgent: string | null }): Promise<CreateChildResult> {
     if (!this.canCreate(actor)) throw new ChildCreateForbiddenException();
     if (!PinflService.isWellFormed(dto.pinfl)) throw new PinflMalformedException();
     if (!PinflService.dobMatches(dto.pinfl, dto.dob)) throw new PinflDobMismatchException();
@@ -147,7 +147,21 @@ export class ChildrenService {
     }
 
     const owned = await this.cases.ownedChildCount(actor.personId);
-    if (owned >= SELF_SERVE_CHILD_LIMIT) {
+    // M8: trust & safety approved a fifth (or later) child — that approval
+    // admits exactly one more, and is used up by it.
+    const approved =
+      owned >= SELF_SERVE_CHILD_LIMIT
+        ? await this.db.one<{ id: string }>(
+            `UPDATE review_case SET payload = payload || '{"used": true}'::jsonb
+              WHERE id = (SELECT id FROM review_case
+                           WHERE kind = 'fifth_child' AND subject_person_id = $1 AND status = 'resolved'
+                             AND resolution = 'approved' AND COALESCE((payload->>'used')::boolean, false) = false
+                           ORDER BY resolved_at LIMIT 1)
+              RETURNING id`,
+            [actor.personId],
+          )
+        : null;
+    if (owned >= SELF_SERVE_CHILD_LIMIT && !approved) {
       // Step 4. No child row — the case carries what a reviewer needs, and the
       // parent retries once it is approved.
       const caseId = await this.cases.open({
@@ -230,6 +244,8 @@ export class ChildrenService {
         consents: dto.consents.filter((c) => c.given).map((c) => c.type),
         documentVersion: CONSENT_DOCUMENT_VERSION,
       },
+      ip: device?.ip ?? null,
+      userAgent: device?.userAgent?.slice(0, 300) ?? null,
     });
     this.logger.log(`child ${childId} created by ${actor.personId}`);
     return { id: childId, sharedWith };

@@ -31,6 +31,12 @@ export interface EducatorAccessView {
   revokedAt: string | null;
   /** A switched-off link can be switched back on until its end date. */
   canRestore: boolean;
+  /**
+   * M8: trust & safety suspended this link and asks the owner — keep it or
+   * end it (`POST /family/children/:id/educators/:linkId/answer`).
+   */
+  awaitingOwnerAnswer: boolean;
+  suspendedReason: string | null;
 }
 
 export interface UntilOptions {
@@ -77,6 +83,8 @@ export class AccessService {
       window_over: boolean;
       season_over: boolean;
       newer_live: boolean;
+      awaiting: boolean;
+      suspended_reason: string | null;
     }>(
       `SELECT el.id,
               p.full_name AS educator_name,
@@ -95,7 +103,9 @@ export class AccessService {
                        WHERE o.child_id = el.child_id
                          AND o.educator_person_id = el.educator_person_id
                          AND o.id <> el.id
-                         AND o.status IN ('requested','active','suspended')) AS newer_live
+                         AND o.status IN ('requested','active','suspended')) AS newer_live,
+              (el.status = 'suspended' AND el.suspended_case_id IS NOT NULL AND el.owner_response IS NULL) AS awaiting,
+              el.suspended_reason
          FROM educator_link el
          JOIN educator_profile ep ON ep.person_id = el.educator_person_id
          JOIN person p ON p.id = el.educator_person_id
@@ -128,6 +138,8 @@ export class AccessService {
           decidedAt: r.decided_at,
           revokedAt: r.revoked_at,
           canRestore: r.status === 'revoked' && !r.window_over && !r.newer_live,
+          awaitingOwnerAnswer: r.awaiting && !r.window_over,
+          suspendedReason: r.status === 'suspended' ? r.suspended_reason : null,
         };
       })
       .filter((l) => l.status !== 'expired' || l.decidedAt !== null);

@@ -11,9 +11,11 @@ import {
   Post,
   Put,
   Query,
+  Req,
   Res,
 } from '@nestjs/common';
-import { Response } from 'express';
+import { Request, Response } from 'express';
+import { clientIp } from '../auth/cookies';
 import { Actor, ChildAccess, CurrentActor, Guarded } from '../authz';
 import { ChildrenService } from './children.service';
 import { ConsentsService, CONSENT_TYPES, ConsentType } from './consents.service';
@@ -67,9 +69,12 @@ export class FamilyController {
   async create(
     @CurrentActor() actor: Actor,
     @Body() dto: CreateChildDto,
+    @Req() req: Request,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const result = await this.children.create(actor, dto);
+    // The device goes into the audit row: M8's "many owners from one device"
+    // rule reads it from there.
+    const result = await this.children.create(actor, dto, { ip: clientIp(req) || null, userAgent: req.headers['user-agent'] ?? null });
     res.status(result.alreadyYours ? 200 : 201);
     return result;
   }
