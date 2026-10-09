@@ -49,3 +49,8 @@ PY
 # builder (idempotent — skipped when grade 4 already has seeded items).
 bank=$(curl -sS -X POST "$API/api/dev/seed-bank" -H 'Content-Type: application/json')
 echo "Item bank: $bank"
+
+# M5: measured history (grade 4 bands, grade 1 skill states) for the parent
+# reports and the calibration page (idempotent).
+results=$(curl -sS -X POST "$API/api/dev/seed-results" -H 'Content-Type: application/json')
+echo "Measured history: $results"

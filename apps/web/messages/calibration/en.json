@@ -1,0 +1,103 @@
+{
+  "head": {
+    "title": "Calibration runs",
+    "subtitle": "Which measurement run each grade's parent reports read, how it went, and re-running it when needed.",
+    "seasonFmt": "Season {s}"
+  },
+  "model": {
+    "title": "How measurement works",
+    "jobs": "Measurement runs only as a background job. A run starts on its own when a wave closes; you can also re-run it by hand.",
+    "own": "Each run writes its own rows and never overwrites another run. Older runs stay saved.",
+    "current": "Exactly one run per grade is current. Parent reports read only the current run, so switching it changes every report of that grade at once.",
+    "v0": "v0 (raw_band_v0): the score is the number of correct scored items on the wave form. Pretest items do not count.",
+    "band": "A band is the percentile of the score ± SEM within region × grade × season. Below 30 children in a cohort no band is shown — the parent reads \"not enough children in this cohort yet\".",
+    "young": "Grades 0–2 get skill states only (secure, emerging, not yet), never a rank or a band.",
+    "v1": "v1 (Rasch with anchor equating) arrives in Release 2 — M9."
+  },
+  "toolbar": {
+    "methodLegend": "Method for a re-run",
+    "v0": "v0 — correct scored items (raw_band_v0)",
+    "v1": "v1 — Rasch with anchor equating",
+    "v1Note": "Release 2 — M9",
+    "rerunAll": "Re-run all grades"
+  },
+  "grade": {
+    "titleFmt": "Grade {g}",
+    "chipBands": "Percentile bands",
+    "chipSkills": "Skill states only",
+    "rerun": "Re-run v0",
+    "emptyTitle": "No runs for this grade yet",
+    "emptyBody": "A run starts automatically when a wave of this grade closes. Nothing to do until then.",
+    "noCurrent": "No run of this grade is current yet, so its parent reports have nothing to read. Make one of the runs below current."
+  },
+  "run": {
+    "current": "Current",
+    "running": "Running",
+    "method": {
+      "raw_band_v0": "v0 · raw band",
+      "rasch_anchor_equating_v1": "v1 · Rasch"
+    },
+    "waveClose": "Wave {n} close",
+    "manualBy": "Manual re-run by {name}",
+    "manual": "Manual re-run",
+    "startedFmt": "Started {d}",
+    "finishedFmt": "Finished {d}",
+    "notFinished": "Not finished yet",
+    "sessions": "Sessions measured",
+    "bands": "Bands",
+    "belowMinimum": "Below minimum",
+    "skillStates": "Skill states",
+    "itemStatistics": "Item statistics",
+    "notForGrade": "not for grades 0–2",
+    "wavesTitle": "Per-wave diagnostics",
+    "wavesNote": "Staff only — parents never see these numbers.",
+    "waveCol": "Wave",
+    "sessionsCol": "Sessions",
+    "reliabilityCol": "Reliability (KR-20)",
+    "semCol": "SEM, raw points",
+    "waveFmt": "Wave {n}",
+    "noWaves": "No wave was measured in this run.",
+    "noValue": "—",
+    "summaryFmt": "{s} sessions · {b} bands · {k} skill states"
+  },
+  "history": {
+    "summaryFmt": "Older runs ({n})",
+    "makeCurrent": "Make current",
+    "dlgTitle": "Make this run current?",
+    "dlgBodyFmt": "The grade {g} parent reports will switch to the run from {d} at once. The run that is current now stays saved, and you can switch back at any time.",
+    "confirm": "Make current",
+    "cancel": "Cancel",
+    "doneFmt": "Grade {g}: the run from {d} is now current."
+  },
+  "rerun": {
+    "dlgTitleGradeFmt": "Re-run v0 for grade {g}?",
+    "dlgTitleAll": "Re-run v0 for all grades?",
+    "dlgBody": "A new run is written next to the old ones and becomes current when it finishes, so the parent reports then read it. Older runs are kept, and you can switch back.",
+    "dlgBodyAll": "Every grade that has a closed wave this season gets a new run.",
+    "confirm": "Start the run",
+    "cancel": "Cancel",
+    "doneFmt": "New runs started: {n}. They are now current.",
+    "none": "Nothing to measure: no wave has closed yet for this choice."
+  },
+  "items": {
+    "title": "Item statistics",
+    "body": "p, point-biserial, dead distractors and DIF uz/ru in the item bank now come from the current run of each grade.",
+    "cta": "Open the item bank"
+  },
+  "errors": {
+    "METHOD_NOT_AVAILABLE": "v1 (Rasch with anchor equating) is not available yet — it arrives in Release 2 — M9.",
+    "NO_SEASON": "There is no current season, so there is nothing to measure.",
+    "NOT_FOUND": "That run no longer exists or has not finished yet. The page has been refreshed.",
+    "FORBIDDEN": "Your role cannot run calibration.",
+    "NETWORK": "No connection. Check the network and try again.",
+    "generic": "Something went wrong. Try again."
+  },
+  "states": {
+    "noAccessTitle": "No access to calibration",
+    "noAccessBody": "Calibration runs belong to the bank editor. If you need them, ask a super admin for that role.",
+    "noAccessCta": "Back to the staff console",
+    "errTitle": "Could not load the runs",
+    "errBody": "The server did not answer. Your runs are safe — try again in a moment.",
+    "retry": "Try again"
+  }
+}

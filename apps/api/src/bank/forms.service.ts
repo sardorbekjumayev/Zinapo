@@ -286,7 +286,8 @@ export class FormsService {
     LEFT JOIN LATERAL (SELECT s.difficulty_b FROM item_statistic s
                          JOIN calibration_run cr ON cr.id = s.calibration_run_id
                         WHERE s.item_version_id = v.id
-                        ORDER BY cr.is_current DESC, cr.started_at DESC LIMIT 1) st ON true
+                        ORDER BY (cr.is_current AND EXISTS (SELECT 1 FROM season se WHERE se.id = cr.season_id AND se.is_current)) DESC,
+                                 cr.is_current DESC, cr.started_at DESC LIMIT 1) st ON true
         WHERE fi.form_id = $1
         ORDER BY fi.position`,
       [formId],

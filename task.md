@@ -1012,11 +1012,77 @@ authorises every call, so the middleware only redirects signed-out people.
 happen after authorisation passed (`passedPolicy`): "the owner may launch" is
 still proven when the answer is `WAVE_TAKEN` because the child already took it.
 
-### M5 — Measurement v0 & parent reports (Release 1)
-- [ ] Job: `raw_band_v0` calibration run per wave close → `percentile_band`, `skill_state`.
-- [ ] Parent report 3–4 (band, trend with the next wave as an empty column, "the 5 in eMaktab" block, clusters, misconception pattern, one action, Plan B, who can see, practice count).
-- [ ] Parent report 0–2 (skills, new since, one action, refusal to forecast).
-- [ ] Cohort minimum (n ≥ 30) handling; "report ready" notification.
+### M5 — Measurement v0 & parent reports (Release 1) — Done
+- [x] Job: `raw_band_v0` calibration run per wave close → `percentile_band`, `skill_state`. (Plus `scale_score`, `item_statistic` and `child_wave_summary` — notes M5-a, M5-c, M5-d.)
+- [x] Parent report 3–4 (band, trend with the next wave as an empty column, "the 5 in eMaktab" block, clusters, misconception pattern, one action, Plan B, who can see, practice count). (`GET /family/children/:id/report`, on `/family/children/[id]`.)
+- [x] Parent report 0–2 (skills, new since, one action, refusal to forecast). (Note M5-b.)
+- [x] Cohort minimum (n ≥ 30) handling; "report ready" notification.
+- [x] **DoD:** `scripts/report-flows.sh` — 33–34 checks (one only on a fresh database); `scripts/measurement-unit.sh` — 8 unit tests of the arithmetic; permission matrix 65 pass, 0 fail, 0 pending for M5 (26 pending, all M6–M9); earlier suites green.
+
+#### Notes on M5 — deviations and decisions
+
+**M5-a. One run per season × grade, recomputing every closed wave.** A wave
+close triggers a `raw_band_v0` run for its grade; the run measures ALL closed
+waves of that grade this season and becomes current in the same transaction
+(INV-13). One run therefore holds the whole trend a report draws, a re-run
+never mixes rows from different runs, and switching `is_current` (the bank
+editor can switch back) changes what every report reads at once. Derived rows
+are only inserted (INV-12); old runs stay as they were.
+
+**M5-b. The v0 arithmetic, made concrete.** Score = correct scored items
+(pretest excluded); only submitted monitoring sessions (practice and olympiad
+never enter the scale). SEM = SD·√(1 − KR-20) per wave form; when reliability
+cannot be estimated, the binomial error √(k·p̄·(1 − p̄)) — wider, never falsely
+precise — and never below one raw point. The band = mid-rank percentile of
+score − SEM … score + SEM within region × grade × season (the session's
+snapshotted region), clamped 1–100; below 30 children the row is written with
+no band. Reports show it from the strong end, "top {100 − high}–{100 − low}%".
+Skill states (grades 0–2): ≥ 2 correct on a skill in a wave makes a candidate,
+which is EMERGING until a later wave confirms it with ≥ 2 again → SECURE;
+some correct → emerging; none → not yet. A secure skill stays secure while the
+child keeps answering it correctly. These rules live in
+`measurement/measurement.math.ts` with unit tests.
+
+**M5-c. Two derived facts the schema lacked** (migration 009). design/03's
+"A strength / In line / Most points lost" and "She stops after the first
+step" need a cluster standing and a misconception pattern per child and wave:
+`child_wave_summary`, append-only, keyed by run. The standing compares a
+cluster with the child's OWN overall result (±15 points), so it means the same
+in a cohort of 12 or 1,200 and never exposes another child. The pattern is the
+misconception picked most often (at least twice) on scored items; "across the
+season" is the code seen in the most waves (≥ 2).
+
+**M5-d. Item statistics come from the same run.** p, point-biserial against
+the rest score, distractor share by option position (zeros included — that is
+the "dead distractor" flag), a v0 logit difficulty, and DIF uz/ru when both
+language groups have ≥ 20 answers. For DIF the session now records the
+language the child answered in (`session.test_language`, set at Start).
+
+**M5-e. The report reads, never measures.** `GET /family/children/:id/report`
+reads the current run's derived rows and relationships only. `parent_report`
+scope: guardians, and an educator for their own child only (§ 3). It carries
+no score, no other child, no probability; grades 0–2 carry no band, no cohort
+and an explicit `forecast: null`. The "ticket" line counts waves taken (≥ 3 for
+the spring final — the olympiad itself is M7). Re-runs never re-announce:
+`report_ready` goes once per wave, child and guardian.
+
+**M5-f. Calibration staff API.** `POST /staff/calibration-runs` re-runs v0
+(one grade, or every grade with a closed wave); `rasch_anchor_equating_v1`
+answers `METHOD_NOT_AVAILABLE` until M9. `POST /staff/calibration-runs/:id/current`
+switches the current run.
+
+**M5-h. Item statistics read the current season's current run.** M3's
+lookups took the newest `is_current` run of ANY season; with a second season's
+run (a test season, or simply last season) newer than this season's, the item
+bank and the form builder read the wrong statistics — the anchor-spread rule
+then failed intermittently (found by the full suite in M5). The current season's
+current run now always wins; older seasons are a fallback only.
+
+**M5-g. Development fixture.** `POST /api/dev/seed-results` (also in
+`seed.sh`) gives grade 4 three closed waves — Madina plus 40 synthetic
+"Kohort" children answering from a simple ability model — and grade 1 a picture
++ audio form with Temur's three waves, then runs the real wave and measurement
+jobs over them. `POST /api/dev/tick` now runs both jobs.
 
 ### M6 — Educator workspace (Release 2)
 - [ ] Educator application + trust & safety approval; staff invite of pre-approved educators.

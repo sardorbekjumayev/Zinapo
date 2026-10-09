@@ -158,7 +158,8 @@ export class ItemsService {
               SELECT st.* FROM item_statistic st
                 JOIN calibration_run cr ON cr.id = st.calibration_run_id
                WHERE st.item_version_id = v.id
-               ORDER BY cr.is_current DESC, cr.started_at DESC LIMIT 1) s ON true
+               ORDER BY (cr.is_current AND EXISTS (SELECT 1 FROM season se WHERE se.id = cr.season_id AND se.is_current)) DESC,
+                                 cr.is_current DESC, cr.started_at DESC LIMIT 1) s ON true
          ${filter}
         ORDER BY i.grade, i.code
         LIMIT ${p(perPage)} OFFSET ${p((page - 1) * perPage)}`,
@@ -309,7 +310,8 @@ export class ItemsService {
                 cr.method, cr.started_at AS "runAt"
            FROM item_statistic st JOIN calibration_run cr ON cr.id = st.calibration_run_id
           WHERE st.item_version_id = $1
-          ORDER BY cr.is_current DESC, cr.started_at DESC LIMIT 1`,
+          ORDER BY (cr.is_current AND EXISTS (SELECT 1 FROM season se WHERE se.id = cr.season_id AND se.is_current)) DESC,
+                                 cr.is_current DESC, cr.started_at DESC LIMIT 1`,
         [v.id],
       );
 

@@ -1,6 +1,10 @@
 import type { CSSProperties } from 'react';
 
-/** Skeleton of the child page: header, then report + school panels beside the details panel. */
+/**
+ * Skeleton of the child page: header, the report (hero, then a wide/narrow
+ * pair, then a full-width block), then the waves + school panels beside the
+ * details panel.
+ */
 export default function Loading() {
   const line = (width: string | number, height = 14): CSSProperties => ({ width, height });
   return (
@@ -13,13 +17,46 @@ export default function Loading() {
           <span className="skel" style={line(320, 16)} />
         </div>
       </div>
+      <div className="rp">
+        <div className="fam-panel rp-hero">
+          <div className="rp-hero__lead">
+            <span className="skel" style={line(160, 12)} />
+            <span className="skel" style={line(240, 52)} />
+            <span className="skel" style={line('90%')} />
+          </div>
+          <div className="rp-hero__scale">
+            <span className="skel" style={{ width: '100%', height: 16, borderRadius: 999 }} />
+            <span className="skel" style={line('100%', 56)} />
+          </div>
+        </div>
+        <div className="rp-row">
+          <div className="fam-panel">
+            <span className="skel" style={line('45%', 22)} />
+            <div className="fam-inline" style={{ '--gap': '12px', alignItems: 'flex-end' } as CSSProperties}>
+              {[0, 1, 2, 3, 4].map((i) => (
+                <span key={i} className="skel" style={{ flex: 1, height: 220 }} />
+              ))}
+            </div>
+            <span className="skel" style={line('100%', 56)} />
+          </div>
+          <div className="fam-panel">
+            <span className="skel" style={line('70%', 22)} />
+            <span className="skel" style={line('100%', 96)} />
+            <span className="skel" style={line('90%')} />
+            <span className="skel" style={line('80%')} />
+          </div>
+        </div>
+        <div className="fam-panel">
+          <span className="skel" style={line('50%', 22)} />
+          <div className="fam-inline" style={{ '--gap': '16px' } as CSSProperties}>
+            {[0, 1, 2].map((i) => (
+              <span key={i} className="skel" style={{ flex: 1, height: 110 }} />
+            ))}
+          </div>
+        </div>
+      </div>
       <div className="fam-grid">
         <div className="fam-col">
-          <div className="fam-panel">
-            <span className="skel" style={line('30%', 20)} />
-            <span className="skel" style={line('90%')} />
-            <span className="skel" style={line('70%')} />
-          </div>
           <div className="fam-panel">
             <span className="skel" style={line('40%', 20)} />
             {[0, 1].map((i) => (

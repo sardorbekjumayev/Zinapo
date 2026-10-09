@@ -1,7 +1,7 @@
 import { Body, Controller, Get, HttpCode, Param, Post } from '@nestjs/common';
 import { Actor, ChildAccess, CurrentActor, Guarded, RequireWorkspace } from '../authz';
 import { SessionsService } from './sessions.service';
-import { AnswersBatchDto, StartSessionDto, SubmitDto } from './sessions.dto';
+import { AnswersBatchDto, BeginDto, StartSessionDto, SubmitDto } from './sessions.dto';
 
 /**
  * § 6.1 Family › "Reports and sessions": the child's waves and starting one at
@@ -58,8 +58,8 @@ export class SessionsController {
   /** The child pressed Start: the clock begins now (idempotent). */
   @Post(':id/begin')
   @HttpCode(200)
-  begin(@CurrentActor() actor: Actor, @Param('id') id: string) {
-    return this.sessions.begin(actor, id);
+  begin(@CurrentActor() actor: Actor, @Param('id') id: string, @Body() dto: BeginDto) {
+    return this.sessions.begin(actor, id, dto.language);
   }
 
   @Post(':id/responses')

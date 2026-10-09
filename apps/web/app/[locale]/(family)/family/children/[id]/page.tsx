@@ -5,22 +5,25 @@ import { ErrorState } from '@/components/family/ErrorState';
 import { ChildDetails } from '@/components/family/home/ChildDetails';
 import { EnrolmentForm } from '@/components/family/home/EnrolmentForm';
 import { WavesCard } from '@/components/family/waves/WavesCard';
+import { ParentReport } from '@/components/family/report/ParentReport';
 import { currentSchoolYear, schoolLine, schoolYearLabel } from '@/components/family/home/labels';
 import { Icon } from '@/components/shell/Icon';
 import { apiGet } from '@/lib/api-server';
 import { childDisplayName, formatDate, regionName } from '@/lib/format';
 import type { ChildSummary, Enrolment, Region } from '@/lib/family-types';
 import type { ChildWaves } from '@/lib/session-types';
+import type { Report } from '@/lib/report-types';
 import { fill, isLocale, type Locale } from '@/lib/i18n';
 import { familyMessages } from '@/messages/family';
 import { homeMessages } from '@/messages/home';
+import { reportMessages } from '@/messages/report';
 
 export const dynamic = 'force-dynamic';
 
 /**
  * `/family/children/[id]` — the child's page. The report (task.md § 8.1.3) is
- * M5; until then this is the profile: names, the enrolment history and, for
- * the owner, the two things they can change here (names, school/grade).
+ * the main content; below it the waves, the enrolment history and, for the
+ * owner, the two things they can change here (names, school/grade).
  *
  * A co-guardian sees the same page read-only (task.md § 8.2). The API
  * enforces that too; hiding the controls is only so nobody hits a 403.
@@ -36,11 +39,12 @@ export default async function ChildPage({
   const m = homeMessages(locale).child;
   const enc = encodeURIComponent(id);
 
-  const [childRes, enrolRes, regionsRes, wavesRes] = await Promise.all([
+  const [childRes, enrolRes, regionsRes, wavesRes, reportRes] = await Promise.all([
     apiGet<ChildSummary>(`/api/family/children/${enc}`),
     apiGet<Enrolment[]>(`/api/family/children/${enc}/enrolments`),
     apiGet<Region[]>('/api/reference/regions'),
     apiGet<ChildWaves>(`/api/family/children/${enc}/waves`),
+    apiGet<Report>(`/api/family/children/${enc}/report`),
   ]);
 
   if (!childRes.ok) {
@@ -113,19 +117,20 @@ export default async function ChildPage({
         </div>
       )}
 
+      {/* The report fails on its own: names, waves and access below still work. */}
+      {reportRes.ok ? (
+        <ParentReport report={reportRes.data} locale={locale} childId={child.id} owner={owner} />
+      ) : (
+        <ErrorState
+          title={fill(reportMessages(locale).common.loadErrorTitle, { name: child.givenName })}
+          body={reportMessages(locale).common.loadErrorBody}
+          retryHref={`/${locale}/family/children/${id}`}
+          retryLabel={fm.common.retry}
+        />
+      )}
+
       <div className="fam-grid">
         <div className="fam-col">
-          {/* No numbers until a wave has been measured (M5) — an invented
-              figure here would be read as a verdict on the child. */}
-          <section className="card">
-            <span className="card__kicker">{m.reportKicker}</span>
-            <h2 className="card__title">{m.reportTitle}</h2>
-            <p className="card__body">{m.reportBody}</p>
-            <span className="chip chip--neutral mono" style={{ alignSelf: 'flex-start' }}>
-              M5
-            </span>
-          </section>
-
           <WavesCard
             data={wavesRes.ok ? wavesRes.data : null}
             childId={child.id}

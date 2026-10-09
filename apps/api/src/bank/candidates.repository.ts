@@ -78,7 +78,8 @@ export class CandidatesRepository {
     LEFT JOIN LATERAL (SELECT s.difficulty_b FROM item_statistic s
                          JOIN calibration_run cr ON cr.id = s.calibration_run_id
                         WHERE s.item_version_id = v.id
-                        ORDER BY cr.is_current DESC, cr.started_at DESC LIMIT 1) st ON true
+                        ORDER BY (cr.is_current AND EXISTS (SELECT 1 FROM season se WHERE se.id = cr.season_id AND se.is_current)) DESC,
+                                 cr.is_current DESC, cr.started_at DESC LIMIT 1) st ON true
         WHERE i.retired_at IS NULL
           -- INV-08: an anchor can never be a candidate for a practice form.
           AND NOT ($1::form_mode = 'practice' AND i.is_anchor)

@@ -196,7 +196,7 @@ export class SessionsService implements OnModuleInit, OnApplicationShutdown {
    * wave's close if sooner — and returns it; calling again returns the same
    * deadline, so a device that retries after a dropped reply cannot extend it.
    */
-  async begin(actor: Actor, sessionId: string) {
+  async begin(actor: Actor, sessionId: string, language?: 'uz' | 'ru') {
     const s = await this.authorised(actor, sessionId);
     if (s.status !== 'started') throw new ConflictException({ error: 'SESSION_CLOSED', details: { status: s.status } });
     const row = await this.db.one<{ deadline_at: Date | null }>(
@@ -204,11 +204,12 @@ export class SessionsService implements OnModuleInit, OnApplicationShutdown {
           SET deadline_at = COALESCE(s.deadline_at, LEAST(
                 w.closes_at,
                 CASE WHEN f.time_limit_sec IS NULL THEN w.closes_at
-                     ELSE now() + make_interval(secs => f.time_limit_sec) END))
+                     ELSE now() + make_interval(secs => f.time_limit_sec) END)),
+              test_language = COALESCE(s.test_language, $2)
          FROM form f, wave w
         WHERE s.id = $1 AND f.id = s.form_id AND w.id = s.wave_id
         RETURNING s.deadline_at`,
-      [sessionId],
+      [sessionId, language ?? null],
     );
     return { deadlineAt: row?.deadline_at ?? null, serverTime: new Date().toISOString() };
   }

@@ -64,8 +64,10 @@ export const sessionApi = {
   // kid mode
   bundle: (sessionId: string) => request<Bundle>('GET', `/api/sessions/${sessionId}/bundle`),
   /** The child pressed Start: the server sets the deadline once (idempotent). */
-  begin: (sessionId: string) =>
-    request<{ deadlineAt: string | null; serverTime: string }>('POST', `/api/sessions/${sessionId}/begin`),
+  begin: (sessionId: string, language?: 'uz' | 'ru') =>
+    request<{ deadlineAt: string | null; serverTime: string }>('POST', `/api/sessions/${sessionId}/begin`, {
+      language,
+    }),
   saveAnswers: (sessionId: string, answers: AnswerInput[], device?: DeviceInfo) =>
     request<{ saved: number; status: string; serverTime: string }>(
       'POST',

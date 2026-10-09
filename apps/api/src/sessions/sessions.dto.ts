@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
 import {
   ArrayMaxSize,
+  IsIn,
   IsArray,
   IsBoolean,
   IsDateString,
@@ -69,4 +70,11 @@ export class SubmitDto extends AnswersBatchDto {
   @IsOptional()
   @IsBoolean()
   offline?: boolean;
+}
+
+export class BeginDto {
+  /** The language the child answers in — DIF uz/ru needs it (M5). */
+  @IsOptional()
+  @IsIn(['uz', 'ru'])
+  language?: 'uz' | 'ru';
 }

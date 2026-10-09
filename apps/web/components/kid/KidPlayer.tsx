@@ -497,7 +497,7 @@ export function KidPlayer({
     const cur = sRef.current;
     if (!cur || cur.bundle.deadlineAt) return;
     try {
-      const r = await sessionApi.begin(sessionId);
+      const r = await sessionApi.begin(sessionId, cur.stemLang === 'ru' ? 'ru' : 'uz');
       if (r.deadlineAt) {
         update((c) => ({ ...c, bundle: { ...c.bundle, deadlineAt: r.deadlineAt as string } }));
       }

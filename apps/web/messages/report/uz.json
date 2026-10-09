@@ -1,0 +1,245 @@
+{
+  "common": {
+    "wave": "{n}-monitoring",
+    "loadErrorTitle": "{name}ning hisobotini yuklab boʻlmadi",
+    "loadErrorBody": "Internet aloqasini tekshiring va qayta urinib koʻring. Natijalar saqlangan, hech narsa yoʻqolmaydi.",
+    "nextOpen": "{n}-monitoring hozir ochiq, {date}gacha.",
+    "nextUpcoming": "{n}-monitoring {date} kuni ochiladi.",
+    "nextNone": "Bu mavsumda boshqa monitoring rejalashtirilmagan.",
+    "howCta": "Monitoring qanday oʻtishini koʻrish",
+    "cluster": {
+      "numeracy": "Raqamlar va hisob",
+      "reasoning": "Mantiq va fikrlash",
+      "language": "Til"
+    }
+  },
+  "empty34": {
+    "title": "Hali oʻlchov yoʻq",
+    "body": "{name} monitoring topshirib, u oʻlchangach, hisobot shu yerda paydo boʻladi. Monitoringni uyda yoki ustoz huzurida topshirish mumkin.",
+    "tiles": [
+      {
+        "title": "{name} hozir qayerda",
+        "body": "Xuddi shu sinf va hududdagi bolalar orasidagi oʻrni — oraliq koʻrinishida."
+      },
+      {
+        "title": "Qaysi tomonga ketmoqda",
+        "body": "Bu oraliq monitoringdan monitoringga qanday oʻzgarayotgani."
+      },
+      {
+        "title": "Nima qilish kerak",
+        "body": "Vaqti aniq belgilangan bitta aniq ish."
+      }
+    ]
+  },
+  "empty02": {
+    "title": "{name} hali monitoring topshirmagan",
+    "body": "Birinchi monitoringdan soʻng qaysi koʻnikmalarni oʻzlashtirgani, qaysilarini oʻzlashtirayotganini va uyda qilish mumkin boʻlgan bitta ishni koʻrasiz. Topshiriqlar ovoz chiqarib oʻqib beriladi, shuning uchun {name} oʻzi oʻqishi shart emas.",
+    "tiles": [
+      {
+        "title": "Oʻzlashtirgan",
+        "body": "Bir monitoringda bir necha marta toʻgʻri javob berilgan va keyingisida tasdiqlangan."
+      },
+      {
+        "title": "Oʻzlashtirmoqda",
+        "body": "Baʼzan chiqadi, lekin hali barqaror emas. Uydagi yordam aynan shu yerda eng foydali."
+      },
+      {
+        "title": "Hali emas",
+        "body": "Unga hali erta. Bu koʻnikma oʻz vaqtida keladi."
+      }
+    ],
+    "note": "Boshqa bolalar bilan solishtirish boʻlmaydi — faqat {name} nimalarni qila olishi."
+  },
+  "hero": {
+    "over": "{name} hozir qayerda",
+    "big": "Top {from}–{to}%",
+    "sub": "{region}da {w}-monitoringni topshirgan {n} nafar {g}-sinf oʻquvchisi orasida.",
+    "zone": "2-bosqich zonasi ≈ eng kuchli 5%",
+    "strongest": "Eng kuchlilar",
+    "tick": "top {p}%",
+    "scaleAria": "Eng kuchlilardan top {max}% gacha boʻlgan shkalada top {from}–{to}%. 2-bosqich zonasi taxminan eng kuchli 5%.",
+    "rangeNote": "Bitta raqam emas, oraliq: 30 savollik har qanday testda biroz xatolik boʻladi. Olimpiadaning 2-bosqichiga oʻtish uchun taxminan eng kuchli 5% qatorida boʻlish kerak.",
+    "belowTitle": "Bu guruhda hali bolalar yetarli emas",
+    "belowBody": "{name}ning guruhida ({g}-sinf, {region}) hozircha kerakli {min} nafardan {n} nafar bola oʻlchangan. Undan kam boʻlsa, oraliq chalgʻitadi, shuning uchun uni hali koʻrsatmaymiz.",
+    "noBandBody": "Bu monitoring uchun oraliq hali yoʻq. Guruhda yetarlicha bola oʻlchangach paydo boʻladi."
+  },
+  "trend": {
+    "over": "Qaysi tomonga ketmoqda",
+    "titleUp": "Yuqoriga harakatlanmoqda",
+    "titleSteady": "Barqaror",
+    "titleDown": "Oldingi monitoringdan pastroq",
+    "titleFirst": "Boshlangʻich nuqta",
+    "titleNone": "Bu mavsumda hali oʻlchov yoʻq",
+    "hint": "Izohni koʻrish uchun ustunni tanlang.",
+    "colTop": "top {from}–{to}%",
+    "notTaken": "topshirilmagan",
+    "awaiting": "oʻlchanmoqda",
+    "below": "bolalar kam",
+    "open": "{date}gacha ochiq",
+    "openNow": "hozir ochiq",
+    "upcoming": "{date} kuni ochiladi",
+    "notes": {
+      "first": "Boshlangʻich nuqta. Keyingi har bir monitoring shu natija bilan solishtiriladi.",
+      "steady": "Bu oraliq oldingisi bilan qisman ustma-ust tushadi, shuning uchun uni sakrash emas, barqarorlik deb qabul qiling.",
+      "up": "Aniq oʻsish: bu oraliq toʻliq oldingisidan yuqorida joylashgan.",
+      "down": "Oldingi monitoringdan pastroq: bu oraliq toʻliq oldingisidan pastda. Bitta monitoring hukm emas — keyingisi bu saqlanib qolishini koʻrsatadi.",
+      "below": "Bu monitoringda guruhda bolalar oraliq koʻrsatish uchun yetarli emas edi.",
+      "notTaken": "Topshirilmagan. Oʻtkazib yuborilgan monitoring grafikda nol emas, boʻshliq boʻlib qoladi.",
+      "awaiting": "Topshirilgan. Oraliq monitoring yopilib, oʻlchangach paydo boʻladi.",
+      "open": "Hozir ochiq, {date}gacha. Aynan u quyidagi reja ish berayotganini koʻrsatadi.",
+      "upcoming": "Hali ochilmagan. {n}-monitoring {date} kuni ochiladi."
+    },
+    "hintOpenTitle": "{n}-monitoringni ochiq ekan topshiring.",
+    "hintUpTitle": "{n}-monitoringni ochilishi bilan topshiring.",
+    "hintBody": "Oʻtkazib yuborilgan monitoring grafikda nol emas, boʻshliq boʻlib qoladi.",
+    "tableCaption": "Mavsum davomida monitoringlar boʻyicha oʻrni",
+    "thWave": "Monitoring",
+    "thPosition": "Oʻrni"
+  },
+  "g5": {
+    "over": "Maktab bahosi haqida",
+    "title": "«5» kerak. Lekin u boshqa narsani oʻlchaydi.",
+    "aLabel": "eMaktab, matematika",
+    "aValue": "«5»",
+    "aSub": "Qabul sharti",
+    "bLabel": "Nomzodlar orasida",
+    "bNone": "Hali koʻrsatilmaydi",
+    "bSub": "Raqobat aynan shu yerda",
+    "body": "Maktabdagi aʼlo baholar {name}ga hujjat topshirish huquqini beradi. Ammo ular har bir oʻringa daʼvogarlik qilayotgan boshqa bolalar bilan solishtirmaydi — ularning deyarli hammasida ham «5». Bu hisobot maktab bahosi koʻrsatmaydigan qismni toʻldiradi.",
+    "ticketDone": "Bahorgi finalga yoʻllanma olindi: {taken} ta monitoring topshirilgan, {needed} tasi yetarli edi.",
+    "ticketLeft": "{needed} ta monitoringdan {taken} tasi topshirilgan: bahorgi final yoʻllanmasi uchun yana {left} ta kerak.",
+    "ticketLink": "Batafsil"
+  },
+  "hold": {
+    "over": "{name}ga nima xalaqit bermoqda",
+    "titleWeaker": "Ballarning asosiy qismi «{cluster}» yoʻnalishida yoʻqotilmoqda",
+    "titleNone": "Hech bir yoʻnalish umumiy natijadan ajralib turmaydi",
+    "titleNoData": "Bu monitoring uchun yoʻnalishlar boʻyicha tahlil hali yoʻq",
+    "meta": "Uch yoʻnalish, har biri {name}ning oʻz umumiy natijasi bilan solishtirilgan",
+    "chip": {
+      "strength": "Kuchli tomoni",
+      "in_line": "Umumiy daraja bilan teng",
+      "weaker": "Eng koʻp ball yoʻqotilgan"
+    },
+    "text": {
+      "strength": "Umumiy natijasidan yuqori.",
+      "in_line": "Umumiy natijasiga mos.",
+      "weaker": "Umumiy natijasidan past. Ballarning asosiy qismi shu yerda yoʻqoladi."
+    },
+    "patternOver": "Shu monitoringdagi qonuniyat",
+    "patternNote": "Bu misol test savollariga oʻxshash, lekin ulardan olinmagan.",
+    "patternNone": "Bu monitoringda takrorlanuvchi qonuniyat yoʻq.",
+    "seasonOver": "Mavsum davomida",
+    "seasonBody": "{of} ta monitoringdan {waves} tasida koʻrindi.",
+    "seasonEvery": "Hozirgacha har bir monitoringda koʻrindi. Bu bir kunlik omadsizlik emas — eng avvalo aynan shu ustida ishlash kerak.",
+    "seasonNone": "Hozircha mavsum davomida takrorlanayotgan narsa yoʻq."
+  },
+  "act": {
+    "over": "Nima qilish kerak · bitta ish",
+    "titlePattern": "«{topic}» ustida ishlash: haftasiga uch marta, 15 daqiqadan",
+    "titleCluster": "{topic}: haftasiga uch marta, 15 daqiqadan",
+    "titleRoutine": "Tartibni saqlang: haftasiga uch marta, 15 daqiqadan",
+    "bodyPattern": "Shunday masaladan bittasini birga muhokama qiling va {name}dan har bir qadamni tushuntirib berishni soʻrang. Har bir javobdan keyin bitta savol bering: ",
+    "bodyRoutine": "Uchala yoʻnalishdan aralash masalalar. Har bir javobdan keyin bitta savol bering: ",
+    "question": "«Masalada aynan shu son soʻralganmi?»",
+    "bodyEnd": " Maqsad — tezlik emas, tekshirib koʻrish odati.",
+    "days": "Du · Chor · Shan",
+    "minutes": "15 daqiqa",
+    "until": "{n}-monitoringgacha",
+    "start": "Shu haftadan boshlaymiz",
+    "started": "Boshlandi",
+    "note": "Yangi ish qoʻshishdan oldin shuni oxiriga yetkazing.",
+    "noteDone": "Keyingi monitoring bu yordam berganini koʻrsatadi."
+  },
+  "planB": {
+    "over": "Boshqa kuchli yoʻllar",
+    "title": "Yaxshi rejada zaxira varianti ham boʻladi",
+    "body": "Prezident maktabi — bir nechta yoʻldan biri. Quyidagilar ham kuchli yoʻllar:",
+    "routes": [
+      {
+        "name": "Mirzo Ulugʻbek nomidagi ixtisoslashtirilgan maktab",
+        "meta": "5-sinf"
+      },
+      {
+        "name": "Tuman ixtisoslashtirilgan maktabi",
+        "meta": "5-sinf"
+      },
+      {
+        "name": "Ikkinchi imkoniyat: 7-sinfga qabul",
+        "meta": "2 yildan keyin"
+      }
+    ]
+  },
+  "access": {
+    "title": "{name}ning hisobotini kimlar koʻradi",
+    "manage": "Ruxsatlarni boshqarish",
+    "role": {
+      "owner": "profil egasi",
+      "co_guardian": "ikkinchi vasiy",
+      "educator": "ustoz"
+    },
+    "ownerLine": "Toʻliq ruxsat. Boshqalarga ruxsat beradi va uni oʻchiradi.",
+    "coLine": "Faqat koʻra oladi. Ruxsatni faqat profil egasi beradi.",
+    "educatorLine": "{date}gacha hisobotlarni koʻradi.",
+    "noEducators": "Bu hisobotni hech bir ustoz yoki oʻqituvchi koʻrmaydi.",
+    "readOnly": "Hisobotni kim koʻrishini faqat profil egasi oʻzgartira oladi."
+  },
+  "practice": {
+    "title": "Mashqlar",
+    "chip": "Mashq",
+    "unit": {
+      "one": "ta mashq shu mavsumda",
+      "few": "ta mashq shu mavsumda",
+      "many": "ta mashq shu mavsumda",
+      "other": "ta mashq shu mavsumda"
+    },
+    "note34": "Mashq koʻnikmani rivojlantiradi, lekin oʻlchov emas — shuning uchun yuqoridagi natijaga taʼsir qilmaydi.",
+    "note02": "Mashq koʻnikmani rivojlantiradi, lekin oʻlchov emas — shuning uchun yuqoridagi koʻnikma holatlariga taʼsir qilmaydi."
+  },
+  "skills": {
+    "over": "{name} nimalarni qila oladi",
+    "big": "{n} tadan {k} ta",
+    "unit": "koʻnikma oʻzlashtirilgan",
+    "barAria": "{n} ta koʻnikmadan: {s} tasi oʻzlashtirilgan, {e} tasi oʻzlashtirilmoqda, {ny} tasi hali emas, {u} tasi hali tekshirilmagan.",
+    "rule": "Koʻnikma bir monitoringda bir necha marta toʻgʻri javob berilib, keyingi monitoringda yana tasdiqlangandagina oʻzlashtirilgan hisoblanadi. Tasodifan topilgan bitta javob hisobga olinmaydi.",
+    "state": {
+      "secure": "Oʻzlashtirgan",
+      "emerging": "Oʻzlashtirmoqda",
+      "not_yet": "Hali emas",
+      "none": "Hali tekshirilmagan"
+    },
+    "newOver": "{date}dan beri yangi",
+    "newOverSeason": "Shu mavsumda yangi",
+    "newTitle": "Yangi oʻzlashtirilgan koʻnikmalar",
+    "confirmed": "{n}-monitoringda tasdiqlandi",
+    "newNote": "Har bir yangi koʻnikma ikki monitoringda ketma-ket tasdiqlangan.",
+    "newNone": "Hali birorta koʻnikma oʻzlashtirilgan deb tasdiqlanmagan. Buning uchun ketma-ket ikki monitoring kerak, shuning uchun u keyingisidan soʻng koʻrinadi.",
+    "listTitle": "Mavsumdagi barcha koʻnikmalar",
+    "listHint": "Qanday aniqlanganini koʻrish uchun koʻnikmani oching.",
+    "filterLabel": "Koʻnikmalarni saralash",
+    "all": "Hammasi",
+    "filterEmpty": "Hozir bu guruhda koʻnikma yoʻq.",
+    "shown": "{n} ta koʻnikma koʻrsatilmoqda",
+    "ev": {
+      "secure": "{a}-monitoringda bir necha marta toʻgʻri javob berdi, {w}-monitoringda yana tasdiqlandi.",
+      "secureOne": "{w}-monitoringda oʻzlashtirilgan deb tasdiqlandi.",
+      "emerging": "{w}-monitoringda baʼzan toʻgʻri javob berdi, hali barqaror emas. Keyingi monitoringda yana tekshiramiz.",
+      "not_yet": "{w}-monitoringda uchradi, hozircha yechilmadi. Bu koʻnikma oʻz vaqtida keladi — unga shoshilish hali erta.",
+      "none": "Bu mavsumda hali tekshirilmagan. Keyingi monitoringlarda uchraydi."
+    },
+    "trail": "{n}-monitoring: {state}"
+  },
+  "act02": {
+    "over": "Nima qilish kerak · bitta ish",
+    "title": "{skill}: oʻyin orqali, 10 daqiqadan",
+    "body": "Bu koʻnikma hozir shakllanmoqda — aynan shu bosqichda harakat eng koʻp samara beradi. Stol ortida emas: uni kundalik vaziyatga aylantiring — bozorda, sayrda yoki ovqat tayyorlayotganda. {name} hali davom etishni xohlab turganida toʻxtating.",
+    "note": "Bu yoshda koʻproq degani yaxshiroq degani emas. 10 daqiqa — eng kami emas, butun reja shu.",
+    "noneTitle": "Tartibni saqlang: oʻyin orqali, 10 daqiqadan",
+    "noneBody": "Hozir hech bir koʻnikma alohida eʼtibor talab qilmaydi. Birga sanashni, saralashni va kichik kundalik masalalarni muhokama qilishni davom ettiring. {name} hali davom etishni xohlab turganida toʻxtating."
+  },
+  "refusal": {
+    "over": "Nima qilmaymiz",
+    "title": "«Uning Prezident maktabiga kirish imkoniyati qanday?»",
+    "body": "Bu yoshda bu savolga halol javob berib boʻlmaydi — har qanday javob toʻqima boʻlardi. Bu yoshdagi testlar oʻn yoshdagi natijani yomon bashorat qiladi: uyqu, kayfiyat, hatto tugʻilgan oy ham taʼsir qiladi. Boshqa bolalar orasidagi oʻrinni 3-sinfdan koʻrsatamiz — oʻshanda natijalar maʼno kasb eta boshlaydi."
+  }
+}

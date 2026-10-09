@@ -120,10 +120,14 @@ async function main() {
   const manager = await signIn(P.season_manager.phone);
   const editor = await signIn(P.bank_editor.phone);
 
+  // The grade 4 wave open right now (its ordinal depends on how much history
+  // the dev fixtures have added — M5 puts three closed waves before it).
   const wave1 = sql(`SELECT w.id FROM wave w JOIN season s ON s.id = w.season_id AND s.is_current
-                      WHERE w.grade = 4 AND w.ordinal = 1`);
+                      WHERE w.grade = 4 AND w.opens_at <= now() AND w.closes_at > now() AND w.closed_at IS NULL
+                      ORDER BY w.ordinal LIMIT 1`);
   const form1 = sql(`SELECT form_id FROM wave WHERE id = '${wave1}'`);
   check(wave1 && form1, 'the seed has an open grade 4 wave behind a frozen form', seedBank?.waves);
+  void seedBank;
 
   // ----------------------------------------------------------- admin
   group('Seasons and waves admin');

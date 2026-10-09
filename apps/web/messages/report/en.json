@@ -1,0 +1,245 @@
+{
+  "common": {
+    "wave": "Wave {n}",
+    "loadErrorTitle": "We couldn’t load {name}’s report",
+    "loadErrorBody": "Check your internet connection and try again. The results are saved and nothing is lost.",
+    "nextOpen": "Wave {n} is open now, until {date}.",
+    "nextUpcoming": "Wave {n} opens on {date}.",
+    "nextNone": "No more waves are scheduled this season.",
+    "howCta": "See how a wave works",
+    "cluster": {
+      "numeracy": "Numeracy",
+      "reasoning": "Reasoning",
+      "language": "Language"
+    }
+  },
+  "empty34": {
+    "title": "No measurements yet",
+    "body": "The report appears here once {name} has taken a wave and it has been measured. A wave can be taken at home or at a tutor’s.",
+    "tiles": [
+      {
+        "title": "Where {name} is",
+        "body": "The place among children of the same grade and region, shown as a range."
+      },
+      {
+        "title": "Where {name} is heading",
+        "body": "How that range moves from one wave to the next."
+      },
+      {
+        "title": "What to do",
+        "body": "One concrete action with a clear time budget."
+      }
+    ]
+  },
+  "empty02": {
+    "title": "{name} hasn’t been measured yet",
+    "body": "After the first wave you’ll see which skills are secure, which are emerging, and one thing to do at home. Instructions are read aloud, so {name} doesn’t need to read.",
+    "tiles": [
+      {
+        "title": "Secure",
+        "body": "Several right answers in one wave, confirmed again in the next."
+      },
+      {
+        "title": "Emerging",
+        "body": "Sometimes right, not steady yet. This is where help at home pays off most."
+      },
+      {
+        "title": "Not yet",
+        "body": "Too early to work on. This skill comes in its own time."
+      }
+    ],
+    "note": "There will be no comparison with other children, only what {name} can do."
+  },
+  "hero": {
+    "over": "Where {name} is now",
+    "big": "Top {from}–{to}%",
+    "sub": "among {n} grade-{g} children in {region} who took wave {w}.",
+    "zone": "Stage 2 zone ≈ top 5%",
+    "strongest": "Strongest",
+    "tick": "top {p}%",
+    "scaleAria": "Top {from}–{to}% on a scale from the strongest children to the top {max}%. The stage 2 zone is around the top 5%.",
+    "rangeNote": "A range, not a single number: any 30-question test carries some error. To reach stage 2 of the olympiad a child needs to be around the top 5%.",
+    "belowTitle": "Not enough children in this cohort yet",
+    "belowBody": "So far {n} of the {min} children needed in {name}’s cohort (grade {g}, {region}) have been measured. With fewer, a range would mislead, so we don’t show one yet.",
+    "noBandBody": "A range for this wave isn’t available yet. It appears once enough children in the cohort have been measured."
+  },
+  "trend": {
+    "over": "Where {name} is heading",
+    "titleUp": "Moving up",
+    "titleSteady": "Steady",
+    "titleDown": "Lower than the wave before",
+    "titleFirst": "The starting point",
+    "titleNone": "Nothing measured yet this season",
+    "hint": "Choose a column to read the note for that wave.",
+    "colTop": "top {from}–{to}%",
+    "notTaken": "not taken",
+    "awaiting": "being measured",
+    "below": "too few children",
+    "open": "open until {date}",
+    "openNow": "open now",
+    "upcoming": "opens {date}",
+    "notes": {
+      "first": "The starting point. Every later wave is compared with this one.",
+      "steady": "This range overlaps the one before, so treat it as steady rather than a jump.",
+      "up": "A clear move up: the whole range sits above the one before.",
+      "down": "Lower than the wave before: the whole range sits below the previous one. One wave is not a verdict, and the next one shows whether it holds.",
+      "below": "Too few children in the cohort that wave to show a range.",
+      "notTaken": "Not taken. A skipped wave stays a gap in the chart, never a zero.",
+      "awaiting": "Taken. The range appears once the wave closes and is measured.",
+      "open": "Open now, until {date}. This is the wave that shows whether the plan below is working.",
+      "upcoming": "Not open yet. Wave {n} opens on {date}."
+    },
+    "hintOpenTitle": "Take wave {n} while it’s open.",
+    "hintUpTitle": "Take wave {n} when it opens.",
+    "hintBody": "A skipped wave shows up as a gap in the chart, never as a zero.",
+    "tableCaption": "Position by wave this season",
+    "thWave": "Wave",
+    "thPosition": "Position"
+  },
+  "g5": {
+    "over": "About the school grade",
+    "title": "The “5” is needed. It measures something else.",
+    "aLabel": "eMaktab, maths",
+    "aValue": "«5»",
+    "aSub": "The entry requirement",
+    "bLabel": "Among applicants",
+    "bNone": "Not shown yet",
+    "bSub": "Where the competition is",
+    "body": "Top marks in school let {name} apply. They don’t show how {name} compares with the other children applying for each seat, and nearly all of them have top marks too. This report covers the part the school grade doesn’t.",
+    "ticketDone": "Ticket to the spring final earned: {taken} waves taken, {needed} were needed.",
+    "ticketLeft": "{taken} of {needed} waves taken: {left} more for the spring-final ticket.",
+    "ticketLink": "Details"
+  },
+  "hold": {
+    "over": "What is holding {name} back",
+    "titleWeaker": "Most points are lost in {cluster}",
+    "titleNone": "No area stands apart from the overall result",
+    "titleNoData": "Areas aren’t broken down for this wave yet",
+    "meta": "Three areas, each compared with {name}’s own overall result",
+    "chip": {
+      "strength": "A strength",
+      "in_line": "In line",
+      "weaker": "Most points lost"
+    },
+    "text": {
+      "strength": "Stronger than the overall result.",
+      "in_line": "Matches the overall result.",
+      "weaker": "Below the overall result. This is where most points go."
+    },
+    "patternOver": "This wave’s pattern",
+    "patternNote": "This example is similar to the test questions, not taken from them.",
+    "patternNone": "No repeating pattern this wave.",
+    "seasonOver": "Across the season",
+    "seasonBody": "Seen in {waves} of {of} waves.",
+    "seasonEvery": "Seen in every wave so far. This is not one bad day: it’s the thing most worth working on.",
+    "seasonNone": "Nothing repeats across the season so far."
+  },
+  "act": {
+    "over": "What to do · one thing",
+    "titlePattern": "Work on “{topic}”: 15 minutes, three times a week",
+    "titleCluster": "{topic}: 15 minutes, three times a week",
+    "titleRoutine": "Keep a routine: 15 minutes, three times a week",
+    "bodyPattern": "Talk through one problem of this kind together and ask {name} to explain each step. After every answer, ask one question: ",
+    "bodyRoutine": "Mixed problems from all three areas. After every answer, ask one question: ",
+    "question": "“Is that the number the question asks for?”",
+    "bodyEnd": " The goal is the habit of checking, not speed.",
+    "days": "Mon · Wed · Sat",
+    "minutes": "15 min",
+    "until": "Until wave {n}",
+    "start": "We’ll start this week",
+    "started": "Started",
+    "note": "To add something new, first finish this one.",
+    "noteDone": "The next wave will show whether it helped."
+  },
+  "planB": {
+    "over": "Other strong routes",
+    "title": "A good plan has a second option",
+    "body": "The Presidential School is one route among several. These are strong too:",
+    "routes": [
+      {
+        "name": "Mirzo Ulugbek specialized school",
+        "meta": "Grade 5"
+      },
+      {
+        "name": "District specialized school",
+        "meta": "Grade 5"
+      },
+      {
+        "name": "Second chance: grade 7 admission",
+        "meta": "In 2 years"
+      }
+    ]
+  },
+  "access": {
+    "title": "Who can see {name}’s report",
+    "manage": "Manage access",
+    "role": {
+      "owner": "Owner",
+      "co_guardian": "Co-guardian",
+      "educator": "Educator"
+    },
+    "ownerLine": "Full access. Grants and removes access for others.",
+    "coLine": "Can view. Only the owner grants access.",
+    "educatorLine": "Sees reports until {date}.",
+    "noEducators": "No tutor or teacher can see this report.",
+    "readOnly": "Only the owner can change who sees the report."
+  },
+  "practice": {
+    "title": "Practice",
+    "chip": "Practice",
+    "unit": {
+      "one": "practice session this season",
+      "few": "practice sessions this season",
+      "many": "practice sessions this season",
+      "other": "practice sessions this season"
+    },
+    "note34": "Practice builds skills and isn’t a measurement, so it has no effect on the position above.",
+    "note02": "Practice builds skills and isn’t a measurement, so it has no effect on the skill states above."
+  },
+  "skills": {
+    "over": "What {name} can do",
+    "big": "{k} of {n}",
+    "unit": "skills secure",
+    "barAria": "Of {n} skills: {s} secure, {e} emerging, {ny} not yet, {u} not assessed yet.",
+    "rule": "A skill counts as secure only after several right answers in one wave, confirmed again in the next wave. One lucky answer doesn’t count.",
+    "state": {
+      "secure": "Secure",
+      "emerging": "Emerging",
+      "not_yet": "Not yet",
+      "none": "Not assessed yet"
+    },
+    "newOver": "New since {date}",
+    "newOverSeason": "New this season",
+    "newTitle": "Newly secure skills",
+    "confirmed": "confirmed in wave {n}",
+    "newNote": "Each new skill was confirmed in two waves in a row.",
+    "newNone": "No skill has been confirmed as secure yet. That takes two waves in a row, so it shows up after the next one.",
+    "listTitle": "All skills this season",
+    "listHint": "Open a skill to see how we know.",
+    "filterLabel": "Filter skills",
+    "all": "All",
+    "filterEmpty": "No skills in this group right now.",
+    "shown": "{n} skills shown",
+    "ev": {
+      "secure": "Right several times in wave {a}, confirmed again in wave {w}.",
+      "secureOne": "Confirmed as secure in wave {w}.",
+      "emerging": "Sometimes right in wave {w}, not steady yet. The next wave checks again.",
+      "not_yet": "Came up in wave {w}, not solved yet. It comes in its own time, so it’s too early to push.",
+      "none": "Not assessed yet this season. It comes up in a later wave."
+    },
+    "trail": "Wave {n}: {state}"
+  },
+  "act02": {
+    "over": "What to do · one thing",
+    "title": "{skill}: through play, 10 minutes at a time",
+    "body": "This skill is emerging, which is where effort pays off most. Not at a desk: make it part of an everyday moment, at the market, on a walk or while cooking. Stop while {name} still wants to keep going.",
+    "note": "More is not better at this age. Ten minutes is the whole plan, not the minimum.",
+    "noneTitle": "Keep the routine: 10 minutes of play at a time",
+    "noneBody": "No skill needs extra attention right now. Keep counting, sorting and talking through small everyday problems together, and stop while {name} still wants to keep going."
+  },
+  "refusal": {
+    "over": "What we don’t do",
+    "title": "“What are the chances at the Presidential School?”",
+    "body": "At this age any honest answer would be made up. Tests this early predict results at ten poorly: sleep, mood and even birth month play a part. We start showing a position among other children in grade 3, when the results start to mean something."
+  }
+}

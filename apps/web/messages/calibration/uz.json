@@ -1,0 +1,103 @@
+{
+  "head": {
+    "title": "Kalibrlash jarayonlari",
+    "subtitle": "Har bir sinf ota-ona hisobotlari qaysi o‘lchov jarayonini o‘qiyotgani, u qanday o‘tgani va kerak bo‘lsa uni qayta ishga tushirish.",
+    "seasonFmt": "{s} mavsumi"
+  },
+  "model": {
+    "title": "O‘lchov qanday ishlaydi",
+    "jobs": "O‘lchov faqat fon vazifasi sifatida ishlaydi. To‘lqin yopilganda jarayon o‘zi boshlanadi; uni qo‘lda ham qayta ishga tushirish mumkin.",
+    "own": "Har bir jarayon o‘z yozuvlarini yozadi va boshqa jarayonni hech qachon ustidan yozmaydi. Eski jarayonlar saqlanib qoladi.",
+    "current": "Har bir sinfda aynan bitta jarayon joriy bo‘ladi. Ota-ona hisobotlari faqat joriy jarayonni o‘qiydi, shuning uchun uni almashtirish shu sinfning barcha hisobotlarini birdaniga o‘zgartiradi.",
+    "v0": "v0 (raw_band_v0): ball — to‘lqin shaklidagi hisoblanadigan topshiriqlardan to‘g‘ri yechilganlari soni. Sinov (pretest) topshiriqlari hisobga olinmaydi.",
+    "band": "Oraliq — hudud × sinf × mavsum ichida ballning persentili ± SEM. Kohortada 30 nafardan kam bola bo‘lsa, oraliq ko‘rsatilmaydi — ota-ona «bu kohortada hali bolalar yetarli emas» degan yozuvni o‘qiydi.",
+    "young": "0–2-sinflar faqat ko‘nikma holatlarini oladi (o‘zlashtirgan, shakllanmoqda, hali emas) — hech qachon o‘rin yoki oraliq emas.",
+    "v1": "v1 (langar tenglashtirishli Rasch modeli) 2-relizda — M9 da keladi."
+  },
+  "toolbar": {
+    "methodLegend": "Qayta ishga tushirish usuli",
+    "v0": "v0 — to‘g‘ri yechilgan hisoblanadigan topshiriqlar (raw_band_v0)",
+    "v1": "v1 — langar tenglashtirishli Rasch",
+    "v1Note": "2-reliz — M9",
+    "rerunAll": "Barcha sinflarni qayta ishga tushirish"
+  },
+  "grade": {
+    "titleFmt": "{g}-sinf",
+    "chipBands": "Persentil oraliqlari",
+    "chipSkills": "Faqat ko‘nikma holatlari",
+    "rerun": "v0 ni qayta ishga tushirish",
+    "emptyTitle": "Bu sinf uchun hali jarayon yo‘q",
+    "emptyBody": "Bu sinfning to‘lqini yopilganda jarayon avtomatik boshlanadi. Ungacha hech narsa qilish shart emas.",
+    "noCurrent": "Bu sinfning hech bir jarayoni hali joriy emas, shuning uchun ota-ona hisobotlari o‘qiydigan narsa yo‘q. Quyidagi jarayonlardan birini joriy qiling."
+  },
+  "run": {
+    "current": "Joriy",
+    "running": "Bajarilmoqda",
+    "method": {
+      "raw_band_v0": "v0 · xom oraliq",
+      "rasch_anchor_equating_v1": "v1 · Rasch"
+    },
+    "waveClose": "{n}-to‘lqin yopilishi",
+    "manualBy": "{name} qo‘lda qayta ishga tushirgan",
+    "manual": "Qo‘lda qayta ishga tushirilgan",
+    "startedFmt": "Boshlangan: {d}",
+    "finishedFmt": "Tugagan: {d}",
+    "notFinished": "Hali tugamagan",
+    "sessions": "O‘lchangan seanslar",
+    "bands": "Oraliqlar",
+    "belowMinimum": "Minimumdan past",
+    "skillStates": "Ko‘nikma holatlari",
+    "itemStatistics": "Topshiriq statistikasi",
+    "notForGrade": "0–2-sinflar uchun emas",
+    "wavesTitle": "To‘lqinlar bo‘yicha diagnostika",
+    "wavesNote": "Faqat xodimlar uchun — ota-onalar bu raqamlarni hech qachon ko‘rmaydi.",
+    "waveCol": "To‘lqin",
+    "sessionsCol": "Seanslar",
+    "reliabilityCol": "Ishonchlilik (KR-20)",
+    "semCol": "SEM, xom ballda",
+    "waveFmt": "{n}-to‘lqin",
+    "noWaves": "Bu jarayonda hech bir to‘lqin o‘lchanmagan.",
+    "noValue": "—",
+    "summaryFmt": "{s} seans · {b} oraliq · {k} ko‘nikma holati"
+  },
+  "history": {
+    "summaryFmt": "Eski jarayonlar ({n})",
+    "makeCurrent": "Joriy qilish",
+    "dlgTitle": "Bu jarayon joriy qilinsinmi?",
+    "dlgBodyFmt": "{g}-sinf ota-ona hisobotlari darhol {d} dagi jarayonga o‘tadi. Hozirgi joriy jarayon saqlanib qoladi, istalgan vaqtda unga qaytish mumkin.",
+    "confirm": "Joriy qilish",
+    "cancel": "Bekor qilish",
+    "doneFmt": "{g}-sinf: {d} dagi jarayon endi joriy."
+  },
+  "rerun": {
+    "dlgTitleGradeFmt": "{g}-sinf uchun v0 qayta ishga tushirilsinmi?",
+    "dlgTitleAll": "Barcha sinflar uchun v0 qayta ishga tushirilsinmi?",
+    "dlgBody": "Yangi jarayon eskilari yonida yoziladi va tugagach joriy bo‘ladi — ota-ona hisobotlari shundan keyin uni o‘qiydi. Eski jarayonlar saqlanadi, ularga qaytish mumkin.",
+    "dlgBodyAll": "Bu mavsumda yopilgan to‘lqini bor har bir sinf yangi jarayon oladi.",
+    "confirm": "Jarayonni boshlash",
+    "cancel": "Bekor qilish",
+    "doneFmt": "Yangi jarayonlar boshlandi: {n}. Ular endi joriy.",
+    "none": "O‘lchanadigan narsa yo‘q: bu tanlov uchun hali hech bir to‘lqin yopilmagan."
+  },
+  "items": {
+    "title": "Topshiriq statistikasi",
+    "body": "Topshiriqlar bankidagi p, nuqtali-biserial korrelyatsiya, ishlamaydigan distraktorlar va uz/ru DIF endi har bir sinfning joriy jarayonidan olinadi.",
+    "cta": "Topshiriqlar bankini ochish"
+  },
+  "errors": {
+    "METHOD_NOT_AVAILABLE": "v1 (langar tenglashtirishli Rasch) hali mavjud emas — u 2-relizda, M9 da keladi.",
+    "NO_SEASON": "Joriy mavsum yo‘q, shuning uchun o‘lchanadigan narsa yo‘q.",
+    "NOT_FOUND": "Bu jarayon endi mavjud emas yoki hali tugamagan. Sahifa yangilandi.",
+    "FORBIDDEN": "Sizning rolingiz kalibrlashni ishga tushira olmaydi.",
+    "NETWORK": "Aloqa yo‘q. Tarmoqni tekshirib, qayta urinib ko‘ring.",
+    "generic": "Nimadir xato ketdi. Qayta urinib ko‘ring."
+  },
+  "states": {
+    "noAccessTitle": "Kalibrlashga ruxsat yo‘q",
+    "noAccessBody": "Kalibrlash jarayonlari bank muharririga tegishli. Agar ular kerak bo‘lsa, super administratordan shu rolni so‘rang.",
+    "noAccessCta": "Xodimlar paneliga qaytish",
+    "errTitle": "Jarayonlarni yuklab bo‘lmadi",
+    "errBody": "Server javob bermadi. Jarayonlaringiz xavfsiz — birozdan keyin qayta urinib ko‘ring.",
+    "retry": "Qayta urinish"
+  }
+}

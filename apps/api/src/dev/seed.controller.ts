@@ -2,7 +2,9 @@ import { Controller, Inject, NotFoundException, Post } from '@nestjs/common';
 import { AppConfig, CONFIG } from '../config/configuration';
 import { SeedService, SeedResult } from './seed.service';
 import { SeedBankService } from './seed-bank.service';
+import { SeedResultsService } from './seed-results.service';
 import { SessionsService } from '../sessions/sessions.service';
+import { MeasurementService } from '../measurement/measurement.service';
 
 /**
  * `POST /api/dev/seed` — the M1 development fixture (task.md § 12).
@@ -19,7 +21,9 @@ export class SeedController {
     @Inject(CONFIG) private readonly config: AppConfig,
     private readonly seed: SeedService,
     private readonly seedBank: SeedBankService,
+    private readonly seedResults: SeedResultsService,
     private readonly sessions: SessionsService,
+    private readonly measurement: MeasurementService,
   ) {}
 
   @Post('seed')
@@ -35,10 +39,19 @@ export class SeedController {
     return this.seedBank.run();
   }
 
-  /** `POST /api/dev/tick` — run the sessions/wave job now instead of within a minute. */
+  /** `POST /api/dev/seed-results` — M5: measured history for the reports. Needs seed + seed-bank. */
+  @Post('seed-results')
+  async results() {
+    if (this.config.isProd) throw new NotFoundException();
+    return this.seedResults.run();
+  }
+
+  /** `POST /api/dev/tick` — run the sessions/wave job and the measurement job now. */
   @Post('tick')
   async tick() {
     if (this.config.isProd) throw new NotFoundException();
-    return this.sessions.tick();
+    const sessions = await this.sessions.tick();
+    const runs = await this.measurement.tick();
+    return { ...sessions, runs };
   }
 }
