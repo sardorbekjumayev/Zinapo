@@ -1,0 +1,557 @@
+/* ===========================================================================
+   M2 — the add-child wizard (design/02-add-child.html). Builds on the shared
+   fam-* pieces in family.css; only what is specific to this flow lives here.
+   Tokens only, so both themes follow :root / [data-theme='dark'].
+   =========================================================================== */
+
+.wz {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.wz-card {
+  padding: 32px;
+  gap: 24px;
+}
+.wz-card h2:focus,
+.wz-card h2:focus-visible {
+  outline: none;
+}
+
+.wz-overline {
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-400);
+}
+.wz-overline--warn {
+  color: var(--warning);
+}
+
+.wz-optional {
+  font-weight: 500;
+  color: var(--ink-400);
+}
+
+/* ------------------------------------------------------- invite banner */
+
+.wz-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 24px 12px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-teal-bg);
+  color: var(--accent-teal);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 600;
+}
+.wz-banner .fam-avatar {
+  width: 36px;
+  height: 36px;
+  background: var(--surface-100);
+}
+
+/* ------------------------------------------------------------- stepper */
+
+.wz-steps {
+  padding: 20px 28px;
+  background: var(--surface-100);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+.wz-steps__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.wz-step {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.wz-step:last-child {
+  flex: 0 0 auto;
+}
+.wz-step__dot {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  background: var(--surface-300);
+  color: var(--ink-600);
+}
+.wz-step__dot--cur {
+  background: var(--brand-400);
+  color: var(--ink-on-primary);
+}
+.wz-step__dot--done {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.wz-step__text {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+}
+.wz-step__label {
+  font-size: 15px;
+  line-height: 21px;
+  font-weight: 700;
+  color: var(--ink-400);
+}
+.wz-step--cur .wz-step__label {
+  color: var(--ink-900);
+}
+.wz-step__sub {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: var(--ink-400);
+}
+.wz-step__line {
+  flex: 1;
+  min-width: 24px;
+  height: 2px;
+  margin-left: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-300);
+}
+.wz-step__line--done {
+  background: var(--success);
+}
+@media (max-width: 720px) {
+  .wz-steps {
+    padding: 14px 16px;
+  }
+  .wz-step__sub,
+  .wz-step__line {
+    display: none;
+  }
+  .wz-step:not(.wz-step--cur) .wz-step__text {
+    display: none;
+  }
+  .wz-step {
+    flex: 0 0 auto;
+  }
+}
+
+/* -------------------------------------------------------------- step 1 */
+
+.wz-row--school {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+}
+@media (max-width: 720px) {
+  .wz-row--school {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.wz-alertCard {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  background: var(--danger-bg);
+  color: var(--danger);
+  flex-wrap: wrap;
+}
+.wz-alertCard > svg {
+  flex: none;
+}
+.wz-alertCard__body {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-900);
+}
+.wz-alertCard__body strong {
+  font-size: 15px;
+  line-height: 21px;
+  color: var(--danger);
+}
+
+.wz-linkBtn {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--brand-700);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------- footer */
+
+.wz-footer {
+  padding-top: 24px;
+  border-top: 1px solid var(--line-100);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.wz-hint {
+  flex: 1;
+  min-width: 160px;
+  text-align: right;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: var(--ink-400);
+}
+.wz-cta {
+  min-height: 56px;
+  padding: 0 28px;
+}
+/* Still focusable and clickable (the click explains what is missing), but
+   reads as not-yet-available — design/02's greyed CTA. */
+.fam-btn--primary.wz-cta--blocked {
+  background: var(--surface-300);
+  color: var(--ink-400);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.fam-btn--primary.wz-cta--blocked:hover {
+  background: var(--surface-300);
+  transform: none;
+}
+
+/* -------------------------------------------------------------- step 2 */
+
+.wz-invite {
+  padding: 24px;
+  border-radius: var(--radius-md);
+  background: var(--surface-200);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.wz-invite--none {
+  flex-direction: row;
+  align-items: flex-start;
+}
+.wz-invite__who {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.wz-invite__who .fam-avatar {
+  width: 44px;
+  height: 44px;
+}
+.wz-invite__who .fam-person__name {
+  font-size: 17px;
+}
+.wz-invite__icon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface-100);
+  color: var(--ink-600);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.wz-invite__title {
+  font-size: 17px;
+  line-height: 23px;
+}
+.wz-share {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-100);
+}
+.wz-share__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.wz-share__label {
+  font-size: 15px;
+  line-height: 21px;
+  font-weight: 600;
+}
+
+.wz-consents {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.wz-consents legend {
+  margin-bottom: 12px;
+}
+.wz-consents .fam-check:has(input[aria-invalid='true']) {
+  border-color: var(--danger);
+}
+
+/* ------------------------------------------------------ sending, failed */
+
+.wz-loading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.wz-loading__spin {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid var(--brand-100);
+  border-top-color: var(--brand-600);
+}
+.wz-failed {
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------ outcomes */
+
+.wz-hero {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.wz-hero__icon {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.wz-hero__icon--ok {
+  width: 64px;
+  height: 64px;
+  background: var(--success-bg);
+  color: var(--success);
+}
+.wz-hero__icon--warn {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+.wz-hero__icon--brand {
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.wz-hero__icon--danger {
+  width: 48px;
+  height: 48px;
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.wz-hero__text {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.wz-hero__title {
+  margin: 0;
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.wz-hero__title:focus {
+  outline: none;
+}
+
+.wz-ref {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.wz-ref__chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-200);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.wz-box {
+  padding: 20px 24px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-200);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 15px;
+}
+
+.wz-numbered {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: wz;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-600);
+}
+.wz-numbered li {
+  counter-increment: wz;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.wz-numbered li::before {
+  content: counter(wz);
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--surface-100);
+  color: var(--ink-600);
+}
+.wz-numbered--brand {
+  font-size: 15px;
+  line-height: 23px;
+  color: var(--ink-900);
+}
+.wz-numbered--brand li::before {
+  background: var(--brand-100);
+  color: var(--brand-700);
+}
+
+.wz-sum {
+  margin: 0;
+  padding: 8px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-200);
+}
+.wz-sum__row {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-100);
+}
+.wz-sum__row:last-child {
+  border-bottom: 0;
+}
+.wz-sum dt {
+  flex: none;
+  width: 160px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-600);
+}
+.wz-sum dd {
+  margin: 0;
+  min-width: 0;
+  font-size: 15px;
+  line-height: 21px;
+  font-weight: 600;
+}
+@media (max-width: 720px) {
+  .wz-card {
+    padding: 20px;
+  }
+  .wz-sum__row {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+
+.wz-okText {
+  color: var(--success);
+}
+
+/* --------------------------------------------------------- side card */
+
+.wz-why {
+  gap: 20px;
+}
+.wz-why__title {
+  margin: 0;
+  font-size: 17px;
+  line-height: 23px;
+  font-weight: 700;
+}
+.wz-why__item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.wz-why__icon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--brand-050);
+  color: var(--brand-700);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.wz-why__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-600);
+}
+.wz-why__text strong {
+  font-weight: 600;
+  line-height: 18px;
+  color: var(--ink-900);
+}

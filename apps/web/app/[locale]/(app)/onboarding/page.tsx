@@ -1,10 +1,14 @@
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
+import { IncomingInvites } from '@/components/family/home/IncomingInvites';
 import { Icon } from '@/components/shell/Icon';
 import { LocaleSwitcher } from '@/components/shell/LocaleSwitcher';
 import { ThemeToggle } from '@/components/shell/ThemeToggle';
+import { apiGet } from '@/lib/api-server';
+import type { IncomingInvite } from '@/lib/family-types';
 import { fill, getMessages, isLocale } from '@/lib/i18n';
 import { fetchMe, homeFor } from '@/lib/me';
+import { homeMessages } from '@/messages/home';
 
 export const dynamic = 'force-dynamic';
 
@@ -36,6 +40,11 @@ export default async function OnboardingPage({
   const t = getMessages(locale);
   const firstName = me.person.fullName.trim().split(/\s+/)[0] ?? '';
 
+  // A person invited as a co-guardian has no workspace yet, so this is where
+  // they land (task.md § 8.2). A failed read only hides the list.
+  const inv = await apiGet<IncomingInvite[]>('/api/family/guardian-invites');
+  const hm = homeMessages(locale).invite;
+
   return (
     <div className="ws">
       <main className="ws__main" style={{ maxWidth: 880, margin: '0 auto' }}>
@@ -60,6 +69,13 @@ export default async function OnboardingPage({
             </p>
           </div>
         </div>
+
+        <IncomingInvites
+          invites={inv.ok ? inv.data : []}
+          locale={locale}
+          title={hm.onboardingTitle}
+          sub={hm.onboardingSub}
+        />
 
         <div className="onb">
           <OnboardingChoice

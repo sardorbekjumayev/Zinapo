@@ -1,0 +1,335 @@
+/* M2 — family-pages screens: the family home, the child page and the
+   guardian-invite landing. Composed from design/02 and design/06 (no board of
+   their own); tokens only, both themes come from :root / [data-theme='dark']. */
+
+/* ------------------------------------------------------ incoming invites */
+
+.fp-invites {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+/* The tinted request card of design/06 ("Jamshid Olimov asks…"). */
+.fp-invite,
+.fp-linkCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 72px;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  background: var(--brand-050);
+  color: var(--ink-900);
+  text-decoration: none;
+}
+.fp-invite:focus-visible,
+.fp-linkCard:focus-visible,
+.fp-kid:focus-visible,
+.fp-back:focus-visible,
+.fp-link:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.fp-invite__icon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-100);
+  color: var(--brand-700);
+}
+.fp-invite__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fp-invite__title {
+  font-size: 15px;
+  line-height: 21px;
+  font-weight: 600;
+}
+.fp-invite__cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand-700);
+}
+@media (max-width: 560px) {
+  .fp-invite {
+    flex-wrap: wrap;
+  }
+  .fp-invite__cta {
+    margin-left: 60px;
+  }
+}
+
+/* The access link on the child page: same shape, white like a panel. */
+.fp-linkCard {
+  background: var(--surface-100);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  color: var(--ink-900);
+}
+.fp-linkCard > svg {
+  flex: none;
+  color: var(--ink-600);
+}
+
+/* ------------------------------------------------------------ child cards */
+
+.fp-kids {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.fp-kids > li {
+  display: flex;
+}
+.fp-kid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-100);
+  box-shadow: var(--shadow-card);
+  color: var(--ink-900);
+  text-decoration: none;
+}
+.fp-kid__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.fp-kid__who {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.fp-kid__name {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+}
+.fp-kid__meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13.5px;
+  line-height: 19px;
+  color: var(--ink-600);
+}
+.fp-kid__meta svg {
+  flex: none;
+  margin-top: 1px;
+}
+.fp-kid__foot {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-100);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand-700);
+}
+
+/* -------------------------------------------------------------- child page */
+
+.fp-back {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 8px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-600);
+  text-decoration: none;
+}
+.fp-back:hover {
+  color: var(--ink-900);
+}
+.fp-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 8px;
+  flex-wrap: wrap;
+}
+.fp-head__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fp-link {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+.fp-h3 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
+}
+
+/* Details: label / value rows. */
+.fp-dl {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.fp-dl__row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line-100);
+}
+.fp-dl__row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.fp-dl dt {
+  font-size: 13px;
+  color: var(--ink-600);
+}
+.fp-dl dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* Enrolment history: newest first, the open record marked. */
+.fp-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.fp-timeline__item {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding: 0 0 20px;
+}
+.fp-timeline__item:last-child {
+  padding-bottom: 0;
+}
+/* The rail between dots. */
+.fp-timeline__item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 18px;
+  bottom: 0;
+  width: 2px;
+  background: var(--line-100);
+}
+.fp-timeline__dot {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: var(--line-200);
+}
+.fp-timeline__item--current .fp-timeline__dot {
+  background: var(--brand-600);
+  box-shadow: 0 0 0 4px var(--brand-050);
+}
+.fp-timeline__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fp-timeline__year {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-600);
+}
+.fp-timeline__main {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.fp-enrolForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ----------------------------------------------------------------- landing */
+
+.fp-landing {
+  gap: 22px;
+}
+.fp-landing .fp-head {
+  padding: 0;
+}
+.fp-landing__title {
+  margin: 0;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.fp-landing__child {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-200);
+  flex-wrap: wrap;
+}
+.fp-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.fp-points li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14.5px;
+  line-height: 21px;
+  color: var(--ink-900);
+}
+.fp-points svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--success);
+}

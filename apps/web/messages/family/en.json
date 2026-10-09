@@ -1,0 +1,32 @@
+{
+  "grade": { "0": "Grade 0 (preparatory)", "1": "Grade 1", "2": "Grade 2", "3": "Grade 3", "4": "Grade 4" },
+  "gradeShort": "Grade {n}",
+  "role": { "owner": "Owner", "co_guardian": "Co-guardian · view only", "me": "You", "tutor": "Tutor", "school_teacher": "School teacher", "learning_centre": "Learning centre" },
+  "consent": {
+    "data_processing": { "title": "Data processing", "desc": "Needed to store wave answers and build reports. Data is kept on servers in Uzbekistan." },
+    "third_party_transfer": { "title": "Sharing with olympiad partners", "desc": "Olympiad organisers and the schools hosting the final receive your child’s name, grade and olympiad result. Wave history is never shared." },
+    "marketing": { "title": "News and offers", "desc": "SMS about new olympiads and Zinapo features. Wave reminders don’t depend on this." },
+    "required": "Required",
+    "optional": "Optional",
+    "doc": "Document {v}",
+    "givenOn": "{doc} · granted {date}",
+    "revokedOn": "{doc} · withdrawn {date}",
+    "notGiven": "{doc} · not granted"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "back": "Back",
+    "close": "Close",
+    "retry": "Try again",
+    "save": "Save",
+    "loading": "Loading…",
+    "networkError": "The connection dropped. Check your internet and try again.",
+    "genericError": "Something went wrong. Please try again.",
+    "rateLimited": "Too many attempts. Please try again a little later.",
+    "chooseChild": "Choose a child",
+    "notFoundTitle": "This child wasn’t found",
+    "notFoundBody": "The profile may have been deleted, or your access to it was closed.",
+    "toChildren": "Back to my children",
+    "deletionPending": "Data deletion requested"
+  }
+}

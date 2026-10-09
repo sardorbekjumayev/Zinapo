@@ -132,7 +132,8 @@
     "noteAccessSub": "Ota-onalar bergan muddat tugagach, ruxsat avtomatik yopiladi.",
     "noteChildren": "{n} farzand",
     "noteChildrenSub": "Hisobot har bir monitoring yopilgandan soʻng yangilanadi.",
-    "noteRoles": "{n} ta xodim roli"
+    "noteRoles": "{n} ta xodim roli",
+    "gradeShort": "{n}-sinf"
   },
   "dashboardRouter": {
     "checking": "Rollaringiz tekshirilmoqda…",

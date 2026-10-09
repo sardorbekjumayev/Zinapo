@@ -1,0 +1,470 @@
+/* ===========================================================================
+   M2 — access, consents and privacy screens (design/06). Shared pieces
+   (panels, person rows, tags, toggle, dialog) come from family.css; this is
+   only what those screens add. Tokens only.
+   =========================================================================== */
+
+.ac-grid {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+}
+@media (max-width: 1100px) {
+  .ac-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.ac-stackPage {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 760px;
+}
+
+.ac-grow {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ac-h3 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
+}
+
+.ac-none {
+  margin: 0;
+  padding: 16px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-200);
+  color: var(--ink-600);
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.ac-meta {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-400);
+}
+.ac-meta svg {
+  flex: none;
+}
+
+/* ------------------------------------------------------------ requests */
+
+.ac-request {
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: var(--surface-200);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.ac-request__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ac-request__name {
+  margin: 0;
+  font-size: 17px;
+  line-height: 23px;
+  font-weight: 700;
+}
+.ac-request__text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 23px;
+}
+.ac-request__actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ac-approve {
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line-200);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ac-approve__sees {
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-600);
+}
+.ac-until {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ac-until legend {
+  padding: 0;
+  margin-bottom: 10px;
+}
+.ac-until__label {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+/* A request's outcome, kept on screen after the row itself is gone. */
+.ac-result {
+  padding: 20px;
+  border-radius: var(--radius-md);
+  background: var(--surface-200);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 21px;
+}
+.ac-result--ok {
+  background: var(--success-bg);
+}
+.ac-result__icon {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface-100);
+  color: var(--ink-600);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ac-result--ok .ac-result__icon,
+.ac-result--ok .ac-result__title {
+  color: var(--success);
+}
+.ac-result__title {
+  font-size: 17px;
+  line-height: 23px;
+  font-weight: 700;
+}
+
+/* ----------------------------------------------------------- who / invite */
+
+.ac-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ac-person__actions {
+  flex: none;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+@media (max-width: 640px) {
+  .ac-list .fam-person {
+    flex-wrap: wrap;
+  }
+  .ac-person__actions {
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 56px;
+  }
+}
+
+.ac-invite {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.ac-invite__row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.ac-invite__row .fam-input {
+  flex: 1 1 220px;
+  width: auto;
+}
+.ac-invites {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ac-invites__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px 10px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-200);
+  font-size: 14px;
+}
+
+/* ------------------------------------------------------------ change log */
+
+.ac-log {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.ac-log__item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-top: 1px solid var(--line-100);
+}
+.ac-log__item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.ac-log__icon {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ac-log__icon--grant {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.ac-log__icon--req {
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.ac-log__icon--off {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.ac-log__icon--doc {
+  background: var(--surface-200);
+  color: var(--ink-600);
+}
+.ac-log__text {
+  font-size: 14px;
+  line-height: 20px;
+}
+.ac-log__meta {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--ink-400);
+}
+
+/* -------------------------------------------------------------- consents */
+
+.ac-consents {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.ac-consent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line-100);
+}
+.ac-consent:first-child {
+  border-top: 0;
+  padding-top: 4px;
+}
+.ac-consent__row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.ac-consent__title {
+  font-size: 15px;
+  line-height: 21px;
+  font-weight: 600;
+}
+.ac-consent__desc {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-600);
+}
+.ac-consent__meta {
+  margin: 2px 0 0;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  color: var(--ink-600);
+}
+/* The switch itself is 32px tall; the wrapper brings the target to 44px. */
+.ac-consent__switch {
+  flex: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ------------------------------------------------------------ delete data */
+
+.ac-del {
+  padding: 18px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-200);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ac-del__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-600);
+}
+.ac-del--gone .ac-del__head {
+  color: var(--danger);
+}
+.ac-del__list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 22px;
+}
+.ac-del__text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+/* ------------------------------------------------------------ empty state */
+
+.ac-empty {
+  align-items: center;
+  text-align: center;
+  padding: 48px 40px 40px;
+}
+.ac-empty__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: var(--brand-050);
+  color: var(--brand-700);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ac-empty__body {
+  margin: 0;
+  max-width: 500px;
+  font-size: 15px;
+  line-height: 23px;
+  color: var(--ink-600);
+}
+.ac-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-self: stretch;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  text-align: left;
+}
+@media (max-width: 720px) {
+  .ac-empty {
+    padding: 32px 20px;
+  }
+  .ac-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.ac-step {
+  padding: 18px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-200);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ac-step__n {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--brand-100);
+  color: var(--brand-700);
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ac-step__title {
+  font-size: 15px;
+  line-height: 21px;
+  font-weight: 600;
+}
+.ac-step__desc {
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-600);
+}
+
+/* --------------------------------------------------------------- misc */
+
+.ac-linkNote {
+  align-items: center;
+  max-width: 760px;
+}
+
+.ac-skelRow {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 8px 0;
+}
+
+/* The page's live region, shown as a toast while it holds a message. */
+.ac-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 50;
+  max-width: min(560px, calc(100vw - 32px));
+  padding: 14px 20px;
+  border-radius: var(--radius-pill);
+  background: var(--ink-900);
+  color: var(--surface-100);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--shadow-float);
+}
+.ac-toast[data-shown='false'] {
+  /* Stays in the accessibility tree (an emptied live region is fine), but
+     takes no space and catches no clicks. */
+  padding: 0;
+  box-shadow: none;
+  pointer-events: none;
+  opacity: 0;
+}

@@ -16,6 +16,17 @@ export const TEMPLATES = [
   // Guardianship
   'co_guardian_invite',
   'ownership_transfer',
+  'co_guardian_joined',
+  'guardian_removed',
+  'ownership_changed',
+  // Consents and privacy (M2: "every change is notified")
+  'consent_changed',
+  'anonymisation_requested',
+  'anonymisation_cancelled',
+  'anonymisation_done',
+  // To the educator, about their own access
+  'educator_access_granted',
+  'educator_access_ended',
   // Waves and reports
   'wave_open',
   'wave_reminder',

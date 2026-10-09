@@ -1,5 +1,5 @@
 import type { IconName } from './Icon';
-import type { Me, StaffRole } from '@/lib/me';
+import { initialsOf, type Me, type StaffRole } from '@/lib/me';
 import type { Messages } from '@/lib/i18n';
 
 export interface NavItem {
@@ -8,6 +8,17 @@ export interface NavItem {
   icon?: IconName;
   /** Rendered right-aligned, e.g. the number of pupils in a group. */
   count?: string | number;
+  /** Initials in a circle instead of an icon — the children in the family rail. */
+  avatar?: { text: string; tone: 'brand' | 'teal' | 'blue' };
+  /** A second line under the label, e.g. "Grade 4". */
+  sub?: string;
+}
+
+/** A child as the family rail shows it (design/02, design/06). */
+export interface RailChild {
+  id: string;
+  name: string;
+  grade: number | null;
 }
 
 export interface NavGroup {
@@ -24,17 +35,32 @@ export interface NavGroup {
  * actually stops them.
  */
 
-export function familyNav(locale: string, me: Me, t: Messages): NavGroup[] {
+const TONES = ['brand', 'teal', 'blue'] as const;
+
+export function familyNav(
+  locale: string,
+  me: Me,
+  t: Messages,
+  kids: RailChild[] = [],
+): NavGroup[] {
   const base = `/${locale}/family`;
-  const children = (me.family?.ownerOf ?? 0) + (me.family?.coGuardianOf ?? 0);
+  const count = (me.family?.ownerOf ?? 0) + (me.family?.coGuardianOf ?? 0);
+
+  // design/02 and design/06 list each child by name in the rail. Without the
+  // list (it failed to load) the rail falls back to one "Reports" link.
+  const childItems: NavItem[] = kids.length
+    ? kids.map((kid, i) => ({
+        href: `${base}/children/${kid.id}`,
+        label: kid.name.split(' ')[0],
+        avatar: { text: initialsOf(kid.name), tone: TONES[i % TONES.length] },
+        sub: kid.grade === null ? undefined : t.nav.gradeShort.replace('{n}', String(kid.grade)),
+      }))
+    : [{ href: base, label: t.nav.reports, icon: 'trend', count }];
 
   return [
     {
       label: t.nav.familyChildren,
-      items: [
-        { href: base, label: t.nav.reports, icon: 'trend', count: children },
-        { href: `${base}/children/new`, label: t.nav.addChild, icon: 'plus' },
-      ],
+      items: [...childItems, { href: `${base}/children/new`, label: t.nav.addChild, icon: 'plus' }],
     },
     {
       label: t.nav.familyManage,
@@ -106,8 +132,14 @@ export function staffNav(locale: string, me: Me, t: Messages): NavGroup[] {
   ];
 }
 
-export function navFor(workspace: 'family' | 'educator' | 'staff', locale: string, me: Me, t: Messages) {
-  if (workspace === 'family') return familyNav(locale, me, t);
+export function navFor(
+  workspace: 'family' | 'educator' | 'staff',
+  locale: string,
+  me: Me,
+  t: Messages,
+  kids: RailChild[] = [],
+) {
+  if (workspace === 'family') return familyNav(locale, me, t, kids);
   if (workspace === 'educator') return educatorNav(locale, me, t);
   return staffNav(locale, me, t);
 }

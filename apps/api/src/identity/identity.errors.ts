@@ -38,19 +38,20 @@ export class ChildAlreadyRegisteredException extends ConflictException {
     super({
       error: 'CHILD_ALREADY_REGISTERED',
       message: 'This child already has a profile. We have asked its owner to confirm.',
-      details: { caseId },
+      details: { caseId, reference: `D-${caseId.replace(/-/g, '').slice(0, 8).toUpperCase()}` },
     });
   }
 }
 
 /** task.md § 3: max 4 children, then manual review — not a refusal. */
 export class FifthChildReviewException extends HttpException {
-  constructor(caseId: string) {
+  constructor(caseId: string, phone: string) {
     super(
       {
         error: 'FIFTH_CHILD_REVIEW',
         message: 'A fifth child needs a quick manual check. We will come back to you.',
-        details: { caseId },
+        // `phone` is the caller's own number, masked — where the answer goes.
+        details: { caseId, reference: `R-${caseId.replace(/-/g, '').slice(0, 8).toUpperCase()}`, phone },
       },
       HttpStatus.ACCEPTED,
     );
@@ -77,5 +78,81 @@ export class NotTheOwnerException extends HttpException {
     // 404, not 403: task.md § 4 — never reveal that a child exists to someone
     // without a relationship to them.
     super({ error: 'NOT_FOUND' }, HttpStatus.NOT_FOUND);
+  }
+}
+
+/**
+ * task.md § 3: "Create a child profile" is an owner's action, or the first
+ * action of someone with no role yet (onboarding). A co-guardian, an educator
+ * or a staff member acting as such may not — see task.md note M2-c.
+ */
+export class ChildCreateForbiddenException extends HttpException {
+  constructor() {
+    super({ error: 'CHILD_CREATE_FORBIDDEN' }, HttpStatus.FORBIDDEN);
+  }
+}
+
+/** The PINFL belongs to a child this person already co-guards. No dispute needed. */
+export class ChildAlreadyLinkedException extends ConflictException {
+  constructor() {
+    super({
+      error: 'CHILD_ALREADY_LINKED',
+      message: 'You already have access to this child as a co-guardian.',
+    });
+  }
+}
+
+export class AlreadyGuardianException extends ConflictException {
+  constructor() {
+    super({ error: 'ALREADY_GUARDIAN', message: 'This person already has access to the child.' });
+  }
+}
+
+export class NotACoGuardianException extends BadRequestException {
+  constructor() {
+    super({
+      error: 'NOT_A_CO_GUARDIAN',
+      message: 'Ownership can only be transferred to a current co-guardian.',
+    });
+  }
+}
+
+export class TransferPendingException extends ConflictException {
+  constructor() {
+    super({
+      error: 'TRANSFER_PENDING',
+      message: 'An ownership offer is already waiting for an answer. Cancel it first.',
+    });
+  }
+}
+
+export class PhoneInvalidException extends BadRequestException {
+  constructor() {
+    super({ error: 'PHONE_INVALID', message: 'Enter an Uzbek phone number.' });
+  }
+}
+
+export class LinkStateException extends ConflictException {
+  constructor(reason: 'not_requested' | 'not_active' | 'not_revoked' | 'expired' | 'conflict') {
+    super({
+      error: 'LINK_STATE',
+      message: 'This access cannot be changed from its current state.',
+      details: { reason },
+    });
+  }
+}
+
+export class ValidUntilInvalidException extends BadRequestException {
+  constructor() {
+    super({
+      error: 'VALID_UNTIL_INVALID',
+      message: 'Access must end after today and no later than the end of the season.',
+    });
+  }
+}
+
+export class AnonymisationPendingException extends ConflictException {
+  constructor() {
+    super({ error: 'ANONYMISATION_PENDING', message: 'Deletion has been requested for this child.' });
   }
 }

@@ -151,6 +151,15 @@ const DENIED = [401, 403, 404];
  * the route; when the route is still missing the row is PENDING rather than a
  * free pass.
  */
+/**
+ * Nest's own answer for a route that does not exist. A policy denial is ALSO a
+ * 404 (task.md § 4), but with our `{ error: 'NOT_FOUND' }` body — so the body,
+ * not the status, tells "not built yet" from "built and refusing".
+ */
+function routeMissing(res) {
+  return res.status === 404 && /Cannot (GET|POST|PUT|PATCH|DELETE) /.test(res.text);
+}
+
 async function cell({ name, actor, jar, method, path, body, expect, since }) {
   let res;
   try {
@@ -165,7 +174,7 @@ async function cell({ name, actor, jar, method, path, body, expect, since }) {
 
   // An unimplemented route 404s for everyone, including people who will be
   // allowed once it exists. Only an `allow` cell can tell us that.
-  if (since && expect === 'allow' && res.status === 404) {
+  if (since && expect === 'allow' && routeMissing(res)) {
     record('PENDING', label, `${since} not implemented yet (${got})`);
     return;
   }
@@ -179,7 +188,7 @@ async function cell({ name, actor, jar, method, path, body, expect, since }) {
   if (DENIED.includes(res.status)) {
     // A deny cell on a route that does not exist is honest but weak: it proves
     // nothing about the policy. Mark it so the count is not flattering.
-    if (since && res.status === 404) record('PENDING', label, `${since} not implemented yet (${got})`);
+    if (since && routeMissing(res)) record('PENDING', label, `${since} not implemented yet (${got})`);
     else record('PASS', label, got);
   } else {
     record('FAIL', label, `expected 401/403/404, ${got}`);
@@ -317,9 +326,12 @@ async function main() {
 
   // ------------------------------------------------------------- § 3 rows
   group('Family — children and enrolment');
+  // `data_processing` is required to create a profile (task.md § 8.1.2). The
+  // owner re-submitting the same PINFL on a later run is answered 200 with the
+  // existing id, so the row stays an `allow` run after run.
   const newChild = {
     pinfl: '60312160000099', dob: '2016-12-03', familyName: 'TEST', givenName: 'Child',
-    grade: 3, schoolRegionId: 14,
+    grade: 3, schoolRegionId: 14, consents: [{ type: 'data_processing', given: true }],
   };
   await cell({ name: 'Create a child profile', actor: 'owner', jar: jars.owner,
     method: 'POST', path: '/api/family/children', body: newChild, expect: 'allow', since: 'M2' });
@@ -341,10 +353,17 @@ async function main() {
     expect: 'deny', since: 'M2' });
 
   group('Family — guardians, consents, privacy');
+  // The educator-access rows act on a REAL link — Aziza's active access to
+  // Madina from the seed — so an `allow` proves the switch-off happened, and
+  // the owner restores it straight after so the fixture stays intact.
+  const access = await call('GET', `/api/family/children/${madina.id}/educators`, { jar: jars.owner });
+  const azizaLink = (access.body?.links ?? []).find((l) => l.publicCode === 'AZR-4821');
+  const linkId = azizaLink?.linkId ?? '00000000-0000-0000-0000-000000000000';
+
   for (const [actor, jar, expect] of [
-    ['owner', jars.owner, 'allow'],
     ['co-guardian', jars.coGuardian, 'deny'],
     ['educator', jars.educator, 'deny'],
+    ['owner', jars.owner, 'allow'],
   ]) {
     await cell({ name: 'Invite a co-guardian', actor, jar, method: 'POST',
       path: `/api/family/children/${madina.id}/co-guardian-invites`,
@@ -359,9 +378,26 @@ async function main() {
       path: `/api/family/children/${madina.id}/anonymisation-request`,
       body: {}, expect, since: 'M2' });
     await cell({ name: 'Grant / revoke educator access', actor, jar, method: 'POST',
-      path: `/api/family/children/${madina.id}/educators/00000000-0000-0000-0000-000000000000/revoke`,
+      path: `/api/family/children/${madina.id}/educators/${linkId}/revoke`,
       body: {}, expect, since: 'M2' });
   }
+  // Undo what the owner's `allow` rows changed: the fixture is shared by the
+  // routing checks and by the next run.
+  await call('POST', `/api/family/children/${madina.id}/educators/${linkId}/restore`, { jar: jars.owner });
+  await call('DELETE', `/api/family/children/${madina.id}/anonymisation-request`, { jar: jars.owner });
+  await call('DELETE', `/api/family/children/${madina.id}/ownership-transfer`, { jar: jars.owner });
+  await call('PUT', `/api/family/children/${madina.id}/consents/marketing`, {
+    jar: jars.owner, body: { given: false },
+  });
+
+  // Read-only for a co-guardian (task.md § 8.2): sees who has access, changes nothing.
+  await cell({ name: 'See who has access', actor: 'co-guardian (view only)', jar: jars.coGuardian,
+    method: 'GET', path: `/api/family/children/${madina.id}/educators`, expect: 'allow', since: 'M2' });
+  await cell({ name: 'See who has access', actor: 'educator', jar: jars.educator,
+    method: 'GET', path: `/api/family/children/${madina.id}/educators`, expect: 'deny', since: 'M2' });
+  await cell({ name: 'Execute anonymisation now', actor: 'owner (not super_admin)', jar: jars.owner,
+    method: 'POST', path: '/api/staff/anonymisation-requests/00000000-0000-0000-0000-000000000000/execute',
+    body: {}, expect: 'deny' });
 
   group('Reports');
   await cell({ name: 'Parent report, grade 3–4', actor: 'owner', jar: jars.owner,

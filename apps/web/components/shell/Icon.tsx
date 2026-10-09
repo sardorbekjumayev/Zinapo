@@ -33,9 +33,42 @@ export type IconName =
   | 'arrowRight'
   | 'plus'
   | 'settings'
-  | 'file';
+  | 'file'
+  | 'pin'
+  | 'trash'
+  | 'ban'
+  | 'inbox'
+  | 'chevronDown'
+  | 'arrowLeft'
+  | 'x'
+  | 'info'
+  | 'edit';
 
 const PATHS: Record<IconName, React.ReactNode> = {
+  pin: (
+    <>
+      <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z" />
+      <circle cx="12" cy="9.5" r="2.5" />
+    </>
+  ),
+  trash: <path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3" />,
+  ban: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M5.6 5.6l12.8 12.8" />
+    </>
+  ),
+  inbox: <path d="M3 13l3-8h12l3 8v6H3zM3 13h5l1 3h6l1-3h5" />,
+  chevronDown: <path d="M6 9l6 6 6-6" />,
+  arrowLeft: <path d="M19 12H5M11 6l-6 6 6 6" />,
+  x: <path d="M6 6l12 12M18 6L6 18" />,
+  info: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v6M12 7.5v.5" />
+    </>
+  ),
+  edit: <path d="M4 20h4L19 9l-4-4L4 16zM14 6l4 4" />,
   // The staircase — "zinapo" is a step.
   logo: <path d="M3 20h5v-5h5v-5h5V5h3" />,
   sun: (
