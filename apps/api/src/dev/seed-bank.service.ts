@@ -1,6 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { PoolClient } from 'pg';
 import { DbService } from '../db/db.service';
+import { Actor } from '../authz';
+import { FormsService } from '../bank/forms.service';
 
 type Cluster = 'numeracy' | 'reasoning' | 'language';
 
@@ -29,9 +31,75 @@ interface Spec {
 export class SeedBankService {
   private readonly logger = new Logger(SeedBankService.name);
 
-  constructor(private readonly db: DbService) {}
+  constructor(
+    private readonly db: DbService,
+    private readonly forms: FormsService,
+  ) {}
 
-  async run(): Promise<{ created: number; skipped: boolean }> {
+  async run(): Promise<{ created: number; skipped: boolean; waves: string }> {
+    const bank = await this.bank();
+    const waves = await this.waves();
+    return { ...bank, waves };
+  }
+
+  /**
+   * M4: a frozen grade 4 monitoring form, built through the real form builder
+   * (template → candidate query → rules → freeze), behind wave 1 — open now —
+   * and wave 2 a month later. Madina (grade 4) can take wave 1.
+   */
+  private async waves(): Promise<string> {
+    const season = await this.db.one<{ id: string }>(`SELECT id FROM season WHERE is_current`);
+    if (!season) return 'no current season';
+    const has = await this.db.one(`SELECT 1 FROM wave WHERE season_id = $1 AND grade = 4`, [season.id]);
+    if (has) return 'skipped';
+
+    const editor = await this.db.one<{ id: string }>(`SELECT id FROM person WHERE phone = '+998901110013'`);
+    if (!editor) return 'run /dev/seed first';
+    const actor: Actor = {
+      personId: editor.id,
+      staffRoles: ['bank_editor'],
+      educatorStatus: null,
+      ownerOf: 0,
+      coGuardianOf: 0,
+      lastWorkspace: null,
+    };
+
+    const form = await this.forms.create(actor, {
+      mode: 'monitoring',
+      grade: 4,
+      label: '2026/27 · 4-sinf · 1-monitoring (seed)',
+      template: true,
+      timeLimitSec: 90 * 60,
+    });
+    // Core positions round-robin across clusters so each gets ≥ 6 scored items.
+    const firstCore = form.plan.find((p) => p.role === 'scored')!.position;
+    const core = await this.forms.candidatesFor(form.id, firstCore, {});
+    const byCluster: Record<string, string[]> = {};
+    for (const c of core) (byCluster[c.cluster] ??= []).push(c.itemVersionId);
+    const order = Object.keys(byCluster).sort();
+    let turn = 0;
+    for (const slot of form.plan) {
+      let pick: string | undefined;
+      if (slot.role === 'scored') {
+        for (let k = 0; k < order.length && !pick; k++) pick = byCluster[order[turn++ % order.length]].shift();
+      } else {
+        pick = (await this.forms.candidatesFor(form.id, slot.position, {}))[0]?.itemVersionId;
+      }
+      if (pick) await this.forms.fill(actor, form.id, slot.position, pick);
+    }
+    const frozen = await this.forms.freeze(actor, form.id);
+
+    const day = 86_400_000;
+    const now = Date.now();
+    await this.db.query(
+      `INSERT INTO wave (season_id, grade, ordinal, opens_at, closes_at, form_id)
+       VALUES ($1, 4, 1, $2, $3, $4), ($1, 4, 2, $5, $6, NULL)`,
+      [season.id, new Date(now - 2 * day), new Date(now + 20 * day), frozen.id, new Date(now + 30 * day), new Date(now + 50 * day)],
+    );
+    return `grade 4: wave 1 open with form ${frozen.id}, wave 2 upcoming`;
+  }
+
+  private async bank(): Promise<{ created: number; skipped: boolean }> {
     const existing = await this.db.one<{ n: number }>(
       `SELECT count(*)::int AS n FROM item WHERE construct LIKE '[seed]%' AND grade = 4`,
     );

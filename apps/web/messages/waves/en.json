@@ -1,0 +1,63 @@
+{
+  "title": "Monitoring waves",
+  "chip": "Monitoring",
+  "sub": "A wave is a short check of what {name} has learned since the last one. It isn’t an exam: there’s no score for the child, and the report comes after the wave closes.",
+  "wave": "Wave {n}",
+  "state": {
+    "upcoming": "Upcoming",
+    "open": "Open",
+    "in_progress": "In progress",
+    "taken": "Taken",
+    "missed": "Not taken"
+  },
+  "open": {
+    "title": "Wave {n} is open",
+    "start": "Start wave {n}",
+    "meta": "closes {date} · {questions} questions · {minutes} minutes",
+    "metaNoLimit": "closes {date} · {questions} questions",
+    "device": "The test opens full-screen. Use a tablet or computer if you can, and a quiet place.",
+    "howTitle": "How it works",
+    "how": [
+      "{name} can skip a question and come back to it later.",
+      "Answers save as they go — if the connection drops, just keep going.",
+      "At the end {name} reviews everything and only then submits."
+    ],
+    "aloneTitle": "Let {name} work alone",
+    "aloneBody": "Help doesn’t improve the result — it only hides what {name} needs to work on. An honest blank answer is useful too: the report shows exactly that."
+  },
+  "inProgress": {
+    "title": "Wave {n} is in progress",
+    "continue": "Continue wave {n}",
+    "body": "Answers are saved as {name} goes. Continue on this or another device — it picks up where it stopped. The wave closes {date}."
+  },
+  "notReady": "Wave {n} is open, but its questions aren’t ready yet. Check back a little later.",
+  "row": {
+    "upcoming": "Opens {date}",
+    "open": "Open · closes {date}",
+    "in_progress": "Started · closes {date}",
+    "taken": "Taken on {date} ✓",
+    "takenNote": "The report comes after the wave closes.",
+    "missed": "Not taken",
+    "missedNote": "This isn’t counted as zero."
+  },
+  "noConsentTitle": "Measurement is paused",
+  "noConsentBody": "Consent to process {name}’s data was withdrawn, so waves can’t be started. Waves already taken stay as they are.",
+  "noConsentLink": "Access and consents",
+  "emptyTitle": "No waves for {grade} yet",
+  "emptyBody": "When waves are scheduled for this grade, they appear here with their dates. Nothing to do until then.",
+  "noGradeTitle": "No grade for this school year",
+  "noGradeBody": "Waves follow the child’s grade. Once this year’s school and grade are set, the waves appear here.",
+  "loadError": "Couldn’t load the waves just now.",
+  "retry": "Try again",
+  "errors": {
+    "WAVE_NOT_OPEN": "This wave isn’t open any more.",
+    "WAVE_NOT_READY": "This wave’s questions aren’t ready yet. Check back a little later.",
+    "WAVE_TAKEN": "This wave was already taken — the answers are submitted.",
+    "WRONG_GRADE": "This wave is for another grade. Check {name}’s grade for this school year.",
+    "CONSENT_REQUIRED": "Data-processing consent is off, so a wave can’t be started.",
+    "NO_ENROLMENT": "There’s no school and grade for this year yet — set them first.",
+    "WAVE_NOT_FOUND": "This wave no longer exists.",
+    "NETWORK": "The connection dropped. Check your internet and try again.",
+    "generic": "Something went wrong. Please try again."
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "title": "Monitoringlar",
+  "chip": "Monitoring",
+  "sub": "Monitoring — {name} oxirgi marta beri nimalarni oʻrganganini qisqa tekshirish. Bu imtihon emas: bolaga ball koʻrsatilmaydi, hisobot esa monitoring yopilgandan keyin chiqadi.",
+  "wave": "{n}-monitoring",
+  "state": {
+    "upcoming": "Kutilmoqda",
+    "open": "Ochiq",
+    "in_progress": "Jarayonda",
+    "taken": "Topshirilgan",
+    "missed": "Topshirilmagan"
+  },
+  "open": {
+    "title": "{n}-monitoring ochiq",
+    "start": "{n}-monitoringni boshlash",
+    "meta": "{date} yopiladi · {questions} ta savol · {minutes} daqiqa",
+    "metaNoLimit": "{date} yopiladi · {questions} ta savol",
+    "device": "Test butun ekranda ochiladi. Iloji boʻlsa, planshet yoki kompyuter va tinch joy tanlang.",
+    "howTitle": "Qanday ishlaydi",
+    "how": [
+      "{name} savolni oʻtkazib yuborib, keyinroq unga qaytishi mumkin.",
+      "Javoblar darhol saqlanadi — internet uzilsa ham davom etavering.",
+      "Oxirida {name} hammasini koʻrib chiqadi va shundan keyingina topshiradi."
+    ],
+    "aloneTitle": "{name} oʻzi ishlasin",
+    "aloneBody": "Yordam natijani yaxshilamaydi — u faqat {name} nima ustida ishlashi kerakligini yashirib qoʻyadi. Halol qoldirilgan boʻsh savol ham foydali: hisobot aynan shuni koʻrsatadi."
+  },
+  "inProgress": {
+    "title": "{n}-monitoring jarayonda",
+    "continue": "{n}-monitoringni davom ettirish",
+    "body": "Javoblar {name} ishlagan sari saqlanib boradi. Shu yoki boshqa qurilmada davom ettirish mumkin — toʻxtagan joyidan boshlanadi. Monitoring {date} yopiladi."
+  },
+  "notReady": "{n}-monitoring ochiq, lekin savollari hali tayyor emas. Birozdan soʻng qayta kiring.",
+  "row": {
+    "upcoming": "{date} ochiladi",
+    "open": "Ochiq · {date} yopiladi",
+    "in_progress": "Boshlangan · {date} yopiladi",
+    "taken": "{date} topshirildi ✓",
+    "takenNote": "Hisobot monitoring yopilgandan keyin chiqadi.",
+    "missed": "Topshirilmagan",
+    "missedNote": "Bu nol ball deb hisoblanmaydi."
+  },
+  "noConsentTitle": "Oʻlchov toʻxtatilgan",
+  "noConsentBody": "{name}ning maʼlumotlarini qayta ishlashga rozilik qaytarib olingan, shuning uchun monitoringni boshlab boʻlmaydi. Topshirilgan monitoringlar oʻzgarmaydi.",
+  "noConsentLink": "Kirish va roziliklar",
+  "emptyTitle": "{grade} uchun hali monitoring yoʻq",
+  "emptyBody": "Bu sinf uchun monitoringlar rejalashtirilgach, ular sanalari bilan shu yerda chiqadi. Ungacha hech narsa qilish shart emas.",
+  "noGradeTitle": "Bu oʻquv yili uchun sinf koʻrsatilmagan",
+  "noGradeBody": "Monitoringlar bolaning sinfiga qarab beriladi. Bu yilgi maktab va sinf koʻrsatilgach, monitoringlar shu yerda chiqadi.",
+  "loadError": "Monitoringlarni hozir yuklab boʻlmadi.",
+  "retry": "Qayta urinish",
+  "errors": {
+    "WAVE_NOT_OPEN": "Bu monitoring endi ochiq emas.",
+    "WAVE_NOT_READY": "Bu monitoring savollari hali tayyor emas. Birozdan soʻng qayta kiring.",
+    "WAVE_TAKEN": "Bu monitoring allaqachon topshirilgan — javoblar yuborilgan.",
+    "WRONG_GRADE": "Bu monitoring boshqa sinf uchun. {name}ning bu yilgi sinfini tekshiring.",
+    "CONSENT_REQUIRED": "Maʼlumotlarni qayta ishlashga rozilik oʻchirilgan, shuning uchun monitoringni boshlab boʻlmaydi.",
+    "NO_ENROLMENT": "Bu yil uchun maktab va sinf hali koʻrsatilmagan — avval ularni kiriting.",
+    "WAVE_NOT_FOUND": "Bu monitoring endi mavjud emas.",
+    "NETWORK": "Aloqa uzildi. Internetni tekshirib, qayta urinib koʻring.",
+    "generic": "Nimadir xato ketdi. Qayta urinib koʻring."
+  }
+}

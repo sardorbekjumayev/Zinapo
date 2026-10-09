@@ -1,4 +1,6 @@
 import { Module } from '@nestjs/common';
+import { BankModule } from '../bank/bank.module';
+import { SessionsModule } from '../sessions/sessions.module';
 import { AuthModule } from '../auth/auth.module';
 import { TelegramModule } from '../telegram/telegram.module';
 import { DevController } from './dev.controller';
@@ -8,7 +10,7 @@ import { SeedBankService } from './seed-bank.service';
 
 /** Development only — `app.module.ts` does not register this in production. */
 @Module({
-  imports: [AuthModule, TelegramModule],
+  imports: [AuthModule, TelegramModule, BankModule, SessionsModule],
   controllers: [DevController, SeedController],
   providers: [SeedService, SeedBankService],
 })

@@ -4,11 +4,13 @@ import { Avatar } from '@/components/family/Avatar';
 import { ErrorState } from '@/components/family/ErrorState';
 import { ChildDetails } from '@/components/family/home/ChildDetails';
 import { EnrolmentForm } from '@/components/family/home/EnrolmentForm';
+import { WavesCard } from '@/components/family/waves/WavesCard';
 import { currentSchoolYear, schoolLine, schoolYearLabel } from '@/components/family/home/labels';
 import { Icon } from '@/components/shell/Icon';
 import { apiGet } from '@/lib/api-server';
 import { childDisplayName, formatDate, regionName } from '@/lib/format';
 import type { ChildSummary, Enrolment, Region } from '@/lib/family-types';
+import type { ChildWaves } from '@/lib/session-types';
 import { fill, isLocale, type Locale } from '@/lib/i18n';
 import { familyMessages } from '@/messages/family';
 import { homeMessages } from '@/messages/home';
@@ -34,10 +36,11 @@ export default async function ChildPage({
   const m = homeMessages(locale).child;
   const enc = encodeURIComponent(id);
 
-  const [childRes, enrolRes, regionsRes] = await Promise.all([
+  const [childRes, enrolRes, regionsRes, wavesRes] = await Promise.all([
     apiGet<ChildSummary>(`/api/family/children/${enc}`),
     apiGet<Enrolment[]>(`/api/family/children/${enc}/enrolments`),
     apiGet<Region[]>('/api/reference/regions'),
+    apiGet<ChildWaves>(`/api/family/children/${enc}/waves`),
   ]);
 
   if (!childRes.ok) {
@@ -122,6 +125,15 @@ export default async function ChildPage({
               M5
             </span>
           </section>
+
+          <WavesCard
+            data={wavesRes.ok ? wavesRes.data : null}
+            childId={child.id}
+            childName={child.givenName}
+            gradeLabel={child.grade !== null ? grade(child.grade) : null}
+            locale={locale}
+            retryHref={`/${locale}/family/children/${id}`}
+          />
 
           <section className="fam-panel" aria-labelledby="fp-school-title">
             <div>

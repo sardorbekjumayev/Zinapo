@@ -1,50 +1,61 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Icon } from '@/components/shell/Icon';
+import { KidBar } from '@/components/kid/KidBar';
+import { KidPlayer } from '@/components/kid/KidPlayer';
+import { KidState } from '@/components/kid/KidState';
+import { UUID_RE } from '@/components/kid/util';
+import { apiGet } from '@/lib/api-server';
 import { getMessages, isLocale } from '@/lib/i18n';
+import type { Bundle } from '@/lib/session-types';
+import { kidMessages } from '@/messages/kid';
 
 export const dynamic = 'force-dynamic';
 
 /**
- * `/play/[sessionId]` — the kid-mode player. M4 builds the real thing:
- * ready → test → review → done, with an offline buffer and a retrying sync.
+ * `/play/[sessionId]` — the kid-mode player (task.md § 8.3, design/05).
  *
- * The route and its chrome-free layout exist now so the shell is complete and
- * the session-launch flow has somewhere to land.
+ * The server only answers "is there a session here for you": an id that is
+ * not ours (404) or a lapsed sign-in (401) gets a calm full-page state without
+ * any JavaScript. Otherwise its read of the bundle seeds the client player,
+ * which owns everything after that — download, offline buffer, sync, submit.
  */
 export default async function PlayPage({
   params,
 }: {
   params: Promise<{ locale: string; sessionId: string }>;
 }) {
-  const { locale } = await params;
+  const { locale, sessionId } = await params;
   if (!isLocale(locale)) notFound();
-  const t = getMessages(locale);
+  const brand = getMessages(locale).brand;
+  const t = kidMessages(locale);
+  const home = `/${locale}/dashboard`;
 
-  return (
-    <>
-      <div className="kid__bar">
-        <span className="ws__brandMark">
-          <Icon name="logo" size={22} strokeWidth={2} />
-        </span>
-        <span className="ws__brandName">{t.brand}</span>
-        {/* Violet is monitoring, teal is practice (task.md § 7.1). The real
-            player picks the mode from the session. */}
-        <span className="chip chip--monitoring" style={{ marginLeft: 'auto' }}>
-          <Icon name="clock" size={16} />
-          {t.nav.reports}
-        </span>
-      </div>
+  const res = UUID_RE.test(sessionId)
+    ? await apiGet<Bundle>(`/api/sessions/${sessionId}/bundle`)
+    : ({ ok: false, status: 404 } as const);
 
-      <div className="kid__stage">
-        <span className="state__icon state__icon--empty">
-          <Icon name="clock" size={26} />
-        </span>
-        <h1 className="state__title">{t.soon.kicker}</h1>
-        <p className="card__body" style={{ maxWidth: '48ch', textAlign: 'center' }}>
-          {t.soon.body}
-        </p>
-        <span className="chip chip--neutral mono">M4 — Sessions &amp; kid mode</span>
-      </div>
-    </>
-  );
+  if (!res.ok && (res.status === 404 || res.status === 401 || res.status === 403)) {
+    const signedOut = res.status === 401;
+    return (
+      <>
+        <KidBar brand={brand} />
+        <main className="kid__stage kd-stage">
+          <KidState
+            tone={signedOut ? 'warning' : 'neutral'}
+            icon={signedOut ? 'lock' : 'info'}
+            title={signedOut ? t.soTitle : t.nfTitle}
+            body={signedOut ? t.soBody : t.nfBody}
+          >
+            <Link href={signedOut ? `/${locale}/sign-in?next=${encodeURIComponent(`/${locale}/play/${sessionId}`)}` : home} className="fam-btn fam-btn--primary kd-btn">
+              {signedOut ? t.soAction : t.dnHome}
+            </Link>
+          </KidState>
+        </main>
+      </>
+    );
+  }
+
+  // A 5xx or an unreachable API: the client tries again itself and, failing
+  // that, carries on from the copy saved on this device.
+  return <KidPlayer locale={locale} sessionId={sessionId} brand={brand} initial={res.ok ? res.data : null} />;
 }

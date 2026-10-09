@@ -2,6 +2,7 @@ import { Controller, Inject, NotFoundException, Post } from '@nestjs/common';
 import { AppConfig, CONFIG } from '../config/configuration';
 import { SeedService, SeedResult } from './seed.service';
 import { SeedBankService } from './seed-bank.service';
+import { SessionsService } from '../sessions/sessions.service';
 
 /**
  * `POST /api/dev/seed` — the M1 development fixture (task.md § 12).
@@ -18,6 +19,7 @@ export class SeedController {
     @Inject(CONFIG) private readonly config: AppConfig,
     private readonly seed: SeedService,
     private readonly seedBank: SeedBankService,
+    private readonly sessions: SessionsService,
   ) {}
 
   @Post('seed')
@@ -31,5 +33,12 @@ export class SeedController {
   async bank() {
     if (this.config.isProd) throw new NotFoundException();
     return this.seedBank.run();
+  }
+
+  /** `POST /api/dev/tick` — run the sessions/wave job now instead of within a minute. */
+  @Post('tick')
+  async tick() {
+    if (this.config.isProd) throw new NotFoundException();
+    return this.sessions.tick();
   }
 }

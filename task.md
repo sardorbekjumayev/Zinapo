@@ -934,12 +934,83 @@ approved, frozen anchor.
 (12 anchors, 26 core, 8 accepted, 3 in review, 2 drafts) and season targets, so
 the bank, the review queue and the form builder have something to show.
 
-### M4 — Sessions & kid mode (Release 1)
-- [ ] Seasons and waves admin (season manager).
-- [ ] Start a session: checks (wave open, child grade, link if educator), **snapshots** of grade, region and school.
-- [ ] Bundle endpoint (no keys for monitoring), signed media URLs.
-- [ ] Kid mode UI: ready → test (navigator, flag, skip) → review → done; offline buffer; retrying sync; idempotent ingest.
-- [ ] Submit; the session status machine; expire unsubmitted sessions when the wave closes.
+### M4 — Sessions & kid mode (Release 1) — Done
+- [x] Seasons and waves admin (season manager). (`/staff/seasons`: seasons, the 5 × 8 wave calendar, forms per wave, bulk reminders, schools.)
+- [x] Start a session: checks (wave open, child grade, link if educator), **snapshots** of grade, region and school. (Plus a live data-processing consent — note M4-c.)
+- [x] Bundle endpoint (no keys for monitoring), signed media URLs. (`GET /sessions/:id/bundle`; no slot roles either — note M4-d.)
+- [x] Kid mode UI: ready → test (navigator, flag, skip) → review → done; offline buffer; retrying sync; idempotent ingest. (`/play/[sessionId]`; note M4-a.)
+- [x] Submit; the session status machine; expire unsubmitted sessions when the wave closes. (Note M4-b.)
+- [x] **DoD:** `scripts/session-flows.sh` — 58 checks, all passing; permission matrix 57 pass, 0 fail, 0 pending for M4 (34 pending, all M5–M9); earlier suites green.
+
+#### Notes on M4 — deviations and decisions
+
+**M4-a. Answers in flight are not responses** (decided with the product
+owner). `response` is append-only (INV-07) and unique per item, yet design/05
+lets a child change answers until they submit and promises "all answers sent"
+while they work. So `POST /sessions/:id/responses` writes a mutable working
+set, `session_answer` (migration 008): for each item the answer with the newest
+`client_recorded_at` wins, so a late replay of an old batch never undoes a later
+change, and replays are harmless. `submit` writes exactly one `response` per
+form item — the final answer, or NULL for skipped and unopened items — in one
+transaction with `ON CONFLICT DO NOTHING`; a repeated submit changes nothing.
+The raw layer only ever receives final answers. § 6.1's description of
+`/responses` ("idempotent on (session_id, item_version_id)") holds for the
+working set.
+
+**M4-b. The status machine.** A session gets a `deadline_at`: the form's time
+limit from the start, or the wave's close, whichever is first. A device may
+still deliver answers recorded before the deadline for 10 minutes after it.
+The job (every minute): sessions past deadline + grace are SUBMITTED with what
+was saved (the time is up, the answers count); when a wave closes, sessions
+still open are EXPIRED (§ 12 M4) and the wave gets `closed_at` — M5's run
+follows from there. The same job sends `wave_open` once per wave and child.
+`POST /api/dev/tick` runs it on demand in development.
+
+**M4-c. No consent, no session.** Note M2-e made data processing
+withdrawable; starting or resuming a session now requires a live
+`data_processing` consent (`CONSENT_REQUIRED`), and so does submitting: a
+consent withdrawn mid-test means nothing reaches the raw layer — no submit, no
+auto-submit at the deadline; the session expires with the wave unless consent
+comes back. Reminders and `wave_open` skip children without it.
+
+**M4-d. The bundle hides the roles, not only the keys.** Kid mode gets stems,
+options and signed media URLs — no key, no rationale, no misconception, and no
+slot role or anchor flag either: telling a device which items are anchors would
+leak them as surely as the key (INV-08's reason). Media URLs live until the
+session's deadline; the player downloads them before the start.
+
+**M4-e. Who launches where.** Guardians (owner and co-guardian, § 3) start a
+session at home through `POST /family/children/:id/sessions`; an educator uses
+`POST /educator/children/:id/sessions`, which resolves only through an ACTIVE
+link (INV-15) — the educator UI is M6. Starting twice resumes the same session
+(one per child per wave). The proctor path is M7. Practice sessions start from
+assignments in M6; the player and `/result` already handle practice (solved
+count only).
+
+**M4-f. Waves.** `POST /staff/waves` sets wave N of a grade: it creates the
+wave or moves it while it is upcoming; once open, only its close may move, and
+only later. Windows of one grade never overlap and a wave takes only a frozen
+monitoring form of its grade (INV-14 — the schema's refusals become named
+errors). Bulk reminders go to owners only, at most one per wave per child per
+day (§ 10's throttle key).
+
+**M4-h. The clock starts when the child presses Start** (design/05). The
+parent's "Start wave" opens the session without a deadline; the child's Start
+calls `POST /sessions/:id/begin`, which sets the deadline once (idempotent — a
+retry cannot extend it). A session never begun is not auto-submitted; it
+expires with the wave. Offline at Start, the device counts from its own Start,
+never past the wave's close.
+
+**M4-i. The middleware no longer gates workspaces on the token's `ws` claim.**
+The claim is a snapshot up to 15 minutes old; when it disagreed with the live
+relationships it looped forever — a parent whose token predated their first
+child went /family → /dashboard → /family … (found while testing kid mode).
+Every workspace layout already checks `/api/me` on each request, and the API
+authorises every call, so the middleware only redirects signed-out people.
+
+**M4-g. Matrix harness.** A cell may name business refusals that can only
+happen after authorisation passed (`passedPolicy`): "the owner may launch" is
+still proven when the answer is `WAVE_TAKEN` because the child already took it.
 
 ### M5 — Measurement v0 & parent reports (Release 1)
 - [ ] Job: `raw_band_v0` calibration run per wave close → `percentile_band`, `skill_state`.

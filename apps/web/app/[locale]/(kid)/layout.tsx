@@ -12,5 +12,5 @@
  * page keeps working with no connectivity.
  */
 export default function KidLayout({ children }: { children: React.ReactNode }) {
-  return <div className="kid">{children}</div>;
+  return <div className="kid kd-root">{children}</div>;
 }

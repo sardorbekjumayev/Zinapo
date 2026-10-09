@@ -84,12 +84,12 @@ const uz: Dict = {
   educator_access_ended: (v) =>
     `${v.child} hisobotlariga ruxsatingiz yopildi.\n\nBolaning tarixi u bilan qoladi; ota-onasi xohlasa, ruxsatni qayta beradi.`,
 
-  wave_open: (v) =>
-    `${v.child} uchun ${v.wave} ochildi va ${v.closes} da yopiladi.\n\n` +
+  wave_open: (v, f) =>
+    `${v.child} uchun ${v.wave} ochildi va ${f.date(v.closes)} da yopiladi.\n\n` +
     `Uyda yoki ustoz huzurida topshirish mumkin — 30 daqiqacha vaqt oladi.\n${v.link}`,
 
-  wave_reminder: (v) =>
-    `${v.child} ${v.wave} ni hali topshirmagan. ${v.closes} da yopiladi.\n\n` +
+  wave_reminder: (v, f) =>
+    `${v.child} ${v.wave} ni hali topshirmagan. ${f.date(v.closes)} da yopiladi.\n\n` +
     `Topshirmasa, bu monitoring “topshirilmagan” deb qoladi — nol deb hisoblanmaydi, lekin oʻsishni koʻrsatmaydi.\n${v.link}`,
 
   report_ready: (v) =>
@@ -183,12 +183,12 @@ const ru: Dict = {
   educator_access_ended: (v) =>
     `Ваш доступ к отчётам ${v.child} закрыт.\n\nИстория ребёнка остаётся с ним; родители могут открыть доступ снова.`,
 
-  wave_open: (v) =>
-    `Для ${v.child} открылась ${v.wave} и закроется ${v.closes}.\n\n` +
+  wave_open: (v, f) =>
+    `Для ${v.child} открылась ${v.wave} и закроется ${f.date(v.closes)}.\n\n` +
     `Можно пройти дома или у репетитора — это занимает до 30 минут.\n${v.link}`,
 
-  wave_reminder: (v) =>
-    `${v.child} ещё не прошёл ${v.wave}. Она закрывается ${v.closes}.\n\n` +
+  wave_reminder: (v, f) =>
+    `${v.child} ещё не прошёл ${v.wave}. Она закрывается ${f.date(v.closes)}.\n\n` +
     `Если не пройти, волна останется «не пройдена» — это не ноль, но и роста она не покажет.\n${v.link}`,
 
   report_ready: (v) => `Отчёт ${v.child} за ${v.wave} готов.\n\n${v.link}`,

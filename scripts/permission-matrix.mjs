@@ -160,7 +160,12 @@ function routeMissing(res) {
   return res.status === 404 && /Cannot (GET|POST|PUT|PATCH|DELETE) /.test(res.text);
 }
 
-async function cell({ name, actor, jar, method, path, body, expect, since }) {
+/**
+ * `passedPolicy`: business refusals that can only happen AFTER authorisation
+ * succeeded (a policy denial is 404/403, never these). An `allow` cell accepts
+ * them — e.g. a wave this child already took is still "the owner may launch".
+ */
+async function cell({ name, actor, jar, method, path, body, expect, since, passedPolicy = [] }) {
   let res;
   try {
     res = await call(method, path, { jar, body });
@@ -181,6 +186,7 @@ async function cell({ name, actor, jar, method, path, body, expect, since }) {
 
   if (expect === 'allow') {
     if (res.status >= 200 && res.status < 300) record('PASS', label, got);
+    else if (res.status === 409 && passedPolicy.includes(res.body?.error)) record('PASS', label, `${got} ${res.body.error}`);
     else record('FAIL', label, `expected 2xx, ${got}`);
     return;
   }
@@ -426,6 +432,11 @@ async function main() {
     method: 'GET', path: `/api/educator/children/${madina.id}`, expect: 'deny', since: 'M6' });
 
   group('Sessions — kid mode');
+  // The open grade 4 wave from the seed (`/api/dev/seed-bank`). Starting it
+  // twice is a resume, so the `allow` rows stay 2xx run after run.
+  const madinaWaves = await call('GET', `/api/family/children/${madina.id}/waves`, { jar: jars.owner });
+  const openWave = (madinaWaves.body?.waves ?? []).find((w) => ['open', 'in_progress', 'taken'].includes(w.state));
+  const waveId = openWave?.id ?? null;
   for (const [actor, jar, expect] of [
     ['owner', jars.owner, 'allow'],
     ['co-guardian', jars.coGuardian, 'allow'],
@@ -433,8 +444,8 @@ async function main() {
     ['guest', guest, 'deny'],
   ]) {
     await cell({ name: 'Launch a monitoring session', actor, jar, method: 'POST',
-      path: `/api/family/children/${madina.id}/sessions`, body: { waveId: null },
-      expect, since: 'M4' });
+      path: `/api/family/children/${madina.id}/sessions`, body: { waveId },
+      expect, since: 'M4', passedPolicy: ['WAVE_TAKEN'] });
   }
   await cell({ name: 'Launch a session', actor: 'educator, linked child', jar: jars.educator,
     method: 'POST', path: `/api/family/children/${madina.id}/sessions`, body: {},
@@ -492,8 +503,11 @@ async function main() {
     method: 'POST', path: '/api/staff/calibration-runs', body: {}, expect: 'deny', since: 'M5' });
 
   group('Staff — seasons, olympiads, trust, admin');
+  // Wave 8 of grade 3, far in the future: setting it again is an update, so the
+  // row stays 2xx run after run.
   await cell({ name: 'Configure seasons / waves', actor: 'season_manager', jar: jars.season_manager,
-    method: 'POST', path: '/api/staff/waves', body: { grade: 3, ordinal: 1 },
+    method: 'POST', path: '/api/staff/waves',
+    body: { grade: 3, ordinal: 8, opensAt: '2027-06-01T04:00:00Z', closesAt: '2027-06-10T18:00:00Z' },
     expect: 'allow', since: 'M4' });
   await cell({ name: 'Configure seasons / waves', actor: 'bank_editor', jar: jars.bank_editor,
     method: 'POST', path: '/api/staff/waves', body: {}, expect: 'deny', since: 'M4' });

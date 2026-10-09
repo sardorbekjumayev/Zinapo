@@ -17,6 +17,6 @@ import { FormsController, ItemsController, ReviewController, TaxonomyController 
 @Module({
   controllers: [TaxonomyController, ItemsController, ReviewController, FormsController],
   providers: [TaxonomyService, ItemsService, ReviewService, FormsService, CandidatesRepository],
-  exports: [CandidatesRepository],
+  exports: [CandidatesRepository, FormsService],
 })
 export class BankModule {}

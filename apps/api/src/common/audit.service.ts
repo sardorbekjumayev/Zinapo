@@ -75,10 +75,16 @@ export type AuditAction =
   | 'calibration.run_switched'
   // Seasons and sessions
   | 'season.created'
+  | 'season.updated'
   | 'wave.created'
+  | 'wave.updated'
   | 'wave.closed'
+  | 'wave.reminders_sent'
+  | 'school.changed'
   | 'session.started'
+  | 'session.resumed'
   | 'session.submitted'
+  | 'session.expired'
   // Olympiad
   | 'olympiad.registered'
   | 'olympiad.checked_in'

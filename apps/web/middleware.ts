@@ -17,10 +17,6 @@ const PROTECTED = [
   'guardian-invite',
 ];
 
-/** Segments that are a workspace, and therefore need the matching claim. */
-const WORKSPACES = ['family', 'educator', 'staff'] as const;
-type Workspace = (typeof WORKSPACES)[number];
-
 function pickLocale(req: NextRequest): string {
   const cookie = req.cookies.get('zn_locale')?.value;
   if (cookie && (LOCALES as readonly string[]).includes(cookie)) return cookie;
@@ -33,34 +29,6 @@ function pickLocale(req: NextRequest): string {
     if (tag === 'uz') return 'uz';
   }
   return DEFAULT_LOCALE;
-}
-
-/**
- * Reads the `ws` claim out of the access token WITHOUT verifying the signature.
- *
- * That is deliberate and safe here: this decides which shell to render, and
- * nothing more. A forged claim gets someone a sidebar and an immediate bounce
- * from the layout, because `requireWorkspace` re-reads `/api/me` and every data
- * call is authorised again by the API (task.md § 7: "Never trust the client").
- *
- * Verifying properly would mean shipping the JWT secret into the edge runtime
- * for no security gain.
- */
-function workspacesFromToken(token: string | undefined): Workspace[] | null {
-  if (!token) return null;
-  const payload = token.split('.')[1];
-  if (!payload) return null;
-  try {
-    const json = JSON.parse(
-      Buffer.from(payload.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf8'),
-    ) as { ws?: unknown };
-    if (!Array.isArray(json.ws)) return null;
-    return json.ws.filter((w): w is Workspace =>
-      (WORKSPACES as readonly string[]).includes(w as string),
-    );
-  } catch {
-    return null;
-  }
 }
 
 /**
@@ -96,21 +64,12 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL(`/${locale}/${SIGN_IN}`, req.url));
   }
 
-  // Workspace segments: bounce to /dashboard, which re-derives the right home
-  // from /api/me. Only act on a claim we could actually read — a 15-minute-old
-  // access token may be gone while the refresh token is still good, and in that
-  // case the layout is the right place to decide.
-  if ((WORKSPACES as readonly string[]).includes(page)) {
-    const held = workspacesFromToken(accessToken);
-    // The one door into a workspace you do not hold yet: onboarding's "add my
-    // child" (task.md § 2.2). Only for someone with NO workspace — the API
-    // decides whether they may actually create (note M2-c).
-    const onboardingAddChild =
-      page === 'family' && rest[1] === 'children' && rest[2] === 'new' && held?.length === 0;
-    if (held && !held.includes(page as Workspace) && !onboardingAddChild) {
-      return NextResponse.redirect(new URL(`/${locale}/dashboard`, req.url));
-    }
-  }
+  // Workspace segments are NOT gated here. The `ws` claim in the access token
+  // is a snapshot up to 15 minutes old, and bouncing on it looped forever when
+  // it disagreed with the live relationships: a parent whose token predated
+  // their first child went /family → /dashboard → /family … (found in M4).
+  // Each workspace layout checks `/api/me` on every request
+  // (`requireWorkspace`), and the API authorises every data call again (§ 7).
 
   // Layouts cannot see the URL; this lets the family layout recognise the
   // onboarding add-child page without a second route tree.
