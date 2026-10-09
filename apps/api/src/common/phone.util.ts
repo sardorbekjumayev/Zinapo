@@ -8,10 +8,18 @@ import parsePhoneNumberFromString from 'libphonenumber-js';
 export function toE164(raw: string | null | undefined): string | null {
   if (!raw) return null;
   const trimmed = raw.trim();
-  const withPlus = trimmed.startsWith('+') ? trimmed : `+${trimmed.replace(/^00/, '')}`;
+  const digits = trimmed.replace(/\D/g, '');
 
-  const parsed =
-    parsePhoneNumberFromString(withPlus) ?? parsePhoneNumberFromString(trimmed, 'UZ');
+  // Three shapes reach here: "+998 90 …" (typed), "998901234567" (Telegram
+  // contacts drop the plus) and "90 123 45 67" (a parent typing the local
+  // form). Reading the last one as international would make it "+90…",
+  // Turkey — so only a number that already carries a country code is parsed
+  // internationally, and everything else as Uzbek.
+  const international =
+    trimmed.startsWith('+') || trimmed.startsWith('00') || (digits.startsWith('998') && digits.length === 12);
+  const parsed = international
+    ? parsePhoneNumberFromString(`+${digits.replace(/^00/, '')}`)
+    : parsePhoneNumberFromString(digits, 'UZ');
 
   if (!parsed || !parsed.isValid() || parsed.country !== 'UZ') return null;
   return parsed.number;

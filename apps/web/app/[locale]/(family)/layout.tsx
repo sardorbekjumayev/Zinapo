@@ -1,4 +1,9 @@
+import { headers } from 'next/headers';
 import { WorkspaceShell } from '@/components/shell/WorkspaceShell';
+import type { RailChild } from '@/components/shell/nav-items';
+import { apiGet } from '@/lib/api-server';
+import { childDisplayName } from '@/lib/format';
+import type { ChildSummary } from '@/lib/family-types';
 import { requireWorkspace } from '@/lib/workspace-guard';
 
 export const dynamic = 'force-dynamic';
@@ -12,10 +17,28 @@ export default async function FamilyLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const ctx = await requireWorkspace(locale, 'family');
+
+  // Onboarding's "add my child" is the one family page a person with no
+  // workspace may open (task.md § 2.2). `x-zn-path` comes from middleware.ts.
+  const path = (await headers()).get('x-zn-path') ?? '';
+  const addChild = /\/family\/children\/new\/?$/.test(path);
+  const ctx = await requireWorkspace(locale, 'family', { allowNoWorkspace: addChild });
+
+  // The rail lists each child. A failure here only costs the list — the rail
+  // falls back to a single link and the page still renders.
+  const list = await apiGet<ChildSummary[]>('/api/family/children');
+  const kids: RailChild[] = list.ok
+    ? list.data.map((c) => ({ id: c.id, name: childDisplayName(c), grade: c.grade }))
+    : [];
 
   return (
-    <WorkspaceShell locale={ctx.locale} me={ctx.me} workspace="family" crumb={ctx.crumb}>
+    <WorkspaceShell
+      locale={ctx.locale}
+      me={ctx.me}
+      workspace="family"
+      crumb={ctx.crumb}
+      kids={kids}
+    >
       {children}
     </WorkspaceShell>
   );

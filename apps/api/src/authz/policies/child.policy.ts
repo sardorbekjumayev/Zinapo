@@ -13,6 +13,12 @@ export type ChildScope =
   | 'educator_view'
   /** Change the child: name, enrolment, consents, access, ownership. */
   | 'manage'
+  /**
+   * Read the family-side screens — who can see, consents, the change log.
+   * Any live guardian: a co-guardian sees them read-only (task.md § 8.2).
+   * Never an educator, even for their own child: that path is `parent_report`.
+   */
+  | 'family_view'
   /** Start a monitoring or practice session in kid mode. */
   | 'launch_session'
   /** Read practice results — "how many solved", nothing else. */
@@ -48,6 +54,9 @@ export class ChildPolicy {
       case 'manage':
         // Only the owner. A co-guardian is view-only (task.md § 8.2).
         return this.asGuardian(actor, childId, 'owner');
+
+      case 'family_view':
+        return this.asGuardian(actor, childId, 'any');
 
       case 'parent_report': {
         const guardian = await this.asGuardian(actor, childId, 'any');

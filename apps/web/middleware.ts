@@ -6,7 +6,16 @@ const DEFAULT_LOCALE = 'uz';
 const SIGN_IN = 'sign-in';
 
 /** Anything under these needs a session (task.md § 7). */
-const PROTECTED = ['dashboard', 'onboarding', 'profile', 'family', 'educator', 'staff', 'play'];
+const PROTECTED = [
+  'dashboard',
+  'onboarding',
+  'profile',
+  'family',
+  'educator',
+  'staff',
+  'play',
+  'guardian-invite',
+];
 
 /** Segments that are a workspace, and therefore need the matching claim. */
 const WORKSPACES = ['family', 'educator', 'staff'] as const;
@@ -93,12 +102,21 @@ export function middleware(req: NextRequest) {
   // case the layout is the right place to decide.
   if ((WORKSPACES as readonly string[]).includes(page)) {
     const held = workspacesFromToken(accessToken);
-    if (held && !held.includes(page as Workspace)) {
+    // The one door into a workspace you do not hold yet: onboarding's "add my
+    // child" (task.md § 2.2). Only for someone with NO workspace — the API
+    // decides whether they may actually create (note M2-c).
+    const onboardingAddChild =
+      page === 'family' && rest[1] === 'children' && rest[2] === 'new' && held?.length === 0;
+    if (held && !held.includes(page as Workspace) && !onboardingAddChild) {
       return NextResponse.redirect(new URL(`/${locale}/dashboard`, req.url));
     }
   }
 
-  return NextResponse.next();
+  // Layouts cannot see the URL; this lets the family layout recognise the
+  // onboarding add-child page without a second route tree.
+  const forwarded = new Headers(req.headers);
+  forwarded.set('x-zn-path', pathname);
+  return NextResponse.next({ request: { headers: forwarded } });
 }
 
 export const config = {

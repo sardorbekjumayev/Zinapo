@@ -398,6 +398,43 @@ SELECT pg_temp.must_reject('INV-16 child', format(
 SELECT pg_temp.must_reject('INV-16 session', format(
   $q$DELETE FROM session WHERE id = %L$q$, (SELECT v FROM fx WHERE k='session')));
 
+-- M2 (006): anonymisation strips identifiers and every relationship, keeps the
+-- session, and INV-04 steps aside for the anonymised child.
+INSERT INTO anonymisation_request (child_id, requested_by)
+  VALUES ((SELECT v FROM fx WHERE k='child'), (SELECT v FROM fx WHERE k='owner'));
+
+SELECT pg_temp.must_reject('INV-16 one open request', format(
+  $q$INSERT INTO anonymisation_request (child_id, requested_by) VALUES (%L, %L)$q$,
+  (SELECT v FROM fx WHERE k='child'), (SELECT v FROM fx WHERE k='owner')));
+
+SELECT pg_temp.must_accept('INV-16 anonymise (INV-04 exempt)', format(
+  $q$SELECT zn_anonymise_child(
+       (SELECT id FROM anonymisation_request WHERE child_id = %L AND executed_at IS NULL), NULL)$q$,
+  (SELECT v FROM fx WHERE k='child')));
+
+INSERT INTO result
+SELECT 'INV-16 identifiers stripped',
+       CASE WHEN c.family_name = '—' AND c.given_name = '—' AND c.patronymic IS NULL
+                 AND octet_length(c.pinfl_enc) = 0 AND c.anonymised_at IS NOT NULL
+            THEN 'pass' ELSE 'FAIL' END,
+       c.family_name || ' / enc ' || octet_length(c.pinfl_enc)
+  FROM child c WHERE c.id = (SELECT v FROM fx WHERE k='child');
+
+INSERT INTO result
+SELECT 'INV-16 relationships revoked',
+       CASE WHEN n = 0 THEN 'pass' ELSE 'FAIL' END,
+       n || ' live guardianship/link rows left'
+  FROM (SELECT (SELECT count(*) FROM guardianship
+                 WHERE child_id = (SELECT v FROM fx WHERE k='child') AND revoked_at IS NULL)
+             + (SELECT count(*) FROM v_educator_visible_child
+                 WHERE child_id = (SELECT v FROM fx WHERE k='child')) AS n) s;
+
+INSERT INTO result
+SELECT 'INV-16 session kept',
+       CASE WHEN EXISTS (SELECT 1 FROM session WHERE id = (SELECT v FROM fx WHERE k='session'))
+            THEN 'pass' ELSE 'FAIL' END,
+       'the session survives anonymisation';
+
 
 -- ---------------------------------------------------------------------------
 -- Report

@@ -53,8 +53,26 @@ export function NavRail({
               className={item.href === activeHref ? 'ws__link' : 'ws__link ghost'}
               aria-current={item.href === activeHref ? 'page' : undefined}
             >
-              {item.icon && <Icon name={item.icon} />}
-              <span>{item.label}</span>
+              {item.avatar ? (
+                <span
+                  className={`fam-avatar ws__linkAvatar${
+                    item.avatar.tone === 'brand' ? '' : ` fam-avatar--${item.avatar.tone}`
+                  }`}
+                  aria-hidden="true"
+                >
+                  {item.avatar.text}
+                </span>
+              ) : (
+                item.icon && <Icon name={item.icon} />
+              )}
+              {item.sub ? (
+                <span className="ws__linkText">
+                  <span>{item.label}</span>
+                  <span className="ws__linkSub">{item.sub}</span>
+                </span>
+              ) : (
+                <span>{item.label}</span>
+              )}
               {item.count !== undefined && <span className="ws__linkCount">{item.count}</span>}
             </Link>
           ))}

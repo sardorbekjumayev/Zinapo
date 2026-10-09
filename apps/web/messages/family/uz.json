@@ -1,0 +1,32 @@
+{
+  "grade": { "0": "0-sinf (tayyorlov)", "1": "1-sinf", "2": "2-sinf", "3": "3-sinf", "4": "4-sinf" },
+  "gradeShort": "{n}-sinf",
+  "role": { "owner": "Profil egasi", "co_guardian": "Hamkor vasiy · faqat koʻrish", "me": "Siz", "tutor": "Ustoz", "school_teacher": "Maktab oʻqituvchisi", "learning_centre": "Oʻquv markazi" },
+  "consent": {
+    "data_processing": { "title": "Maʼlumotlarni qayta ishlash", "desc": "Monitoring javoblarini saqlash va hisobot tuzish uchun zarur. Maʼlumotlar Oʻzbekistondagi serverlarda saqlanadi." },
+    "third_party_transfer": { "title": "Olimpiada hamkorlariga uzatish", "desc": "Olimpiada tashkilotchilari va final oʻtadigan maktablar farzandingizning ismi, sinfi va olimpiada natijasini oladi. Monitoring tarixi uzatilmaydi." },
+    "marketing": { "title": "Yangiliklar va takliflar", "desc": "Yangi olimpiadalar va Zinapo imkoniyatlari haqida SMS. Monitoring eslatmalari bunga bogʻliq emas." },
+    "required": "Majburiy",
+    "optional": "Ixtiyoriy",
+    "doc": "Hujjat {v}",
+    "givenOn": "{doc} · berilgan: {date}",
+    "revokedOn": "{doc} · qaytarib olingan: {date}",
+    "notGiven": "{doc} · rozilik berilmagan"
+  },
+  "common": {
+    "cancel": "Bekor qilish",
+    "back": "Orqaga",
+    "close": "Yopish",
+    "retry": "Qayta urinish",
+    "save": "Saqlash",
+    "loading": "Yuklanmoqda…",
+    "networkError": "Aloqa uzildi. Internetni tekshirib, qayta urinib koʻring.",
+    "genericError": "Nimadir notoʻgʻri ketdi. Qayta urinib koʻring.",
+    "rateLimited": "Juda koʻp urinish. Birozdan keyin qayta urinib koʻring.",
+    "chooseChild": "Farzandni tanlang",
+    "notFoundTitle": "Bu farzand topilmadi",
+    "notFoundBody": "Profil oʻchirilgan boʻlishi yoki unga kirishingiz yopilgan boʻlishi mumkin.",
+    "toChildren": "Farzandlarimga qaytish",
+    "deletionPending": "Maʼlumotlarni oʻchirish soʻralgan"
+  }
+}

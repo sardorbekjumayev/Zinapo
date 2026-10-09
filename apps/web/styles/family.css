@@ -1,0 +1,575 @@
+/* ===========================================================================
+   Family workspace (M2) — the shared pieces of design/02-add-child.html and
+   design/06-access-and-consents.html: inputs, toggles, the stepper, person
+   rows, the confirm dialog. Screen-specific layout lives next to each screen.
+   Tokens only; both themes come from :root / [data-theme='dark'].
+   =========================================================================== */
+
+/* --------------------------------------------------------------- layout */
+
+.fam-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 24px;
+  align-items: start;
+}
+.fam-grid--even {
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+}
+.fam-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+@media (max-width: 1100px) {
+  .fam-grid,
+  .fam-grid--even {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.fam-panel {
+  padding: 28px;
+  background: var(--surface-100);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+.fam-panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.fam-panel__title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+}
+.fam-panel__sub {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--ink-600);
+}
+.fam-divider {
+  height: 1px;
+  background: var(--line-100);
+  border: 0;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------- fields */
+
+.fam-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.fam-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+.fam-input,
+.fam-select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1.5px solid var(--line-200);
+  border-radius: var(--radius-pill);
+  background: var(--surface-100);
+  color: var(--ink-900);
+  font: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.fam-input::placeholder {
+  color: var(--ink-400);
+}
+.fam-input:focus-visible,
+.fam-select:focus-visible {
+  border-color: var(--brand-600);
+  box-shadow: var(--ring);
+}
+.fam-input[aria-invalid='true'],
+.fam-select[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+.fam-input--mono {
+  font-family: ui-monospace, 'JetBrains Mono', Menlo, monospace;
+  letter-spacing: 0.08em;
+  font-size: 16px;
+}
+.fam-select {
+  appearance: none;
+  padding-right: 48px;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-600) 50%),
+    linear-gradient(135deg, var(--ink-600) 50%, transparent 50%);
+  background-position: calc(100% - 26px) 52%, calc(100% - 20px) 52%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+.fam-caption {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 17px;
+  color: var(--ink-600);
+}
+.fam-caption svg {
+  flex: none;
+  margin-top: 1px;
+}
+.fam-caption--ok {
+  color: var(--success);
+  font-weight: 600;
+}
+.fam-caption--bad {
+  color: var(--danger);
+  font-weight: 600;
+}
+.fam-row {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr));
+}
+@media (max-width: 720px) {
+  .fam-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------- buttons */
+
+.fam-btn {
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--line-200);
+  background: var(--surface-100);
+  color: var(--ink-900);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+}
+.fam-btn:hover:not(:disabled) {
+  background: var(--surface-200);
+}
+.fam-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.fam-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* One accent per screen, dark text on it — never white on brand-400 (§ 7.1). */
+.fam-btn--primary {
+  background: var(--brand-400);
+  border-color: transparent;
+  color: var(--ink-on-primary);
+  box-shadow: var(--shadow-float);
+}
+.fam-btn--primary:hover:not(:disabled) {
+  background: var(--brand-400);
+  transform: translateY(-1px);
+}
+.fam-btn--quiet {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ink-600);
+}
+.fam-btn--danger {
+  color: var(--danger);
+  border-color: var(--danger-bg);
+}
+.fam-btn--dangerSolid {
+  background: var(--danger);
+  border-color: transparent;
+  color: var(--surface-100);
+}
+.fam-btn--dangerSolid:hover:not(:disabled) {
+  background: var(--danger);
+  filter: brightness(1.05);
+}
+.fam-btn--sm {
+  min-height: 44px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.fam-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------- toggle */
+
+.fam-toggle {
+  flex: none;
+  width: 52px;
+  height: 32px;
+  padding: 3px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--line-200);
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: flex-start;
+  transition: background-color 0.18s ease;
+}
+.fam-toggle[aria-checked='true'] {
+  background: var(--brand-600);
+  justify-content: flex-end;
+}
+.fam-toggle::after {
+  content: '';
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--surface-100);
+  box-shadow: var(--shadow-xs);
+}
+.fam-toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.fam-toggle:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ----------------------------------------------------------- check card */
+
+.fam-check {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px 18px;
+  border: 1.5px solid var(--line-100);
+  border-radius: var(--radius-sm);
+  background: var(--surface-100);
+  cursor: pointer;
+}
+.fam-check:has(input:checked) {
+  border-color: var(--brand-600);
+  background: var(--brand-050);
+}
+.fam-check input {
+  width: 22px;
+  height: 22px;
+  margin: 1px 0 0;
+  accent-color: var(--brand-600);
+  flex: none;
+}
+
+/* --------------------------------------------------------------- avatar */
+
+.fam-avatar {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  background: var(--brand-100);
+  color: var(--brand-700);
+}
+.fam-avatar--blue {
+  background: var(--accent-blue-bg);
+  color: var(--accent-blue);
+}
+.fam-avatar--teal {
+  background: var(--accent-teal-bg);
+  color: var(--accent-teal);
+}
+.fam-avatar--lg {
+  width: 52px;
+  height: 52px;
+  font-size: 16px;
+}
+
+/* ---------------------------------------------------------- person rows */
+
+.fam-people {
+  display: flex;
+  flex-direction: column;
+}
+.fam-person {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 0;
+  border-top: 1px solid var(--line-100);
+}
+.fam-person:first-child {
+  border-top: 0;
+  padding-top: 4px;
+}
+.fam-person__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fam-person__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.fam-person__desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 19px;
+  color: var(--ink-600);
+}
+
+/* Small pills beside a name: "You", "Owner", "Tutor". */
+.fam-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--surface-200);
+  color: var(--ink-600);
+}
+.fam-tag--brand {
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.fam-tag--blue {
+  background: var(--accent-blue-bg);
+  color: var(--accent-blue);
+}
+.fam-tag--teal {
+  background: var(--accent-teal-bg);
+  color: var(--accent-teal);
+}
+.fam-tag--warn {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+.fam-tag--danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.fam-tag--ok {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+/* ------------------------------------------------------- notes & banners */
+
+.fam-note {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-200);
+  color: var(--ink-600);
+  font-size: 13px;
+  line-height: 19px;
+}
+.fam-note svg {
+  flex: none;
+}
+.fam-note--brand {
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.fam-note--teal {
+  background: var(--accent-teal-bg);
+  color: var(--accent-teal);
+}
+.fam-note--danger {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.fam-note--warn {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+.fam-note--ok {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.fam-note strong {
+  display: block;
+  color: inherit;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+/* An inline error or success strip at the bottom of a form or panel. */
+.fam-alert {
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  font-weight: 600;
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.fam-alert--ok {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+/* --------------------------------------------------------- child picker */
+
+.fam-kids {
+  display: inline-flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-100);
+  box-shadow: var(--shadow-card);
+  flex-wrap: wrap;
+}
+.fam-kid {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 6px 16px 6px 6px;
+  border-radius: var(--radius-pill);
+  color: var(--ink-600);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+.fam-kid[aria-current='page'] {
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.fam-kid__grade {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------------- dialog */
+
+.fam-dialog {
+  width: min(520px, calc(100vw - 32px));
+  padding: 28px;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--surface-100);
+  color: var(--ink-900);
+  box-shadow: var(--shadow-overlay);
+}
+.fam-dialog::backdrop {
+  background: var(--overlay);
+}
+.fam-dialog__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.fam-dialog__icon--brand {
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.fam-dialog__title {
+  margin: 16px 0 8px;
+  font-size: 20px;
+  line-height: 26px;
+}
+.fam-dialog__body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--ink-600);
+}
+.fam-dialog__list {
+  margin: 14px 0 0;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--ink-600);
+}
+.fam-dialog__actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ----------------------------------------------------------- utilities */
+
+.fam-muted {
+  color: var(--ink-600);
+}
+.fam-small {
+  font-size: 12.5px;
+  line-height: 17px;
+}
+.fam-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap, 12px);
+}
+.fam-inline {
+  display: flex;
+  align-items: center;
+  gap: var(--gap, 8px);
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------------- family rail children */
+
+.ws__linkAvatar {
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+.ws__linkText {
+  display: flex;
+  flex-direction: column;
+  line-height: 18px;
+  padding: 6px 0;
+}
+.ws__linkSub {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-400);
+}

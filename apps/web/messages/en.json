@@ -132,7 +132,8 @@
     "noteAccessSub": "When the window a parent granted runs out, access closes by itself.",
     "noteChildren": "{n} children",
     "noteChildrenSub": "The report updates after each wave closes.",
-    "noteRoles": "{n} staff roles"
+    "noteRoles": "{n} staff roles",
+    "gradeShort": "Grade {n}"
   },
   "dashboardRouter": {
     "checking": "Working out your roles…",

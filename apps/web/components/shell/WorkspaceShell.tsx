@@ -3,7 +3,7 @@ import { NavRail } from './NavRail';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 import { WorkspaceSwitcher } from './WorkspaceSwitcher';
-import { navFor } from './nav-items';
+import { navFor, type RailChild } from './nav-items';
 import { getMessages, type Locale } from '@/lib/i18n';
 import { initialsOf, type Me, type Workspace } from '@/lib/me';
 
@@ -19,6 +19,7 @@ export function WorkspaceShell({
   me,
   workspace,
   crumb,
+  kids,
   children,
 }: {
   locale: Locale;
@@ -26,10 +27,12 @@ export function WorkspaceShell({
   workspace: Workspace;
   /** The breadcrumb line in the header, e.g. "Family · Madina". */
   crumb: string;
+  /** The family rail lists each child (design/02, design/06). */
+  kids?: RailChild[];
   children: React.ReactNode;
 }) {
   const t = getMessages(locale);
-  const groups = navFor(workspace, locale, me, t);
+  const groups = navFor(workspace, locale, me, t, kids);
 
   const note = noteFor(workspace, me, t);
 

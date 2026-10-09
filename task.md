@@ -764,13 +764,100 @@ route in § 7 exists and renders a screen naming the milestone it waits for. A
 nav rail whose links 404 would not demonstrate the workspace routing that M1 is
 supposed to deliver.
 
-### M2 — Family & identity (Release 1)
-- [ ] Add-child wizard: PINFL validation, DOB-vs-PINFL hard stop, hash + encrypt (separate key), duplicate → dispute case, 5th child → manual review case.
-- [ ] Enrolment history (school year, grade, school, **school region**).
-- [ ] Consents (3 separate types, versioned documents, revocable).
-- [ ] Co-guardian invite and accept; ownership transfer (requires acceptance; always exactly one owner).
-- [ ] Access page: requests, approve with expiry, decline (blocks for the season), revoke or restore, change log; Telegram notifications.
-- [ ] Anonymisation request (queued; executed by a job that strips identifiers and keeps responses).
+### M2 — Family & identity (Release 1) — Done
+- [x] Add-child wizard: PINFL validation, DOB-vs-PINFL hard stop, hash + encrypt (separate key), duplicate → dispute case, 5th child → manual review case. (`/family/children/new`, `POST /family/children`; notes M2-c, M2-d.)
+- [x] Enrolment history (school year, grade, school, **school region**). (`/family/children/[id]`; a change closes the current enrolment and opens a new one; a school outside the chosen region is refused.)
+- [x] Consents (3 separate types, versioned documents, revocable). (Every grant is its own row; `data_processing` too can be withdrawn — note M2-e.)
+- [x] Co-guardian invite and accept; ownership transfer (requires acceptance; always exactly one owner). (`/guardian-invite/[code]`, onboarding lists invites; note M2-f.)
+- [x] Access page: requests, approve with expiry, decline (blocks for the season), revoke or restore, change log; Telegram notifications. (`/family/access`; notes M2-g, M2-h, M2-i.)
+- [x] Anonymisation request (queued; executed by a job that strips identifiers and keeps responses). (`/family/privacy`, `zn_anonymise_child`; notes M2-a, M2-b.)
+- [x] **DoD:** `scripts/permission-matrix.sh` — 41 pass, 0 fail, 0 pending for M2 (50 pending, all M3–M9); `scripts/family-flows.sh` — 75 checks over every M2 flow, all passing; `scripts/db-test.sh` — 36 assertions (5 new for M2); `scripts/routing.sh` and `scripts/acceptance.sh` still green.
+
+#### Notes on M2 — deviations and decisions
+
+**M2-a. INV-04 steps aside for an anonymised child** (decided with the product
+owner). Rule 13 says deletion strips identifiers; a guardianship row ties a
+named adult to the child's responses, so it is an identifier. Migration
+`006_family_identity.sql` makes `child_owner_present()` return early for a child
+whose `anonymised_at` is set, and `zn_anonymise_child()` revokes every
+guardianship, educator link, group membership, live consent and open invite in
+one transaction. Names become `—`, the PINFL hash is replaced by random bytes
+(the UNIQUE index still holds and the row can never be matched again), the
+sealed PINFL is emptied, the DOB is kept to the year (the cohort needs the age).
+Sessions, responses and enrolments stay.
+
+**M2-b. Who executes an anonymisation** (decided with the product owner). § 3
+says "`super_admin` executes", § 12 says "executed by a job". Both: the owner's
+request waits out a grace window (`ANONYMISATION_GRACE_DAYS`, default 7) during
+which it can be cancelled (new column `anonymisation_request.cancelled_at`); the
+privacy job (every 10 min) then runs it. A super admin can run one immediately
+with `POST /staff/anonymisation-requests/:id/execute`; the staff screen is M9.
+
+**M2-c. Who may create a child** (decided with the product owner). § 3 denies
+co-guardians, educators and staff, while § 2.2 sends a person with no role to
+onboarding, whose first door is "add my child". Rule: someone who already owns
+a child, or someone with no workspace at all. This leaves a gap — a co-guardian,
+an educator or a staff member who is also a parent cannot add their own child
+— recorded as open question 8. The family layout and the middleware let a
+person with no workspace onto `/family/children/new` and nowhere else.
+
+**M2-d. A duplicate PINFL opens the case at once; the claimant's "Open a
+dispute" confirms it.** § 8.1 says to open the `ownership_dispute` case and
+notify the owner; design/02 shows the claimant pressing "Open an ownership
+dispute" first. The case is opened (and the owner notified) when the duplicate
+is detected, with `payload.claimantConfirmed = false`; the button records the
+claimant's confirmation and returns the request number. Trust & safety (M8) can
+tell a typo from a claim. The same owner re-submitting their own child is not a
+duplicate: it returns 200 with the existing id, which is what makes a retry
+after a dropped connection safe (design/02's error state).
+
+**M2-e. `data_processing` can be withdrawn.** design/06 shows "Withdraw
+anyway" with "Measurement will stop… Earlier results are kept"; the M1 service
+refused it. Withdrawing it keeps the profile; **M4 must refuse to start a
+session without a live `data_processing` consent.** Deleting the data is the
+separate anonymisation request.
+
+**M2-f. Invitations are bound to the invitee's verified phone.** A
+co-guardian or ownership invite is addressed to a phone; only a person signed in
+with that phone (sign-in verified it through Telegram) can see or accept it, so
+a forwarded link is useless. Invites live 7 days, re-inviting the same number
+re-sends the same invite, and an owner may send 20 a day (§ 11 rate limits).
+Ownership goes only to a current co-guardian, by person id or phone; the old
+owner becomes a co-guardian in the same transaction. A number not on Zinapo gets
+an SMS row that stays queued until there is a provider (open question 2).
+
+**M2-g. Decline blocks for the season by keeping the row.** A declined link
+keeps `status = 'declined'` and its `season_id`. **M6's request endpoint must
+refuse a new request for the same pair while that season is current.** The
+educator is not messaged about a decline (design/06: they see only "not
+accepted").
+
+**M2-h. Access end dates.** The owner picks "end of the school year" (31 May
+of the season's last year, or the season end if earlier) or "3 months", both
+computed by the API and bounded by the season end (INV-05). The chosen day is
+stored as its last second in Asia/Tashkent, so "until 31 May" really means the
+whole of 31 May. A request lapses 14 days after it was made; that is computed
+when read (no job yet) — M6 adds the expiry job and `access_expiring`.
+
+**M2-i. The change log is the audit log.** `GET /family/children/:id/changelog`
+reads `audit_log` filtered to the child and to the family-facing actions; names
+are resolved from ids at read time, so the log never stores a name. Every
+change is also announced by Telegram to the owner and every co-guardian
+(`FamilyNotifier`), with eight new uz/ru templates in `notify/templates.ts`.
+
+**M2-j. Two M1 bugs found and fixed.** `NotifyService.queue` used `ON CONFLICT
+(throttle_key)` against a *partial* unique index, which Postgres rejects
+(42P10) — no notification had ever been queued. `toE164` read a locally typed
+"90 123 45 67" as `+90…` (Turkey) and rejected it; only numbers that already
+carry a country code are parsed internationally now (sign-in is unaffected:
+`acceptance.sh` 45/45).
+
+**M2-k. The permission-matrix harness tells "not built" from "denied".** Both
+are 404 by design (§ 4); the harness now looks at the body — Nest's
+`Cannot GET …` means the route does not exist, our `{ error: 'NOT_FOUND' }`
+means the policy refused. Before this, every M2 deny row would have stayed
+PENDING forever. The owner rows act on real fixtures (Aziza's link is switched
+off and restored) and clean up after themselves.
 
 ### M3 — Item bank & forms (Release 1)
 - [ ] Taxonomy CRUD: topics (3 clusters), skills (grades 0–2), misconceptions.
@@ -835,4 +922,5 @@ Forum or chats, a public ratings feed, gamification badges, video lessons, a tut
 5. Should educators see a child's percentile with explicit parent opt-in, or never (the current rule is never, except their own child)?
 6. Exact certificate threshold per olympiad (default top 15%) and the prize policy for minors (legal/tax).
 7. **PINFL check digit** — is there an official, documented modulo we may rely on? Until there is, `PinflService` validates structure and the embedded date of birth only (note M1-c). A guessed checksum that rejects a real PINFL is far worse than accepting a malformed one, which the `pinfl_hash` unique index catches anyway.
+8. **A parent who also co-guards, tutors or works at Zinapo** cannot add their own child today (note M2-c: only an owner or a person with no role may create one, read literally from § 3). Should "create a child" be open to every signed-in adult — they become that child's owner — with the matrix rows reworded to "not *as* a co-guardian / educator / staff member"?
 8. **`docs/strategy.md`** is referenced by § 0 but absent from the repo. Nothing in M1 needed it; the parent-report copy in M5 will.

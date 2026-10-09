@@ -57,7 +57,9 @@ export class NotifyService {
     const rows = await run<{ id: string }>(
       `INSERT INTO notification (person_id, phone_e164, channel, template, payload, throttle_key)
        VALUES ($1, $2, $3, $4, $5::jsonb, $6)
-       ON CONFLICT (throttle_key) DO NOTHING
+       -- The throttle index is partial, so the conflict target must repeat its
+       -- predicate or Postgres cannot match it (42P10).
+       ON CONFLICT (throttle_key) WHERE throttle_key IS NOT NULL DO NOTHING
        RETURNING id::text`,
       [
         req.personId ?? null,

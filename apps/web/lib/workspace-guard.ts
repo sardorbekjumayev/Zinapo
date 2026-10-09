@@ -25,6 +25,7 @@ const SEASON = '2026/27';
 export async function requireWorkspace(
   rawLocale: string,
   workspace: Workspace,
+  opts: { allowNoWorkspace?: boolean } = {},
 ): Promise<WorkspaceContext> {
   if (!isLocale(rawLocale)) notFound();
   const locale = rawLocale;
@@ -32,7 +33,11 @@ export async function requireWorkspace(
   const me = await fetchMe();
   if (!me) redirect(`/${locale}/sign-in?next=/${locale}/${workspace}`);
 
-  if (!me.workspaces.includes(workspace)) {
+  // Onboarding's "add my child": someone with no workspace yet may stand on
+  // that one family page (task.md § 2.2). Anyone holding other workspaces is
+  // still sent to them.
+  const onboarding = opts.allowNoWorkspace && me.workspaces.length === 0;
+  if (!me.workspaces.includes(workspace) && !onboarding) {
     const home = homeFor(me);
     redirect(home ? `/${locale}/${home}` : `/${locale}/onboarding`);
   }
