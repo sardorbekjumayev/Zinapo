@@ -1,13 +1,18 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { ErrorState } from '@/components/family/ErrorState';
+import { EmptyCabinet } from '@/components/educator/cabinet/EmptyCabinet';
 import { Icon } from '@/components/shell/Icon';
-import { fill, getMessages } from '@/lib/i18n';
+import { apiGet } from '@/lib/api-server';
+import type { GroupList } from '@/lib/educator-types';
 import { requireWorkspace } from '@/lib/workspace-guard';
+import { educatorMessages } from '@/messages/educator';
 
 export const dynamic = 'force-dynamic';
 
 /**
- * `/educator` — the tutor's home.
+ * `/educator` — the tutor's home. With a group it IS the first group
+ * (design/08); without one, the empty state and "Create a group".
  *
  * task.md § 2.2: an educator whose application is still `applied` sees
  * `/educator/pending` instead. That check lives here rather than in the layout
@@ -16,68 +21,41 @@ export const dynamic = 'force-dynamic';
 export default async function EducatorHome({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params;
   const { locale, me } = await requireWorkspace(raw, 'educator');
-  const t = getMessages(locale);
-
   if (me.educator?.status === 'applied') redirect(`/${locale}/educator/pending`);
 
-  const linked = me.educator?.activeChildren ?? 0;
+  const m = educatorMessages(locale);
+  const res = await apiGet<GroupList>('/api/educator/groups');
 
-  // task.md § 8.4.2: there is no "add pupil" button. An educator gets access by
-  // inviting a parent, who then grants it — so the empty state's only action is
-  // the invite.
-  if (linked === 0) {
+  if (!res.ok) {
+    // 403: rejected or suspended — the API closes the cabinet; say so instead of "try again".
+    if (res.status === 403) {
+      return (
+        <section className="state">
+          <span className="state__icon state__icon--empty">
+            <Icon name="lock" size={26} />
+          </span>
+          <div className="fam-stack" style={{ '--gap': '8px' } as React.CSSProperties}>
+            <h1 className="state__title">{m.home.inactiveTitle}</h1>
+            <p className="card__body ed-measure">{m.home.inactiveBody}</p>
+          </div>
+          <Link href={`/${locale}/educator/pending`} className="fam-btn fam-btn--primary">
+            {m.home.inactiveCta}
+          </Link>
+        </section>
+      );
+    }
     return (
-      <section className="state">
-        <span className="state__icon state__icon--empty">
-          <Icon name="mail" size={26} />
-        </span>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <span className="card__kicker">{t.nav.educatorGroups}</span>
-          <h1 className="state__title">{t.nav.noteAccessSub}</h1>
-          <p className="card__body" style={{ maxWidth: '62ch' }}>
-            {t.onboarding.note}
-          </p>
-        </div>
-        <Link
-          href={`/${locale}/educator/invites`}
-          className="onb__cta onb__cta--primary lift"
-          style={{ marginTop: 0, textDecoration: 'none' }}
-        >
-          {t.nav.invites}
-          <Icon name="arrowRight" size={18} />
-        </Link>
-      </section>
+      <ErrorState
+        title={m.home.loadErrorTitle}
+        body={m.home.loadErrorBody}
+        retryHref={`/${locale}/educator`}
+        retryLabel={m.common.retry}
+      />
     );
   }
 
-  return (
-    <>
-      <div className="pageHead">
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <span className="card__kicker">{t.nav.educatorGroups}</span>
-          <h1 className="pageHead__title">{fill(t.nav.noteAccess, { n: linked })}</h1>
-          <p className="card__body" style={{ maxWidth: '62ch' }}>
-            {t.nav.noteAccessSub}
-          </p>
-        </div>
-        <Link
-          href={`/${locale}/educator/invites`}
-          className="onb__cta onb__cta--primary lift"
-          style={{ marginTop: 0, textDecoration: 'none', minWidth: 240 }}
-        >
-          <Icon name="mail" size={18} />
-          {t.nav.invites}
-        </Link>
-      </div>
+  const first = res.data.groups[0];
+  if (first) redirect(`/${locale}/educator/groups/${first.id}`);
 
-      <section className="card">
-        <span className="card__kicker">{t.soon.kicker}</span>
-        <h2 className="card__title">{t.nav.groups}</h2>
-        <p className="card__body">{t.soon.body}</p>
-        <span className="chip chip--neutral mono" style={{ alignSelf: 'flex-start' }}>
-          M6 — Educator workspace
-        </span>
-      </section>
-    </>
-  );
+  return <EmptyCabinet locale={locale} ungrouped={res.data.ungroupedCount} />;
 }

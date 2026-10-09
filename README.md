@@ -38,6 +38,7 @@ exists in the shell and renders a screen naming the milestone it waits for.
 │   ├── bank-flows.sh         every M3 item bank & form flow, incl. the INV-08 test
 │   ├── session-flows.sh      every M4 session flow: start, bundle, sync, submit, the wave job
 │   ├── report-flows.sh       M5: the measurement job, cohort minimum, runs, parent reports
+│   ├── educator-flows.sh     M6: applications, invites, match-check, groups, practice
 │   ├── measurement-unit.sh   unit tests of the raw_band_v0 arithmetic
 │   ├── dev-login.mjs         print session cookies for a phone (dev only)
 │   └── dev-code.sh           prints the sign-in code when there is no bot token
@@ -148,6 +149,7 @@ hashes and every invariant applies to them. It is idempotent.
 ./scripts/bank-flows.sh         # 60 checks — taxonomy, item card, blind review, media, forms, INV-08
 ./scripts/session-flows.sh      # 58 checks — waves admin, start, bundle, answers, submit, the wave job
 ./scripts/report-flows.sh       # 33 checks — measurement runs, cohort minimum, INV-12/13, reports
+./scripts/educator-flows.sh     # 104 checks — application, invites, match-check, groups, practice
 ./scripts/measurement-unit.sh   # 8 unit tests — KR-20, SEM, percentile bands, skill states
 (cd apps/api && npm run lint)   # tsc --noEmit
 (cd apps/web && npm run lint)

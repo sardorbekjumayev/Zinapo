@@ -1,0 +1,81 @@
+{
+  "head": {
+    "title": "Cases",
+    "subtitle": "Educator applications, suspicious activity and disputes. Every decision is logged."
+  },
+  "tabs": {
+    "label": "Case types",
+    "applications": "Educator applications",
+    "fraud": "Fraud flags",
+    "ownership": "Ownership disputes",
+    "fifth": "Fifth child",
+    "soon": "M8"
+  },
+  "kind": { "tutor": "Tutor", "school_teacher": "School teacher", "learning_centre": "Learning centre" },
+  "subject": { "numeracy": "Numeracy", "reasoning": "Reasoning", "language": "Language" },
+  "apps": {
+    "waitingT": "Waiting for a decision",
+    "waitingSub": "Oldest first. An approved educator can invite parents; they see children only once a parent shares.",
+    "decidedT": "Decided",
+    "decidedSub": "The latest decisions.",
+    "applied": "Applied {date}",
+    "decided": "{status} · {date} · {by}",
+    "noSchool": "No school given",
+    "noRegion": "No region given",
+    "approve": "Approve",
+    "reject": "Reject",
+    "approved": "{name} approved.",
+    "rejected": "{name}’s application rejected.",
+    "status": { "applied": "Waiting", "approved": "Approved", "rejected": "Rejected", "suspended": "Suspended" },
+    "note": "Note: {note}",
+    "rejectTitle": "Reject {name}’s application?",
+    "rejectBody": "The applicant gets a Telegram message and can apply again. If you add a reason, the applicant sees it.",
+    "rejectNote": "Reason (optional)",
+    "rejectConfirm": "Reject",
+    "cancel": "Cancel",
+    "emptyT": "No applications waiting",
+    "emptyD": "New applications appear here. To approve an educator you know in advance, use the form on the right.",
+    "decidedEmpty": "No decisions yet.",
+    "listLabel": "Applications"
+  },
+  "pre": {
+    "title": "Pre-approve an educator",
+    "sub": "Enter a phone number: when its owner applies, the application is approved at once.",
+    "phone": "Phone number",
+    "kind": "Who",
+    "note": "Note (internal)",
+    "notePh": "e.g. a learning centre we know",
+    "submit": "Pre-approve",
+    "submitting": "Saving…",
+    "done": "{phone} pre-approved. Their application opens at once.",
+    "approvedNow": "{phone} had applied — approved now.",
+    "listT": "Pre-approvals",
+    "listEmpty": "No pre-approved numbers yet.",
+    "waiting": "Waiting",
+    "usedBy": "Used by {name}",
+    "cancelled": "Cancelled",
+    "meta": "{date} · {by}",
+    "cancel": "Cancel",
+    "cancelLabel": "Cancel the pre-approval for {phone}",
+    "cancelledMsg": "Pre-approval for {phone} cancelled.",
+    "v": { "phone": "Enter the full number: +998 and 9 digits." }
+  },
+  "errors": {
+    "NETWORK": "The connection dropped. Try again.",
+    "UNKNOWN": "Something went wrong. Please try again in a moment.",
+    "NOT_FOUND": "This entry no longer exists. Refresh the page.",
+    "FORBIDDEN": "You don’t have permission to do this.",
+    "ALREADY_DECIDED": "This application has already been decided. Refresh the page.",
+    "PHONE_INVALID": "This isn’t an Uzbek phone number.",
+    "ALREADY_PREAPPROVED": "This number is already pre-approved.",
+    "ALREADY_EDUCATOR": "This number’s owner is already an approved educator."
+  },
+  "states": {
+    "noAccessTitle": "This section isn’t open to you",
+    "noAccessBody": "Only the trust & safety team decides on educator applications.",
+    "noAccessCta": "Go to staff home",
+    "errTitle": "We couldn’t load the cases",
+    "errBody": "Applications and decisions are safe. Check your connection and try again.",
+    "retry": "Try again"
+  }
+}

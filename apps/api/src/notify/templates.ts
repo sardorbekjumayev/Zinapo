@@ -92,6 +92,15 @@ const uz: Dict = {
     `${v.child} ${v.wave} ni hali topshirmagan. ${f.date(v.closes)} da yopiladi.\n\n` +
     `Topshirmasa, bu monitoring “topshirilmagan” deb qoladi — nol deb hisoblanmaydi, lekin oʻsishni koʻrsatmaydi.\n${v.link}`,
 
+  educator_application_decided: (v) =>
+    v.decision === 'approved'
+      ? `Ustoz sifatidagi arizangiz tasdiqlandi. Kodingiz: ${v.code}.\n\nOta-onalarni taklif qilishdan boshlang: ${v.link}`
+      : `Ustoz sifatidagi arizangiz hozircha tasdiqlanmadi.${v.note ? `\n\n${v.note}` : ''}`,
+
+  practice_assigned: (v) =>
+    `${v.educator} ${v.child} uchun mashq yubordi: «${v.title}», ${v.n} ta savol.\n\n` +
+    `Mashq oʻrinni oʻzgartirmaydi — bu faqat oʻrganish uchun. Boshlash: ${v.link}`,
+
   report_ready: (v) =>
     `${v.child} uchun ${v.wave} hisoboti tayyor.\n\n${v.link}`,
 
@@ -190,6 +199,15 @@ const ru: Dict = {
   wave_reminder: (v, f) =>
     `${v.child} ещё не прошёл ${v.wave}. Она закрывается ${f.date(v.closes)}.\n\n` +
     `Если не пройти, волна останется «не пройдена» — это не ноль, но и роста она не покажет.\n${v.link}`,
+
+  educator_application_decided: (v) =>
+    v.decision === 'approved'
+      ? `Ваша заявка педагога одобрена. Ваш код: ${v.code}.\n\nНачните с приглашения родителей: ${v.link}`
+      : `Ваша заявка педагога пока не одобрена.${v.note ? `\n\n${v.note}` : ''}`,
+
+  practice_assigned: (v) =>
+    `${v.educator} отправил(а) ${v.child} тренировку «${v.title}», ${v.n} заданий.\n\n` +
+    `Тренировка не влияет на позицию — она только для обучения. Начать: ${v.link}`,
 
   report_ready: (v) => `Отчёт ${v.child} за ${v.wave} готов.\n\n${v.link}`,
 

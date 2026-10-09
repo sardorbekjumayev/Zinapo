@@ -31,6 +31,15 @@ export default async function SignInPage({ params, searchParams }: PageProps) {
   const inviteCode = single(query.code);
   const invite = inviteName && inviteCode ? { name: inviteName, code: inviteCode } : null;
 
+  // `?next=` from middleware or the educator invite landing (/invite/[code] →
+  // add-child wizard with the invite). Only a path inside this locale: an open
+  // redirect to another site must not ride on a sign-in.
+  const rawNext = single(query.next);
+  const next =
+    rawNext && rawNext.startsWith(`/${locale}/`) && !rawNext.startsWith('//') && !/[\\\s]/.test(rawNext)
+      ? rawNext
+      : null;
+
   return (
     <main className="shell">
       <div className="shell__topbar">
@@ -38,7 +47,7 @@ export default async function SignInPage({ params, searchParams }: PageProps) {
       </div>
       <div className="shell__grid">
         <HeroPanel messages={messages} />
-        <SignInCard locale={locale} messages={messages} invite={invite} />
+        <SignInCard locale={locale} messages={messages} invite={invite} next={next} />
       </div>
     </main>
   );

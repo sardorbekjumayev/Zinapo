@@ -6,6 +6,7 @@ import { ChildDetails } from '@/components/family/home/ChildDetails';
 import { EnrolmentForm } from '@/components/family/home/EnrolmentForm';
 import { WavesCard } from '@/components/family/waves/WavesCard';
 import { ParentReport } from '@/components/family/report/ParentReport';
+import { PracticeCard } from '@/components/family/practice/PracticeCard';
 import { currentSchoolYear, schoolLine, schoolYearLabel } from '@/components/family/home/labels';
 import { Icon } from '@/components/shell/Icon';
 import { apiGet } from '@/lib/api-server';
@@ -13,6 +14,7 @@ import { childDisplayName, formatDate, regionName } from '@/lib/format';
 import type { ChildSummary, Enrolment, Region } from '@/lib/family-types';
 import type { ChildWaves } from '@/lib/session-types';
 import type { Report } from '@/lib/report-types';
+import type { FamilyPractice } from '@/lib/educator-types';
 import { fill, isLocale, type Locale } from '@/lib/i18n';
 import { familyMessages } from '@/messages/family';
 import { homeMessages } from '@/messages/home';
@@ -39,12 +41,13 @@ export default async function ChildPage({
   const m = homeMessages(locale).child;
   const enc = encodeURIComponent(id);
 
-  const [childRes, enrolRes, regionsRes, wavesRes, reportRes] = await Promise.all([
+  const [childRes, enrolRes, regionsRes, wavesRes, reportRes, practiceRes] = await Promise.all([
     apiGet<ChildSummary>(`/api/family/children/${enc}`),
     apiGet<Enrolment[]>(`/api/family/children/${enc}/enrolments`),
     apiGet<Region[]>('/api/reference/regions'),
     apiGet<ChildWaves>(`/api/family/children/${enc}/waves`),
     apiGet<Report>(`/api/family/children/${enc}/report`),
+    apiGet<FamilyPractice[]>(`/api/family/children/${enc}/practice`),
   ]);
 
   if (!childRes.ok) {
@@ -136,6 +139,15 @@ export default async function ChildPage({
             childId={child.id}
             childName={child.givenName}
             gradeLabel={child.grade !== null ? grade(child.grade) : null}
+            locale={locale}
+            retryHref={`/${locale}/family/children/${id}`}
+          />
+
+          {/* M6: sets an educator assigned. A failure only costs this card. */}
+          <PracticeCard
+            data={practiceRes.ok ? practiceRes.data : null}
+            childId={child.id}
+            childName={child.givenName}
             locale={locale}
             retryHref={`/${locale}/family/children/${id}`}
           />

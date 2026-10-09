@@ -1,0 +1,664 @@
+/* M6 — invites screens. Classes prefixed `iv-`. Tokens only (light/dark).
+   design/10-invite-parents.html, plus /invite/[code], /educator/apply,
+   /educator/pending and /staff/cases (applications). */
+
+/* --------------------------------------------------------------- layout */
+
+.iv-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.iv-casesGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  .iv-top,
+  .iv-casesGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.iv-panel h3 {
+  margin: 0;
+}
+.iv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.iv-wide {
+  width: 100%;
+}
+.iv-start {
+  align-self: flex-start;
+}
+.iv-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.iv-tags .fam-tag {
+  gap: 6px;
+}
+.iv-subTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------- composer */
+
+.iv-labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.iv-textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 16px 20px;
+  border: 1.5px solid var(--line-200);
+  border-radius: 20px;
+  background: var(--surface-100);
+  color: var(--ink-900);
+  font-family: ui-monospace, 'JetBrains Mono', Menlo, monospace;
+  font-size: 14px;
+  line-height: 22px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.iv-textarea--plain {
+  min-height: 0;
+  font-family: inherit;
+}
+.iv-textarea::placeholder {
+  color: var(--ink-400);
+}
+.iv-textarea:focus-visible {
+  border-color: var(--brand-600);
+  box-shadow: var(--ring);
+}
+.iv-textarea[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.iv-bad {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.iv-bad__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--danger-bg);
+  color: var(--ink-900);
+  font-size: 13.5px;
+  line-height: 20px;
+}
+.iv-bad__row > svg {
+  flex: none;
+  color: var(--danger);
+  margin-top: 1px;
+}
+.iv-bad__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.iv-bad__line {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.iv-sms {
+  padding: 18px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-200);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.iv-sms__label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink-600);
+}
+.iv-sms__text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--ink-900);
+}
+.iv-sms__meta {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--ink-600);
+}
+
+.iv-sent {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  background: var(--success-bg);
+}
+.iv-sent > div {
+  flex: 1;
+  min-width: 220px;
+}
+.iv-sent__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface-100);
+  color: var(--success);
+}
+.iv-sent__icon--quiet {
+  color: var(--ink-600);
+}
+.iv-sent__title {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+.iv-sent__again {
+  align-self: center;
+}
+
+/* ---------------------------------------------------------- match check */
+
+.iv-matchRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 520px) {
+  .iv-matchRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.iv-result {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-200);
+  color: var(--ink-900);
+  font-size: 13.5px;
+  line-height: 20px;
+}
+.iv-result > svg {
+  flex: none;
+  margin-top: 1px;
+  color: var(--ink-600);
+}
+.iv-result p {
+  margin: 0;
+  color: var(--ink-600);
+}
+.iv-result strong {
+  font-size: 15px;
+}
+.iv-result--ok {
+  background: var(--success-bg);
+}
+.iv-result--ok > svg {
+  color: var(--success);
+}
+.iv-result--warn {
+  background: var(--warning-bg);
+}
+.iv-result--warn > svg,
+.iv-result--warn strong {
+  color: var(--warning);
+}
+.iv-result p.iv-result__strong {
+  color: var(--ink-900);
+  font-weight: 600;
+}
+
+.iv-meterHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.iv-meterNum {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+.iv-meterNum--full {
+  color: var(--warning);
+}
+.iv-meter {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-300);
+  overflow: hidden;
+}
+.iv-meter__fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--brand-400);
+}
+.iv-meter__fill--full {
+  background: var(--warning);
+}
+
+/* --------------------------------------------------------------- status */
+
+.iv-status {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .iv-status {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.iv-status__side,
+.iv-status__main {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.iv-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.iv-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-200);
+  color: var(--ink-900);
+}
+.iv-tile__n {
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 700;
+}
+.iv-tile__l {
+  font-size: 13px;
+  color: var(--ink-600);
+}
+.iv-tile__s {
+  font-size: 12px;
+  color: inherit;
+}
+.iv-tile--ok {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.iv-tile--ok .iv-tile__l,
+.iv-tile--warn .iv-tile__l {
+  color: inherit;
+}
+.iv-tile--warn {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+.iv-tile--muted {
+  color: var(--ink-600);
+}
+.iv-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface-300);
+}
+.iv-bar__ok {
+  background: var(--success);
+}
+.iv-bar__warn {
+  background: var(--warning);
+}
+
+.iv-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.iv-filter {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink-600);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.iv-filter:hover {
+  color: var(--ink-900);
+}
+.iv-filter[aria-pressed='true'] {
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.iv-filter:focus-visible,
+.iv-tab:focus-visible,
+.iv-choice:focus-within {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.iv-filterEmpty {
+  padding: 16px 0;
+}
+.iv-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.iv-row {
+  display: grid;
+  grid-template-columns: minmax(170px, 1fr) auto minmax(0, 1.4fr);
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid var(--line-100);
+}
+.iv-row:first-child {
+  border-top: 0;
+}
+@media (max-width: 640px) {
+  .iv-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .iv-row__detail {
+    grid-column: 1 / -1;
+  }
+}
+.iv-row__who {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.iv-row__phone {
+  font-size: 14px;
+  color: var(--ink-900);
+}
+.iv-row__detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--ink-600);
+}
+
+.iv-inlineState {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+}
+.iv-inlineState > .fam-stack {
+  flex: 1;
+  min-width: 220px;
+}
+.iv-inlineState__title {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------- landing & pending */
+
+.iv-landing .pageHead__title {
+  margin: 0;
+}
+.iv-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.iv-step {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.iv-step p {
+  margin: 2px 0 0;
+}
+.iv-step__icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--brand-050);
+  color: var(--brand-700);
+  font-weight: 700;
+}
+.iv-facts {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.iv-facts__row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.iv-facts dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------- apply */
+
+.iv-fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.iv-fieldset legend {
+  padding: 0;
+  margin-bottom: 10px;
+}
+.iv-choices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 720px) {
+  .iv-choices {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.iv-choice {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  border: 1.5px solid var(--line-200);
+  border-radius: var(--radius-sm);
+  background: var(--surface-100);
+  cursor: pointer;
+}
+.iv-choice:has(input:checked) {
+  border-color: var(--brand-600);
+  background: var(--brand-050);
+}
+.iv-choice__icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface-200);
+  color: var(--brand-700);
+}
+.iv-choice__title {
+  font-weight: 700;
+  color: var(--ink-900);
+}
+.iv-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1.5px solid var(--line-200);
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.iv-check:has(input:checked) {
+  border-color: var(--brand-600);
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.iv-check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--brand-600);
+}
+
+/* ---------------------------------------------------------- staff cases */
+
+.iv-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-100);
+  box-shadow: var(--shadow-card);
+  align-self: flex-start;
+}
+.iv-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink-600);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+}
+.iv-tab[aria-selected='true'] {
+  background: var(--brand-050);
+  color: var(--brand-700);
+}
+.iv-tab:disabled {
+  cursor: not-allowed;
+  color: var(--ink-400);
+}
+.iv-tab__count {
+  min-width: 24px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--surface-100);
+  font-size: 12px;
+  line-height: 22px;
+  text-align: center;
+}
+.iv-tab__soon {
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--surface-200);
+  font-size: 11px;
+  line-height: 20px;
+}
+
+.iv-apps,
+.iv-pres {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.iv-app {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 16px;
+  align-items: start;
+  padding: 16px 0;
+  border-top: 1px solid var(--line-100);
+}
+.iv-app:first-child,
+.iv-pre:first-child {
+  border-top: 0;
+}
+.iv-app__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.iv-app__name {
+  font-size: 16px;
+  font-weight: 700;
+}
+.iv-app__actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.iv-pre {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line-100);
+}
+.iv-pre__side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}

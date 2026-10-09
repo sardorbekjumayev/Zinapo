@@ -174,7 +174,7 @@ export class SeedResultsService {
    * P = logistic(ability − b), b from the item's expected p; a wrong answer
    * picks the first distractor (so misconception patterns are real ones).
    */
-  private async takeWave(
+  async takeWave(
     client: PoolClient,
     waveId: string,
     childId: string,

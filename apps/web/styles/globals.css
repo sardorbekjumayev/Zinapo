@@ -11,6 +11,9 @@
 @import './seasons.css';
 @import './report.css';
 @import './calibration.css';
+@import './educator.css';
+@import './practice.css';
+@import './invites.css';
 
 /* ============================================================
    Zinapo — the Lumen design tokens

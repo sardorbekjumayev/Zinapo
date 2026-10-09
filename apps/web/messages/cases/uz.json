@@ -1,0 +1,81 @@
+{
+  "head": {
+    "title": "Holatlar",
+    "subtitle": "Ustoz arizalari, shubhali harakatlar va nizolar. Har bir qaror jurnalga yoziladi."
+  },
+  "tabs": {
+    "label": "Holat turlari",
+    "applications": "Ustoz arizalari",
+    "fraud": "Firibgarlik belgilari",
+    "ownership": "Egalik nizolari",
+    "fifth": "Beshinchi farzand",
+    "soon": "M8"
+  },
+  "kind": { "tutor": "Repetitor", "school_teacher": "Maktab oʻqituvchisi", "learning_centre": "Oʻquv markazi" },
+  "subject": { "numeracy": "Matematika", "reasoning": "Mantiq", "language": "Ona tili" },
+  "apps": {
+    "waitingT": "Koʻrib chiqilishi kerak",
+    "waitingSub": "Eng eskisi birinchi. Tasdiqlangan ustoz ota-onalarni taklif qila oladi; bolalarni esa faqat ota-ona ruxsati bilan koʻradi.",
+    "decidedT": "Qaror chiqarilganlar",
+    "decidedSub": "Oxirgi qarorlar.",
+    "applied": "Ariza: {date}",
+    "decided": "{status} · {date} · {by}",
+    "noSchool": "Maktab koʻrsatilmagan",
+    "noRegion": "Hudud koʻrsatilmagan",
+    "approve": "Tasdiqlash",
+    "reject": "Rad etish",
+    "approved": "{name} tasdiqlandi.",
+    "rejected": "{name} arizasi rad etildi.",
+    "status": { "applied": "Kutilmoqda", "approved": "Tasdiqlangan", "rejected": "Rad etilgan", "suspended": "Toʻxtatilgan" },
+    "note": "Izoh: {note}",
+    "rejectTitle": "{name} arizasini rad etasizmi?",
+    "rejectBody": "Arizachi Telegram orqali xabar oladi va qayta ariza berishi mumkin. Sababni yozsangiz, u arizachiga koʻrsatiladi.",
+    "rejectNote": "Sabab (ixtiyoriy)",
+    "rejectConfirm": "Rad etish",
+    "cancel": "Bekor qilish",
+    "emptyT": "Kutayotgan ariza yoʻq",
+    "emptyD": "Yangi ariza kelganda shu yerda paydo boʻladi. Tanish ustozni oldindan tasdiqlash uchun oʻngdagi shaklni ishlating.",
+    "decidedEmpty": "Hali qaror chiqarilmagan.",
+    "listLabel": "Arizalar"
+  },
+  "pre": {
+    "title": "Ustozni oldindan tasdiqlash",
+    "sub": "Telefon raqamini kiriting: shu raqam egasi ariza bersa, darhol tasdiqlanadi.",
+    "phone": "Telefon raqami",
+    "kind": "Kim",
+    "note": "Izoh (ichki)",
+    "notePh": "Masalan: tanish oʻquv markazi",
+    "submit": "Oldindan tasdiqlash",
+    "submitting": "Saqlanmoqda…",
+    "done": "{phone} oldindan tasdiqlandi. Ariza berganda darhol ochiladi.",
+    "approvedNow": "{phone} allaqachon ariza bergan edi — hozir tasdiqlandi.",
+    "listT": "Oldindan tasdiqlanganlar",
+    "listEmpty": "Hali oldindan tasdiqlangan raqam yoʻq.",
+    "waiting": "Kutilmoqda",
+    "usedBy": "Ishlatildi: {name}",
+    "cancelled": "Bekor qilingan",
+    "meta": "{date} · {by}",
+    "cancel": "Bekor qilish",
+    "cancelLabel": "{phone} uchun oldindan tasdiqni bekor qilish",
+    "cancelledMsg": "{phone} uchun oldindan tasdiq bekor qilindi.",
+    "v": { "phone": "Toʻliq telefon raqamini kiriting: +998 va 9 ta raqam." }
+  },
+  "errors": {
+    "NETWORK": "Internet aloqasi uzildi. Qayta urinib koʻring.",
+    "UNKNOWN": "Nimadir notoʻgʻri ketdi. Birozdan keyin qayta urinib koʻring.",
+    "NOT_FOUND": "Bu yozuv endi mavjud emas. Sahifani yangilang.",
+    "FORBIDDEN": "Bu amal uchun ruxsatingiz yoʻq.",
+    "ALREADY_DECIDED": "Bu arizaga allaqachon qaror chiqarilgan. Sahifani yangilang.",
+    "PHONE_INVALID": "Bu Oʻzbekiston telefon raqami emas.",
+    "ALREADY_PREAPPROVED": "Bu raqam allaqachon oldindan tasdiqlangan.",
+    "ALREADY_EDUCATOR": "Bu raqam egasi allaqachon tasdiqlangan ustoz."
+  },
+  "states": {
+    "noAccessTitle": "Bu boʻlim siz uchun yopiq",
+    "noAccessBody": "Ustoz arizalari boʻyicha qarorni faqat xavfsizlik jamoasi (trust & safety) chiqaradi.",
+    "noAccessCta": "Bosh sahifaga",
+    "errTitle": "Holatlarni yuklab boʻlmadi",
+    "errBody": "Arizalar va qarorlar saqlangan. Internet aloqasini tekshirib, qayta urinib koʻring.",
+    "retry": "Qayta urinish"
+  }
+}

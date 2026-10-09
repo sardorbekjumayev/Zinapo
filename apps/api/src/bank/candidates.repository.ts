@@ -48,6 +48,8 @@ export class CandidatesRepository {
     formId?: string | null;
     cluster?: string;
     topic?: string;
+    /** M6 practice "from a mistake": items with a distractor carrying this code. */
+    misconception?: string;
     q?: string;
     itemVersionId?: string;
     limit?: number;
@@ -60,6 +62,9 @@ export class CandidatesRepository {
     };
     if (opts.cluster) extra.push(`t.cluster = ${p(opts.cluster)}`);
     if (opts.topic) extra.push(`i.topic_code = ${p(opts.topic)}`);
+    if (opts.misconception) {
+      extra.push(`EXISTS (SELECT 1 FROM item_option o WHERE o.item_version_id = v.id AND o.misconception_code = ${p(opts.misconception)})`);
+    }
     if (opts.q) extra.push(`i.code ILIKE ${p(`%${opts.q}%`)}`);
     if (opts.itemVersionId) extra.push(`v.id = ${p(opts.itemVersionId)}`);
     const limit = p(opts.limit ?? 50);

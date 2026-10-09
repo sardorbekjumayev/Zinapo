@@ -73,15 +73,26 @@ export function familyNav(
   ];
 }
 
-export function educatorNav(locale: string, me: Me, t: Messages): NavGroup[] {
+/** A teaching group as the educator rail shows it (design/08). */
+export interface RailGroup {
+  id: string;
+  name: string;
+  memberCount: number;
+}
+
+export function educatorNav(locale: string, me: Me, t: Messages, groups: RailGroup[] = []): NavGroup[] {
   const base = `/${locale}/educator`;
+
+  // design/08 lists each group by name. Without the list (none yet, or it
+  // failed to load) the rail falls back to one "Groups" link.
+  const groupItems: NavItem[] = groups.length
+    ? groups.map((g) => ({ href: `${base}/groups/${g.id}`, label: g.name, icon: 'users', count: g.memberCount }))
+    : [{ href: base, label: t.nav.groups, icon: 'users', count: me.educator?.activeChildren ?? 0 }];
 
   return [
     {
       label: t.nav.educatorGroups,
-      items: [
-        { href: base, label: t.nav.groups, icon: 'users', count: me.educator?.activeChildren ?? 0 },
-      ],
+      items: groupItems,
     },
     {
       label: t.nav.educatorWork,
@@ -141,8 +152,9 @@ export function navFor(
   me: Me,
   t: Messages,
   kids: RailChild[] = [],
+  groups: RailGroup[] = [],
 ) {
   if (workspace === 'family') return familyNav(locale, me, t, kids);
-  if (workspace === 'educator') return educatorNav(locale, me, t);
+  if (workspace === 'educator') return educatorNav(locale, me, t, groups);
   return staffNav(locale, me, t);
 }

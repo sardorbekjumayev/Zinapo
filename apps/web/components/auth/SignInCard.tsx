@@ -19,9 +19,11 @@ interface Props {
   locale: Locale;
   messages: Messages;
   invite?: { name: string; code: string } | null;
+  /** Where to go after sign-in — a same-locale path, already checked by the page. */
+  next?: string | null;
 }
 
-export function SignInCard({ locale, messages, invite }: Props) {
+export function SignInCard({ locale, messages, invite, next }: Props) {
   const t = messages.signIn;
   const router = useRouter();
 
@@ -104,7 +106,7 @@ export function SignInCard({ locale, messages, invite }: Props) {
       try {
         await apiVerify(requestId, fullCode);
         setStep('done');
-        router.replace(`/${locale}/dashboard`);
+        router.replace(next ?? `/${locale}/dashboard`);
         router.refresh();
       } catch (err) {
         const apiError = err instanceof ApiError ? err : new ApiError('NETWORK', 0);
@@ -114,7 +116,7 @@ export function SignInCard({ locale, messages, invite }: Props) {
         setBusy(false);
       }
     },
-    [requestId, busy, router, locale, describe],
+    [requestId, busy, router, locale, describe, next],
   );
 
   const restart = (): void => {

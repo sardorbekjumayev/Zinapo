@@ -27,6 +27,9 @@ export const TEMPLATES = [
   // To the educator, about their own access
   'educator_access_granted',
   'educator_access_ended',
+  // Educator workspace (M6)
+  'educator_application_decided',
+  'practice_assigned',
   // Waves and reports
   'wave_open',
   'wave_reminder',

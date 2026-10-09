@@ -13,9 +13,11 @@ import { homeMessages } from '@/messages/home';
 export const dynamic = 'force-dynamic';
 
 /**
- * `/family` — the parent's home. task.md § 7 says it goes to the first child's
- * report; until M5 builds that report this lists the children with the
- * relationship to each, plus any guardian invitations waiting for an answer.
+ * `/family` — the parent's home: the children with the relationship to each
+ * (each card opens that child's report, M5), plus any guardian invitations
+ * waiting for an answer. task.md § 7 sends it to the first child's report; a
+ * list keeps the invitations visible and serves a family with several
+ * children, and the rail links each report directly.
  *
  * The empty state is the one that matters most here, because a parent who has
  * just signed in from an educator invite lands on it.
@@ -102,16 +104,6 @@ export default async function FamilyHome({ params }: { params: Promise<{ locale:
         ))}
       </ul>
 
-      {/* The report itself is M5. Saying so beats an empty card that looks
-          like a bug. */}
-      <section className="card">
-        <span className="card__kicker">{t.soon.kicker}</span>
-        <h2 className="card__title">{t.nav.reports}</h2>
-        <p className="card__body">{t.soon.body}</p>
-        <span className="chip chip--neutral mono" style={{ alignSelf: 'flex-start' }}>
-          M5 — Measurement v0 &amp; parent reports
-        </span>
-      </section>
     </>
   );
 }

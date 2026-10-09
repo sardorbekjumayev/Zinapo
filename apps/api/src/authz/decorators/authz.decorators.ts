@@ -8,6 +8,7 @@ import { CHILD_ACCESS_KEY, CHILD_ACCESS_RESULT } from '../guards/child-access.gu
 export const STAFF_ROLE_KEY = 'znStaffRoles';
 export const PERMISSION_KEY = 'znPermissions';
 export const WORKSPACE_KEY = 'znWorkspace';
+export const APPROVED_EDUCATOR_KEY = 'znApprovedEducator';
 
 /**
  * `@RequireStaffRole('bank_editor')` — any one of the listed roles is enough.
@@ -23,6 +24,14 @@ export const RequirePermission = (...permissions: Permission[]) =>
 
 /** `@RequireWorkspace('educator')` — the actor must have that workspace at all. */
 export const RequireWorkspace = (workspace: Workspace) => SetMetadata(WORKSPACE_KEY, workspace);
+
+/**
+ * `@RequireApprovedEducator()` — an educator whose application was APPROVED.
+ * The educator workspace itself opens on `applied` (it shows /educator/pending),
+ * but nothing an educator does to or about a child works before approval
+ * (task.md § 8.4.1). A 403 like any capability check: the route is no secret.
+ */
+export const RequireApprovedEducator = () => SetMetadata(APPROVED_EDUCATOR_KEY, true);
 
 /**
  * `@ChildAccess('educator_view')` — resolves the `:childId` route param (or

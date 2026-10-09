@@ -27,6 +27,7 @@ FILES=(
   "db/init/007_item_bank.sql"
   "db/init/008_sessions.sql"
   "db/init/009_measurement.sql"
+  "db/init/010_educator.sql"
 )
 # The name recorded in schema_migration — must match what a fresh volume would
 # have been given by the entrypoint.

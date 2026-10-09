@@ -1084,13 +1084,112 @@ current run now always wins; older seasons are a fallback only.
 + audio form with Temur's three waves, then runs the real wave and measurement
 jobs over them. `POST /api/dev/tick` now runs both jobs.
 
-### M6 — Educator workspace (Release 2)
-- [ ] Educator application + trust & safety approval; staff invite of pre-approved educators.
-- [ ] Bulk phone invites (SMS with public code), invite landing `/invite/[code]`, status list, reminders.
-- [ ] PINFL + surname match-check with limits and logging; access requests (14-day TTL, one live per pair).
-- [ ] Groups; group overview (gain sort, common misconceptions, not taken + remind parents); pupil detail.
-- [ ] Practice builder (from misconception / topic), assignments, results (solved count), repeat; the parent sees the practice **count only**.
-- [ ] "My children" view; `is_own_child` auto-set; excluded from statistics and bonus.
+### M6 — Educator workspace (Release 2) — Done
+- [x] Educator application + trust & safety approval; staff invite of pre-approved educators. (`/educator/apply`, `/educator/pending`, the first tab of `/staff/cases`; notes M6-b, M6-c.)
+- [x] Bulk phone invites (SMS with public code), invite landing `/invite/[code]`, status list, reminders. (Note M6-d.)
+- [x] PINFL + surname match-check with limits and logging; access requests (14-day TTL, one live per pair). (Note M6-e.)
+- [x] Groups; group overview (gain sort, common misconceptions, not taken + remind parents); pupil detail. (Notes M6-a, M6-f.)
+- [x] Practice builder (from misconception / topic), assignments, results (solved count), repeat; the parent sees the practice **count only**. (Notes M6-g, M6-h.)
+- [x] "My children" view; `is_own_child` auto-set; excluded from statistics and bonus. (Note M6-i.)
+- [x] **DoD:** `scripts/educator-flows.sh` — 104 checks over every M6 flow, all passing; permission matrix 76 pass, 0 fail, 0 pending for M6 (15 pending, all M7–M9); earlier suites green.
+
+#### Notes on M6 — deviations and decisions
+
+**M6-a. The educator never sees a percentile — progress is a category.**
+design/08 shows each pupil's "top 21–30%" and a "+14" change in percentile
+points; § 3 and rule 1.9 forbid percentiles for educators except for their
+own child. Decided with the product owner: the spec wins. The API computes the
+gain (grades 3–4: the change in the band's midpoint between the two latest
+MEASURED waves; grades 0–2: the change in secure skills) and returns only a
+category — `up` (+3 points or more), `flat`, `look` (−5 or lower), `first`
+(nothing to compare: first wave, or no band because the cohort is under 30),
+`not_taken`. The list is sorted by that gain on the server (§ 8.4.4: by gain,
+never by level); the number itself never leaves it. The educator's own child
+keeps the full parent report, which they open as the parent.
+
+**M6-b. Applications are decided on `/staff/cases` now.** The cases queue is
+M8; its "Educator applications" tab is built in M6 (decided with the product
+owner) — `GET /staff/educator-applications`, `POST …/:personId/decision`,
+permission `educator.decide` (trust_safety). The review case opened at
+application time is resolved with the decision; the applicant is told
+(`educator_application_decided`). A rejected person may apply again.
+
+**M6-c. Pre-approval is a vouched phone number.** "The first ~100 educators are
+invited by staff and pre-approved" became `educator_preapproval` (migration
+010): staff enter a phone; when that person applies, the profile is approved
+at once with no case. Vouching for someone who already applied approves them
+on the spot. One live pre-approval per phone.
+
+**M6-d. Invites.** Each SMS link carries a per-invite code (`/invite/<code>`) as
+well as the educator's public code in the text; the landing is public
+(`GET /public/educator-invites/:code` returns only the educator's name and
+code) and leads through sign-in to M2's add-child wizard with the access
+toggle pre-filled. An invite lives 14 days; "Remind those waiting" re-sends at
+most every 3 days per invite; an expired one can be resent with a fresh code.
+A paste of up to 200 lines is validated line by line (invalid lines are
+reported by number, duplicates merged, the educator's own number skipped).
+
+**M6-e. Match-check and access requests.** Limits live in Redis (25 checks a
+Tashkent day; 3 misses in a row pause checks for an hour). Every lookup
+writes `pinfl_check_log` with the PINFL as the same keyed hash as
+`child.pinfl_hash` (INV-06); a request refused by the pause or the daily cap,
+or a malformed PINFL, never reaches the lookup and is not counted. The reply is match/no-match with a masked name and nothing about
+which half was wrong. A match returns a single-use token (15 min, bound to the
+educator) that `POST /educator/access-requests` exchanges for a `requested`
+link — so a request can only follow a successful check. One live request per
+pair (the partial unique index), a decline blocks the pair for the season
+(M2-g), and a job expires requests nobody answered in 14 days so the slot
+frees up.
+
+**M6-f. Groups and the overview.** Creating a group whose name is already in
+use returns that group; only children the educator can see (INV-15, through
+`v_educator_visible_child`) and of the group's grade can join, and a member
+whose link ended drops out of every list. The overview has two waves in play:
+the SELECTED wave (default: the open one) decides "taken / not taken", the
+reminders and the common mistakes; progress compares the latest measured waves
+up to it (an open wave is measured only after it closes). Common mistakes are
+counted per child from the misconception codes of the distractors they chose.
+Reminders reuse § 10's throttle key, so a child's parent gets at most one wave
+reminder a day from anyone.
+
+**M6-g. Practice sets are practice forms.** Built only through
+`CandidatesRepository` (the INV-08 query; it gained a misconception filter).
+"From a mistake" takes the items carrying that distractor code and fills up
+from the same topic; one accepted (pretest) item rides along unscored in a
+full-size set; slots are tagged with their source and ordered easy → hard.
+Swap picks the nearest difficulty in the topic, then the cluster. Assigning
+freezes the form (INV-09). "Solved" counts scored items only — for the child,
+the educator and the "struggled" rule (fewer than 60 %) alike. Undo is
+possible for 15 minutes while nobody has started. One attempt per child per
+assignment; "repeat" is a new assignment pointing at the old one.
+
+**M6-h. The family side of practice.** The parent sees the assigned sets and
+whether each is done, and starts one in kid mode
+(`POST /family/children/:id/practice/:assignmentId/sessions`) — never how many
+were solved (§ 12 M6: "count only"). Practice sessions have no wave, so
+`begin` no longer requires one: no time limit means no deadline. Practice
+never reaches measurement (the job reads monitoring sessions only).
+
+**M6-i. The educator's own child.** `is_own_child` is set by the M1 trigger.
+Such a child is left out of the group overview and its statistics and appears
+under "My children" (by guardianship) with the full parent report. The bonus
+exclusion is recorded here and enforced where the bonus is computed (M9 — no
+bonus calculation exists before then); the proctoring rule is M1's
+`proctor_assignment_not_own`.
+
+**M6-k. Small fixes found on the way.** Sign-in now honours `?next=` (a path
+inside the same locale only — no open redirect): without it a parent coming
+from `/invite/<code>` lost the invite, and every protected page bounced to the
+dashboard. `/family` dropped its "reports are coming in M5" placeholder card —
+each child card opens that child's report. The educator rail lists the groups
+by name (design/08). Practice titles come in uz and ru.
+
+**M6-j. Development fixture.** `POST /dev/seed-educator` (run by `seed.sh`)
+links 17 synthetic grade 4 children to Aziza in her group, has 12 of them take
+the open wave 4, adds invitations in every state, one past practice set
+(assigned to 12, done by 9), an applicant waiting for trust & safety and a
+pre-approved phone. The dev seed also clears the match-check counters so test
+suites can run many times a day.
 
 ### M7 — Olympiad (Release 2)
 - [ ] Olympiad admin: stages, regions, grades (`is_ranked=false` for 0–2), venues, capacity.

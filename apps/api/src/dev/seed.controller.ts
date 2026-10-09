@@ -5,6 +5,9 @@ import { SeedBankService } from './seed-bank.service';
 import { SeedResultsService } from './seed-results.service';
 import { SessionsService } from '../sessions/sessions.service';
 import { MeasurementService } from '../measurement/measurement.service';
+import { RedisService } from '../redis/redis.service';
+import { InvitesService } from '../educator/invites.service';
+import { SeedEducatorService } from './seed-educator.service';
 
 /**
  * `POST /api/dev/seed` — the M1 development fixture (task.md § 12).
@@ -24,11 +27,18 @@ export class SeedController {
     private readonly seedResults: SeedResultsService,
     private readonly sessions: SessionsService,
     private readonly measurement: MeasurementService,
+    private readonly seedEducator: SeedEducatorService,
+    private readonly invites: InvitesService,
+    private readonly redis: RedisService,
   ) {}
 
   @Post('seed')
   async run(): Promise<SeedResult> {
     if (this.config.isProd) throw new NotFoundException();
+    // The match-check's daily limit and miss counters (M6): a test suite that
+    // runs many times a day would otherwise lock the seeded educators out.
+    const stale = await this.redis.client.keys('zn:mc:*');
+    if (stale.length) await this.redis.client.del(...stale);
     return this.seed.run();
   }
 
@@ -46,12 +56,20 @@ export class SeedController {
     return this.seedResults.run();
   }
 
-  /** `POST /api/dev/tick` — run the sessions/wave job and the measurement job now. */
+  /** `POST /api/dev/seed-educator` — M6: Aziza's groups, invitations, practice. Needs the three above. */
+  @Post('seed-educator')
+  async educator() {
+    if (this.config.isProd) throw new NotFoundException();
+    return this.seedEducator.run();
+  }
+
+  /** `POST /api/dev/tick` — run the sessions/wave job, the measurement job and the access-request expiry now. */
   @Post('tick')
   async tick() {
     if (this.config.isProd) throw new NotFoundException();
     const sessions = await this.sessions.tick();
     const runs = await this.measurement.tick();
-    return { ...sessions, runs };
+    const expiredRequests = await this.invites.expireLapsedRequests();
+    return { ...sessions, runs, expiredRequests };
   }
 }

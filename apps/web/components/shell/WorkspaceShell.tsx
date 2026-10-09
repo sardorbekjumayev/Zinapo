@@ -3,7 +3,7 @@ import { NavRail } from './NavRail';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 import { WorkspaceSwitcher } from './WorkspaceSwitcher';
-import { navFor, type RailChild } from './nav-items';
+import { navFor, type RailChild, type RailGroup } from './nav-items';
 import { getMessages, type Locale } from '@/lib/i18n';
 import { initialsOf, type Me, type Workspace } from '@/lib/me';
 
@@ -20,6 +20,7 @@ export function WorkspaceShell({
   workspace,
   crumb,
   kids,
+  teachingGroups,
   children,
 }: {
   locale: Locale;
@@ -29,10 +30,12 @@ export function WorkspaceShell({
   crumb: string;
   /** The family rail lists each child (design/02, design/06). */
   kids?: RailChild[];
+  /** The educator rail lists each group (design/08). */
+  teachingGroups?: RailGroup[];
   children: React.ReactNode;
 }) {
   const t = getMessages(locale);
-  const groups = navFor(workspace, locale, me, t, kids);
+  const groups = navFor(workspace, locale, me, t, kids, teachingGroups);
 
   const note = noteFor(workspace, me, t);
 

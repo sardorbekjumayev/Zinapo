@@ -200,14 +200,17 @@ export class SessionsService implements OnModuleInit, OnApplicationShutdown {
     const s = await this.authorised(actor, sessionId);
     if (s.status !== 'started') throw new ConflictException({ error: 'SESSION_CLOSED', details: { status: s.status } });
     const row = await this.db.one<{ deadline_at: Date | null }>(
+      // Practice has no wave (M6): no limit and no wave means no deadline —
+      // LEAST ignores NULLs, so the time limit alone applies when there is one.
       `UPDATE session s
-          SET deadline_at = COALESCE(s.deadline_at, LEAST(
-                w.closes_at,
-                CASE WHEN f.time_limit_sec IS NULL THEN w.closes_at
-                     ELSE now() + make_interval(secs => f.time_limit_sec) END)),
+          SET deadline_at = COALESCE(s.deadline_at, (
+                SELECT LEAST(w.closes_at,
+                             CASE WHEN f.time_limit_sec IS NULL THEN NULL
+                                  ELSE now() + make_interval(secs => f.time_limit_sec) END)
+                  FROM form f LEFT JOIN wave w ON w.id = s.wave_id
+                 WHERE f.id = s.form_id)),
               test_language = COALESCE(s.test_language, $2)
-         FROM form f, wave w
-        WHERE s.id = $1 AND f.id = s.form_id AND w.id = s.wave_id
+        WHERE s.id = $1
         RETURNING s.deadline_at`,
       [sessionId, language ?? null],
     );
@@ -363,9 +366,12 @@ export class SessionsService implements OnModuleInit, OnApplicationShutdown {
       return { sessionId, mode: s.mode, status: s.status, submittedAt: s.submitted_at };
     }
     const counts = await this.db.one<{ solved: number; total: number }>(
+      // Scored items only: a pretest item rides along unscored (M6), and the
+      // child's "solved" must match what the educator sees.
       `SELECT count(*) FILTER (WHERE r.is_correct)::int AS solved, count(*)::int AS total
-         FROM response r WHERE r.session_id = $1`,
-      [sessionId],
+         FROM response r JOIN form_item fi ON fi.form_id = $2 AND fi.item_version_id = r.item_version_id AND fi.is_scored
+        WHERE r.session_id = $1`,
+      [sessionId, s.form_id],
     );
     return { sessionId, mode: s.mode, status: s.status, submittedAt: s.submitted_at, solved: counts?.solved ?? 0, total: counts?.total ?? 0 };
   }
