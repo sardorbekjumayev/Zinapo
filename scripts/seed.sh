@@ -44,3 +44,8 @@ print(f"\nSeason: {d['season']['code']}\n")
 print("Without a bot token, get a sign-in code with:")
 print("  ./scripts/dev-code.sh +998901110001\n")
 PY
+
+# M3: a grade 4 item bank for the bank list, the review queue and the form
+# builder (idempotent — skipped when grade 4 already has seeded items).
+bank=$(curl -sS -X POST "$API/api/dev/seed-bank" -H 'Content-Type: application/json')
+echo "Item bank: $bank"

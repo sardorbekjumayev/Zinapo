@@ -36,6 +36,8 @@ export const TEMPLATES = [
   'final_venue_details',
   // Trust & safety
   'case_needs_owner_confirmation',
+  // Item bank (to the author)
+  'item_reviewed',
 ] as const;
 
 export type Template = (typeof TEMPLATES)[number];

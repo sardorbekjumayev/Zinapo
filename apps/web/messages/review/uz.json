@@ -1,0 +1,129 @@
+{
+  "page": {
+    "title": "Koʻrib chiqish navbati",
+    "subtitle": "Ikki qoʻlli tekshiruv: avval savolni kalitsiz yechasiz, keyin unga baho berasiz. Javoblar mos kelmasa, savol rad etiladi.",
+    "statsLabel": "Mavsumdagi xulosalaringiz",
+    "statAccepted": "qabul qilindi",
+    "statRevise": "qayta ishlashga",
+    "statRejected": "rad etildi",
+    "statLeft": "qoldi"
+  },
+  "queue": {
+    "title": "Navbat",
+    "leftFmt": "{n} ta savol qoldi",
+    "label": "Koʻrib chiqiladigan savollar",
+    "solvedChip": "yechilgan",
+    "payTitle": "Mualliflarga qabul qilingan savol uchun haq toʻlanadi",
+    "payBody": "Topshirilgan savol uchun emas. Xulosangiz toʻlovni hal qiladi, shuning uchun kalit siz javob bermaguningizcha yashirin turadi."
+  },
+  "item": {
+    "authorLbl": "Muallif",
+    "gradeFmt": "{g}-sinf",
+    "versionFmt": "{n}-versiya",
+    "stepsLabel": "Koʻrib chiqish bosqichlari",
+    "step1": "Kalitsiz yechish",
+    "step2": "Kalit va xulosa",
+    "langLabel": "Savol tili",
+    "langUz": "Oʻzbekcha",
+    "langRu": "Ruscha",
+    "imageAlt": "Savol rasmi",
+    "audioLbl": "Savol audiosi",
+    "constructLbl": "Nimani oʻlchaydi"
+  },
+  "solve": {
+    "over": "1-BOSQICH · KALITSIZ YECHISH",
+    "hint": "Muallifning kaliti va izohlari yashirin. Oʻzingiz toʻgʻri deb bilgan javobni tanlang.",
+    "optionsLabel": "Javob variantlari",
+    "reveal": "Muallif kalitini ochish",
+    "revealHint": "Kalit ochilgach, javobingiz qayd etiladi va uni oʻzgartirib boʻlmaydi.",
+    "revealNeed": "Avval javobni tanlang.",
+    "decidedOther": "Bu versiyaga boshqa taqrizchi allaqachon xulosa bergan. Navbatdagi keyingi savolga oʻting."
+  },
+  "reveal": {
+    "over": "2-BOSQICH · KALIT VA XULOSA",
+    "matchChip": "Javoblar mos",
+    "keyChip": "Muallif kaliti: {l}",
+    "yourChip": "Sizning javobingiz: {l}",
+    "keyTag": "Kalit",
+    "yourTag": "Siz tanladingiz",
+    "misconceptionLbl": "Xato turi",
+    "rationaleLbl": "Muallif izohi",
+    "noMisconception": "Xato turi koʻrsatilmagan",
+    "checkOver": "NIMANI TEKSHIRISH KERAK",
+    "checkFmt": "Har bir notoʻgʻri variant haqiqiy xato turiga mos keladimi, “son uchun” qoʻshilmaganmi? Muallif fikricha, {g}-sinf oʻquvchilarining {p} foizi bu savolni yechadi — shunga ishonasizmi? Oʻzbekcha va ruscha matnlar aynan bir narsani soʻrayaptimi?",
+    "checkNoP": "Har bir notoʻgʻri variant haqiqiy xato turiga mos keladimi, “son uchun” qoʻshilmaganmi? Oʻzbekcha va ruscha matnlar aynan bir narsani soʻrayaptimi?"
+  },
+  "dis": {
+    "title": "Javoblar mos emas — savol avtomatik rad etildi",
+    "body": "Siz {you} variantini tanladingiz, muallif kaliti esa {key}. Ikki qoʻlli tekshiruvda javobdagi har qanday nomuvofiqlik rad etishni anglatadi: yo savolni ikki xil tushunish mumkin, yo kalit xato. {author} ikkala javobni ham koʻradi va yangi versiya yuborishi mumkin.",
+    "next": "Qayd etish va keyingi savolga oʻtish"
+  },
+  "verdict": {
+    "label": "Xulosa",
+    "accept": "Qabul qilish",
+    "acceptSub": "Sinovga yuboriladi. Muallifga haq toʻlanadi.",
+    "revise": "Qayta ishlashga",
+    "reviseSub": "Muallifga qaytadi. Tuzatish yangi versiya boʻladi.",
+    "reject": "Rad etish",
+    "rejectSub": "Yaroqsiz. Muallifga haq toʻlanmaydi.",
+    "auto": "avtomatik rad etildi",
+    "notesLbl": "Muallif uchun izoh",
+    "notesOpt": "ixtiyoriy",
+    "notesReq": "majburiy",
+    "notesPh": "Aynan nimani va nima uchun oʻzgartirish kerak?",
+    "notesErr": "Izoh yozing: muallif nimani tuzatishini bilishi kerak.",
+    "submit": "Xulosani yuborish",
+    "submitNeed": "Avval xulosani tanlang.",
+    "submitReady": "Yuborilgach, navbatdagi keyingi savol ochiladi."
+  },
+  "done": {
+    "title": "Bu savol koʻrib chiqilgan",
+    "body": "Xulosa: {v}. Xulosa oʻzgarmaydi — muallif yangi versiya yuboradi va u yana shu navbatga tushadi.",
+    "noteLbl": "Izohingiz",
+    "next": "Keyingi savolni ochish"
+  },
+  "toast": {
+    "accept": "{code} qabul qilindi. Bu savol uchun {author}ga haq toʻlanadi.",
+    "revise": "{code} qayta ishlash uchun {author}ga qaytarildi. Tuzatilgan savol yangi versiya boʻlib keladi.",
+    "reject": "{code} rad etildi. Bu savol uchun haq toʻlanmaydi.",
+    "auto": "{code} avtomatik rad etildi: javoblar mos kelmadi.",
+    "match": "Javobingiz muallif kaliti bilan mos keldi. Endi xulosa bering."
+  },
+  "states": {
+    "emptyTitle": "Navbat boʻsh",
+    "emptyBody": "Topshirilgan barcha savollarga xulosa berildi. Muallif yangi savol yuborishi bilan u shu yerda paydo boʻladi.",
+    "emptyCta": "Savollar bankini ochish",
+    "emptyCta2": "Forma yigʻishga oʻtish",
+    "errTitle": "Koʻrib chiqish navbatini yuklab boʻlmadi",
+    "errBody": "Yuborilgan xulosalaringiz saqlangan. Birozdan soʻng qayta urinib koʻring.",
+    "retry": "Qayta urinish",
+    "noAccessTitle": "Bu boʻlimga kirish huquqingiz yoʻq",
+    "noAccessBody": "Koʻrib chiqish navbati faqat taqrizchilar uchun. Huquq kerak boʻlsa, administratorga murojaat qiling.",
+    "noAccessCta": "Xodimlar paneliga qaytish",
+    "itemErrTitle": "Bu savolni ochib boʻlmadi",
+    "itemErrBody": "Savol bankdan javob kelmadi. Qayta urinib koʻring yoki navbatdan boshqa savolni tanlang.",
+    "notFoundTitle": "Bunday savol topilmadi",
+    "notFoundBody": "Havola eskirgan boʻlishi mumkin. Navbatdan savolni tanlang.",
+    "unavailableTitle": "Bu savolni siz koʻrib chiqa olmaysiz",
+    "unavailableBody": "Yo bu sizning savolingiz (oʻz savolini hech kim koʻrib chiqmaydi), yo u endi koʻrib chiqishda emas."
+  },
+  "errors": {
+    "own_item": "Oʻz savolingizni koʻrib chiqa olmaysiz.",
+    "not_in_review": "Bu savol endi koʻrib chiqishda emas.",
+    "decided": "Bu versiyaga allaqachon xulosa berilgan.",
+    "not_solved": "Avval savolni kalitsiz yeching.",
+    "already_solved": "Siz bu savolni allaqachon yechgansiz — sahifa yangilandi.",
+    "disagreed": "Javoblar mos kelmagani uchun savol avtomatik rad etilgan.",
+    "note_required": "Izoh yozing: muallif nimani tuzatishini bilishi kerak.",
+    "NOT_FOUND": "Savol topilmadi. Sahifa yangilandi.",
+    "OPTION_NOT_FOUND": "Bu variant topilmadi. Sahifani yangilang.",
+    "FORBIDDEN": "Bu amal uchun huquqingiz yoʻq.",
+    "NETWORK": "Aloqa uzildi. Internetni tekshirib, qayta urinib koʻring.",
+    "generic": "Nimadir xato ketdi. Qayta urinib koʻring."
+  },
+  "cluster": {
+    "numeracy": "Raqamlar va hisob",
+    "reasoning": "Mantiq va fikrlash",
+    "language": "Til"
+  }
+}

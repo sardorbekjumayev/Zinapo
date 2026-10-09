@@ -24,6 +24,7 @@ FILES=(
   "db/init/004_roles_and_ops.sql"
   "db/init/005_reference_data.sql"
   "db/init/006_family_identity.sql"
+  "db/init/007_item_bank.sql"
 )
 # The name recorded in schema_migration — must match what a fresh volume would
 # have been given by the entrypoint.

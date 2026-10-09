@@ -35,6 +35,7 @@ exists in the shell and renders a screen naming the milestone it waits for.
 │   ├── permission-matrix.sh  one check per cell of task.md § 3
 │   ├── routing.sh            the dashboard router and workspace gate
 │   ├── family-flows.sh       every M2 family & identity flow, end to end
+│   ├── bank-flows.sh         every M3 item bank & form flow, incl. the INV-08 test
 │   ├── dev-login.mjs         print session cookies for a phone (dev only)
 │   └── dev-code.sh           prints the sign-in code when there is no bot token
 ├── task.md                   the master build plan, milestone by milestone
@@ -136,11 +137,12 @@ hashes and every invariant applies to them. It is idempotent.
 ## Checking it works
 
 ```bash
-./scripts/db-test.sh            # 36 checks — one per invariant in docs/schema.sql, plus M2's
+./scripts/db-test.sh            # 39 checks — one per invariant in docs/schema.sql, plus M2's and M3's
 ./scripts/acceptance.sh         # 45 checks — the sign-in spec § 11
 ./scripts/routing.sh            # 24 checks — the dashboard router and workspace gate
 ./scripts/permission-matrix.sh  # one check per cell of task.md § 3
 ./scripts/family-flows.sh       # 75 checks — add child, invites, transfer, access, consents, deletion
+./scripts/bank-flows.sh         # 60 checks — taxonomy, item card, blind review, media, forms, INV-08
 (cd apps/api && npm run lint)   # tsc --noEmit
 (cd apps/web && npm run lint)
 ```

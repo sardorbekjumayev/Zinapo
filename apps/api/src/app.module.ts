@@ -7,6 +7,8 @@ import { AuthModule } from './auth/auth.module';
 import { AuthzModule } from './authz/authz.module';
 import { IdentityModule } from './identity/identity.module';
 import { MeModule } from './me/me.module';
+import { MediaModule } from './media/media.module';
+import { BankModule } from './bank/bank.module';
 import { NotifyModule } from './notify/notify.module';
 import { TrustModule } from './trust/trust.module';
 import { TelegramModule } from './telegram/telegram.module';
@@ -34,6 +36,8 @@ const devModules = process.env.NODE_ENV === 'production' ? [] : [DevModule];
     TrustModule,
     IdentityModule,
     MeModule,
+    MediaModule,
+    BankModule,
     TelegramModule,
     ...devModules,
   ],

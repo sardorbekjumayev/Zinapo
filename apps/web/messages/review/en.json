@@ -1,0 +1,129 @@
+{
+  "page": {
+    "title": "Review queue",
+    "subtitle": "Two-hand review: you solve each item blind first, then critique it. If your answer and the author’s key disagree, the item is rejected.",
+    "statsLabel": "Your verdicts this season",
+    "statAccepted": "accepted",
+    "statRevise": "to revise",
+    "statRejected": "rejected",
+    "statLeft": "left"
+  },
+  "queue": {
+    "title": "Queue",
+    "leftFmt": "{n} items left",
+    "label": "Items to review",
+    "solvedChip": "solved",
+    "payTitle": "Authors are paid per accepted item",
+    "payBody": "Not per submitted item. Your verdict decides the payment, so the key stays hidden until you have answered."
+  },
+  "item": {
+    "authorLbl": "Author",
+    "gradeFmt": "Grade {g}",
+    "versionFmt": "Version {n}",
+    "stepsLabel": "Review steps",
+    "step1": "Solve blind",
+    "step2": "Key and critique",
+    "langLabel": "Item language",
+    "langUz": "Uzbek",
+    "langRu": "Russian",
+    "imageAlt": "Picture for the item",
+    "audioLbl": "Item audio",
+    "constructLbl": "What it measures"
+  },
+  "solve": {
+    "over": "STEP 1 · BLIND SOLVE",
+    "hint": "The author’s key and rationales are hidden. Choose the answer you believe is correct.",
+    "optionsLabel": "Answer options",
+    "reveal": "Reveal author’s key",
+    "revealHint": "Once the key is revealed, your answer is locked in.",
+    "revealNeed": "Choose an answer first.",
+    "decidedOther": "Another reviewer has already given a verdict on this version. Move on to the next item."
+  },
+  "reveal": {
+    "over": "STEP 2 · KEY AND CRITIQUE",
+    "matchChip": "Answers match",
+    "keyChip": "Author’s key: {l}",
+    "yourChip": "Your answer: {l}",
+    "keyTag": "Key",
+    "yourTag": "Your choice",
+    "misconceptionLbl": "Misconception",
+    "rationaleLbl": "Author’s rationale",
+    "noMisconception": "No misconception given",
+    "checkOver": "WHAT TO CHECK",
+    "checkFmt": "Does every distractor match a real misconception rather than filling a slot? The author expects {p}% of grade {g} to solve it — does that feel right? Do the Uzbek and Russian versions ask exactly the same thing?",
+    "checkNoP": "Does every distractor match a real misconception rather than filling a slot? Do the Uzbek and Russian versions ask exactly the same thing?"
+  },
+  "dis": {
+    "title": "Answers disagree — this item is rejected automatically",
+    "body": "You chose {you}; the author’s key is {key}. In two-hand review any disagreement on the answer means rejection: either the item can be read two ways or the key is wrong. {author} will see both answers and can submit a new version.",
+    "next": "Record and open next item"
+  },
+  "verdict": {
+    "label": "Verdict",
+    "accept": "Accept",
+    "acceptSub": "Goes to pretesting. The author is paid.",
+    "revise": "Revise",
+    "reviseSub": "Back to the author. The fix becomes a new version.",
+    "reject": "Reject",
+    "rejectSub": "Unusable. The author isn’t paid for it.",
+    "auto": "rejected automatically",
+    "notesLbl": "Notes for the author",
+    "notesOpt": "optional",
+    "notesReq": "required",
+    "notesPh": "What exactly should change, and why?",
+    "notesErr": "Add a note: the author needs to know what to fix.",
+    "submit": "Submit verdict",
+    "submitNeed": "Choose a verdict first.",
+    "submitReady": "After you submit, the next item in the queue opens."
+  },
+  "done": {
+    "title": "Already reviewed",
+    "body": "Verdict: {v}. Verdicts are final — the author responds with a new version, which comes back to this queue.",
+    "noteLbl": "Your note",
+    "next": "Open next item"
+  },
+  "toast": {
+    "accept": "{code} accepted. {author} will be paid for it.",
+    "revise": "{code} returned to {author} for revision. The fix will come back as a new version.",
+    "reject": "{code} rejected. No payment for this item.",
+    "auto": "{code} rejected automatically: the answers disagreed.",
+    "match": "Your answer matches the author’s key. Now give your verdict."
+  },
+  "states": {
+    "emptyTitle": "The queue is clear",
+    "emptyBody": "Every submitted item has a verdict. New items appear here as soon as an author submits them.",
+    "emptyCta": "Open the item bank",
+    "emptyCta2": "Go to the form builder",
+    "errTitle": "We couldn’t load the review queue",
+    "errBody": "Verdicts you have already submitted are saved. Try again in a moment.",
+    "retry": "Try again",
+    "noAccessTitle": "You don’t have access to this section",
+    "noAccessBody": "The review queue is for item reviewers only. Ask an administrator if you need access.",
+    "noAccessCta": "Back to the staff console",
+    "itemErrTitle": "We couldn’t open this item",
+    "itemErrBody": "The item bank didn’t respond. Try again, or pick another item from the queue.",
+    "notFoundTitle": "Item not found",
+    "notFoundBody": "The link may be out of date. Pick an item from the queue.",
+    "unavailableTitle": "You can’t review this item",
+    "unavailableBody": "Either it is your own item (nobody reviews their own), or it is no longer in review."
+  },
+  "errors": {
+    "own_item": "You can’t review your own item.",
+    "not_in_review": "This item is no longer in review.",
+    "decided": "This version already has a verdict.",
+    "not_solved": "Solve the item blind first.",
+    "already_solved": "You have already solved this item — the page was refreshed.",
+    "disagreed": "The answers disagreed, so the item was rejected automatically.",
+    "note_required": "Add a note: the author needs to know what to fix.",
+    "NOT_FOUND": "Item not found. The page was refreshed.",
+    "OPTION_NOT_FOUND": "That option wasn’t found. Refresh the page.",
+    "FORBIDDEN": "You don’t have permission to do that.",
+    "NETWORK": "The connection dropped. Check your internet and try again.",
+    "generic": "Something went wrong. Please try again."
+  },
+  "cluster": {
+    "numeracy": "Numeracy",
+    "reasoning": "Reasoning",
+    "language": "Language"
+  }
+}

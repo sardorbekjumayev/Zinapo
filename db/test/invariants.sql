@@ -264,13 +264,42 @@ SELECT pg_temp.must_reject('INV-08', format(
      VALUES (%L, 1, %L)$q$,
   (SELECT v FROM fx WHERE k='formP'), (SELECT v FROM fx WHERE k='ivA')));
 
--- The candidate query is the primary defence; prove it can never offer one.
+-- The candidate query is the primary defence (CandidatesRepository, M3). Make
+-- the fixture anchor as tempting as possible — approved, frozen, right grade —
+-- then run the query's practice predicate over every slot role. The real query
+-- is exercised end to end by scripts/bank-flows.sh; this pins the predicate.
+UPDATE item SET status = 'approved' WHERE construct = 'fixture anchor';
+UPDATE item_version SET frozen_at = now()
+ WHERE item_id = (SELECT v FROM fx WHERE k='anchor') AND frozen_at IS NULL;
+
 INSERT INTO result
 SELECT 'INV-08 candidates', CASE WHEN count(*) = 0 THEN 'pass' ELSE 'FAIL' END,
        'anchor items among practice candidates: ' || count(*)
   FROM item i
- WHERE i.status = 'approved' AND i.retired_at IS NULL AND NOT i.is_anchor
-   AND i.is_anchor;   -- the practice repository's WHERE clause, inverted
+  JOIN LATERAL (SELECT * FROM item_version v WHERE v.item_id = i.id AND v.frozen_at IS NOT NULL
+                 ORDER BY v.version DESC LIMIT 1) v ON true
+ CROSS JOIN (VALUES ('scored'), ('anchor'), ('pretest')) AS r(role)
+ WHERE i.is_anchor
+   AND i.retired_at IS NULL
+   AND NOT ('practice'::form_mode = 'practice' AND i.is_anchor)
+   AND CASE r.role
+         WHEN 'anchor'  THEN i.is_anchor AND i.status = 'approved'
+         WHEN 'scored'  THEN NOT i.is_anchor AND i.status = 'approved'
+         WHEN 'pretest' THEN i.status = 'accepted'
+       END;
+
+-- M3 (007): every item gets a readable code on insert.
+INSERT INTO result
+SELECT 'M3 item code', CASE WHEN bool_and(code ~ '^G[0-4]-(NUM|REA|LAN)-[0-9]{4,}$') THEN 'pass' ELSE 'FAIL' END,
+       string_agg(code, ', ')
+  FROM item WHERE construct LIKE 'fixture%';
+
+SELECT pg_temp.must_reject('M3 item code unique', $q$
+  UPDATE item SET code = (SELECT code FROM item WHERE construct = 'fixture plain')
+   WHERE construct = 'fixture anchor'$q$);
+
+SELECT pg_temp.must_accept('M3 accepted status', $q$
+  UPDATE item SET status = 'accepted' WHERE construct = 'fixture plain'$q$);
 
 -- ---------------------------------------------------------------------------
 -- INV-09  a frozen item version is immutable

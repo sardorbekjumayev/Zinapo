@@ -102,6 +102,9 @@ const STAFF_NAV: { roles: StaffRole[]; key: keyof Messages['nav']; href: string;
   [
     { roles: ['item_author', 'item_reviewer', 'bank_editor'], key: 'items', href: 'items', icon: 'bank' },
     { roles: ['item_reviewer'], key: 'review', href: 'review', icon: 'check' },
+    // M3: everyone who writes or reads items reads the taxonomy; only the bank
+    // editor changes it (the page and the API both enforce that).
+    { roles: ['item_author', 'item_reviewer', 'bank_editor'], key: 'taxonomy', href: 'taxonomy', icon: 'list' },
     { roles: ['bank_editor'], key: 'forms', href: 'forms', icon: 'file' },
     { roles: ['bank_editor'], key: 'calibration', href: 'calibration', icon: 'gauge' },
     { roles: ['season_manager'], key: 'seasons', href: 'seasons', icon: 'calendar' },

@@ -133,7 +133,8 @@
     "noteChildren": "{n} ребёнка",
     "noteChildrenSub": "Отчёт обновляется после закрытия каждой волны.",
     "noteRoles": "{n} роли сотрудника",
-    "gradeShort": "{n} класс"
+    "gradeShort": "{n} класс",
+    "taxonomy": "Таксономия"
   },
   "dashboardRouter": {
     "checking": "Проверяем ваши роли…",

@@ -16,6 +16,7 @@ export const PERMISSIONS = [
   'item.review',          // two-hand review: blind solve, then critique
   'item.approve',         // approve / retire, designate anchors
   'item.statistics',
+  'taxonomy.manage',      // topics, skills, misconceptions (M3, note M3-d)
   // Forms and calibration
   'form.build',
   'form.freeze',
@@ -64,6 +65,7 @@ export const STAFF_PERMISSIONS: Record<StaffRole, readonly Permission[]> = {
     'item.read.all',
     'item.approve',
     'item.statistics',
+    'taxonomy.manage',
     'form.build',
     'form.freeze',
     'calibration.run',

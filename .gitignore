@@ -9,3 +9,6 @@ dist/
 # Cookie jars left in the repo root by scripts/acceptance.sh
 /j[0-9]*.txt
 /ja.txt
+
+# Local media store (M3, apps/api/.media)
+.media/

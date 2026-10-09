@@ -105,6 +105,17 @@ const uz: Dict = {
   case_needs_owner_confirmation: (v) =>
     `${v.child} profiliga ruxsatlarni vaqtincha toʻxtatdik va tasdiqlashingizni soʻraymiz.\n\n` +
     `${v.reason}\n\nBu ${v.child}ning maʼlumotlarini himoya qilish uchun. Tekshirib, javob bering: ${v.link}`,
+
+  item_reviewed: (v) =>
+    `${v.item} savoli koʻrib chiqildi: ${
+      v.verdict === 'accept'
+        ? 'qabul qilindi. Toʻlov shu savol uchun hisoblanadi.'
+        : v.verdict === 'revise'
+          ? 'tuzatish kerak. Taqrizchi izohini oʻqib, yangi versiya yuboring.'
+          : v.verdict === 'auto_reject'
+            ? 'rad etildi — taqrizchining javobi kalit bilan mos kelmadi.'
+            : 'rad etildi.'
+    }`,
 };
 
 const ru: Dict = {
@@ -191,6 +202,17 @@ const ru: Dict = {
   case_needs_owner_confirmation: (v) =>
     `Мы временно приостановили доступы к профилю ${v.child} и просим вас их подтвердить.\n\n` +
     `${v.reason}\n\nЭто защита данных ${v.child}. Проверьте и ответьте: ${v.link}`,
+
+  item_reviewed: (v) =>
+    `Задание ${v.item} проверено: ${
+      v.verdict === 'accept'
+        ? 'принято. Оплата за него будет начислена.'
+        : v.verdict === 'revise'
+          ? 'нужна доработка. Прочитайте замечание рецензента и отправьте новую версию.'
+          : v.verdict === 'auto_reject'
+            ? 'отклонено — ответ рецензента не совпал с ключом.'
+            : 'отклонено.'
+    }`,
 };
 
 /** `kaa` falls back to uz until the Karakalpak copy exists (task.md § 14.4). */

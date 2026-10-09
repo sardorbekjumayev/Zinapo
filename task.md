@@ -859,13 +859,80 @@ means the policy refused. Before this, every M2 deny row would have stayed
 PENDING forever. The owner rows act on real fixtures (Aziza's link is switched
 off and restored) and clean up after themselves.
 
-### M3 — Item bank & forms (Release 1)
-- [ ] Taxonomy CRUD: topics (3 clusters), skills (grades 0–2), misconceptions.
-- [ ] Item editor: versions, options, distractor validation (code + rationale), audio for grades 0–1, uz/ru versions, media upload to in-country storage.
-- [ ] Review queue: blind solve → reveal → verdict; auto-reject on disagreement; no self-review; `accepted_at` for author payment.
-- [ ] Freeze version (DB trigger already exists) + "create new version".
-- [ ] Form builder: slots by role, anchor placement rules, pretest unscored, cluster coverage, rule checks API, freeze.
-- [ ] **Anchor exclusion for practice in the candidate SQL**, plus a test that fails if an anchor can be selected.
+### M3 — Item bank & forms (Release 1) — Done
+- [x] Taxonomy CRUD: topics (3 clusters), skills (grades 0–2), misconceptions. (`/staff/taxonomy`; note M3-d.)
+- [x] Item editor: versions, options, distractor validation (code + rationale), audio for grades 0–1, uz/ru versions, media upload to in-country storage. (`/staff/items/new`, `/staff/items/[id]`; notes M3-b, M3-c, M3-e.)
+- [x] Review queue: blind solve → reveal → verdict; auto-reject on disagreement; no self-review; `accepted_at` for author payment. (`/staff/review`.)
+- [x] Freeze version (DB trigger already exists) + "create new version". (Submitting freezes; note M3-e.)
+- [x] Form builder: slots by role, anchor placement rules, pretest unscored, cluster coverage, rule checks API, freeze. (`/staff/forms`, `/staff/forms/[id]`; note M3-f.)
+- [x] **Anchor exclusion for practice in the candidate SQL**, plus a test that fails if an anchor can be selected. (`bank/candidates.repository.ts`; `scripts/bank-flows.sh` "INV-08" group and `db/test` "INV-08 candidates" — note M3-g.)
+- [x] **DoD:** `scripts/bank-flows.sh` — 60 checks, all passing; permission matrix 50 pass, 0 fail, 0 pending for M3 (41 pending, all M4–M9); `scripts/db-test.sh` 39; M2 suites still green.
+
+#### Notes on M3 — deviations and decisions
+
+**M3-a. Clusters stay `numeracy / reasoning / language`** (decided with the
+product owner). design/11–14 use "Number & computation / Problem solving /
+Logic & space"; the schema, the topics and the misconceptions were confirmed in
+M1, and "language" has no counterpart in the boards. Item codes are
+`G{grade}-{NUM|REA|LAN}-{nnnn}`, assigned by a trigger on insert (new column
+`item.code`, migration 007).
+
+**M3-b. A reviewer's Accept is not the editor's approval** (decided with the
+product owner). design/13 says Accept "goes to pretesting, the author is paid";
+§ 2.1 says the bank editor "approves". New status `accepted` between
+`in_review` and `approved`: Accept sets `accepted_at` (payment) and the item can
+fill PRETEST slots only; the bank editor's Approve makes it eligible for scored
+and anchor slots; anchors are designated only on approved items. Revise sends
+the item back to `draft` for a new version; reject and auto-reject to
+`rejected`.
+
+**M3-c. Media on local disk, behind an interface** (decided with the product
+owner). No in-country S3 provider is chosen, so `MediaStorage` has one driver,
+`LocalDiskStorage` (`MEDIA_DIR`, a Docker volume kept in the production
+overlay). Files are checked by their bytes (PNG/JPEG/SVG ≤ 2 MB, MP3 ≤ 3 MB),
+registered in `media_object`, and read through short-lived HMAC-signed URLs
+(`/api/media/...`) — the same mechanism kid mode will use in M4. SVGs are
+served with a sandboxing CSP. An S3 driver is a new class, nothing else.
+
+**M3-d. Taxonomy belongs to the bank editor.** The permission map gained
+`taxonomy.manage` (bank_editor). Authors and reviewers read it. Codes never
+change; nothing an item uses is deleted — a misconception is retired, which
+hides it from new options but leaves frozen ones intact. A route
+`/staff/taxonomy` was added to § 7's list.
+
+**M3-e. Submitting freezes the version.** The reviewer must answer exactly
+what was submitted, and design/12 says "even a fixed comma means a new
+version". So `submit` validates completeness, writes the options and freezes
+the version in one transaction; every later change is "Create a new version".
+Because the schema refuses an unexplained distractor (INV-10) and a picture
+format without its picture even in a draft, an unsubmitted version keeps its
+editable content in `item_version.draft` (jsonb) until submit. Item-level
+fields (grade, topic, skill, construct) lock once anything has been submitted.
+A reviewer cannot read the key from the item card before solving blind
+(`keysHidden`). The back-translation workflow on design/12 is not in the spec
+and was not built.
+
+**M3-f. Form rules, made concrete.** A form is a plan (role per position) plus
+filled positions; design/14's template is 30 positions for monitoring (12
+anchors in 10–21, 5 pretest, 13 core) and 18 for practice (13 core, 5 pretest).
+Rules: every position filled; every item still valid for its slot; anchors
+cover easy/medium/hard (calibrated b when there is one, otherwise the author's
+expected p: ≥ 0.70 easy, < 0.40 hard); anchors only in the middle half of the
+form (for 30 positions: 8–23); 4–5 unscored pretest items in monitoring; at
+least 6 scored items per cluster that covers the grade; no anchor in practice;
+both language versions present. Freezing requires every applicable rule.
+Time limits, waves and seasons attach to forms in M4.
+
+**M3-g. The INV-08 tests.** `bank-flows.sh` builds a practice form and asks
+the candidate query for every position: it must offer items and never an
+anchor; forcing an anchor in by id is refused by the API, and by the trigger
+underneath. The old "INV-08 candidates" DB check was a tautology
+(`NOT is_anchor AND is_anchor`); it now runs the practice predicate against an
+approved, frozen anchor.
+
+**M3-h. Development fixture.** `POST /api/dev/seed-bank` writes a grade 4 bank
+(12 anchors, 26 core, 8 accepted, 3 in review, 2 drafts) and season targets, so
+the bank, the review queue and the form builder have something to show.
 
 ### M4 — Sessions & kid mode (Release 1)
 - [ ] Seasons and waves admin (season manager).

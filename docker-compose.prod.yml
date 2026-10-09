@@ -11,7 +11,9 @@ services:
   api:
     build:
       target: prod
-    volumes: !override []
+    # No source mounts — but the media store must survive a redeploy (M3-c).
+    volumes: !override
+      - media-data:/data/media
     environment:
       NODE_ENV: production
       COOKIE_SECURE: "true"

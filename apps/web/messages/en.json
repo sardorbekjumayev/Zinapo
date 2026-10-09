@@ -133,7 +133,8 @@
     "noteChildren": "{n} children",
     "noteChildrenSub": "The report updates after each wave closes.",
     "noteRoles": "{n} staff roles",
-    "gradeShort": "Grade {n}"
+    "gradeShort": "Grade {n}",
+    "taxonomy": "Taxonomy"
   },
   "dashboardRouter": {
     "checking": "Working out your roles…",

@@ -46,6 +46,9 @@ services:
       PINFL_HASH_SALT: ${PINFL_HASH_SALT}
       PINFL_ENC_KEY: ${PINFL_ENC_KEY}
       ANONYMISATION_GRACE_DAYS: ${ANONYMISATION_GRACE_DAYS:-7}
+      # Item images and audio (M3, note M3-c). A volume on the same in-country
+      # host until an S3-compatible provider in Uzbekistan is chosen.
+      MEDIA_DIR: /data/media
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
       TELEGRAM_BOT_USERNAME: ${TELEGRAM_BOT_USERNAME}
       TELEGRAM_WEBHOOK_URL: ${TELEGRAM_WEBHOOK_URL}
@@ -53,6 +56,7 @@ services:
     volumes:
       - ./apps/api/src:/app/src
       - ./apps/api/test:/app/test
+      - media-data:/data/media
     ports:
       - "4000:4000"
     depends_on:
@@ -86,3 +90,4 @@ services:
 volumes:
   db-data:
   redis-data:
+  media-data:

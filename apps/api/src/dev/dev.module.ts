@@ -4,11 +4,12 @@ import { TelegramModule } from '../telegram/telegram.module';
 import { DevController } from './dev.controller';
 import { SeedController } from './seed.controller';
 import { SeedService } from './seed.service';
+import { SeedBankService } from './seed-bank.service';
 
 /** Development only — `app.module.ts` does not register this in production. */
 @Module({
   imports: [AuthModule, TelegramModule],
   controllers: [DevController, SeedController],
-  providers: [SeedService],
+  providers: [SeedService, SeedBankService],
 })
 export class DevModule {}
