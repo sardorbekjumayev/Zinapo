@@ -111,6 +111,9 @@ const uz: Dict = {
     `${v.olympiad} yakuniy bosqichi: ${v.date}, ${v.venue}.\n${v.address}\n\n` +
     `${v.child} bilan voyaga yetgan hamroh kelishi shart. Hamroh profil egasi boʻlmasa, bu qayd etiladi.`,
 
+  olympiad_results: (v) =>
+    `${v.olympiad} — ${v.stage} natijalari tayyor. ${v.child}ning natijasini faqat siz koʻrasiz.\n\n${v.link}`,
+
   case_needs_owner_confirmation: (v) =>
     `${v.child} profiliga ruxsatlarni vaqtincha toʻxtatdik va tasdiqlashingizni soʻraymiz.\n\n` +
     `${v.reason}\n\nBu ${v.child}ning maʼlumotlarini himoya qilish uchun. Tekshirib, javob bering: ${v.link}`,
@@ -216,6 +219,9 @@ const ru: Dict = {
   final_venue_details: (v) =>
     `Финал ${v.olympiad}: ${v.date}, ${v.venue}.\n${v.address}\n\n` +
     `С ${v.child} должен приехать совершеннолетний сопровождающий. Если это не владелец профиля, мы это зафиксируем.`,
+
+  olympiad_results: (v) =>
+    `${v.olympiad} — результаты этапа «${v.stage}» готовы. Результат ${v.child} видите только вы.\n\n${v.link}`,
 
   case_needs_owner_confirmation: (v) =>
     `Мы временно приостановили доступы к профилю ${v.child} и просим вас их подтвердить.\n\n` +

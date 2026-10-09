@@ -19,6 +19,7 @@ import { fill, isLocale, type Locale } from '@/lib/i18n';
 import { familyMessages } from '@/messages/family';
 import { homeMessages } from '@/messages/home';
 import { reportMessages } from '@/messages/report';
+import { olympiadMessages } from '@/messages/olympiad';
 
 export const dynamic = 'force-dynamic';
 
@@ -287,6 +288,18 @@ export default async function ChildPage({
             <span className="fp-invite__body">
               <span className="fp-invite__title">{m.accessTitle}</span>
               <span className="fam-muted fam-small">{m.accessBody}</span>
+            </span>
+            <Icon name="arrowRight" size={18} />
+          </Link>
+
+          {/* M7: the way into the parent's olympiad (task.md § 8.1.6). */}
+          <Link href={`/${locale}/family/children/${child.id}/olympiad`} className="fp-linkCard lift">
+            <span className="fp-invite__icon" aria-hidden="true">
+              <Icon name="trophy" size={20} />
+            </span>
+            <span className="fp-invite__body">
+              <span className="fp-invite__title">{olympiadMessages(locale).entry.title}</span>
+              <span className="fam-muted fam-small">{olympiadMessages(locale).entry.body}</span>
             </span>
             <Icon name="arrowRight" size={18} />
           </Link>

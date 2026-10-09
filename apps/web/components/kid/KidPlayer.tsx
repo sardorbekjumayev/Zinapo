@@ -561,8 +561,11 @@ export function KidPlayer({
 
   const b = s?.bundle ?? initial;
   const practice = b?.mode === 'practice';
+  // M7: an online olympiad stage runs here too — monitoring's rules (no
+  // score, no review of keys), its own name.
+  const olympiad = b?.mode === 'olympiad';
   const mode = b ? (practice ? 'practice' : 'monitoring') : undefined;
-  const wave = b?.waveOrdinal ? fill(t.wave, { n: b.waveOrdinal }) : t.practice;
+  const wave = b?.waveOrdinal ? fill(t.wave, { n: b.waveOrdinal }) : olympiad ? t.olympiad : t.practice;
   const gradeLabel = b
     ? (fam.grade as Record<string, string>)[String(b.grade)] ?? fill(fam.gradeShort, { n: b.grade })
     : '';
@@ -595,7 +598,7 @@ export function KidPlayer({
     <KidBar
       brand={brand}
       mode={mode}
-      modeLabel={practice ? t.modePractice : t.modeMonitoring}
+      modeLabel={practice ? t.modePractice : olympiad ? t.modeOlympiad : t.modeMonitoring}
       who={who}
       timer={timer}
       action={action}
@@ -841,6 +844,7 @@ export function KidPlayer({
           name={s.bundle.childName}
           wave={wave}
           closesOn={closesOn}
+          olympiad={olympiad}
           submit={submitState}
           timeUp={s.timeUp}
           result={s.result}

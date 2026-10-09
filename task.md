@@ -1191,12 +1191,82 @@ the open wave 4, adds invitations in every state, one past practice set
 pre-approved phone. The dev seed also clears the match-check counters so test
 suites can run many times a day.
 
-### M7 — Olympiad (Release 2)
-- [ ] Olympiad admin: stages, regions, grades (`is_ranked=false` for 0–2), venues, capacity.
-- [ ] Parent registration; monitoring ticket (≥ 3 waves); deep-link source attribution (`/o/[slug]?src=`).
-- [ ] Online stage (kid mode, data excluded from the scale); response-time cheating signal.
-- [ ] Proctor console: roster, check-in, accompanying-adult check, offline runner package + sync upload.
-- [ ] Results: regional ranking (grades ≥ 3), certificates (top 15%), diagnostic reports, awards, teacher bonus (proctored stages only), season cup (gain).
+### M7 — Olympiad (Release 2) — Done
+- [x] Olympiad admin: stages, regions, grades (`is_ranked=false` for 0–2), venues, capacity. (`/staff/olympiads`; forms per grade per stage, proctors, venue notices; note M7-e.)
+- [x] Parent registration; monitoring ticket (≥ 3 waves); deep-link source attribution (`/o/[slug]?src=`). (`/family/children/[id]/olympiad`; notes M7-d, M7-f.)
+- [x] Online stage (kid mode, data excluded from the scale); response-time cheating signal. (Note M7-g.)
+- [x] Proctor console: roster, check-in, accompanying-adult check, offline runner package + sync upload. (`/staff/finals`, the browser runner; note M7-a.)
+- [x] Results: regional ranking (grades ≥ 3), certificates (top 15%), diagnostic reports, awards, teacher bonus (proctored stages only), season cup (gain). (Notes M7-b, M7-c, M7-h.)
+- [x] **DoD:** `scripts/olympiad-flows.sh` — 76 checks over every M7 flow, all passing; permission matrix 83 pass, 0 fail, 0 pending for M7 (10 pending, all M8–M9); earlier suites green.
+
+#### Notes on M7 — deviations and decisions
+
+**M7-a. The offline runner is a browser runner.** Decided with the product
+owner. While online, the proctor downloads the venue's package — one session
+per CHECKED-IN child (created then, `launch_context = 'proctored_final'`; a
+re-download returns the same sessions) and each form once, WITHOUT answer
+keys, media inline as `data:` URIs — into the browser (IndexedDB). Children
+sit the final on that device with no internet; answers go to IndexedDB as
+they are given; the upload (`POST /staff/finals/:venueId/sync`) is idempotent
+(an already-submitted session is skipped), checks every answer against the
+form, derives correctness on the server and stores `sync_source =
+'offline_sync'` with the device's `client_recorded_at`. Answers can also be
+exported to a file and uploaded from any device signed in as the proctor.
+There is no service worker: the runner page must stay open while offline
+(the UI says so). Check-in records whether the accompanying adult is the
+owner — a record for trust & safety, not a refusal.
+
+**M7-b. The teacher bonus counts certificates at the final.** Decided with the
+product owner: per educator, the certificates earned at the in-person spring
+final by children linked to them when the final opened — never their own
+child (M6-i) — × the olympiad's `bonus_rate` (UZS, set by the operator). One
+`teacher_bonus` award per educator. Online stages never produce a bonus.
+
+**M7-c. The season cup = ½ final + ½ gain.** Decided with the product owner:
+score = ½ · spring-final percentile + ½ · (spring-final − autumn-online
+percentile), within region × grade, for children who took both; the top
+`cup_top_n` (default 3) get the cup. Shown only to the family.
+
+**M7-d. Reaching the final.** A ticket (≥ 3 submitted monitoring waves this
+season) enters the spring final directly. Without one, the spring online
+stage's top `qualify_top_pct` (default 30 %) of region × grade qualify once
+that stage is PUBLISHED. The mini-final is by invitation: the autumn online
+stage's top `mini_final_top_n` (default 100) per region × grade. Grades 0–2
+have no final — the marathon only.
+
+**M7-e. Data model additions (migration 011).** Per-olympiad rules
+(qualify %, mini-final N, bonus rate, cup N); a form per stage per GRADE
+(`olympiad_stage_form`, an olympiad spans grades); venues belong to a stage;
+entries carry grade, how they got in (open / ticket / qualified / invited),
+cancellation, a percentile band (a range like the reports), qualification and
+the flag; one live session per entry; stages record when results were
+computed and published. `is_ranked` follows from the grade range.
+
+**M7-f. Registration.** Owner only (§ 3); an in-person stage needs a venue in
+the child's region with a free seat; registering again changes the venue; a
+cancelled entry can be revived; cancelling is possible until the stage closes
+and before any session; once the child is checked in or has started, the
+seat is final (`ALREADY_CHECKED_IN` — re-registering would silently undo the
+proctor's check-in). The DB refuses a venue proctored by the child's own
+guardian. `/o/[slug]` is public; `?src=` is kept in a cookie and stored on
+the entry as `source`.
+
+**M7-g. Online stages and the cheating signal.** An online stage is taken in
+kid mode at home (`mode = 'olympiad'`, no wave — the DB refuses a wave, and
+measurement reads monitoring only); the child sees no score. When results are
+computed, a session with a median answer time under 4 s AND ≥ 80 % correct
+raises a `registration_flag` (`olympiad_fast_answers`, the M8 queue) and marks
+the entry — a question for trust & safety, never an automatic penalty.
+
+**M7-h. Results.** Per region × grade: score = correct scored items; rank =
+1 + number of higher scores; percentile = mid-rank; band = percentile of
+score ± SEM (KR-20), shown only with a cohort of 30+; certificate = top
+`certificate_top_pct` (default 15 %). Places 1–3 only at the in-person final.
+Grades 0–2 get a score for the operator and a skills map for the family
+(one sitting, so "strong here", not "secure"). Results can be recomputed until
+PUBLISHED; publishing notifies each owner (`olympiad_results`) and fixes them.
+Families see their own child's band, certificate, qualification, awards and
+diagnostic — never a score, a rank or another child.
 
 ### M8 — Trust & safety (Release 2)
 - [ ] Fraud rules job → `registration_flag` (the 4 rules in section 8.5) with evidence JSON.

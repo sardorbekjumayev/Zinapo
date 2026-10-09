@@ -37,6 +37,7 @@ export const TEMPLATES = [
   // Olympiad
   'olympiad_registered',
   'final_venue_details',
+  'olympiad_results',
   // Trust & safety
   'case_needs_owner_confirmation',
   // Item bank (to the author)

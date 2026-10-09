@@ -60,3 +60,9 @@ echo "Measured history: $results"
 # for trust & safety and a pre-approved phone (idempotent).
 educator=$(curl -sS -X POST "$API/api/dev/seed-educator" -H 'Content-Type: application/json')
 echo "Educator workspace: $educator"
+
+# M7: the olympiad for grades 3–4 (autumn results published, spring online
+# open, the final's venues with a proctor) and the grades 0–2 marathon
+# (idempotent).
+olympiad=$(curl -sS -X POST "$API/api/dev/seed-olympiad" -H 'Content-Type: application/json')
+echo "Olympiad: $olympiad"

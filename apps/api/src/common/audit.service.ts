@@ -96,6 +96,11 @@ export type AuditAction =
   | 'olympiad.registered'
   | 'olympiad.checked_in'
   | 'olympiad.results_published'
+  | 'olympiad.changed'
+  | 'olympiad.registration_cancelled'
+  | 'olympiad.results_computed'
+  | 'olympiad.package_issued'
+  | 'olympiad.synced'
   // Trust & safety
   | 'flag.raised'
   | 'case.opened'

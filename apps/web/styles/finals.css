@@ -1,0 +1,485 @@
+/* M7 — finals screens. Classes prefixed `fn-`. Tokens only (light/dark).
+   The console follows the staff pages; the runner reuses kid.css (read-only)
+   and adds only what kid mode has no class for. */
+
+.fn-over {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-700);
+}
+
+.fn-back {
+  align-self: flex-start;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-600);
+  text-decoration: none;
+}
+.fn-back:hover {
+  color: var(--ink-900);
+}
+.fn-back:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-radius: var(--radius-xs);
+}
+
+.fn-btn--xl {
+  min-height: 56px;
+  padding: 0 28px;
+  font-size: 16px;
+}
+
+/* ------------------------------------------------------------ venues */
+
+.fn-venues {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr));
+  gap: 24px;
+}
+.fn-venue__head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fn-venue__meta {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ink-600);
+}
+.fn-venue__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fn-counts {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.fn-counts--wide {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.fn-count {
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: var(--surface-200);
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 2px;
+}
+.fn-counts--wide .fn-count {
+  background: var(--surface-100);
+  box-shadow: var(--shadow-card);
+}
+.fn-count dt {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--ink-600);
+}
+.fn-count dd {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.fn-count__num {
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.fn-count__sub {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--ink-600);
+}
+
+.fn-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.fn-steps li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 21px;
+}
+.fn-steps__n {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-pill);
+  background: var(--brand-050);
+  color: var(--brand-700);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* ------------------------------------------------------------ roster */
+
+.fn-runnerCta {
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.fn-runnerCta__icon {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-pill);
+  background: var(--brand-050);
+  color: var(--brand-700);
+  display: grid;
+  place-items: center;
+}
+
+.fn-roster {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 20px;
+}
+.fn-roster th,
+.fn-roster td {
+  padding: 14px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line-100);
+}
+.fn-roster thead th {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-600);
+  padding-top: 0;
+}
+.fn-roster tbody th {
+  font-weight: 400;
+}
+.fn-roster tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.fn-roster__name {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+.fn-roster__grade {
+  display: block;
+  color: var(--ink-600);
+  font-size: 13px;
+}
+.fn-roster__warn {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 17px;
+  color: var(--warning);
+}
+
+.fn-checkin {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 220px;
+}
+.fn-checkin .fam-btn {
+  min-height: 44px;
+  white-space: normal;
+  text-align: left;
+}
+.fn-checkin__done,
+.fn-checkin__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Below tablet width each child becomes a card: label + value per line. */
+@media (max-width: 860px) {
+  .fn-roster thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  .fn-roster,
+  .fn-roster tbody,
+  .fn-roster tr,
+  .fn-roster th,
+  .fn-roster td {
+    display: block;
+  }
+  .fn-roster tr {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line-100);
+  }
+  .fn-roster tbody tr:last-child {
+    border-bottom: 0;
+  }
+  .fn-roster th,
+  .fn-roster td {
+    border: 0;
+    padding: 6px 0;
+  }
+  .fn-roster td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-600);
+    margin-bottom: 4px;
+  }
+  .fn-checkin {
+    min-width: 0;
+  }
+}
+
+/* ------------------------------------------------------------ runner */
+
+.fn-run {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  width: 100%;
+}
+.fn-run__main,
+.fn-run__side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+@media (max-width: 1000px) {
+  .fn-run {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.fn-net {
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.fn-net--on {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.fn-net--off {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.fn-ready {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  background: var(--success-bg);
+}
+.fn-ready__icon {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-100);
+  color: var(--success);
+  display: grid;
+  place-items: center;
+}
+.fn-ready__title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
+  color: var(--ink-900);
+}
+.fn-ready p {
+  margin: 0;
+}
+
+.fn-prep__row,
+.fn-file {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.fn-kids {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.fn-kid {
+  width: 100%;
+  min-height: 72px;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--line-100);
+  background: var(--surface-100);
+  color: var(--ink-900);
+  font: inherit;
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+.fn-kid--go {
+  cursor: pointer;
+  border-color: var(--line-200);
+}
+.fn-kid--go:hover {
+  background: var(--surface-200);
+}
+.fn-kid--go:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+.fn-kid__who {
+  flex: 1 1 180px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.fn-kid__name {
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 700;
+}
+.fn-kid__grade {
+  font-size: 13px;
+  color: var(--ink-600);
+}
+.fn-kid__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--brand-700);
+}
+
+.fn-tally {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* The file picker is a styled label; the input stays focusable for keyboards. */
+.fn-file__pick {
+  position: relative;
+}
+.fn-file__input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+}
+.fn-file__pick:focus-within {
+  box-shadow: var(--ring);
+}
+.fn-file__pick--busy {
+  opacity: 0.7;
+}
+
+/* Child screens: the language switch in the bar, and the press-and-hold exit. */
+.fn-lang {
+  gap: 6px;
+}
+.fn-hold {
+  position: relative;
+  overflow: hidden;
+  min-height: 52px;
+  white-space: normal;
+  max-width: 280px;
+  text-align: left;
+  line-height: 18px;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.fn-hold > :not(.fn-hold__fill) {
+  position: relative;
+}
+.fn-hold__fill {
+  position: absolute;
+  inset: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--brand-100);
+}
+.fn-hold--on .fn-hold__fill {
+  transform: scaleX(1);
+  transition: transform var(--fn-hold-ms, 2000ms) linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fn-hold--on .fn-hold__fill {
+    transition: none;
+    transform: scaleX(0.5);
+  }
+}
+
+.fn-child {
+  max-width: 900px;
+  width: 100%;
+  align-self: center;
+}
+
+@media (max-width: 640px) {
+  .fn-counts,
+  .fn-counts--wide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .fn-hold {
+    max-width: none;
+    width: 100%;
+  }
+}

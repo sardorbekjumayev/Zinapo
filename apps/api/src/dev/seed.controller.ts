@@ -8,6 +8,7 @@ import { MeasurementService } from '../measurement/measurement.service';
 import { RedisService } from '../redis/redis.service';
 import { InvitesService } from '../educator/invites.service';
 import { SeedEducatorService } from './seed-educator.service';
+import { SeedOlympiadService } from './seed-olympiad.service';
 
 /**
  * `POST /api/dev/seed` — the M1 development fixture (task.md § 12).
@@ -28,6 +29,7 @@ export class SeedController {
     private readonly sessions: SessionsService,
     private readonly measurement: MeasurementService,
     private readonly seedEducator: SeedEducatorService,
+    private readonly seedOlympiad: SeedOlympiadService,
     private readonly invites: InvitesService,
     private readonly redis: RedisService,
   ) {}
@@ -61,6 +63,13 @@ export class SeedController {
   async educator() {
     if (this.config.isProd) throw new NotFoundException();
     return this.seedEducator.run();
+  }
+
+  /** `POST /api/dev/seed-olympiad` — M7: olympiads with a stage in every state. Needs seed, seed-bank, seed-results. */
+  @Post('seed-olympiad')
+  async olympiad() {
+    if (this.config.isProd) throw new NotFoundException();
+    return this.seedOlympiad.run();
   }
 
   /** `POST /api/dev/tick` — run the sessions/wave job, the measurement job and the access-request expiry now. */

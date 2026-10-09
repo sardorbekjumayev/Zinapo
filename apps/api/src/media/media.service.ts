@@ -102,6 +102,17 @@ export class MediaService {
     return body ? { body, mime: row.mime } : null;
   }
 
+  /**
+   * The file inline, for the proctor's offline package (M7): a final runs with
+   * no internet, so a picture or a spoken instruction must travel with it.
+   */
+  async dataUri(ref: string): Promise<string | null> {
+    const row = await this.db.one<{ mime: string }>(`SELECT mime FROM media_object WHERE storage_key = $1`, [ref]);
+    if (!row) return null;
+    const body = await this.storage.get(ref);
+    return body ? `data:${row.mime};base64,${body.toString('base64')}` : null;
+  }
+
   /** Whether `ref` is a registered file of this kind — item versions may only point at those. */
   async isKnown(ref: string, kind: MediaKind): Promise<boolean> {
     const row = await this.db.one(`SELECT 1 FROM media_object WHERE storage_key = $1 AND kind = $2`, [ref, kind]);

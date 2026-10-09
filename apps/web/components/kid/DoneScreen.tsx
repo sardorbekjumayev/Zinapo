@@ -20,6 +20,7 @@ export function DoneScreen({
   name,
   wave,
   closesOn,
+  olympiad = false,
   submit,
   timeUp,
   result,
@@ -33,6 +34,8 @@ export function DoneScreen({
   name: string;
   wave: string;
   closesOn: string | null;
+  /** An online olympiad stage: results come when the stage is published, not when a wave closes. */
+  olympiad?: boolean;
   submit: SubmitState;
   timeUp: boolean;
   result: SessionResult | null;
@@ -113,7 +116,7 @@ export function DoneScreen({
             </div>
             <div className="kd-fact kd-fact--text">
               <span className="kd-fact__title">{t.fbTitle}</span>
-              <span className="kd-muted">{closesOn ? fill(t.fbBody, { date: closesOn }) : t.fbBodyNoDate}</span>
+              <span className="kd-muted">{olympiad ? t.fbBodyOlympiad : closesOn ? fill(t.fbBody, { date: closesOn }) : t.fbBodyNoDate}</span>
             </div>
           </div>
         )}

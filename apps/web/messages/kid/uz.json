@@ -138,5 +138,8 @@
   "emTitle": "Bu testda hali savollar yoʻq",
   "emBody": "Test hali tayyor emas. Ota-onangga ayt — ular keyinroq qaytadan ochib koʻradi.",
   "errTitle": "Nimadir notoʻgʻri ketdi",
-  "errBody": "Testni ochib boʻlmadi. Birozdan keyin qayta urinib koʻring."
+  "errBody": "Testni ochib boʻlmadi. Birozdan keyin qayta urinib koʻring.",
+  "olympiad": "Olimpiada",
+  "modeOlympiad": "OLIMPIADA",
+  "fbBodyOlympiad": "Bosqich yopilib, natijalar e'lon qilingach, ota-onang hisobotni ko‘radi: natija oralig‘i va nimaga e'tibor berish kerakligi. Natijani faqat sizning oilangiz ko‘radi."
 }

@@ -511,20 +511,35 @@ async function main() {
     expect: 'allow', since: 'M4' });
   await cell({ name: 'Configure seasons / waves', actor: 'bank_editor', jar: jars.bank_editor,
     method: 'POST', path: '/api/staff/waves', body: {}, expect: 'deny', since: 'M4' });
+  // The seeded olympiad (/api/dev/seed-olympiad) and its open spring online
+  // stage: registering again is the same entry, so `allow` stays 2xx run after run.
+  const olView = await call('GET', `/api/family/children/${madina.id}/olympiad`, { jar: jars.owner });
+  const zinapo = (olView.body?.olympiads ?? []).find((o) => o.slug === 'zinapo-2026');
+  const springOnline = zinapo?.stages?.find((s) => s.kind === 'spring_online');
   await cell({ name: 'Register a child for an olympiad', actor: 'owner', jar: jars.owner,
-    method: 'POST', path: `/api/family/children/${madina.id}/olympiad/x/register`, body: {},
-    expect: 'allow', since: 'M7' });
+    method: 'POST', path: `/api/family/children/${madina.id}/olympiad/${zinapo?.id ?? 'x'}/register`,
+    body: { stageId: springOnline?.id }, expect: 'allow', since: 'M7' });
   await cell({ name: 'Register a child for an olympiad', actor: 'co-guardian', jar: jars.coGuardian,
-    method: 'POST', path: `/api/family/children/${madina.id}/olympiad/x/register`, body: {},
-    expect: 'deny', since: 'M7' });
+    method: 'POST', path: `/api/family/children/${madina.id}/olympiad/${zinapo?.id ?? 'x'}/register`,
+    body: { stageId: springOnline?.id }, expect: 'deny', since: 'M7' });
   await cell({ name: 'Manage olympiads, venues, awards', actor: 'olympiad_operator',
     jar: jars.olympiad_operator, method: 'GET', path: '/api/staff/olympiads',
     expect: 'allow', since: 'M7' });
   await cell({ name: 'Manage olympiads, venues, awards', actor: 'proctor', jar: jars.proctor,
     method: 'POST', path: '/api/staff/olympiads', body: {}, expect: 'deny', since: 'M7' });
-  await cell({ name: 'Run final check-in', actor: 'proctor', jar: jars.proctor,
+  // The seeded proctor's own venue: checking a child in again is a correction, so it stays 2xx.
+  const myVenues = await call('GET', '/api/staff/finals', { jar: jars.proctor });
+  const myVenue = myVenues.body?.[0]?.id;
+  const roster = myVenue ? await call('GET', `/api/staff/finals/${myVenue}`, { jar: jars.proctor }) : null;
+  await cell({ name: 'Run final check-in', actor: 'proctor, own venue', jar: jars.proctor,
+    method: 'POST', path: `/api/staff/finals/${myVenue ?? '00000000-0000-0000-0000-000000000000'}/check-in`,
+    body: { entryId: roster?.body?.children?.[0]?.entryId, adultMatchesOwner: true }, expect: 'allow', since: 'M7' });
+  await cell({ name: 'Run final check-in', actor: 'olympiad_operator (not a proctor)', jar: jars.olympiad_operator,
+    method: 'POST', path: `/api/staff/finals/${myVenue ?? '00000000-0000-0000-0000-000000000000'}/check-in`,
+    body: { entryId: roster?.body?.children?.[0]?.entryId, adultMatchesOwner: true }, expect: 'deny', since: 'M7' });
+  await cell({ name: 'Run final check-in', actor: 'proctor, another venue', jar: jars.proctor,
     method: 'POST', path: '/api/staff/finals/00000000-0000-0000-0000-000000000000/check-in',
-    body: {}, expect: 'deny', since: 'M7' });
+    body: { entryId: '00000000-0000-0000-0000-000000000000', adultMatchesOwner: true }, expect: 'deny', since: 'M7' });
   await cell({ name: 'Resolve fraud flags, disputes', actor: 'trust_safety', jar: jars.trust_safety,
     method: 'GET', path: '/api/staff/cases', expect: 'allow', since: 'M8' });
   await cell({ name: 'Resolve fraud flags, disputes', actor: 'support', jar: jars.support,

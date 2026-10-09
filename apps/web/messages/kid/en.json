@@ -138,5 +138,8 @@
   "emTitle": "This test has no questions yet",
   "emBody": "The test isn’t ready yet. Tell your parent — they can open it again later.",
   "errTitle": "Something went wrong",
-  "errBody": "We couldn’t open the test. Please try again in a little while."
+  "errBody": "We couldn’t open the test. Please try again in a little while.",
+  "olympiad": "Olympiad",
+  "modeOlympiad": "OLYMPIAD",
+  "fbBodyOlympiad": "When the stage closes and results are published, your parent sees a report: the result range and what to work on. Only your family sees it."
 }
