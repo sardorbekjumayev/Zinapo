@@ -2,15 +2,27 @@ import { Icon } from '@/components/shell/Icon';
 import type { CalibrationRun } from '@/lib/report-types';
 import { fill, type Locale } from '@/lib/i18n';
 import type { CalibrationMessages } from '@/messages/calibration';
-import { formatDec, formatWhen, isYoung, triggerText } from './shared';
+import { formatDec, formatWhen, isYoung, type RegionNames, triggerText, v1Params } from './shared';
+import { V1Details } from './V1Details';
 
 /**
  * The current run of one grade: what triggered it, when, what it wrote, and the
- * per-wave diagnostics (sessions, KR-20, SEM). Staff-only numbers — none of
+ * per-wave diagnostics (sessions, KR-20, SEM), plus the Rasch facts of a v1 run. Staff-only numbers — none of
  * this ever reaches a parent (task.md § 1.10).
  */
-export function RunCard({ run, m, locale }: { run: CalibrationRun; m: CalibrationMessages; locale: Locale }) {
+export function RunCard({
+  run,
+  m,
+  locale,
+  regions,
+}: {
+  run: CalibrationRun;
+  m: CalibrationMessages;
+  locale: Locale;
+  regions: RegionNames;
+}) {
   const young = isYoung(run.grade);
+  const v1 = v1Params(run);
   const waves = Object.entries(run.params.waves ?? {}).sort(([a], [b]) => Number(a) - Number(b));
   const tableId = `cb-waves-${run.id}`;
 
@@ -48,6 +60,8 @@ export function RunCard({ run, m, locale }: { run: CalibrationRun; m: Calibratio
           </div>
         ))}
       </dl>
+
+      {v1 && <V1Details p={v1} m={m} locale={locale} regions={regions} />}
 
       <section className="cb-diag" aria-labelledby={`${tableId}-t`}>
         <div className="cb-diag__head">

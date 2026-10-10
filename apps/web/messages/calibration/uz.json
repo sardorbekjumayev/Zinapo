@@ -12,14 +12,18 @@
     "v0": "v0 (raw_band_v0): ball — to‘lqin shaklidagi hisoblanadigan topshiriqlardan to‘g‘ri yechilganlari soni. Sinov (pretest) topshiriqlari hisobga olinmaydi.",
     "band": "Oraliq — hudud × sinf × mavsum ichida ballning persentili ± SEM. Kohortada 30 nafardan kam bola bo‘lsa, oraliq ko‘rsatilmaydi — ota-ona «bu kohortada hali bolalar yetarli emas» degan yozuvni o‘qiydi.",
     "young": "0–2-sinflar faqat ko‘nikma holatlarini oladi (o‘zlashtirgan, shakllanmoqda, hali emas) — hech qachon o‘rin yoki oraliq emas.",
-    "v1": "v1 (langar tenglashtirishli Rasch modeli) 2-relizda — M9 da keladi."
+    "v1": "v1 (rasch_anchor_equating_v1): Rasch modeli bo‘yicha θ, oraliq — θ ± 1,0 SE. Langar topshiriqlar oldingi v1 qiymatlarida ushlab turiladi, shuning uchun mavsumlar bir shkalada qoladi. v1 jarayoni siz uni joriy qilmaguningizcha ota-onalarga ko‘rsatilmaydi."
   },
   "toolbar": {
     "methodLegend": "Qayta ishga tushirish usuli",
     "v0": "v0 — to‘g‘ri yechilgan hisoblanadigan topshiriqlar (raw_band_v0)",
     "v1": "v1 — langar tenglashtirishli Rasch",
-    "v1Note": "2-reliz — M9",
-    "rerunAll": "Barcha sinflarni qayta ishga tushirish"
+    "rerunAll": "Barcha sinflarni qayta ishga tushirish",
+    "v1Bands": "Oraliq — θ ± 1,0 SE (Rasch, JMLE).",
+    "v1Anchors": "Langar topshiriqlar oldingi v1 jarayonidagi qiyinlikda ushlab turiladi (birinchi v1 jarayonida langar yo‘q).",
+    "v1Inflation": "Yakuniy oflayn bosqich bo‘yicha inflyatsiya hudud bo‘yicha olib tashlanadi — kamida 30 juftlik bo‘lsa.",
+    "v1NotCurrent": "v1 jarayoni joriy bo‘lmaydi: ota-onalar uni siz «Joriy qilish»ni bosmaguningizcha ko‘rmaydi.",
+    "runAllV1": "Barcha sinflar uchun v1 ni ishga tushirish"
   },
   "grade": {
     "titleFmt": "{g}-sinf",
@@ -28,7 +32,8 @@
     "rerun": "v0 ni qayta ishga tushirish",
     "emptyTitle": "Bu sinf uchun hali jarayon yo‘q",
     "emptyBody": "Bu sinfning to‘lqini yopilganda jarayon avtomatik boshlanadi. Ungacha hech narsa qilish shart emas.",
-    "noCurrent": "Bu sinfning hech bir jarayoni hali joriy emas, shuning uchun ota-ona hisobotlari o‘qiydigan narsa yo‘q. Quyidagi jarayonlardan birini joriy qiling."
+    "noCurrent": "Bu sinfning hech bir jarayoni hali joriy emas, shuning uchun ota-ona hisobotlari o‘qiydigan narsa yo‘q. Quyidagi jarayonlardan birini joriy qiling.",
+    "runV1": "v1 ni ishga tushirish"
   },
   "run": {
     "current": "Joriy",
@@ -60,6 +65,22 @@
     "noValue": "—",
     "summaryFmt": "{s} seans · {b} oraliq · {k} ko‘nikma holati"
   },
+  "v1": {
+    "title": "Rasch v1",
+    "persons": "Shkaladagi bolalar",
+    "items": "Topshiriqlar",
+    "anchors": "Ushlab turilgan langarlar",
+    "finals": "Joylashtirilgan yakuniy natijalar",
+    "convergedFmt": "{n} iteratsiyada yaqinlashdi",
+    "notConvergedFmt": "Yaqinlashmadi ({n} iteratsiya)",
+    "firstRun": "Bu birinchi v1 jarayoni: ushlab turiladigan oldingi langar qiymatlari yo‘q edi.",
+    "inflationTitle": "Yakuniy bosqich bo‘yicha inflyatsiya",
+    "inflationAppliedFmt": "{r}: Δθ {d} qo‘llandi ({n} juftlik)",
+    "inflationNotFmt": "{r}: qo‘llanmadi — {min} juftlikdan {n} tasi",
+    "noInflation": "Hali hech bir hududda yakuniy bosqich bo‘lmagan.",
+    "regionFmt": "{id}-hudud",
+    "summaryFmt": "{p} bola · {i} topshiriq · {a} langar ushlab turildi · {f} yakuniy"
+  },
   "history": {
     "summaryFmt": "Eski jarayonlar ({n})",
     "makeCurrent": "Joriy qilish",
@@ -67,7 +88,9 @@
     "dlgBodyFmt": "{g}-sinf ota-ona hisobotlari darhol {d} dagi jarayonga o‘tadi. Hozirgi joriy jarayon saqlanib qoladi, istalgan vaqtda unga qaytish mumkin.",
     "confirm": "Joriy qilish",
     "cancel": "Bekor qilish",
-    "doneFmt": "{g}-sinf: {d} dagi jarayon endi joriy."
+    "doneFmt": "{g}-sinf: {d} dagi jarayon endi joriy.",
+    "compare": "Joriy bilan solishtirish",
+    "dlgBodyV1": "Bu v1 jarayoni: ota-onalar endi undagi Rasch oraliqlarini o‘qiydi."
   },
   "rerun": {
     "dlgTitleGradeFmt": "{g}-sinf uchun v0 qayta ishga tushirilsinmi?",
@@ -79,13 +102,63 @@
     "doneFmt": "Yangi jarayonlar boshlandi: {n}. Ular endi joriy.",
     "none": "O‘lchanadigan narsa yo‘q: bu tanlov uchun hali hech bir to‘lqin yopilmagan."
   },
+  "runV1": {
+    "dlgTitleGradeFmt": "{g}-sinf uchun v1 ishga tushirilsinmi?",
+    "dlgTitleAll": "Barcha sinflar uchun v1 ishga tushirilsinmi?",
+    "dlgBody": "Yangi Rasch jarayoni eskilari yonida yoziladi, lekin joriy bo‘lmaydi — ota-ona hisobotlari hozirgi jarayonni o‘qishda davom etadi. Natijani joriy jarayon bilan solishtiring, keyin xohlasangiz uni joriy qiling.",
+    "dlgBodyAll": "Bu mavsumda yopilgan to‘lqini bor har bir sinf yangi v1 jarayonini oladi.",
+    "confirm": "v1 ni boshlash",
+    "cancel": "Bekor qilish",
+    "doneFmt": "Yangi v1 jarayonlari: {n}. Ular joriy emas — solishtiring va kerak bo‘lsa joriy qiling.",
+    "none": "O‘lchanadigan narsa yo‘q: bu tanlov uchun hali hech bir to‘lqin yopilmagan."
+  },
+  "compare": {
+    "title": "Jarayonlarni solishtirish",
+    "sub": "Bir sinfning ikki jarayonini tanlang — odatda joriy jarayon va eng yangi boshqa jarayon. Faqat sonlar: hech bir bola nomlanmaydi.",
+    "grade": "Sinf",
+    "runA": "A jarayon",
+    "runB": "B jarayon",
+    "submit": "Solishtirish",
+    "currentMark": "joriy",
+    "samePair": "Ikki xil jarayonni tanlang.",
+    "needTwo": "Solishtirish uchun bir sinfda kamida ikkita tugagan jarayon kerak.",
+    "resultFmt": "{g}-sinf: A va B",
+    "swap": "A va B ni almashtirish",
+    "close": "Yopish",
+    "privacy": "Faqat sonlar — hech bir bola nomlanmaydi.",
+    "wavesTitle": "To‘lqinlar bo‘yicha oraliq siljishi",
+    "skillsTitle": "To‘lqinlar bo‘yicha ko‘nikma holatlari",
+    "noWaves": "Ikkala jarayonda ham bor to‘lqin yo‘q.",
+    "childrenCol": "Bolalar",
+    "shiftCol": "O‘rtacha siljish, ball",
+    "movedCol": "≥ 10 ballga siljigan",
+    "bandsACol": "Oraliqlar A",
+    "bandsBCol": "Oraliqlar B",
+    "statesCol": "Holatlar",
+    "changedCol": "O‘zgargan",
+    "itemsTitle": "Qiyinligi eng ko‘p o‘zgargan 15 topshiriq",
+    "noItems": "Topshiriq qiyinliklari solishtiriladigan qilib yozilmagan.",
+    "codeCol": "Topshiriq",
+    "anchor": "langar",
+    "bACol": "b, A",
+    "bBCol": "b, B",
+    "moveCol": "O‘zgarish",
+    "noInflation": "Hech bir jarayon inflyatsiya tuzatishini qo‘llamagan.",
+    "regionCol": "Hudud",
+    "runCol": "Jarayon",
+    "deltaCol": "Δθ",
+    "pairsCol": "Juftliklar",
+    "errNotComparable": "Bu jarayonlar turli sinf yoki mavsumga tegishli — ularni solishtirib bo‘lmaydi.",
+    "errNotFound": "Jarayonlardan biri topilmadi. Ro‘yxatdan boshqasini tanlang.",
+    "errLoad": "Solishtirishni yuklab bo‘lmadi."
+  },
   "items": {
     "title": "Topshiriq statistikasi",
     "body": "Topshiriqlar bankidagi p, nuqtali-biserial korrelyatsiya, ishlamaydigan distraktorlar va uz/ru DIF endi har bir sinfning joriy jarayonidan olinadi.",
     "cta": "Topshiriqlar bankini ochish"
   },
   "errors": {
-    "METHOD_NOT_AVAILABLE": "v1 (langar tenglashtirishli Rasch) hali mavjud emas — u 2-relizda, M9 da keladi.",
+    "METHOD_NOT_AVAILABLE": "Bu usul hozir mavjud emas.",
     "NO_SEASON": "Joriy mavsum yo‘q, shuning uchun o‘lchanadigan narsa yo‘q.",
     "NOT_FOUND": "Bu jarayon endi mavjud emas yoki hali tugamagan. Sahifa yangilandi.",
     "FORBIDDEN": "Sizning rolingiz kalibrlashni ishga tushira olmaydi.",

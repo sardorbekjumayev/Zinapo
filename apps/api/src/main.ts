@@ -1,3 +1,4 @@
+import { json } from 'express';
 import 'reflect-metadata';
 import { BadRequestException, Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
@@ -14,6 +15,10 @@ async function bootstrap(): Promise<void> {
 
   app.setGlobalPrefix('api');
   app.use(cookieParser());
+  // The default 100 kB stays for every route; only the admission-list import
+  // (§ 8.5, up to 50 000 CSV rows) needs more.
+  app.useBodyParser('json', { limit: '100kb' });
+  app.use('/api/staff/outcomes/import', json({ limit: '25mb' }));
   app.set('trust proxy', true);
   app.enableShutdownHooks();
 

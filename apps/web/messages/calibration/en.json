@@ -12,14 +12,18 @@
     "v0": "v0 (raw_band_v0): the score is the number of correct scored items on the wave form. Pretest items do not count.",
     "band": "A band is the percentile of the score ± SEM within region × grade × season. Below 30 children in a cohort no band is shown — the parent reads \"not enough children in this cohort yet\".",
     "young": "Grades 0–2 get skill states only (secure, emerging, not yet), never a rank or a band.",
-    "v1": "v1 (Rasch with anchor equating) arrives in Release 2 — M9."
+    "v1": "v1 (rasch_anchor_equating_v1): θ from a Rasch model, the band is θ ± 1.0 SE. Anchor items are held at the earlier v1 values, so seasons stay on one scale. A v1 run is not shown to parents until you make it current."
   },
   "toolbar": {
     "methodLegend": "Method for a re-run",
     "v0": "v0 — correct scored items (raw_band_v0)",
     "v1": "v1 — Rasch with anchor equating",
-    "v1Note": "Release 2 — M9",
-    "rerunAll": "Re-run all grades"
+    "rerunAll": "Re-run all grades",
+    "v1Bands": "The band is θ ± 1.0 SE (Rasch, JMLE).",
+    "v1Anchors": "Anchor items are held at the difficulty of the earlier v1 run (a first v1 run has no anchors).",
+    "v1Inflation": "Inflation measured by the in-person final is taken off per region — when there are at least 30 pairs.",
+    "v1NotCurrent": "A v1 run does not become current: parents won't see it until you press \"Make current\".",
+    "runAllV1": "Run v1 for all grades"
   },
   "grade": {
     "titleFmt": "Grade {g}",
@@ -28,7 +32,8 @@
     "rerun": "Re-run v0",
     "emptyTitle": "No runs for this grade yet",
     "emptyBody": "A run starts automatically when a wave of this grade closes. Nothing to do until then.",
-    "noCurrent": "No run of this grade is current yet, so its parent reports have nothing to read. Make one of the runs below current."
+    "noCurrent": "No run of this grade is current yet, so its parent reports have nothing to read. Make one of the runs below current.",
+    "runV1": "Run v1"
   },
   "run": {
     "current": "Current",
@@ -60,6 +65,22 @@
     "noValue": "—",
     "summaryFmt": "{s} sessions · {b} bands · {k} skill states"
   },
+  "v1": {
+    "title": "Rasch v1",
+    "persons": "Children on the scale",
+    "items": "Items",
+    "anchors": "Anchors fixed",
+    "finals": "Finals placed",
+    "convergedFmt": "Converged in {n} iterations",
+    "notConvergedFmt": "Did not converge ({n} iterations)",
+    "firstRun": "This is the first v1 run: there were no earlier anchor values to hold.",
+    "inflationTitle": "Inflation from the final",
+    "inflationAppliedFmt": "{r}: Δθ {d} applied ({n} pairs)",
+    "inflationNotFmt": "{r}: not applied — {n} of {min} pairs",
+    "noInflation": "No region has had a final yet.",
+    "regionFmt": "Region {id}",
+    "summaryFmt": "{p} children · {i} items · {a} anchors fixed · {f} finals"
+  },
   "history": {
     "summaryFmt": "Older runs ({n})",
     "makeCurrent": "Make current",
@@ -67,7 +88,9 @@
     "dlgBodyFmt": "The grade {g} parent reports will switch to the run from {d} at once. The run that is current now stays saved, and you can switch back at any time.",
     "confirm": "Make current",
     "cancel": "Cancel",
-    "doneFmt": "Grade {g}: the run from {d} is now current."
+    "doneFmt": "Grade {g}: the run from {d} is now current.",
+    "compare": "Compare with current",
+    "dlgBodyV1": "This is a v1 run: parents will read its Rasch bands."
   },
   "rerun": {
     "dlgTitleGradeFmt": "Re-run v0 for grade {g}?",
@@ -79,13 +102,63 @@
     "doneFmt": "New runs started: {n}. They are now current.",
     "none": "Nothing to measure: no wave has closed yet for this choice."
   },
+  "runV1": {
+    "dlgTitleGradeFmt": "Run v1 for grade {g}?",
+    "dlgTitleAll": "Run v1 for all grades?",
+    "dlgBody": "A new Rasch run is written next to the old ones but does not become current — the parent reports keep reading the run they read now. Compare the result with the current run, then make it current if you want.",
+    "dlgBodyAll": "Every grade that has a closed wave this season gets a new v1 run.",
+    "confirm": "Start v1",
+    "cancel": "Cancel",
+    "doneFmt": "New v1 runs: {n}. They are not current — compare them and make one current if needed.",
+    "none": "Nothing to measure: no wave has closed yet for this choice."
+  },
+  "compare": {
+    "title": "Compare runs",
+    "sub": "Pick two runs of one grade — usually the current run and the newest other one. Counts only: no child is named.",
+    "grade": "Grade",
+    "runA": "Run A",
+    "runB": "Run B",
+    "submit": "Compare",
+    "currentMark": "current",
+    "samePair": "Pick two different runs.",
+    "needTwo": "Comparing needs at least two finished runs of one grade.",
+    "resultFmt": "Grade {g}: A vs B",
+    "swap": "Swap A and B",
+    "close": "Close",
+    "privacy": "Counts only — no child is named.",
+    "wavesTitle": "Band shift per wave",
+    "skillsTitle": "Skill states per wave",
+    "noWaves": "No wave is present in both runs.",
+    "childrenCol": "Children",
+    "shiftCol": "Mean shift, points",
+    "movedCol": "Moved ≥ 10 points",
+    "bandsACol": "Bands A",
+    "bandsBCol": "Bands B",
+    "statesCol": "States",
+    "changedCol": "Changed",
+    "itemsTitle": "The 15 items whose difficulty moved most",
+    "noItems": "Item difficulties were not written in a way that can be compared.",
+    "codeCol": "Item",
+    "anchor": "anchor",
+    "bACol": "b, A",
+    "bBCol": "b, B",
+    "moveCol": "Change",
+    "noInflation": "Neither run applied an inflation adjustment.",
+    "regionCol": "Region",
+    "runCol": "Run",
+    "deltaCol": "Δθ",
+    "pairsCol": "Pairs",
+    "errNotComparable": "These runs belong to different grades or seasons, so they can't be compared.",
+    "errNotFound": "One of the runs was not found. Pick another from the list.",
+    "errLoad": "Could not load the comparison."
+  },
   "items": {
     "title": "Item statistics",
     "body": "p, point-biserial, dead distractors and DIF uz/ru in the item bank now come from the current run of each grade.",
     "cta": "Open the item bank"
   },
   "errors": {
-    "METHOD_NOT_AVAILABLE": "v1 (Rasch with anchor equating) is not available yet — it arrives in Release 2 — M9.",
+    "METHOD_NOT_AVAILABLE": "This method is not available right now.",
     "NO_SEASON": "There is no current season, so there is nothing to measure.",
     "NOT_FOUND": "That run no longer exists or has not finished yet. The page has been refreshed.",
     "FORBIDDEN": "Your role cannot run calibration.",

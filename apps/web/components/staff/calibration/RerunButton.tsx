@@ -3,15 +3,17 @@
 import { useState } from 'react';
 import { ConfirmDialog } from '@/components/family/ConfirmDialog';
 import { Icon } from '@/components/shell/Icon';
+import { adminApi } from '@/lib/admin-api';
 import { fill } from '@/lib/i18n';
 import type { CalibrationMessages } from '@/messages/calibration';
 import { calibrationApi, type CalibrationMethod } from './api';
 import { useCalibrationAction } from './useCalibrationAction';
 
 /**
- * "Re-run v0" for one grade, or for every grade when `grade` is undefined.
- * Behind a confirm because a finished re-run becomes current at once — the
- * parent reports of that grade switch to it.
+ * Start a run for one grade, or for every grade when `grade` is undefined.
+ * Behind a confirm: a v0 run becomes current at once (the grade's parent
+ * reports switch to it); a v1 run is written next to the others and stays out
+ * of the reports until staff make it current (task.md note M9-d).
  */
 export function RerunButton({
   m,
@@ -29,11 +31,12 @@ export function RerunButton({
   const action = useCalibrationAction(m);
   const [open, setOpen] = useState(false);
   const all = grade === undefined;
+  const t = method === 'rasch_anchor_equating_v1' ? m.runV1 : m.rerun;
 
   async function start() {
     const ok = await action.run(
-      () => calibrationApi.trigger(method, grade),
-      (r) => (r.runs.length === 0 ? m.rerun.none : fill(m.rerun.doneFmt, { n: r.runs.length })),
+      () => (method === 'rasch_anchor_equating_v1' ? adminApi.runV1(grade) : calibrationApi.trigger(method, grade)),
+      (r) => (r.runs.length === 0 ? t.none : fill(t.doneFmt, { n: r.runs.length })),
     );
     if (ok) setOpen(false);
   }
@@ -59,10 +62,10 @@ export function RerunButton({
         open={open}
         icon="gauge"
         danger={false}
-        title={all ? m.rerun.dlgTitleAll : fill(m.rerun.dlgTitleGradeFmt, { g: grade })}
-        body={all ? `${m.rerun.dlgBody} ${m.rerun.dlgBodyAll}` : m.rerun.dlgBody}
-        confirmLabel={m.rerun.confirm}
-        cancelLabel={m.rerun.cancel}
+        title={all ? t.dlgTitleAll : fill(t.dlgTitleGradeFmt, { g: grade })}
+        body={all ? `${t.dlgBody} ${t.dlgBodyAll}` : t.dlgBody}
+        confirmLabel={t.confirm}
+        cancelLabel={t.cancel}
         busy={action.busy}
         error={action.error}
         onConfirm={start}

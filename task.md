@@ -1331,11 +1331,70 @@ nothing while the educator itself is suspended); end → revoked. The access
 page marks such links (`awaitingOwnerAnswer`). A fifth-child approval admits
 exactly one more child and is used up by it.
 
-### M9 — Measurement v1, outcomes, admin
-- [ ] Rasch + anchor equating worker (`rasch_anchor_equating_v1`), item statistics (p, point-biserial, distractor share, DIF uz/ru), compare runs, switch current.
-- [ ] Inflation adjustment from the in-person final.
-- [ ] Admission outcomes import + matching (July 2027).
-- [ ] Support lookup, staff roles management, audit viewer.
+### M9 — Measurement v1, outcomes, admin — Done
+- [x] Rasch + anchor equating worker (`rasch_anchor_equating_v1`), item statistics (p, point-biserial, distractor share, DIF uz/ru), compare runs, switch current. (In the API, `measurement/rasch.ts`; `/staff/calibration`; notes M9-a, M9-d.)
+- [x] Inflation adjustment from the in-person final. (Note M9-c.)
+- [x] Admission outcomes import + matching (July 2027). (`/staff/outcomes`; note M9-b.)
+- [x] Support lookup, staff roles management, audit viewer. (`/staff/people`, `/staff/roles`, `/staff/audit`; note M9-e.)
+- [x] **DoD:** `scripts/admin-flows.sh` — 52 checks, all passing; `scripts/measurement-unit.sh` — 12 unit tests (4 new for Rasch); permission matrix 93 pass, 0 fail, **0 pending** — every row of § 3 is enforced; earlier suites green.
+
+#### Notes on M9 — deviations and decisions
+
+**M9-a. Rasch v1 runs in the API, in TypeScript.** Decided with the product
+owner (the spec allowed a Python worker). `measurement/rasch.ts`: dichotomous
+Rasch by joint maximum likelihood, extreme scores nudged by 0.3, SE from the
+test information, infit per item; unit-tested on simulated data (difficulty
+recovery r > 0.97, anchors never move, extreme scores finite). A v1 run is ONE
+concurrent calibration over every submitted monitoring session of the
+season's closed waves (scored items only), so items shared between waves link
+them; an anchor whose difficulty an earlier v1 run set is FIXED there —
+horizontal equating across runs and waves, vertical across grades (a
+"run all" goes lowest grade first). With nothing fixed (a first run), the free
+items are centred on 0. Bands are percentiles of θ ± 1.0 SE within region ×
+grade, shown only with a cohort of 30+ (INV-11); grades 0–2 keep criterion-
+referenced skill states; item statistics carry the Rasch difficulty. A
+JMLE bias correction is not applied (it does not change ranks or bands).
+
+**M9-b. Admission outcomes are a CSV matched inside the service.** Decided with
+the product owner. Columns `pinfl, family_name, given_name, school, admitted,
+year` (comma or semicolon). Each PINFL is hashed with the same key as
+`child.pinfl_hash` and matched there; the PINFL itself is never stored,
+logged or returned — only the hash (so a child registered later matches by
+itself on the next import) and the date of birth it encodes (for review).
+Rows that did not match go to a review list: the operator picks a candidate
+child (same date of birth, similar family name, shown masked — a manual match
+MUST share the date of birth) or marks "not a Zinapo child". Re-importing a
+list updates, never duplicates. The page's point is validation: the admission
+rate by the child's last band.
+
+**M9-c. The final's inflation adjustment is computed and applied.** Decided
+with the product owner. In a v1 run, the proctored spring final of that grade
+is scored on the run's scale (children with ≥ 5 calibrated items); per region,
+delta = mean(latest monitoring θ − final θ) over children who sat both. With
+≥ 30 pairs it is stored in `inflation_adjustment` and subtracted from that
+region's monitoring θ before the bands — one way only: the final corrects
+monitoring, never the reverse; final sessions never enter `scale_score`. With
+fewer pairs the run records "not applied" and the count.
+
+**M9-d. Staff switch to v1 explicitly.** Decided with the product owner. A v1
+run is created NOT current; the calibration page compares any two runs of a
+season and grade (band shift per wave, children moved ≥ 10 points, skill
+states changed, the items whose difficulty moved most, inflation) and "make
+current" switches the reports atomically. Once a v1 run is current, the job
+measures newly closed waves with v1 (and makes that run current) so the v0 job
+never silently undoes the switch; making a v0 run current again returns the
+grade to v0.
+
+**M9-e. Support, roles, audit.** Support looks a phone up — the person, their
+workspaces, children (masked), invites sent and waiting for that number, sign-in
+sessions and any login request in progress (read from Redis) — and can resend
+a live invite (once a day) or cancel a stuck login request (which also lifts
+the "too many starts" limit). trust_safety may look up, not act. Super admin
+grants roles to people who have signed in at least once and revokes them; the
+last super admin cannot be revoked; changes take effect at once (actor cache).
+The audit viewer pages newest first by id, filters by action or action group,
+phone and dates; payloads were scrubbed when written. "settings.manage" has no
+settings to manage yet.
 
 ---
 

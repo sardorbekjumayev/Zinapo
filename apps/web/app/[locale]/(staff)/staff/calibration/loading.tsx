@@ -1,4 +1,4 @@
-/** Skeleton of the calibration page: head, the explainer and toolbar, then grade sections. */
+/** Skeleton of the calibration page: head, the explainer and toolbar, the compare panel, then grade sections. */
 export default function Loading() {
   return (
     <div className="fam-stack" style={{ '--gap': '24px' } as React.CSSProperties} aria-busy="true">
@@ -12,6 +12,7 @@ export default function Loading() {
         <span className="skel" style={{ display: 'block', height: 260, borderRadius: 40 }} />
         <span className="skel" style={{ display: 'block', height: 260, borderRadius: 40 }} />
       </div>
+      <span className="skel" style={{ display: 'block', height: 150, borderRadius: 40 }} />
       {[0, 1, 2].map((i) => (
         <div key={i} className="cb-grade">
           <span className="skel" style={{ width: 160, height: 26 }} />

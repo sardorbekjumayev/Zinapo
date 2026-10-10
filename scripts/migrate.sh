@@ -30,6 +30,7 @@ FILES=(
   "db/init/010_educator.sql"
   "db/init/011_olympiad.sql"
   "db/init/012_trust.sql"
+  "db/init/013_outcomes_admin.sql"
 )
 # The name recorded in schema_migration — must match what a fresh volume would
 # have been given by the entrypoint.

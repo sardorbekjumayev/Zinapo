@@ -154,8 +154,11 @@ async function main() {
   check(back.status === 200 && sql(`SELECT is_current FROM calibration_run WHERE id = '${runId}'`) === 't', 'and can be made current again');
   const after = (await call('GET', `/api/family/children/${madina.id}/report`, { jar: owner })).body;
   check(JSON.stringify(after.latest) === JSON.stringify(before.latest), 'the report reads whichever run is current');
-  check((await call('POST', '/api/staff/calibration-runs', { jar: editor, body: { method: 'rasch_anchor_equating_v1' } })).status === 409,
-    'v1 (Rasch) is not available yet — M9');
+  // M9: v1 exists now — and a v1 run never takes over the reports by itself (M9-d).
+  const v1 = await call('POST', '/api/staff/calibration-runs', { jar: editor, body: { method: 'rasch_anchor_equating_v1', grade: 4 } });
+  check(v1.status === 202 && sql(`SELECT is_current FROM calibration_run WHERE id = '${v1.body?.runs?.[0]}'`) === 'f'
+    && sql(`SELECT is_current FROM calibration_run WHERE id = '${runId}'`) === 't',
+    'a v1 (Rasch) run is created without becoming current (M9-d)');
 
   // ---------------------------------------------------------- reports
   group('Parent report, grades 3–4');

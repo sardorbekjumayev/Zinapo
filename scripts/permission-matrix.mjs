@@ -545,7 +545,9 @@ async function main() {
   await cell({ name: 'Resolve fraud flags, disputes', actor: 'support', jar: jars.support,
     method: 'GET', path: '/api/staff/cases', expect: 'deny', since: 'M8' });
   await cell({ name: 'Import admission outcomes', actor: 'outcomes_operator',
-    jar: jars.outcomes_operator, method: 'POST', path: '/api/staff/outcomes/import', body: {},
+    jar: jars.outcomes_operator, method: 'POST', path: '/api/staff/outcomes/import',
+    // Re-importing the same row is an update, so `allow` stays 2xx run after run.
+    body: { fileName: 'matrix.csv', csv: 'pinfl,family_name,given_name,admitted,year\n60312160000011,KARIMOVA,Madina,yes,2027' },
     expect: 'allow', since: 'M9' });
   await cell({ name: 'Import admission outcomes', actor: 'super_admin', jar: jars.super_admin,
     method: 'POST', path: '/api/staff/outcomes/import', body: {}, expect: 'deny', since: 'M9' });

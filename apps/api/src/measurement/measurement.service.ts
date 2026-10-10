@@ -13,6 +13,7 @@ import { AuditService } from '../common/audit.service';
 import { AppConfig, CONFIG } from '../config/configuration';
 import { Actor } from '../authz';
 import { NotifyService } from '../notify/notify.service';
+import { estimateTheta, inflationDelta, rasch } from './rasch';
 import {
   band,
   clusterStanding,
@@ -89,18 +90,28 @@ export class MeasurementService implements OnModuleInit, OnApplicationShutdown {
     if (this.running) return [];
     this.running = true;
     try {
-      const due = await this.db.query<{ id: string; season_id: string; grade: number }>(
-        `SELECT w.id, w.season_id, w.grade FROM wave w
+      const due = await this.db.query<{ id: string; season_id: string; grade: number; current_method: string | null }>(
+        `SELECT w.id, w.season_id, w.grade,
+                (SELECT r.method::text FROM calibration_run r
+                  WHERE r.season_id = w.season_id AND r.grade = w.grade AND r.is_current) AS current_method
+           FROM wave w
           WHERE w.closed_at IS NOT NULL AND w.form_id IS NOT NULL
-            AND NOT EXISTS (SELECT 1 FROM calibration_run r
-                             WHERE r.method = 'raw_band_v0' AND r.wave_id = w.id)
+            AND NOT EXISTS (SELECT 1 FROM calibration_run r WHERE r.wave_id = w.id)
             -- Nothing to measure: a wave nobody submitted makes no run.
             AND EXISTS (SELECT 1 FROM session s WHERE s.wave_id = w.id
                          AND s.mode = 'monitoring' AND s.status = 'submitted')
           ORDER BY w.closed_at LIMIT 10`,
       );
       const runs: string[] = [];
-      for (const w of due) runs.push(await this.run(w.season_id, w.grade, w.id, null));
+      // M9-d: once staff made a v1 run current, new waves are measured with v1
+      // (and that run becomes current) — the v0 job must not silently undo it.
+      for (const w of due) {
+        runs.push(
+          w.current_method === 'rasch_anchor_equating_v1'
+            ? await this.runV1(w.season_id, w.grade, w.id, null, true)
+            : await this.run(w.season_id, w.grade, w.id, null),
+        );
+      }
       return runs;
     } catch (err) {
       this.logger.error('measurement tick failed', err as Error);
@@ -138,8 +149,7 @@ export class MeasurementService implements OnModuleInit, OnApplicationShutdown {
    * current season that has a closed wave.
    */
   async trigger(actor: Actor, method: string, grade?: number) {
-    if (method !== 'raw_band_v0') {
-      // § 9: v1 (Rasch with anchor equating) is Release 2 / M9.
+    if (method !== 'raw_band_v0' && method !== 'rasch_anchor_equating_v1') {
       throw new ConflictException({ error: 'METHOD_NOT_AVAILABLE', details: { method } });
     }
     const season = await this.db.one<{ id: string }>(`SELECT id FROM season WHERE is_current`);
@@ -152,7 +162,15 @@ export class MeasurementService implements OnModuleInit, OnApplicationShutdown {
       [season.id, grade ?? null],
     );
     const runs: string[] = [];
-    for (const g of grades) runs.push(await this.run(season.id, g.grade, null, actor.personId));
+    // v1 goes lowest grade first: a grade's vertical anchors are fixed at the
+    // values the grade below has just been given.
+    for (const g of grades) {
+      runs.push(
+        method === 'rasch_anchor_equating_v1'
+          ? await this.runV1(season.id, g.grade, null, actor.personId, false)
+          : await this.run(season.id, g.grade, null, actor.personId),
+      );
+    }
     return { runs };
   }
 
@@ -236,12 +254,255 @@ export class MeasurementService implements OnModuleInit, OnApplicationShutdown {
     return runId;
   }
 
+  /**
+   * One `rasch_anchor_equating_v1` run for a season and grade (M9-a … M9-d).
+   *
+   *   1. one concurrent JMLE calibration over every submitted monitoring
+   *      session of the season's closed waves, scored items only; an anchor
+   *      whose difficulty an earlier v1 run set is FIXED there (equating);
+   *   2. the proctored spring final of this grade scored on that scale;
+   *   3. per region: inflation delta = mean(latest monitoring θ − final θ),
+   *      applied to the region's monitoring θ when ≥ 30 children sat both
+   *      (M9-c) — the final corrects monitoring, never the reverse;
+   *   4. each wave written like v0, but with θ ± 1.0 SE for the bands and the
+   *      Rasch difficulty for the items.
+   *
+   * Not current unless `makeCurrent` (M9-d: staff switch to v1 explicitly).
+   */
+  async runV1(seasonId: string, grade: number, waveId: string | null, triggeredBy: string | null, makeCurrent: boolean): Promise<string> {
+    const started = Date.now();
+    const { runId, params, newWaveChildren } = await this.db.transaction(async (client) => {
+      const runId = (
+        await client.query<{ id: string }>(
+          `INSERT INTO calibration_run (method, season_id, grade, wave_id, triggered_by, params)
+           VALUES ('rasch_anchor_equating_v1', $1, $2, $3, $4, $5::jsonb) RETURNING id`,
+          [seasonId, grade, waveId, triggeredBy, JSON.stringify({ model: 'rasch', estimation: 'jmle', band: 'theta ± 1.0 SE', minimum: 30 })],
+        )
+      ).rows[0].id;
+      const waves = (
+        await client.query<{ id: string; ordinal: number; form_id: string }>(
+          `SELECT id, ordinal, form_id FROM wave
+            WHERE season_id = $1 AND grade = $2 AND closed_at IS NOT NULL AND form_id IS NOT NULL ORDER BY ordinal`,
+          [seasonId, grade],
+        )
+      ).rows;
+
+      // 1. The calibration matrix: sessions × scored item versions across waves.
+      const sessions = (
+        await client.query<{ id: string; child_id: string; region: number; ordinal: number; form_id: string }>(
+          `SELECT s.id, s.child_id, s.region_snapshot AS region, w.ordinal, s.form_id
+             FROM session s JOIN wave w ON w.id = s.wave_id
+            WHERE w.id = ANY($1::uuid[]) AND s.mode = 'monitoring' AND s.status = 'submitted'`,
+          [waves.map((w) => w.id)],
+        )
+      ).rows;
+      const formItems = (
+        await client.query<{ form_id: string; item_version_id: string; is_anchor: boolean; is_scored: boolean }>(
+          `SELECT fi.form_id, fi.item_version_id, i.is_anchor, fi.is_scored
+             FROM form_item fi JOIN item_version v ON v.id = fi.item_version_id JOIN item i ON i.id = v.item_id
+            WHERE fi.form_id = ANY($1::uuid[])`,
+          [waves.map((w) => w.form_id)],
+        )
+      ).rows;
+      const scoredIvs = [...new Set(formItems.filter((f) => f.is_scored).map((f) => f.item_version_id))];
+      const col = new Map(scoredIvs.map((iv, i) => [iv, i]));
+      const onForm = new Map<string, Set<string>>();
+      for (const f of formItems.filter((x) => x.is_scored)) {
+        if (!onForm.has(f.form_id)) onForm.set(f.form_id, new Set());
+        onForm.get(f.form_id)!.add(f.item_version_id);
+      }
+      const correct = new Set(
+        (
+          await client.query<{ k: string }>(
+            `SELECT r.session_id || ':' || r.item_version_id AS k FROM response r
+              WHERE r.session_id = ANY($1::uuid[]) AND r.is_correct`,
+            [sessions.map((x) => x.id)],
+          )
+        ).rows.map((r) => r.k),
+      );
+      const matrix = sessions.map((sess) =>
+        scoredIvs.map((iv) => (onForm.get(sess.form_id)?.has(iv) ? (correct.has(`${sess.id}:${iv}`) ? 1 : 0) : null)),
+      ) as (0 | 1 | null)[][];
+
+      // Anchors fixed at the latest v1 value (current run first).
+      const anchorIvs = [...new Set(formItems.filter((f) => f.is_anchor && f.is_scored).map((f) => f.item_version_id))];
+      const prior = (
+        await client.query<{ item_version_id: string; b: string }>(
+          `SELECT DISTINCT ON (st.item_version_id) st.item_version_id, st.difficulty_b AS b
+             FROM item_statistic st JOIN calibration_run cr ON cr.id = st.calibration_run_id
+            WHERE cr.method = 'rasch_anchor_equating_v1' AND cr.id <> $2 AND cr.finished_at IS NOT NULL
+              AND st.item_version_id = ANY($1::uuid[]) AND st.difficulty_b IS NOT NULL
+            ORDER BY st.item_version_id, cr.is_current DESC, cr.started_at DESC`,
+          [anchorIvs, runId],
+        )
+      ).rows;
+      const fixed = new Map(prior.map((r) => [col.get(r.item_version_id)!, Number(r.b)]));
+      const fit = sessions.length ? rasch({ responses: matrix, fixed }) : null;
+      const bByIv = new Map(scoredIvs.map((iv, i) => [iv, fit ? fit.b[i] : 0]));
+
+      // 2. The proctored final of this grade, scored on this scale.
+      const finals = (
+        await client.query<{ id: string; child_id: string; region: number; answers: { iv: string; ok: boolean | null }[] }>(
+          `SELECT s.id, s.child_id, s.region_snapshot AS region,
+                  json_agg(json_build_object('iv', r.item_version_id, 'ok', r.is_correct)) AS answers
+             FROM session s
+             JOIN olympiad_entry e ON e.id = s.olympiad_entry_id
+             JOIN olympiad_stage st ON st.id = e.stage_id AND st.kind = 'spring_final'
+             JOIN olympiad o ON o.id = st.olympiad_id AND o.season_id = $1
+             JOIN response r ON r.session_id = s.id
+            WHERE s.mode = 'olympiad' AND s.status = 'submitted' AND s.launch_context = 'proctored_final'
+              AND s.grade_snapshot = $2
+            GROUP BY s.id`,
+          [seasonId, grade],
+        )
+      ).rows;
+      const finalTheta = new Map<string, { theta: number; region: number }>();
+      for (const f of finals) {
+        const known = f.answers.filter((a) => bByIv.has(a.iv));
+        if (known.length < 5) continue; // too few items on this scale to place the child
+        const est = estimateTheta(known.map((a) => (a.ok ? 1 : 0)), known.map((a) => bByIv.get(a.iv)!));
+        if (est) finalTheta.set(f.child_id, { theta: est.theta, region: f.region });
+      }
+
+      // 3. Inflation per region (M9-c): latest monitoring θ vs final θ.
+      const raw = new Map(sessions.map((x, n) => [x.id, { theta: fit!.theta[n], se: fit!.thetaSe[n] }]));
+      const latest = new Map<string, { theta: number; region: number; ordinal: number }>();
+      sessions.forEach((x, n) => {
+        const cur = latest.get(x.child_id);
+        if (!cur || x.ordinal > cur.ordinal) latest.set(x.child_id, { theta: fit!.theta[n], region: x.region, ordinal: x.ordinal });
+      });
+      const inflation: { regionId: number; delta: number | null; n: number }[] = [];
+      const deltaByRegion = new Map<number, number>();
+      for (const region of new Set(sessions.map((x) => x.region))) {
+        const pairs = [...finalTheta.entries()]
+          .filter(([child, f]) => f.region === region && latest.has(child))
+          .map(([child, f]) => ({ monitoring: latest.get(child)!.theta, final: f.theta }));
+        const delta = inflationDelta(pairs);
+        inflation.push({ regionId: region, delta: delta === null ? null : Number(delta.toFixed(3)), n: pairs.length });
+        if (delta !== null) {
+          deltaByRegion.set(region, delta);
+          await client.query(
+            `INSERT INTO inflation_adjustment (calibration_run_id, region_id, grade, delta_theta, n_final) VALUES ($1, $2, $3, $4, $5)`,
+            [runId, region, grade, delta.toFixed(3), pairs.length],
+          );
+        }
+      }
+      const adjusted = new Map(
+        sessions.map((x) => [x.id, { theta: raw.get(x.id)!.theta - (deltaByRegion.get(x.region) ?? 0), se: raw.get(x.id)!.se }]),
+      );
+
+      // 4. Each wave, written like v0 but on the Rasch scale.
+      const skillHistory = new Map<string, Map<string, { correct: number; state: SkillStateValue }[]>>();
+      const perWave: Record<string, unknown> = {};
+      for (const w of waves) perWave[w.ordinal] = await this.measureWave(client, runId, grade, w, skillHistory, { theta: adjusted, b: bByIv });
+
+      const params = {
+        persons: sessions.length,
+        items: scoredIvs.length,
+        fixedAnchors: fixed.size,
+        iterations: fit?.iterations ?? 0,
+        converged: fit?.converged ?? false,
+        finals: finalTheta.size,
+        inflation,
+        waves: perWave,
+      };
+      if (makeCurrent) {
+        await client.query(`UPDATE calibration_run SET is_current = false WHERE season_id = $1 AND grade = $2 AND is_current`, [seasonId, grade]);
+      }
+      await client.query(
+        `UPDATE calibration_run SET is_current = $3, finished_at = now(), params = params || $2::jsonb WHERE id = $1`,
+        [runId, JSON.stringify(params), makeCurrent],
+      );
+      const children = waveId && makeCurrent
+        ? (await client.query<{ child_id: string }>(
+            `SELECT DISTINCT child_id FROM session WHERE wave_id = $1 AND status = 'submitted' AND mode = 'monitoring'`,
+            [waveId],
+          )).rows.map((r) => r.child_id)
+        : [];
+      return { runId, params, newWaveChildren: children };
+    });
+    await this.audit.write({
+      action: 'calibration.run_started',
+      personId: triggeredBy,
+      payload: { runId, grade, waveId, method: 'rasch_anchor_equating_v1', persons: params.persons, fixedAnchors: params.fixedAnchors, ms: Date.now() - started },
+    });
+    if (waveId && makeCurrent) await this.announce(waveId, newWaveChildren);
+    this.logger.log(`rasch v1 run ${runId} for grade ${grade}: ${params.persons} sessions, ${params.items} items, ${params.fixedAnchors} anchors fixed`);
+    return runId;
+  }
+
+  /**
+   * Compare two runs of one season and grade (M9-d): how far each child's band
+   * moved per wave, and which items' difficulty changed most. Counts and item
+   * codes only — never a child's name.
+   */
+  async compare(a: string, b: string) {
+    const runs = await this.db.query<{ id: string; method: string; season_id: string; grade: number; is_current: boolean; started_at: Date; params: Record<string, unknown> }>(
+      `SELECT id, method::text, season_id, grade, is_current, started_at, params FROM calibration_run WHERE id = ANY($1::uuid[]) AND finished_at IS NOT NULL`,
+      [[a, b]],
+    );
+    const ra = runs.find((r) => r.id === a);
+    const rb = runs.find((r) => r.id === b);
+    if (!ra || !rb) throw new NotFoundException({ error: 'NOT_FOUND' });
+    if (ra.season_id !== rb.season_id || ra.grade !== rb.grade) throw new ConflictException({ error: 'NOT_COMPARABLE' });
+
+    const waves = await this.db.query<{ ordinal: number; n: number; mean_shift: number | null; moved10: number; band_a: number; band_b: number }>(
+      `SELECT w.ordinal, count(*)::int AS n,
+              avg(abs((x.pct_low + x.pct_high) / 2.0 - (y.pct_low + y.pct_high) / 2.0))::float8 AS mean_shift,
+              count(*) FILTER (WHERE abs((x.pct_low + x.pct_high) / 2.0 - (y.pct_low + y.pct_high) / 2.0) >= 10)::int AS moved10,
+              count(*) FILTER (WHERE x.pct_low IS NOT NULL)::int AS band_a,
+              count(*) FILTER (WHERE y.pct_low IS NOT NULL)::int AS band_b
+         FROM percentile_band x
+         JOIN percentile_band y ON y.child_id = x.child_id AND y.wave_id = x.wave_id AND y.calibration_run_id = $2
+         JOIN wave w ON w.id = x.wave_id
+        WHERE x.calibration_run_id = $1
+        GROUP BY w.ordinal ORDER BY w.ordinal`,
+      [a, b],
+    );
+    const skills = await this.db.query<{ ordinal: number; n: number; changed: number }>(
+      `SELECT w.ordinal, count(*)::int AS n, count(*) FILTER (WHERE x.state <> y.state)::int AS changed
+         FROM skill_state x
+         JOIN skill_state y ON y.child_id = x.child_id AND y.wave_id = x.wave_id AND y.skill_code = x.skill_code AND y.calibration_run_id = $2
+         JOIN wave w ON w.id = x.wave_id
+        WHERE x.calibration_run_id = $1 GROUP BY w.ordinal ORDER BY w.ordinal`,
+      [a, b],
+    );
+    const items = await this.db.query<{ code: string; is_anchor: boolean; b_a: number | null; b_b: number | null }>(
+      `SELECT i.code, i.is_anchor, x.difficulty_b::float8 AS b_a, y.difficulty_b::float8 AS b_b
+         FROM item_statistic x
+         JOIN item_statistic y ON y.item_version_id = x.item_version_id AND y.calibration_run_id = $2
+         JOIN item_version v ON v.id = x.item_version_id JOIN item i ON i.id = v.item_id
+        WHERE x.calibration_run_id = $1
+        ORDER BY abs(COALESCE(y.difficulty_b, 0) - COALESCE(x.difficulty_b, 0)) DESC, i.code
+        LIMIT 15`,
+      [a, b],
+    );
+    const inflation = await this.db.query(
+      `SELECT ia.calibration_run_id AS "runId", ia.region_id AS "regionId", r.name_uz AS "regionUz", r.name_ru AS "regionRu",
+              ia.delta_theta::float8 AS delta, ia.n_final AS n
+         FROM inflation_adjustment ia JOIN region r ON r.id = ia.region_id WHERE ia.calibration_run_id = ANY($1::uuid[])`,
+      [[a, b]],
+    );
+    const view = (r: typeof ra) => ({ id: r.id, method: r.method, isCurrent: r.is_current, startedAt: r.started_at, params: r.params });
+    return {
+      a: view(ra),
+      b: view(rb),
+      grade: ra.grade,
+      waves: waves.map((w) => ({ ordinal: w.ordinal, children: w.n, meanShift: w.mean_shift === null ? null : Number(w.mean_shift.toFixed(1)), movedTenOrMore: w.moved10, bandsA: w.band_a, bandsB: w.band_b })),
+      skills: skills.map((k) => ({ ordinal: k.ordinal, states: k.n, changed: k.changed })),
+      items: items.map((i) => ({ code: i.code, isAnchor: i.is_anchor, bA: i.b_a, bB: i.b_b })),
+      inflation,
+    };
+  }
+
   private async measureWave(
     client: PoolClient,
     runId: string,
     grade: number,
     wave: { id: string; ordinal: number; form_id: string },
     skillHistory: Map<string, Map<string, { correct: number; state: SkillStateValue }[]>>,
+    /** v1 (M9): Rasch theta + SE per session and difficulty per item version. Absent → v0. */
+    scale?: { theta: Map<string, { theta: number; se: number }>; b: Map<string, number> },
   ) {
     const items = (
       await client.query<FormItemRow>(
@@ -300,18 +561,25 @@ export class MeasurementService implements OnModuleInit, OnApplicationShutdown {
 
     await this.insertJson(
       client,
-      `INSERT INTO scale_score (calibration_run_id, session_id, raw_score)
-       SELECT $1, x.session_id, x.raw_score FROM jsonb_to_recordset($2::jsonb) AS x(session_id uuid, raw_score int)`,
+      `INSERT INTO scale_score (calibration_run_id, session_id, raw_score, theta, se)
+       SELECT $1, x.session_id, x.raw_score, x.theta, x.se
+         FROM jsonb_to_recordset($2::jsonb) AS x(session_id uuid, raw_score int, theta numeric, se numeric)`,
       runId,
-      sessions.map((s, i) => ({ session_id: s.id, raw_score: totals[i] })),
+      sessions.map((s, i) => {
+        const t = scale?.theta.get(s.id);
+        return { session_id: s.id, raw_score: totals[i], theta: t ? Number(t.theta.toFixed(3)) : null, se: t ? Number(t.se.toFixed(3)) : null };
+      }),
     );
 
     // Grades 3–4: a band within region × grade × season (§ 9, INV-11).
     if (grade >= 3) {
+      // v0: raw score ± SEM; v1: theta ± 1.0 SE (§ 9), both as percentiles
+      // within the cohort's own values.
+      const value = (s: SessionRow, i: number) => (scale ? scale.theta.get(s.id)?.theta ?? 0 : totals[i]);
       const byRegion = new Map<number, number[]>();
       sessions.forEach((s, i) => {
         if (!byRegion.has(s.region_snapshot)) byRegion.set(s.region_snapshot, []);
-        byRegion.get(s.region_snapshot)!.push(totals[i]);
+        byRegion.get(s.region_snapshot)!.push(value(s, i));
       });
       await this.insertJson(
         client,
@@ -322,7 +590,7 @@ export class MeasurementService implements OnModuleInit, OnApplicationShutdown {
         runId,
         sessions.map((s, i) => {
           const cohort = byRegion.get(s.region_snapshot)!;
-          const b = band(totals[i], cohort, semValue);
+          const b = band(value(s, i), cohort, scale ? scale.theta.get(s.id)?.se ?? semValue : semValue);
           return { child_id: s.child_id, wave_id: wave.id, grade, region_id: s.region_snapshot, low: b.low, high: b.high, n: cohort.length };
         }),
       );
@@ -407,7 +675,9 @@ export class MeasurementService implements OnModuleInit, OnApplicationShutdown {
         rpb: rpb === null ? null : Number(Math.max(-0.999, Math.min(0.999, rpb)).toFixed(3)),
         share,
         dif: dif === null ? null : Number(dif.toFixed(3)),
-        b: p === null ? null : Number(logitDifficulty(p).toFixed(3)),
+        b: scale?.b.has(it.item_version_id)
+          ? Number(scale.b.get(it.item_version_id)!.toFixed(3))
+          : p === null ? null : Number(logitDifficulty(p).toFixed(3)),
       };
     });
     await this.insertJson(

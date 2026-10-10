@@ -83,3 +83,59 @@ test('cluster standing is relative to the child, ±15 points', () => {
   assert.equal(m.clusterStanding(0.6, 0.6), 'in_line');
   assert.equal(m.clusterStanding(0.4, 0.6), 'weaker');
 });
+
+// ------------------------------------------------------------- M9: Rasch v1
+
+const raschPath = new URL('../apps/api/dist/measurement/rasch.js', import.meta.url).pathname;
+const R = existsSync(raschPath) ? require(raschPath) : null;
+
+/** Deterministic simulated data: P = logistic(θ − b). */
+function simulate(thetas, bs, seed = 7) {
+  let s = seed;
+  const rnd = () => ((s = (s * 1103515245 + 12345) >>> 0) % 100000) / 100000;
+  return thetas.map((t) => bs.map((b) => (rnd() < 1 / (1 + Math.exp(-(t - b))) ? 1 : 0)));
+}
+const corr = (a, b) => {
+  const ma = a.reduce((x, y) => x + y, 0) / a.length;
+  const mb = b.reduce((x, y) => x + y, 0) / b.length;
+  let n = 0, da = 0, db = 0;
+  for (let i = 0; i < a.length; i++) { n += (a[i] - ma) * (b[i] - mb); da += (a[i] - ma) ** 2; db += (b[i] - mb) ** 2; }
+  return n / Math.sqrt(da * db);
+};
+
+test('Rasch JMLE recovers known difficulties and abilities', { skip: !R }, () => {
+  const bs = Array.from({ length: 20 }, (_, i) => -2 + (4 * i) / 19);
+  const thetas = Array.from({ length: 400 }, (_, i) => -2.5 + (5 * ((i * 37) % 400)) / 400);
+  const fit = R.rasch({ responses: simulate(thetas, bs) });
+  assert.ok(fit.converged, `converged in ${fit.iterations}`);
+  assert.ok(corr(fit.b, bs) > 0.97, `item r = ${corr(fit.b, bs).toFixed(3)}`);
+  assert.ok(corr(fit.theta, thetas) > 0.85, `person r = ${corr(fit.theta, thetas).toFixed(3)}`);
+  const mean = fit.b.reduce((a, x) => a + x, 0) / fit.b.length;
+  assert.ok(Math.abs(mean) < 1e-6, 'without anchors the items are centred on 0');
+});
+
+test('Anchors stay fixed and carry the scale (equating)', { skip: !R }, () => {
+  const bs = Array.from({ length: 16 }, (_, i) => -1.5 + (3 * i) / 15 + 0.7); // the "true" scale is shifted by +0.7
+  const thetas = Array.from({ length: 300 }, (_, i) => -2 + (4 * ((i * 53) % 300)) / 300);
+  const fixed = new Map([[0, bs[0]], [5, bs[5]], [10, bs[10]], [15, bs[15]]]);
+  const fit = R.rasch({ responses: simulate(thetas, bs, 11), fixed });
+  for (const [i, v] of fixed) assert.equal(fit.b[i], v, `anchor ${i} never moves`);
+  const free = fit.b.map((b, i) => b - bs[i]).filter((_, i) => !fixed.has(i));
+  const bias = free.reduce((a, x) => a + x, 0) / free.length;
+  assert.ok(Math.abs(bias) < 0.25, `free items land on the anchored scale (bias ${bias.toFixed(3)})`);
+});
+
+test('Extreme scores still get a finite theta and SE', { skip: !R }, () => {
+  const fit = R.rasch({ responses: [[1, 1, 1, 1], [0, 0, 0, 0], [1, 0, 1, 0], [1, 1, 0, 0]] });
+  assert.ok(fit.theta.every(Number.isFinite) && fit.thetaSe.every((s) => Number.isFinite(s) && s > 0));
+  assert.ok(fit.theta[0] > fit.theta[2] && fit.theta[2] > fit.theta[1]);
+});
+
+test('Scoring with known difficulties; inflation needs 30 pairs (M9-c)', { skip: !R }, () => {
+  const one = R.estimateTheta([1, 1, 0, null, 1], [-1, 0, 1, 2, -0.5]);
+  assert.ok(one && Number.isFinite(one.theta) && one.se > 0);
+  assert.equal(R.estimateTheta([null, null], [0, 0]), null);
+  const pairs = Array.from({ length: 29 }, () => ({ monitoring: 1, final: 0.6 }));
+  assert.equal(R.inflationDelta(pairs), null);
+  assert.ok(Math.abs(R.inflationDelta([...pairs, { monitoring: 1, final: 0.6 }]) - 0.4) < 1e-9);
+});

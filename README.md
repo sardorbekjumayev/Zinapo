@@ -41,6 +41,7 @@ exists in the shell and renders a screen naming the milestone it waits for.
 │   ├── educator-flows.sh     M6: applications, invites, match-check, groups, practice
 │   ├── olympiad-flows.sh     M7: admin, tickets, online stages, proctor runner sync, results, awards
 │   ├── trust-flows.sh        M8: fraud rules, the cases queue, suspend & ask owners, disputes, 5th child
+│   ├── admin-flows.sh        M9: Rasch v1 + equating + inflation, outcomes import, support, roles, audit
 │   ├── measurement-unit.sh   unit tests of the raw_band_v0 arithmetic
 │   ├── dev-login.mjs         print session cookies for a phone (dev only)
 │   └── dev-code.sh           prints the sign-in code when there is no bot token
@@ -154,6 +155,7 @@ hashes and every invariant applies to them. It is idempotent.
 ./scripts/educator-flows.sh     # 104 checks — application, invites, match-check, groups, practice
 ./scripts/olympiad-flows.sh     # 76 checks — olympiad admin, registration, offline sync, results, bonus, cup
 ./scripts/trust-flows.sh        # 63 checks — fraud rules, queue, suspend & ask owners, disputes, fifth child
+./scripts/admin-flows.sh        # 52 checks — Rasch v1, inflation, outcomes, support, roles, audit
 ./scripts/measurement-unit.sh   # 8 unit tests — KR-20, SEM, percentile bands, skill states
 (cd apps/api && npm run lint)   # tsc --noEmit
 (cd apps/web && npm run lint)

@@ -3,6 +3,7 @@
 import { useCallback, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAnnounce } from '@/components/staff/review/live';
+import { AdminApiError } from '@/lib/admin-api';
 import type { CalibrationMessages } from '@/messages/calibration';
 import { CalibrationApiError } from './api';
 import { errorText } from './shared';
@@ -30,7 +31,12 @@ export function useCalibrationAction(m: CalibrationMessages) {
         startTransition(() => router.refresh());
         return true;
       } catch (err) {
-        const code = err instanceof CalibrationApiError ? err.code : 'generic';
+        const code =
+          err instanceof CalibrationApiError
+            ? err.code
+            : err instanceof AdminApiError
+              ? err.status === 403 ? 'FORBIDDEN' : err.code
+              : 'generic';
         setError(errorText(code, m));
         // The run vanished or is unfinished: the list on screen is stale.
         if (code === 'NOT_FOUND') startTransition(() => router.refresh());

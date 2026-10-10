@@ -58,6 +58,13 @@ export class CalibrationController {
     return this.measurement.trigger(actor, dto.method, dto.grade);
   }
 
+  /** M9-d: band shifts and item difficulty changes between two runs of one season and grade. */
+  @Get('compare')
+  @RequirePermission('calibration.run')
+  compare(@Query('a', new ParseUUIDPipe()) a: string, @Query('b', new ParseUUIDPipe()) b: string) {
+    return this.measurement.compare(a, b);
+  }
+
   @Post(':id/current')
   @RequirePermission('calibration.run')
   @HttpCode(200)

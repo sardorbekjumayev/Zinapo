@@ -14,6 +14,7 @@ import { SessionsModule } from './sessions/sessions.module';
 import { MeasurementModule } from './measurement/measurement.module';
 import { EducatorModule } from './educator/educator.module';
 import { OlympiadModule } from './olympiad/olympiad.module';
+import { AdminModule } from './admin/admin.module';
 import { NotifyModule } from './notify/notify.module';
 import { TrustModule } from './trust/trust.module';
 import { TelegramModule } from './telegram/telegram.module';
@@ -48,6 +49,7 @@ const devModules = process.env.NODE_ENV === 'production' ? [] : [DevModule];
     MeasurementModule,
     EducatorModule,
     OlympiadModule,
+    AdminModule,
     TelegramModule,
     ...devModules,
   ],

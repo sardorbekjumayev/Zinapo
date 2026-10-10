@@ -13,12 +13,15 @@ export function MakeCurrentButton({
   runId,
   grade,
   when,
+  v1 = false,
 }: {
   m: CalibrationMessages;
   runId: string;
   grade: number;
   /** The run's start, already formatted — names the run in the dialog and the announcement. */
   when: string;
+  /** A v1 run reaches parents for the first time here (task.md note M9-d). */
+  v1?: boolean;
 }) {
   const action = useCalibrationAction(m);
   const [open, setOpen] = useState(false);
@@ -46,7 +49,7 @@ export function MakeCurrentButton({
         icon="gauge"
         danger={false}
         title={m.history.dlgTitle}
-        body={fill(m.history.dlgBodyFmt, { g: grade, d: when })}
+        body={fill(m.history.dlgBodyFmt, { g: grade, d: when }) + (v1 ? ` ${m.history.dlgBodyV1}` : '')}
         confirmLabel={m.history.confirm}
         cancelLabel={m.history.cancel}
         busy={action.busy}
